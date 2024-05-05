@@ -1,0 +1,106 @@
+//BU INDIKATOR VATAN KAHRAMANI, AYDINLI YORUK ALI EFE EFE ADINA UYARLANMIŞTIR. 
+
+
+//@version=5
+indicator('YORUKALIEFE', shorttitle='YORUKALIEFE', overlay=true)
+
+
+ma3_len = input(14, "Length", group='EMA')
+src3 = input(close, "Source")
+res3 = input.timeframe('1W', "Resolution", title="EMA14Periyod")
+htf_ma3 = ta.ema(src3, ma3_len)
+out3 = request.security(syminfo.tickerid, res3, htf_ma3)
+plot(out3, color=color.rgb(2, 6, 218), linewidth=3, title='EMA-14 HAFTALIK')
+
+ma4_len = input.int(8, "Length", group='EMA')
+src4 = input(close, "Source")
+res4 = input.timeframe('1M', "Resolution", title="EMA8 AYLIK")
+htf_ma4 = ta.ema(src4, ma4_len)
+out4 = request.security(syminfo.tickerid, res4, htf_ma4)
+plot(out4, color=color.rgb(57, 165, 3), linewidth=3, title='EMA8 AYLIK')
+
+ma41_len = input.int(14, "Length", group='EMA')
+src41 = input(close, "Source")
+res41 = input.timeframe('1M', "Resolution", title="EMA14 Aylık")
+htf_ma41 = ta.ema(src41, ma41_len)
+out41 = request.security(syminfo.tickerid, res41, htf_ma41)
+plot(out41, color=color.rgb(255, 196, 3), linewidth=3, title='EMA14 AYLIK')
+
+
+///kijunsel
+
+Midpoint(length) =>
+    math.avg(ta.highest(length), ta.lowest(length))
+
+kijunTimeFrame = input.timeframe('1W', group="kijunsen")
+kijunPeriods = input.int(20, title='Kijun Periods', minval=1, group="kijunsen")
+
+kijun = request.security(syminfo.tickerid, kijunTimeFrame, Midpoint(kijunPeriods))
+
+plot(kijun, title='Kijun Target', color=color.new(#bf01b2, 0), linewidth=2)
+
+////////////////////////////////////////////////////7
+
+
+/////////////bollınger
+length98 = input.int(20, minval=1, title='BB MA')
+src9 = input(close, title='BB Source')
+mult = input.float(2.0, minval=0.001, maxval=50, title='Narrow BB Multitude')
+
+basis = ta.sma(src9, length98)
+dev = mult * ta.stdev(src9, length98)
+upper = basis + dev
+lower = basis - dev
+plot(basis, color=color.new(#fc000d, 0), linewidth=2, title='ORTA ÇİZGİ')
+p1 = plot(upper, color=color.new(color.green, 50), title='Narrow Upper')
+p2 = plot(lower, color=color.new(color.red, 50), title='Narrow Lower')
+
+length198 = input.int(20, minval=1, title='Wide BB Length')
+mult1 = input.float(3.0, minval=0.001, maxval=50, title='Wide BB Multitude')
+basis1 = ta.sma(src9, length198)
+dev1 = mult1 * ta.stdev(src9, length198)
+upper1 = basis1 + dev1
+lower1 = basis1 - dev1
+
+p3 = plot(upper1, color=color.new(color.green, 50), title='Wide Higher')
+p4 = plot(lower1, color=color.new(color.red, 50), title='Wide Lower')
+fill(p3, p1, color=color.new(color.green, 95), title='Upper Fill')
+fill(p4, p2, color=color.new(color.red, 95), title='Lower Fill')
+
+
+// Al/Sat Sinyalleri
+longCondition = ta.crossover(close, basis) 
+shortCondition = ta.crossunder(close, basis) 
+
+//Al/Sat Etiketleri
+plotshape(longCondition ? true : na, color=color.new(#359900, 0), style=shape.labelup, title= "AL", location=location.belowbar, size=size.small, textcolor=color.white, text='AL')
+plotshape(shortCondition ? true : na, color=color.new(#ff0000, 0), style=shape.labeldown, title= "SAT", location=location.abovebar, size=size.small, textcolor=color.white, text='SAT')
+
+/////BAR HACİM
+
+length77 = input.int(21, 'length', minval=1, group="HACİM BAR")
+avrg = ta.sma(volume, length77)
+
+vold1 = volume > avrg * 1.5 and close < open
+vold2 = volume >= avrg * 0.5 and volume <= avrg * 1.5 and close < open
+vold3 = volume < avrg * 0.5 and close < open
+
+volu1 = volume > avrg * 1.5 and close > open
+volu2 = volume >= avrg * 0.5 and volume <= avrg * 1.5 and close > open
+volu3 = volume < avrg * 0.5 and close > open
+
+
+cold1 = #800000
+cold2 = #FF0000
+cold3 = color.orange
+
+
+colu1 = #006400
+colu2 = color.lime
+colu3 = #7FFFD4
+
+
+color_1 = vold1 ? cold1 : vold2 ? cold2 : vold3 ? cold3 : volu1 ? colu1 : volu2 ? colu2 : volu3 ? colu3 : na
+
+barcolor(color_1)
+

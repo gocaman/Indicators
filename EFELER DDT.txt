@@ -1,0 +1,759 @@
+//BU INDIKATOR ICERISINDE; 
+//1. 9-15 WMA, 20-50-200 EMA VEAYLIK 14-34-55 EMA HAREKETLİ ORTALAMALAR
+//2. DESTEK DİRENÇ
+//3. KURUMSAL ARZ VE TALEP BÖLGELERİ
+//4. TRENÇ ÇİZGİLERİ
+//5. BOLLİNGER BANDI İNDİKATÖRLERİ BULUNMAKTADIR.
+// GÜLE GÜLE KULLANIN.
+
+//@version=5
+indicator('EFELER-DDT', 'EFELER-DDT', overlay=true, max_lines_count = 500, max_labels_count = 500, max_boxes_count = 500, max_bars_back = 500, max_polylines_count = 100)
+src = input(close, title='Source')
+
+len1 = input.int(9, minval=1, title='WMA-1',group="HAREKETLİ ORTALAMALAR")
+out1 = ta.wma(src, len1)
+
+len2 = input.int(15, minval=1, title='WMA-2', group="HAREKETLİ ORTALAMALAR")
+out2 = ta.wma(src, len2)
+
+z1 = plot(out1, color=color.rgb(0, 176, 47), linewidth=2, title='WMA-1')
+z2 = plot(out2, color=color.rgb(255, 136, 0), linewidth=2, title='WMA-2')
+
+// Al/Sat Sinyalleri
+longCondition = ta.crossover(out1, out2) 
+shortCondition = ta.crossunder(out1, out2) 
+
+//Al/Sat Etiketleri
+plotshape(longCondition ? true : na, color=color.new(#44c200, 0), style=shape.labelup, title= "AL", location=location.belowbar, size=size.small, textcolor=color.white, text='AL')
+plotshape(shortCondition ? true : na, color=color.new(#ff0000, 0), style=shape.labeldown, title= "SAT", location=location.abovebar, size=size.small, textcolor=color.white, text='SAT')
+
+
+len3 = input.int(20, minval=1, title='EMA-1', group="HAREKETLİ ORTALAMALAR")
+out3 = ta.ema(src, len3)
+
+len4 = input.int(50, minval=1, title='EMA-2', group="HAREKETLİ ORTALAMALAR")
+out4 = ta.ema(src, len4)
+
+len5 = input.int(200, minval=1, title='EMA-3', group="HAREKETLİ ORTALAMALAR")
+out5 = ta.ema(src, len5)
+
+z3 = plot(out3, color=color.rgb(48, 0, 168), linewidth=2, title='EMA-1')
+z4 = plot(out4, color=color.rgb(192, 0, 0), linewidth=2, title='EMA-2')
+z5 = plot(out5, color=color.rgb(232, 105, 0), linewidth=2, title='EMA-3')
+
+
+
+
+ma6_len = input(14, "Length", group='EMA')
+src6 = input(close, "Source")
+res6 = input.timeframe('1M', "Resolution", title="EMA14AYLIK")
+htf_ma6 = ta.ema(src, ma6_len)
+out6 = request.security(syminfo.tickerid, res6, htf_ma6)
+plot(out6, color=color.rgb(0, 116, 8), linewidth=2, title='EMA-14 AYLIK')
+
+
+ma7_len = input(34, "Length", group='EMA')
+src7 = input(close, "Source")
+res7 = input.timeframe('1M', "Resolution", title="EMA34AYLIK")
+htf_ma7 = ta.ema(src, ma7_len)
+out7 = request.security(syminfo.tickerid, res7, htf_ma7)
+plot(out7, color=color.rgb(36, 0, 181), linewidth=2, title='EMA-34 AYLIK')
+
+
+
+ma8_len = input(55, "Length", group='EMA')
+src8 = input(close, "Source")
+res8= input.timeframe('1M', "Resolution", title="EMA55AYLIK")
+htf_ma8 = ta.ema(src, ma8_len)
+out8 = request.security(syminfo.tickerid, res8, htf_ma8)
+plot(out8, color=color.rgb(181, 1, 1), linewidth=2, title='EMA-55 AYLIK')
+
+
+
+
+////////////////////////////////77777777
+prd = input.int(defval=10, title='Pivot Period', minval=4, maxval=30, group='Setup')
+ppsrc = input.string(defval='High/Low', title='Source', options=['High/Low', 'Close/Open'], group='Setup')
+maxnumpp = input.int(defval=20, title=' Maximum Number of Pivot', minval=5, maxval=100, group='Setup')
+ChannelW = input.int(defval=10, title='Maximum Channel Width %', minval=1, group='Setup')
+maxnumsr = input.int(defval=5, title=' Maximum Number of S/R', minval=1, maxval=10, group='Setup')
+min_strength = input.int(defval=2, title=' Minimum Strength', minval=1, maxval=10, group='Setup')
+labelloc = input.int(defval=20, title='Label Location', group='Colors', tooltip='Positive numbers reference future bars, negative numbers reference histical bars')
+linestyle = input.string(defval='Dashed', title='Line Style', options=['Solid', 'Dotted', 'Dashed'], group='Colors')
+linewidth1 = input.int(defval=1, title='Line Width', minval=1, maxval=4, group='Colors')
+resistancecolor = input.color(defval=color.rgb(214, 0, 0), title='Direnç Rengi', group='Colors')
+supportcolor = input.color(defval=color.rgb(37, 138, 0), title='Destek Rengi', group='Colors')
+showpp = input(false, title='Pivot Noktalarını Göster')
+
+float src1 = ppsrc == 'High/Low' ? high : math.max(close, open)
+float src2 = ppsrc == 'High/Low' ? low : math.min(close, open)
+float ph = ta.pivothigh(src1, prd, prd)
+float pl = ta.pivotlow(src2, prd, prd)
+
+plotshape(ph and showpp, text='H', style=shape.labeldown, color=na, textcolor=color.new(#f10101, 0), location=location.abovebar, offset=-prd)
+plotshape(pl and showpp, text='L', style=shape.labelup, color=na, textcolor=color.new(#01a714, 0), location=location.belowbar, offset=-prd)
+
+Lstyle = linestyle == 'Dashed' ? line.style_dashed : linestyle == 'Solid' ? line.style_solid : line.style_dotted
+
+//calculate maximum S/R channel zone width
+prdhighest = ta.highest(300)
+prdlowest = ta.lowest(300)
+cwidth = (prdhighest - prdlowest) * ChannelW / 100
+
+var pivotvals = array.new_float(0)
+
+if ph or pl
+    array.unshift(pivotvals, ph ? ph : pl)
+    if array.size(pivotvals) > maxnumpp  // limit the array size
+        array.pop(pivotvals)
+
+get_sr_vals(ind) =>
+    float lo = array.get(pivotvals, ind)
+    float hi = lo
+    int numpp = 0
+    for y = 0 to array.size(pivotvals) - 1 by 1
+        float cpp = array.get(pivotvals, y)
+        float wdth = cpp <= lo ? hi - cpp : cpp - lo
+        if wdth <= cwidth  // fits the max channel width?
+            if cpp <= hi
+                lo := math.min(lo, cpp)
+            else
+                hi := math.max(hi, cpp)
+
+            numpp += 1
+            numpp
+    [hi, lo, numpp]
+
+var sr_up_level = array.new_float(0)
+var sr_dn_level = array.new_float(0)
+sr_strength = array.new_float(0)
+
+find_loc(strength) =>
+    ret = array.size(sr_strength)
+    for i = ret > 0 ? array.size(sr_strength) - 1 : na to 0 by 1
+        if strength <= array.get(sr_strength, i)
+            break
+        ret := i
+        ret
+    ret
+
+check_sr(hi, lo, strength) =>
+    ret = true
+    for i = 0 to array.size(sr_up_level) > 0 ? array.size(sr_up_level) - 1 : na by 1
+        //included?
+        if array.get(sr_up_level, i) >= lo and array.get(sr_up_level, i) <= hi or array.get(sr_dn_level, i) >= lo and array.get(sr_dn_level, i) <= hi
+            if strength >= array.get(sr_strength, i)
+                array.remove(sr_strength, i)
+                array.remove(sr_up_level, i)
+                array.remove(sr_dn_level, i)
+                ret
+            else
+                ret := false
+                ret
+            break
+    ret
+
+var sr_lines = array.new_line(11, na)
+var sr_labels = array.new_label(11, na)
+
+for x = 1 to 10 by 1
+    rate = 100 * (label.get_y(array.get(sr_labels, x)) - close) / close
+    label.set_text(array.get(sr_labels, x), text=str.tostring(label.get_y(array.get(sr_labels, x))) + '(' + str.tostring(rate, '#.##') + '%)')
+    label.set_x(array.get(sr_labels, x), x=bar_index + labelloc)
+    label.set_color(array.get(sr_labels, x), color=label.get_y(array.get(sr_labels, x)) >= close ? color.red : color.lime)
+    label.set_textcolor(array.get(sr_labels, x), textcolor=label.get_y(array.get(sr_labels, x)) >= close ? color.white : color.black)
+    label.set_style(array.get(sr_labels, x), style=label.get_y(array.get(sr_labels, x)) >= close ? label.style_label_down : label.style_label_up)
+    line.set_color(array.get(sr_lines, x), color=line.get_y1(array.get(sr_lines, x)) >= close ? resistancecolor : supportcolor)
+
+if ph or pl
+    //because of new calculation, remove old S/R levels
+    array.clear(sr_up_level)
+    array.clear(sr_dn_level)
+    array.clear(sr_strength)
+    //find S/R zones
+    for x = 0 to array.size(pivotvals) - 1 by 1
+        [hi, lo, strength] = get_sr_vals(x)
+        if check_sr(hi, lo, strength)
+            loc = find_loc(strength)
+            // if strength is in first maxnumsr sr then insert it to the arrays 
+            if loc < maxnumsr and strength >= min_strength
+                array.insert(sr_strength, loc, strength)
+                array.insert(sr_up_level, loc, hi)
+                array.insert(sr_dn_level, loc, lo)
+                // keep size of the arrays = 5
+                if array.size(sr_strength) > maxnumsr
+                    array.pop(sr_strength)
+                    array.pop(sr_up_level)
+                    array.pop(sr_dn_level)
+
+    for x = 1 to 10 by 1
+        line.delete(array.get(sr_lines, x))
+        label.delete(array.get(sr_labels, x))
+
+    for x = 0 to array.size(sr_up_level) > 0 ? array.size(sr_up_level) - 1 : na by 1
+        float mid = math.round_to_mintick((array.get(sr_up_level, x) + array.get(sr_dn_level, x)) / 2)
+        rate = 100 * (mid - close) / close
+        array.set(sr_labels, x + 1, label.new(x=bar_index + labelloc, y=mid, text=str.tostring(mid) + '(' + str.tostring(rate, '#.##') + '%)', color=mid >= close ? color.red : color.lime, textcolor=mid >= close ? color.white : color.black, style=mid >= close ? label.style_label_down : label.style_label_up))
+
+        array.set(sr_lines, x + 1, line.new(x1=bar_index, y1=mid, x2=bar_index - 1, y2=mid, extend=extend.both, color=mid >= close ? resistancecolor : supportcolor, style=Lstyle, width=linewidth1))
+
+f_crossed_over() =>
+    ret = false
+    for x = 0 to array.size(sr_up_level) > 0 ? array.size(sr_up_level) - 1 : na by 1
+        float mid = math.round_to_mintick((array.get(sr_up_level, x) + array.get(sr_dn_level, x)) / 2)
+        if close[1] <= mid and close > mid
+            ret := true
+            ret
+    ret
+
+f_crossed_under() =>
+    ret = false
+    for x = 0 to array.size(sr_up_level) > 0 ? array.size(sr_up_level) - 1 : na by 1
+        float mid = math.round_to_mintick((array.get(sr_up_level, x) + array.get(sr_dn_level, x)) / 2)
+        if close[1] >= mid and close < mid
+            ret := true
+            ret
+    ret
+
+alertcondition(f_crossed_over(), title='Direnç kırıldı', message='Direnç kırıldı')
+alertcondition(f_crossed_under(), title='Destek kırıldı', message='Destek kırıldı')
+
+//////////////////////////////////////////////////////////////////////7777777777777
+
+
+
+// Otomatik Trend Ayarları
+string gr_trend = "╠══════ Otomatik Trend Ayarları ══════╣"
+var int history_bars = input(300, title='Geçmiş çubuk sayısı', defval=300, group=gr_trend)
+
+// Destek çizgisi ayarları
+col_sup = input(color.new(#260097, 0), title="Destek Rengi", group="Destek Çizgisi")
+style_sup = input(line.style_solid, title="Destek Çizgi Stili", group="Destek Çizgisi")
+width_sup = input(2, title="Destek Çizgi Kalınlığı", group="Destek Çizgisi")
+
+// Direnç çizgisi ayarları
+col_res = input(color.new(#d40000, 0), title="Direnç Rengi", group="Direnç Çizgisi")
+style_res = input(line.style_solid, title="Direnç Çizgi Stili", group="Direnç Çizgisi")
+width_res = input(2, title="Direnç Çizgi Kalınlığı", group="Direnç Çizgisi")
+
+// Fiyatı hesapla
+price_at(t1, p1, t2, p2, t3) =>
+    p1 + (p2 - p1) * (t3 - t1) / (t2 - t1)
+
+// Uyarılar
+// if 1 == 1
+//     alert('test')
+
+// Yuvaya çevrilmiş yuvarlama fonksiyonu
+round_to_tick(x) =>
+    mult = 1 / syminfo.mintick
+    value = math.ceil(x * mult) / mult
+    value
+
+// Destek ve Direnç çizgilerini saklamak için diziler
+var line[] supports = array.new_line()
+var line[] resistances = array.new_line()
+var label[] labels = array.new_label()
+
+// Geçmiş çizgileri temizle
+line temp_line = na
+if array.size(supports) > 0
+    for i = array.size(supports) - 1 to 0 by -1
+        temp_line := array.get(supports, i)
+        line.delete(temp_line)
+        array.remove(supports, i)
+
+if array.size(resistances) > 0
+    for i = array.size(resistances) - 1 to 0 by -1
+        temp_line := array.get(resistances, i)
+        line.delete(temp_line)
+        array.remove(resistances, i)
+
+// Ekstremumları belirle
+min_values = low
+max_values = high
+xx1 = input(title='Çözünürlük (çubuklar)', defval=6, group=gr_trend)
+xx2 = math.round(xx1 / 2)
+int minimums = 0
+minimums := ta.lowestbars(min_values, xx1) == -xx2 ? xx2 : minimums[1] + 1
+
+int maximums = 0
+maximums := ta.highestbars(max_values, xx1) == -xx2 ? xx2 : maximums[1] + 1
+
+int minimum1 = 0
+int minimum2 = 0
+int maximum1 = 0
+int maximum2 = 0
+int medium = 0
+
+// Destek çizgileri
+if barstate.islast
+    line last_line = na
+    line last_line2 = na
+    label last_label = na
+    for k1 = 0 to 50 by 1
+        if minimum1 >= history_bars
+            break
+        minimum1 += minimums[minimum1]
+        minimum2 := minimum1 * 2
+        for k2 = 0 to 50 by 1
+            if minimum2 >= minimum1 * 8 or minimum2 >= history_bars
+                break
+            minimum2 += minimums[minimum2]
+
+            if minimum1 >= history_bars or minimum2 >= history_bars
+                break
+
+            bar1 = bar_index - minimum1
+            bar2 = bar_index - minimum2
+
+            price1 = low[minimum1]
+            price2 = low[minimum2]
+
+            current_price = price_at(bar2, price2, bar1, price1, bar_index)
+            current_price2 = price_at(bar1, price1, bar_index, current_price, bar_index)
+
+            if current_price < high[1]
+                crossed = 0
+                medium := 0
+                for k3 = 0 to 50 by 1
+                    if medium >= minimum2
+                        break
+                    medium += minimums[medium]
+                    if medium >= minimum2
+                        break
+                    if price_at(bar2, price2, bar1, price1, bar_index - medium) > math.min(open[medium], close[medium])
+                        crossed := 1
+                        break
+
+                if crossed == 0
+                    if not na(last_line) and not na(last_line2)
+                        last_price = price_at(line.get_x1(last_line), line.get_y1(last_line), line.get_x2(last_line), line.get_y2(last_line), bar_index)
+                        last_price2 = price_at(line.get_x1(last_line2), line.get_y1(last_line2), line.get_x2(last_line2), line.get_y2(last_line2), bar_index)
+
+                        if bar1 == line.get_x2(last_line) and bar_index == line.get_x2(last_line2)
+                            if current_price > last_price and current_price > last_price2
+                                line.set_xy1(last_line, bar2, price2)
+                                line.set_xy2(last_line, bar1, price1)
+                                line.set_color(last_line, col_sup)
+                                // label.set_xy(last_label, bar_index, current_price)
+                                // label.set_text(last_label, str.tostring(round_to_tick(current_price)))
+                                line.set_xy1(last_line2, bar1, price1)
+                                line.set_xy2(last_line2, bar_index, current_price)
+                                line.set_color(last_line2, col_sup)
+                                true
+                        else
+                            last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_sup, style=style_sup)
+                            last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_sup, style=line.style_dashed)
+                            // last_label := label.new(bar_index, current_price2, color=col_sup, style=label.style_label_upper_left, text=str.tostring(round_to_tick(current_price)))
+                            // array.push(labels, last_label)
+                            array.push(supports, last_line)
+                            array.push(supports, last_line2)
+                            true
+                    else
+                        last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_sup, style=style_sup)
+                        last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_sup, style=line.style_dashed)
+                        // last_label := label.new(bar_index, current_price2, color=col_sup, style=label.style_label_upper_left, text=str.tostring(round_to_tick(current_price)))
+                        // array.push(labels, last_label)
+                        array.push(supports, last_line)
+                        array.push(supports, last_line2)
+                        true
+
+    last_line := na
+    last_line2 := na
+    // Direnç çizgileri
+    for k1 = 0 to 100 by 1
+        if maximum1 >= history_bars
+            break
+        maximum1 += maximums[maximum1]
+        maximum2 := maximum1 * 2
+        for k2 = 0 to 50 by 1
+            if maximum2 >= maximum1 * 8 or maximum2 >= history_bars
+                break
+            maximum2 += maximums[maximum2]
+
+            if maximum1 >= history_bars or maximum2 >= history_bars
+                break
+
+            bar1 = bar_index - maximum1
+            bar2 = bar_index - maximum2
+
+            price1 = high[maximum1]
+            price2 = high[maximum2]
+
+            current_price = price_at(bar2, price2, bar1, price1, bar_index)
+            current_price2 = price_at(bar1, price1, bar_index, current_price, bar_index)
+
+            if current_price > low[1]
+                crossed = 0
+                medium := 0
+                for k3 = 0 to 100 by 1
+                    if medium >= maximum2
+                        break
+                    medium += maximums[medium]
+                    if medium >= maximum2
+                        break
+                    if price_at(bar2, price2, bar1, price1, bar_index - medium) < math.max(open[medium], close[medium])
+                        crossed := 1
+                        break
+
+                if crossed == 0
+                    if not na(last_line) and not na(last_line2)
+                        last_price = price_at(line.get_x1(last_line), line.get_y1(last_line), line.get_x2(last_line), line.get_y2(last_line), bar_index)
+                        last_price2 = price_at(line.get_x1(last_line2), line.get_y1(last_line2), line.get_x2(last_line2), line.get_y2(last_line2), bar_index)
+
+                        if bar1 == line.get_x2(last_line) and bar_index == line.get_x2(last_line2)
+                            if current_price < last_price and current_price < last_price2
+                                line.set_xy1(last_line, bar2, price2)
+                                line.set_xy2(last_line, bar1, price1)
+                                line.set_color(last_line, col_res)
+                                // label.set_xy(last_label, bar_index, current_price)
+                                // label.set_text(last_label, str.tostring(round_to_tick(current_price)))
+                                line.set_xy1(last_line2, bar1, price1)
+                                line.set_xy2(last_line2, bar_index, current_price)
+                                line.set_color(last_line2, col_res)
+                                true
+                        else
+                            last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_res, style=style_res)
+                            last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_res, style=line.style_dashed)
+                            // last_label := label.new(bar_index, current_price2, color=col_res, style=label.style_label_lower_left, text=str.tostring(round_to_tick(current_price)))
+                            // array.push(labels, last_label)
+                            array.push(resistances, last_line)
+                            array.push(resistances, last_line2)
+                            true
+                    else
+                        last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_res, style=style_res)
+                        last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_res, style=line.style_dashed)
+                        // last_label := label.new(bar_index, current_price2, color=col_res, style=label.style_label_lower_left, text=str.tostring(round_to_tick(current_price)))
+                        // array.push(labels, last_label)
+                        array.push(resistances, last_line)
+                        array.push(resistances, last_line2)
+                        true
+
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  DESTEK DİRENÇ BÖLGELERİ  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+//      INDICATOR SETTINGS
+swing_length = input.int(10, title = 'Swing High/Low Length', group = 'Settings', minval = 1, maxval = 50)
+history_of_demand_to_keep = input.int(20, title = 'History To Keep', minval = 5, maxval = 50)
+box_width = input.float(10, title = 'ARZ/TALEP KUTUSU GENİŞLİĞİ', group = 'AYARLAR', minval = 1, maxval = 10, step = 0.5)
+
+//      INDICATOR VISUAL SETTINGS
+show_zigzag = input.bool(false, title = 'Show Zig Zag', group = 'Visual Settings', inline = '1')
+show_price_action_labels = input.bool(false, title = 'Show Price Action Labels', group = 'Visual Settings', inline = '2')
+
+supply_color = input.color(color.new(#e70000, 83), title = 'ARZ BÖLGESİ', group = 'Visual Settings', inline = '3')
+supply_outline_color = input.color(color.new(#e90808, 68), title = 'Outline', group = 'Visual Settings', inline = '3')
+
+demand_color = input.color(color.new(#22aa00, 71), title = 'TALEP BÖLGESİ', group = 'Visual Settings', inline = '4')
+demand_outline_color = input.color(color.new(#07ec1a, 50), title = 'Outline', group = 'Visual Settings', inline = '4')
+
+bos_label_color = input.color(color.rgb(8, 8, 8), title = 'BOS Label', group = 'Visual Settings', inline = '5')
+poi_label_color = input.color(color.rgb(12, 11, 11), title = 'POI Label', group = 'Visual Settings', inline = '7')
+
+swing_type_color = input.color(color.black, title = 'Price Action Label', group = 'Visual Settings', inline = '8')
+zigzag_color = input.color(color.new(#000000,0), title = 'Zig Zag', group = 'Visual Settings', inline = '9')
+
+//
+//END SETTINGS
+//
+
+
+//
+//FUNCTIONS
+//
+
+//      FUNCTION TO ADD NEW AND REMOVE LAST IN ARRAY
+f_array_add_pop(array, new_value_to_add) =>
+    array.unshift(array, new_value_to_add)
+    array.pop(array)
+
+//      FUNCTION SWING H & L LABELS
+f_sh_sl_labels(array, swing_type) =>
+
+    var string label_text = na
+    if swing_type == 1
+        if array.get(array, 0) >= array.get(array, 1)
+            label_text := 'HH'
+        else
+            label_text := 'LH'
+        label.new(bar_index - swing_length, array.get(array,0), text = label_text, style=label.style_label_down, textcolor = swing_type_color, color = color.new(swing_type_color, 100), size = size.tiny)
+    
+    else if swing_type == -1
+        if array.get(array, 0) >= array.get(array, 1)
+            label_text := 'HL'
+        else
+            label_text := 'LL'
+        label.new(bar_index - swing_length, array.get(array,0), text = label_text, style=label.style_label_up, textcolor = swing_type_color, color = color.new(swing_type_color, 100), size = size.tiny)
+
+//      FUNCTION MAKE SURE SUPPLY ISNT OVERLAPPING
+f_check_overlapping(new_poi, box_array, atr) =>
+
+    atr_threshold = atr * 2
+    okay_to_draw = true
+
+    for i = 0 to array.size(box_array) - 1
+        top = box.get_top(array.get(box_array, i))
+        bottom = box.get_bottom(array.get(box_array, i))
+        poi = (top + bottom) / 2
+
+        upper_boundary = poi + atr_threshold
+        lower_boundary = poi - atr_threshold
+
+        if new_poi >= lower_boundary and new_poi <= upper_boundary
+            okay_to_draw := false
+            break
+        else 
+            okay_to_draw := true
+    okay_to_draw
+
+
+//      FUNCTION TO DRAW SUPPLY OR DEMAND ZONE
+f_supply_demand(value_array, bn_array, box_array, label_array, box_type, atr) =>
+
+    atr_buffer = atr * (box_width / 10)
+    box_left = array.get(bn_array, 0)
+    box_right = bar_index
+
+    var float box_top = 0.00
+    var float box_bottom = 0.00
+    var float poi = 0.00
+
+
+    if box_type == 1
+        box_top := array.get(value_array, 0)
+        box_bottom := box_top - atr_buffer
+        poi := (box_top + box_bottom) / 2
+    else if box_type == -1
+        box_bottom := array.get(value_array, 0)
+        box_top := box_bottom + atr_buffer
+        poi := (box_top + box_bottom) / 2
+
+    okay_to_draw = f_check_overlapping(poi, box_array, atr)
+    // okay_to_draw = true
+
+    //delete oldest box, and then create a new box and add it to the array
+    if box_type == 1 and okay_to_draw
+        box.delete( array.get(box_array, array.size(box_array) - 1) )
+        f_array_add_pop(box_array, box.new( left = box_left, top = box_top, right = box_right, bottom = box_bottom, border_color = supply_outline_color,
+             bgcolor = supply_color, extend = extend.right, text = 'ARZ BÖLGESİ', text_halign = text.align_center, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+        
+        box.delete( array.get(label_array, array.size(label_array) - 1) )
+        f_array_add_pop(label_array, box.new( left = box_left, top = poi, right = box_right, bottom = poi, border_color = color.new(poi_label_color,90),
+             bgcolor = color.new(poi_label_color,90), extend = extend.right, text = 'POI', text_halign = text.align_left, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+
+    else if box_type == -1 and okay_to_draw
+        box.delete( array.get(box_array, array.size(box_array) - 1) )
+        f_array_add_pop(box_array, box.new( left = box_left, top = box_top, right = box_right, bottom = box_bottom, border_color = demand_outline_color,
+             bgcolor = demand_color, extend = extend.right,  text = 'TALEP BÖLGESİ', text_halign = text.align_center, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+        
+        box.delete( array.get(label_array, array.size(label_array) - 1) )
+        f_array_add_pop(label_array, box.new( left = box_left, top = poi, right = box_right, bottom = poi, border_color = color.new(poi_label_color,90),
+             bgcolor = color.new(poi_label_color,90), extend = extend.right,  text = 'POI', text_halign = text.align_left, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+
+
+//      FUNCTION TO CHANGE SUPPLY/DEMAND TO A BOS IF BROKEN
+f_sd_to_bos(box_array, bos_array, label_array, zone_type) =>
+
+    if zone_type == 1
+        for i = 0 to array.size(box_array) - 1
+            level_to_break = box.get_top(array.get(box_array,i))
+            // if ta.crossover(close, level_to_break)
+            if close >= level_to_break
+                copied_box = box.copy(array.get(box_array,i))
+                f_array_add_pop(bos_array, copied_box)
+                mid = (box.get_top(array.get(box_array,i)) + box.get_bottom(array.get(box_array,i))) / 2
+                box.set_top(array.get(bos_array,0), mid)
+                box.set_bottom(array.get(bos_array,0), mid)
+                box.set_extend( array.get(bos_array,0), extend.none)
+                box.set_right( array.get(bos_array,0), bar_index)
+                box.set_text( array.get(bos_array,0), 'BOS' )
+                box.set_text_color( array.get(bos_array,0), bos_label_color)
+                box.set_text_size( array.get(bos_array,0), size.small)
+                box.set_text_halign( array.get(bos_array,0), text.align_center)
+                box.set_text_valign( array.get(bos_array,0), text.align_center)
+                box.delete(array.get(box_array, i))
+                box.delete(array.get(label_array, i))
+
+
+    if zone_type == -1
+        for i = 0 to array.size(box_array) - 1
+            level_to_break = box.get_bottom(array.get(box_array,i))
+            // if ta.crossunder(close, level_to_break)
+            if close <= level_to_break
+                copied_box = box.copy(array.get(box_array,i))
+                f_array_add_pop(bos_array, copied_box)
+                mid = (box.get_top(array.get(box_array,i)) + box.get_bottom(array.get(box_array,i))) / 2
+                box.set_top(array.get(bos_array,0), mid)
+                box.set_bottom(array.get(bos_array,0), mid)
+                box.set_extend( array.get(bos_array,0), extend.none)
+                box.set_right( array.get(bos_array,0), bar_index)
+                box.set_text( array.get(bos_array,0), 'BOS' )
+                box.set_text_color( array.get(bos_array,0), bos_label_color)
+                box.set_text_size( array.get(bos_array,0), size.small)
+                box.set_text_halign( array.get(bos_array,0), text.align_center)
+                box.set_text_valign( array.get(bos_array,0), text.align_center)
+                box.delete(array.get(box_array, i))
+                box.delete(array.get(label_array, i))
+
+
+
+//      FUNCTION MANAGE CURRENT BOXES BY CHANGING ENDPOINT
+f_extend_box_endpoint(box_array) =>
+
+    for i = 0 to array.size(box_array) - 1
+        box.set_right(array.get(box_array, i), bar_index + 100)
+
+
+//
+//END FUNCTIONS
+//  
+
+
+//
+//CALCULATIONS
+//
+
+//      CALCULATE ATR 
+atr = ta.atr(50)
+
+//      CALCULATE SWING HIGHS & SWING LOWS
+swing_high = ta.pivothigh(high, swing_length, swing_length)
+swing_low = ta.pivotlow(low, swing_length, swing_length)
+
+//      ARRAYS FOR SWING H/L & BN 
+var swing_high_values = array.new_float(5,0.00)
+var swing_low_values = array.new_float(5,0.00)
+
+var swing_high_bns = array.new_int(5,0)
+var swing_low_bns = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPLY / DEMAND
+var current_supply_box = array.new_box(history_of_demand_to_keep, na)
+var current_demand_box = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR SUPPLY / DEMAND POI LABELS
+var current_supply_poi = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos = array.new_box(5, na)
+var demand_bos = array.new_box(5, na)
+//
+//END CALCULATIONS
+//
+
+//      NEW SWING HIGH
+if not na(swing_high)
+
+    //MANAGE SWING HIGH VALUES
+    f_array_add_pop(swing_high_values, swing_high)
+    f_array_add_pop(swing_high_bns, bar_index[swing_length])
+    if show_price_action_labels
+        f_sh_sl_labels(swing_high_values, 1)
+
+    f_supply_demand(swing_high_values, swing_high_bns, current_supply_box, current_supply_poi, 1, atr)
+
+//      NEW SWING LOW
+else if not na(swing_low)
+
+    //MANAGE SWING LOW VALUES
+    f_array_add_pop(swing_low_values, swing_low)
+    f_array_add_pop(swing_low_bns, bar_index[swing_length])
+    if show_price_action_labels
+        f_sh_sl_labels(swing_low_values, -1)
+    
+    f_supply_demand(swing_low_values, swing_low_bns, current_demand_box, current_demand_poi, -1, atr)
+
+
+f_sd_to_bos(current_supply_box, supply_bos, current_supply_poi, 1)
+f_sd_to_bos(current_demand_box, demand_bos, current_demand_poi, -1)
+
+f_extend_box_endpoint(current_supply_box)
+f_extend_box_endpoint(current_demand_box)
+
+//ZIG ZAG
+h = ta.highest(high, swing_length * 2 + 1)
+l = ta.lowest(low, swing_length * 2 + 1)
+f_isMin(len) =>
+    l == low[len]
+f_isMax(len) =>
+    h == high[len]
+
+var dirUp = false
+var lastLow = high * 100
+var lastHigh = 0.0
+var timeLow = bar_index
+var timeHigh = bar_index
+var line li = na
+
+f_drawLine() =>
+    _li_color = show_zigzag ? zigzag_color : color.new(#ffffff,100)
+    line.new(timeHigh - swing_length, lastHigh, timeLow - swing_length, lastLow, xloc.bar_index, color=_li_color, width=2)
+
+if dirUp
+    if f_isMin(swing_length) and low[swing_length] < lastLow
+        lastLow := low[swing_length]
+        timeLow := bar_index
+        line.delete(li)
+        li := f_drawLine()
+        li
+
+    if f_isMax(swing_length) and high[swing_length] > lastLow
+        lastHigh := high[swing_length]
+        timeHigh := bar_index
+        dirUp := false
+        li := f_drawLine()
+        li
+
+if not dirUp
+    if f_isMax(swing_length) and high[swing_length] > lastHigh
+        lastHigh := high[swing_length]
+        timeHigh := bar_index
+        line.delete(li)
+        li := f_drawLine()
+        li
+    if f_isMin(swing_length) and low[swing_length] < lastHigh
+        lastLow := low[swing_length]
+        timeLow := bar_index
+        dirUp := true
+        li := f_drawLine()
+        if f_isMax(swing_length) and high[swing_length] > lastLow
+            lastHigh := high[swing_length]
+            timeHigh := bar_index
+            dirUp := false
+            li := f_drawLine()
+            li
+// if barstate.islast
+    // label.new(x = bar_index + 10, y = close[1], text = str.tostring( array.size(current_supply_poi) ))
+//     label.new(x = bar_index + 20, y = close[1], text = str.tostring( box.get_bottom( array.get(current_supply_box, 0))))
+//     label.new(x = bar_index + 30, y = close[1], text = str.tostring( box.get_bottom( array.get(current_supply_box, 1))))
+//     label.new(x = bar_index + 40, y = close[1], text = str.tostring( box.get_bottom( array.get(current_supply_box, 2))))
+//     label.new(x = bar_index + 50, y = close[1], text = str.tostring( box.get_bottom( array.get(current_supply_box, 3))))
+//     label.new(x = bar_index + 60, y = close[1], text = str.tostring( box.get_bottom( array.get(current_supply_box, 4))))
+
+
+/////////////bollınger
+length = input.int(20, minval=1, title='BB MA')
+src9 = input(close, title='BB Source')
+mult = input.float(2.0, minval=0.001, maxval=50, title='Narrow BB Multitude')
+
+basis = ta.sma(src9, length)
+dev = mult * ta.stdev(src9, length)
+upper = basis + dev
+lower = basis - dev
+plot(basis, color=color.new(#7200d0, 0), title='ORTA BAND')
+p1 = plot(upper, color=color.new(color.green, 50), title='Narrow Upper')
+p2 = plot(lower, color=color.new(color.red, 50), title='Narrow Lower')
+
+length1 = input.int(20, minval=1, title='Wide BB Length')
+mult1 = input.float(3.0, minval=0.001, maxval=50, title='Wide BB Multitude')
+basis1 = ta.sma(src9, length1)
+dev1 = mult1 * ta.stdev(src9, length)
+upper1 = basis1 + dev1
+lower1 = basis1 - dev1
+
+p3 = plot(upper1, color=color.new(color.green, 50), title='Wide Higher')
+p4 = plot(lower1, color=color.new(color.red, 50), title='Wide Lower')
+fill(p3, p1, color=color.new(color.green, 95), title='Upper Fill')
+fill(p4, p2, color=color.new(color.red, 95), title='Lower Fill')

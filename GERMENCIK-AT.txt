@@ -1,0 +1,172 @@
+
+//@version=5
+
+indicator('GERMENCİK-AT', overlay=true, max_lines_count=500, max_bars_back = 500)
+/////////////////////////
+
+/////////////fayterro
+src77=input(hlc3,title="source")
+len=input.int(50,title="lenght", maxval=500)
+
+cr(x, y) =>
+    z = 0.0
+    weight = 0.0
+    for i = 0 to y-1
+        z:=z + x[i]*((y-1)/2+1-math.abs(i-(y-1)/2))
+    z/(((y+1)/2)*(y+1)/2)
+cr= cr(src77,2*len-1) 
+
+width=3
+
+// plot(cr, color= #cf0202, linewidth=width,offset=-len+1)
+
+dizii = array.new_float(500)
+for k=0 to len-1
+    sum=0.0
+    for i=0 to 2*len-2-k
+        sum +=(len-math.abs(len-1-k-i))*src77[i]/(len*len-k*(k+1)/2)
+    array.set(dizii,k, sum )
+
+mult11 = input.float(2.0, minval=0.001, maxval=50, title="StdDev")
+dev11 = mult11 * ta.stdev(src77, len)
+upper11 = cr + cr(dev11, 2*len-1)
+lower11 = cr - cr(dev11, 2*len-1)
+cu = input.color(color.rgb(223, 3, 3), "upper band color")
+cl = input.color(color.rgb(46, 181, 1), "lower band color")
+plot(lower11, color=  cl, offset=1-len, linewidth=3, display = display.pane)
+plot(upper11, color=  cu, offset=1-len, linewidth=3, display = display.pane)
+dashed=input.bool(false)
+transp=input.bool(true)
+d = dashed? 2 : 1
+tra=transp? 1 : 0
+// extrapolation
+diz = array.new_float(500)
+var lin=array.new_line()
+diz2 = array.new_float(500)
+var lin2=array.new_line(0)
+if barstate.islast
+    for k=0 to len-1
+        sum=0.0
+        dv=0.0
+        for i=0 to 2*len-2-k
+            sum +=(len-math.abs(len-1-k-i))*src77[i]/(len*len-k*(k+1)/2) 
+            dv +=(len-math.abs(len-1-k-i))*dev11[i]/(len*len-k*(k+1)/2)
+        array.set(diz,k, sum + dv)
+        array.set(diz2,k, sum - dv)
+    for i=0 to (len/d-1)
+        array.push(lin, line.new(na, na, na, na))
+        line.set_xy1(array.get(lin,i), bar_index[len]+i*d+1, array.get(diz,i*d))
+        line.set_xy2(array.get(lin,i), bar_index[len]+i*d+2, array.get(diz,i*d+1))
+        line.set_color(array.get(lin,i),color.new(cu, tra*i*95/(len/d-1)))//array.get(diz,i*2+1)>=array.get(diz,i*2)?  #35cf02 : #cf0202)
+        line.set_width(array.get(lin,i),width)
+        array.push(lin2, line.new(na, na, na, na))
+        line.set_xy1(array.get(lin2,i), bar_index[len]+i*d+1, array.get(diz2,i*d))
+        line.set_xy2(array.get(lin2,i), bar_index[len]+i*d+2, array.get(diz2,i*d+1))
+        line.set_color(array.get(lin2,i),color.new(cl, tra*i*95/(len/d-1)) )//array.get(diz2,i*2+1)>=array.get(diz2,i*2)?  #35cf02 : #cf0202)
+        line.set_width(array.get(lin2,i),width)
+plot(array.get(diz,len-1), color = color.new(cu,100))
+plot(array.get(diz2,len-1), color = color.new(cl,100))
+// plot(cr, color=color.blue, linewidth=width, title="Middle Band")
+alertcondition(ta.crossover(close,array.get(diz,len-1)) or ta.crossunder(close,array.get(diz2,len-1)), title = "faytterro bands alert", 
+ message = "warning! this is an early warning alert, not a buy or sell signal. Remember that the indicator repaints to a limited extent on the last bars.")
+
+///////
+
+//          INPUTS: 
+len5 = input.int(14, title='Arnaud Legoux MA Length', minval=1, group="ALMA")
+src22 = input(close, title='Source', group="ALMA")
+offset5 = input.float(0.85, title='ALMA Offset', minval=0.0001)
+sigma = input.int(6, title='ALMA Sigma Value', minval=1)
+trendALMA = ta.alma(src22, len5, offset5, sigma)
+res18 = input.timeframe('1W', "Resolution", title="ALMAPeriyod")
+out18 = request.security(syminfo.tickerid, res18, trendALMA)
+
+//          PLOTTING:
+almaColor = trendALMA >= trendALMA[1] ? color.rgb(14, 0, 212) : color.rgb(248, 1, 1)
+p01 = plot(trendALMA, title='ALMA', color=almaColor, linewidth=3)
+
+///////////////////////////////////ALPHA TREND
+
+
+coeff = input.float(1, 'Multiplier', step=0.1)
+AP = input(14, 'Common Period')
+ATR = ta.sma(ta.tr, AP)
+src5 = input(close)
+showsignalsk = input(title='Show Signals?', defval=true)
+novolumedata = input(title='Change calculation (no volume data)?', defval=false)
+upT = low - ATR * coeff
+downT = high + ATR * coeff
+AlphaTrend = 0.0
+AlphaTrend := (novolumedata ? ta.rsi(src5, AP) >= 50 : ta.mfi(hlc3, AP) >= 50) ? upT < nz(AlphaTrend[1]) ? nz(AlphaTrend[1]) : upT : downT > nz(AlphaTrend[1]) ? nz(AlphaTrend[1]) : downT
+
+color1 = AlphaTrend > AlphaTrend[2] ? #00E60F : AlphaTrend < AlphaTrend[2] ? #80000B : AlphaTrend[1] > AlphaTrend[3] ? #00E60F : #80000B
+k1 = plot(AlphaTrend, color=color.new(#0022FC, 0), linewidth=3)
+k2 = plot(AlphaTrend[2], color=color.new(#FC0400, 0), linewidth=3)
+
+fill(k1, k2, color=color1)
+
+buySignalk = ta.crossover(AlphaTrend, AlphaTrend[2])
+sellSignalk = ta.crossunder(AlphaTrend, AlphaTrend[2])
+
+
+K1 = ta.barssince(buySignalk)
+K2 = ta.barssince(sellSignalk)
+O1 = ta.barssince(buySignalk[1])
+O2 = ta.barssince(sellSignalk[1])
+
+plotshape(buySignalk and showsignalsk and O1 > K2 ? AlphaTrend[2] * 0.9999 : na, title='BUY', text='BUY', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(#0022FC, 0), textcolor=color.new(color.white, 0))
+
+plotshape(sellSignalk and showsignalsk and O2 > K1 ? AlphaTrend[2] * 1.0001 : na, title='SELL', text='SELL', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(color.maroon, 0), textcolor=color.new(color.white, 0))
+
+
+alertcondition(buySignalk and O1 > K2, title='Potential BUY Alarm', message='BUY SIGNAL!')
+alertcondition(sellSignalk and O2 > K1, title='Potential SELL Alarm', message='SELL SIGNAL!')
+
+alertcondition(buySignalk[1] and O1[1] > K2, title='Confirmed BUY Alarm', message='BUY SIGNAL APPROVED!')
+alertcondition(sellSignalk[1] and O2[1] > K1, title='Confirmed SELL Alarm', message='SELL SIGNAL APPROVED!')
+
+
+
+alertcondition(ta.cross(close, AlphaTrend), title='Price Cross Alert', message='Price - AlphaTrend Crossing!')
+alertcondition(ta.crossover(low, AlphaTrend), title='Candle CrossOver Alarm', message='LAST BAR is ABOVE ALPHATREND')
+alertcondition(ta.crossunder(high, AlphaTrend), title='Candle CrossUnder Alarm', message='LAST BAR is BELOW ALPHATREND!')
+
+alertcondition(ta.cross(close[1], AlphaTrend[1]), title='Price Cross Alert After Bar Close', message='Price - AlphaTrend Crossing!')
+alertcondition(ta.crossover(low[1], AlphaTrend[1]), title='Candle CrossOver Alarm After Bar Close', message='LAST BAR is ABOVE ALPHATREND!')
+alertcondition(ta.crossunder(high[1], AlphaTrend[1]), title='Candle CrossUnder Alarm After Bar Close', message='LAST BAR is BELOW ALPHATREND!')
+
+
+
+
+//BOLLINGER
+
+
+////////////////////////BOLLINGER
+
+length22 = input.int(20, minval=1, title='BB MA')
+src222 = input(close, title='BB Source')
+mult22 = input.float(2.0, minval=0.001, maxval=50, title='Narrow BB Multitude')
+
+basis = ta.sma(src222, length22)
+dev = mult22 * ta.stdev(src222, length22)
+upper22 = basis + dev
+lower22 = basis - dev
+plot(basis, color=color.new(#5200eb, 0), title='BB MA')
+p1 = plot(upper22, color=color.new(color.green, 50), title='Narrow Upper')
+p2 = plot(lower22, color=color.new(color.red, 50), title='Narrow Lower')
+
+length122 = input.int(20, minval=1, title='Wide BB Length')
+mult122 = input.float(3.0, minval=0.001, maxval=50, title='Wide BB Multitude')
+basis122 = ta.sma(src222, length122)
+dev1 = mult122 * ta.stdev(src222, length122)
+upper122 = basis122 + dev1
+lower122 = basis122 - dev1
+
+p3 = plot(upper122, color=color.new(#2ab92f, 41), title='Wide Higher')
+p4 = plot(lower122, color=color.new(#fb3b3b, 49), title='Wide Lower')
+fill(p3, p1, color=color.new(#20c525, 90), title='Upper Fill')
+fill(p4, p2, color=color.new(color.red, 90), title='Lower Fill')
+
+
+
+

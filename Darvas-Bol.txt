@@ -1,0 +1,53 @@
+//@version=5
+
+//author KıvanÇ @fr3762 on twitter
+//creator Nicholas Darvas
+
+
+indicator('DEREKÖY-DARVAS', overlay=true, shorttitle='DEREKÖY-DARVAS')
+//iff(low=lowest(low,5),low,iff(low[1]=lowest(low,5),low[1],iff(low[2]=lowest(low,5),low[2],iff(low[3]=lowest(low,5),low[3],iff(low[4]=lowest(low,5),low[4],0)))))
+//iff(low=lowest(low,5),low,iff(low[1]=lowest(low,5),low[1],iff(low[2]=lowest(low,5),low[2],iff(low[3]=lowest(low,5),low[3],iff(low[4]=lowest(low,5),low[4],0)))))
+boxp = input(5, 'BOX LENGTH')
+
+LL = ta.lowest(low, boxp)
+k1 = ta.highest(high, boxp)
+k2 = ta.highest(high, boxp - 1)
+k3 = ta.highest(high, boxp - 2)
+
+NH = ta.valuewhen(high > k1[1], high, 0)
+box1 = k3 < k2
+TopBox = ta.valuewhen(ta.barssince(high > k1[1]) == boxp - 2 and box1, NH, 0)
+BottomBox = ta.valuewhen(ta.barssince(high > k1[1]) == boxp - 2 and box1, LL, 0)
+
+
+plot(TopBox, linewidth=3, color=color.new(color.green, 0), title='TBbox')
+plot(BottomBox, linewidth=3, color=color.new(color.red, 0), title='BBbox')
+
+/////////////
+
+
+/////////////bollınger
+length = input.int(20, minval=1, title='BB MA')
+src9 = input(close, title='BB Source')
+mult = input.float(2.0, minval=0.001, maxval=50, title='Narrow BB Multitude')
+
+basis = ta.sma(src9, length)
+dev = mult * ta.stdev(src9, length)
+upper = basis + dev
+lower = basis - dev
+plot(basis, color=color.new(#d70081, 0), title='BB MA')
+p1 = plot(upper, color=color.new(color.green, 50), title='Narrow Upper')
+p2 = plot(lower, color=color.new(color.red, 50), title='Narrow Lower')
+
+length1 = input.int(20, minval=1, title='Wide BB Length')
+mult1 = input.float(3.0, minval=0.001, maxval=50, title='Wide BB Multitude')
+basis1 = ta.sma(src9, length1)
+dev1 = mult1 * ta.stdev(src9, length)
+upper1 = basis1 + dev1
+lower1 = basis1 - dev1
+
+p3 = plot(upper1, color=color.new(color.green, 50), title='Wide Higher')
+p4 = plot(lower1, color=color.new(color.red, 50), title='Wide Lower')
+fill(p3, p1, color=color.new(color.green, 95), title='Upper Fill')
+fill(p4, p2, color=color.new(color.red, 95), title='Lower Fill')
+

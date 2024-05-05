@@ -1,0 +1,248 @@
+
+//@version=5
+indicator('MUSLUCA-V2', shorttitle='MUSLUCA-V2', overlay=true, max_bars_back=4000)
+
+/////////////////////GRAFİK
+
+// EMA-14
+
+ma8_len = input(8, "Length", group='EMA')
+src8 = input(close, "Source")
+res8 = input.timeframe('240', "Resolution", title="EMA-8 4S")
+htf_ma8 = ta.ema(src8, ma8_len)
+out8 = request.security(syminfo.tickerid, res8, htf_ma8)
+plot(out8, color=color.rgb(15, 186, 3), linewidth=2, title='EMA8 4S')
+
+
+ma18_len = input(55, "Length", group='EMA')
+src18 = input(close, "Source")
+res18 = input.timeframe('240', "Resolution", title="EMA55 4S")
+htf_ma18 = ta.ema(src18, ma18_len)
+out18 = request.security(syminfo.tickerid, res18, htf_ma18)
+plot(out18, color=color.rgb(241, 6, 6), linewidth=2, style=plot.style_cross, title='EMA55 4S')
+
+
+ma28_len = input(8, "Length", group='EMA')
+src28 = input(close, "Source")
+res28 = input.timeframe('1D', "Resolution", title="EMA8 GÜNLÜK")
+htf_ma28 = ta.ema(src28, ma28_len)
+out28 = request.security(syminfo.tickerid, res28, htf_ma28)
+plot(out28, color=color.rgb(228, 1, 134), linewidth=2, title='EMA8 GÜNLÜK')
+
+
+
+
+
+/////////////////////
+
+ma3_len = input(9, "Length", group='WMA')
+src3 = input(close, "Source")
+res3 = input.timeframe('1W', "Resolution", title="wma9Periyod")
+htf_ma3 = ta.wma(src3, ma3_len)
+out3 = request.security(syminfo.tickerid, res3, htf_ma3)
+plot(out3, color=color.rgb(10, 147, 0), linewidth=3, title='WMA-9HAFTALIK')
+
+ma4_len = input.int(15, "Length", group='WMA')
+src4 = input(close, "Source")
+res4 = input.timeframe('1W', "Resolution", title="wma15Periyod")
+htf_ma4 = ta.wma(src4, ma4_len)
+out4 = request.security(syminfo.tickerid, res4, htf_ma4)
+plot(out4, color=color.rgb(255, 136, 0), linewidth=3, title='WMA-15HAFTALIK')
+
+// Haftalık 9 EMA'nın %15 fazlasını hesapla
+percent_increase = input.int(15, title="Percent Increase") / 100
+
+// ATR'yi kullanmadan %15 artışı hesapla
+trailing_percent = 1 + percent_increase
+trailing_value = out3 * trailing_percent
+
+// Plot the trailing line
+plot(trailing_value, color=color.rgb(0, 4, 7), linewidth=2, style=plot.style_cross, title='Trailing %15')
+
+
+
+// Haftalık 9 WMA'nın %30 fazlasını hesapla
+percent_increase1 = input.int(30, title="Percent Increase") / 100
+
+// ATR'yi kullanmadan %30 artışı hesapla
+trailing_percent1 = 1 + percent_increase1
+trailing_value1 = out3 * trailing_percent1
+
+// Plot the trailing line
+plot(trailing_value1, color=color.rgb(255, 0, 0), linewidth=1, title='Trailing %30')
+
+
+/////
+// Haftalık 9 WMA'nın %40 fazlasını hesapla
+percent_increase2 = input.int(40, title="Percent Increase") / 100
+
+// ATR'yi kullanmadan %40 artışı hesapla
+trailing_percent2 = 1 + percent_increase2
+trailing_value2 = out3 * trailing_percent2
+
+// Plot the trailing line
+plot(trailing_value2, color=color.rgb(255, 136, 0), linewidth=1, title='Trailing %40')
+
+
+///////
+// Haftalık 9 WMA'nın %50 fazlasını hesapla
+percent_increase3 = input.int(50, title="Percent Increase") / 100
+
+// ATR'yi kullanmadan %60 artışı hesapla
+trailing_percent3 = 1 + percent_increase3
+trailing_value3 = out3 * trailing_percent3
+
+// Plot the trailing line
+plot(trailing_value3, color=color.rgb(184, 0, 65), linewidth=1, title='Trailing %50')
+
+
+
+// Haftalık 9 WMA'nın %60 fazlasını hesapla
+percent_increase4 = input.int(70, title="Percent Increase") / 100
+
+// ATR'yi kullanmadan %60 artışı hesapla
+trailing_percent4 = 1 + percent_increase4
+trailing_value4 = out3 * trailing_percent4
+
+// Plot the trailing line
+plot(trailing_value4, color=color.rgb(184, 0, 65), linewidth=1, title='Trailing %70')
+
+
+
+///kijunsel
+
+Midpoint(length) =>
+    math.avg(ta.highest(length), ta.lowest(length))
+
+kijunTimeFrame = input.timeframe('1W', group="kijunsen")
+kijunPeriods = input.int(20, title='Kijun Periods', minval=1, group="kijunsen")
+
+kijun = request.security(syminfo.tickerid, kijunTimeFrame, Midpoint(kijunPeriods))
+
+plot(kijun, title='Kijun Target', color=color.new(#820179, 0), linewidth=2)
+
+
+
+/////BAR HACİM
+
+length77 = input.int(21, 'length', minval=1, group="HACİM BAR")
+avrg = ta.sma(volume, length77)
+
+vold1 = volume > avrg * 1.5 and close < open
+vold2 = volume >= avrg * 0.5 and volume <= avrg * 1.5 and close < open
+vold3 = volume < avrg * 0.5 and close < open
+
+volu1 = volume > avrg * 1.5 and close > open
+volu2 = volume >= avrg * 0.5 and volume <= avrg * 1.5 and close > open
+volu3 = volume < avrg * 0.5 and close > open
+
+
+cold1 = #800000
+cold2 = #FF0000
+cold3 = color.orange
+
+
+colu1 = #006400
+colu2 = color.lime
+colu3 = #7FFFD4
+
+
+color_1 = vold1 ? cold1 : vold2 ? cold2 : vold3 ? cold3 : volu1 ? colu1 : volu2 ? colu2 : volu3 ? colu3 : na
+
+barcolor(color_1)
+
+
+//////////////////////
+
+
+//////////////HAFTALIK
+// Calculate MACD on the weekly timeframe
+[macdLine, signalLine, _] = request.security(syminfo.tickerid, "1W", ta.macd(close, 12, 26, 9))
+
+
+// Check for MACD crossover on the weekly timeframe
+macdCrossover = ta.crossover(macdLine, signalLine)
+
+// Plot "M" label when there is a MACD crossover
+plotshape(macdCrossover, color=color.new(color.orange, 0), style=shape.labelup, title="HAFTALIK MACD", textcolor=color.new(color.white, 0), text="M-H", location=location.belowbar)
+
+//////////////RSI
+
+////////////////
+// Calculate RSI on the weekly timeframe
+rsiValue = request.security(syminfo.tickerid, "1W", ta.rsi(close, 14))
+
+// Calculate 14-period SMA of RSI
+rsiSMA = ta.sma(rsiValue, 14)
+
+
+
+///////////////EKLEME
+// Check for RSI being above its 14-period SMA and crossing above 50 on the weekly timeframe
+rsiAboveSMA = rsiValue > rsiSMA
+rsiAbove50 = ta.crossover(rsiValue, 50)
+
+// Plot "R" label when RSI is above its SMA and crosses above 50
+plotshape(rsiAboveSMA and rsiAbove50, color=color.new(#4400ff, 0), style=shape.labelup, title="RSI-HAF", textcolor=color.new(color.white, 0), text="R-H", location=location.belowbar)
+
+
+////////////////////AYLIK
+
+// Calculate MACD on the AYLIK timeframe
+[macdLine1, signalLine1, _] = request.security(syminfo.tickerid, "1M", ta.macd(close, 12, 26, 9))
+
+// Check for MACD crossover on the AYLIK timeframe
+macdCrossover1 = ta.crossover(macdLine1, signalLine1)
+
+// Plot "M" label when there is a MACD crossover
+plotshape(macdCrossover1, color=color.new(color.orange, 0), style=shape.labelup, title="AYLIK MACD", textcolor=color.new(color.white, 0), text="M-A", location=location.belowbar)
+
+//////////////RSI
+
+////////////////
+// Calculate RSI on the AYLIK timeframe
+rsiValue1 = request.security(syminfo.tickerid, "1M", ta.rsi(close, 14))
+
+// Calculate 14-period SMA of RSI
+rsiSMA1 = ta.sma(rsiValue1, 14)
+
+///////////////EKLEME
+// Check for RSI being above its 14-period SMA and crossing above 50 on the weekly timeframe
+rsiAboveSMA1 = rsiValue1 > rsiSMA1
+rsiAbove501 = ta.crossover(rsiValue1, 50)
+
+// Plot "R" label when RSI is above its SMA and crosses above 50
+plotshape(rsiAboveSMA1 and rsiAbove501, color=color.new(#4400ff, 0), style=shape.labelup, title="RSI-AYLIK", textcolor=color.new(color.white, 0), transp=0, text="R-A", location=location.belowbar)
+
+//3 AYLIK
+
+// Calculate MACD on the AYLIK timeframe
+[macdLine11, signalLine11, _] = request.security(syminfo.tickerid, "3M", ta.macd(close, 12, 26, 9))
+
+
+// Check for MACD crossover on the AYLIK timeframe
+macdCrossover11 = ta.crossover(macdLine11, signalLine11)
+
+// Plot "M" label when there is a MACD crossover
+plotshape(macdCrossover11, color=color.new(color.orange, 0), style=shape.labelup, title="3AYLIK MACD", textcolor=color.new(color.white, 0), text="M-A", location=location.belowbar)
+
+//////////////RSI
+
+////////////////
+// Calculate RSI on the AYLIK timeframe
+rsiValue11 = request.security(syminfo.tickerid, "3M", ta.rsi(close, 14))
+
+// Calculate 14-period SMA of RSI
+rsiSMA11 = ta.sma(rsiValue11, 14)
+
+///////////////EKLEME
+// Check for RSI being above its 14-period SMA and crossing above 50 on the weekly timeframe
+rsiAboveSMA11 = rsiValue1 > rsiSMA11
+rsiAbove5011 = ta.crossover(rsiValue11, 50)
+
+// Plot "R" label when RSI is above its SMA and crosses above 50
+plotshape(rsiAboveSMA11 and rsiAbove5011, color=color.new(#4400ff, 0), style=shape.labelup, title="RSI-3AYLIK", textcolor=color.new(color.white, 0), transp=0, text="R-A", location=location.belowbar)
+
+
+
+

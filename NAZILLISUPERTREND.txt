@@ -1,0 +1,576 @@
+//@version=5
+indicator(title='NAZILLI-SUPERTREND', overlay=true, max_lines_count=500, max_bars_back = 500)
+
+//////////////////////////////////////////ALMA
+//          INPUTS: 
+len1 = input.int(14, title='Arnaud Legoux MA Length', minval=1, group="ALMA")
+src22 = input(close, title='Source', group="ALMA")
+offset = input.float(0.85, title='ALMA Offset', minval=0.0001)
+sigma = input.int(6, title='ALMA Sigma Value', minval=1)
+trendALMA = ta.alma(src22, len1, offset, sigma)
+res18 = input.timeframe('1W', "Resolution", title="ALMAPeriyod")
+out18 = request.security(syminfo.tickerid, res18, trendALMA)
+
+//          PLOTTING:
+almaColor = trendALMA >= trendALMA[1] ? color.rgb(14, 0, 212) : color.rgb(248, 1, 1)
+p01 = plot(trendALMA, title='ALMA', color=almaColor, linewidth=2)
+
+///////////////////////////SUPERTREND
+//----------------------------------------------//----------------------------------------------
+// Set 1 Parameters (ST - Short Term)
+//----------------------------------------------//----------------------------------------------
+Periods = input(title='Set 1 ATR Period', defval=10, group="Set 1 - Short Term")
+src = input(hl2, title='Set 1 Source', group="Set 1 - Short Term")
+Multiplier = input.float(title='Set 1 ATR Multiplier', step=0.1, defval=3.336, group="Set 1 - Short Term")
+changeATR = input(title='Set 1 Change ATR Calculation Method ?', defval=true, group="Set 1 - Short Term")
+showsignals = input(title='Set 1 Show Buy/Sell Signals ?', defval=true, group="Set 1 - Short Term")
+highlighting = input(title='Set 1 Highlighter On/Off ?', defval=true, group="Set 1 - Short Term")
+
+// Calculate ATR for Set 1
+atr1 = ta.sma(ta.tr, Periods)
+atr = changeATR ? ta.atr(Periods) : atr1
+
+// Calculate SuperTrend for Set 1
+up = src - Multiplier * atr
+up1 = nz(up[1], up)
+up := close[1] > up1 ? math.max(up, up1) : up
+dn = src + Multiplier * atr
+dn1 = nz(dn[1], dn)
+dn := close[1] < dn1 ? math.min(dn, dn1) : dn
+
+trend1 = 1
+trend1 := nz(trend1[1], trend1)
+trend1 := trend1 == -1 and close > dn1 ? 1 : trend1 == 1 and close < up1 ? -1 : trend1
+
+// Plot SuperTrend lines for Set 1
+upPlot1 = plot(trend1 == 1 ? up : na, title='Set 1 Up Trend', style=plot.style_linebr, linewidth=2, color=color.rgb(45, 210, 4, 0))
+dnPlot1 = plot(trend1 == 1 ? na : dn, title='Set 1 Down Trend', style=plot.style_linebr, linewidth=2, color=color.new(#ff02d1, 0))
+
+// Buy and sell signals for Set 1
+buySignal = trend1 == 1 and trend1[1] == -1
+plotshape(buySignal ? up : na, title='Set 1 UpTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.rgb(45, 210, 4, 0))
+plotshape(buySignal and showsignals ? up : na, title='Set 1 Long Label', text='AL', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.rgb(45, 210, 4, 0), textcolor=color.new(color.white, 0))
+
+sellSignal = trend1 == -1 and trend1[1] == 1
+plotshape(sellSignal ? dn : na, title='Set 1 DownTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(#ff02d1, 0))
+plotshape(sellSignal and showsignals ? dn : na, title='Set 1 Short Label', text='SAT', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(#ff02d1, 0), textcolor=color.new(color.white, 0))
+
+// // Highlighter or Clouds for Set 1
+// mPlot1 = plot(ohlc4, title='Set 1 Show OHLC4', color = color.rgb(0, 99, 248,100), style=plot.style_circles, linewidth=1)
+// longFillColor = highlighting ? trend1 == 1 ? color.rgb(76, 175, 80, 90) : color.rgb(255, 255, 255, 90) : color.rgb(255, 255, 255, 90)
+// shortFillColor = highlighting ? trend1 == -1 ? color.rgb(0, 0, 0, 90) : color.rgb(255, 255, 255, 90) : color.rgb(255, 255, 255, 90)
+// fill(mPlot1, upPlot1, title='Set 1 UpTrend Highligter', color=longFillColor)
+// fill(mPlot1, dnPlot1, title='Set 1 DownTrend Highligter', color=shortFillColor)
+
+// Alert condition signal for Set 1
+alertcondition(buySignal, title='Set 1 SuperTrend Long (ST)', message='Set 1 SuperTrend Long (ST)')
+alertcondition(sellSignal, title='Set 1 SuperTrend Short (ST)', message='Set 1 SuperTrend Short (ST)')
+
+// Trend Change Alert condition for Set 1 
+changeCond = trend1 != trend1[1]
+alertcondition(changeCond, title='Set 1 SuperTrend Direction Change (ST)', message='Set 1 SuperTrend has changed direction (ST)')
+
+//----------------------------------------------//----------------------------------------------
+// Set 2 Parameters (ST - Short Term)
+//----------------------------------------------//----------------------------------------------
+Periods2 = input(title='Set 2 ATR Period Set', defval=10, group="Set 2 - Short Term")
+src2 = input(hl2, title='Set 2 Source', group="Set 2 - Short Term")
+Multiplier2 = input.float(title='Set 2 ATR Multiplier', step=0.1, defval=2.636, group="Set 2 - Short Term")
+changeATR2 = input(title='Set 2 Change ATR Calculation Method?', defval=true, group="Set 2 - Short Term")
+showsignals2 = input(title='Set 2 Show Buy/Sell Signals?', defval=true, group="Set 2 - Short Term")
+highlighting2 = input(title='Set 2 Highlighter On/Off?', defval=true, group="Set 2 - Short Term")
+
+// Calculate ATR for Set 2
+atr22 = ta.sma(ta.tr, Periods2)
+atr2 = changeATR2 ? ta.atr(Periods2) : atr22
+
+// Calculate SuperTrend for Set 2
+up2 = src2 - Multiplier2 * atr2
+up12 = nz(up2[1], up)
+up2 := close[1] > up12 ? math.max(up2, up12) : up2
+dn2 = src2 + Multiplier2 * atr2
+dn12 = nz(dn2[1], dn2)
+dn2 := close[1] < dn12 ? math.min(dn2, dn12) : dn2
+
+trend2 = 1
+trend2 := nz(trend2[1], trend2)
+trend2 := trend2 == -1 and close > dn12 ? 1 : trend2 == 1 and close < up12 ? -1 : trend2
+
+// Plot SuperTrend lines for Set 2
+upPlot2 = plot(trend2 == 1 ? up2 : na, title='Set 2 Up Trend', style=plot.style_linebr, linewidth=3, color=color.rgb(45, 210, 4, 0))
+dnPlot2 = plot(trend2 == 1 ? na : dn2, title='Set 2 Down Trend', style=plot.style_linebr, linewidth=3, color=color.new(#ff02d1, 0))
+
+// Buy and sell signals for Set 2
+buySignal2 = trend2 == 1 and trend2[1] == -1
+plotshape(buySignal2 ? up2 : na, title='Set 2 UpTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.rgb(45, 210, 4, 0))
+plotshape(buySignal2 and showsignals2 ? up2 : na, title='Set 2 Long Label', text='AL', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.rgb(45, 210, 4, 0), textcolor=color.new(color.white, 0))
+
+sellSignal2 = trend2 == -1 and trend2[1] == 1
+plotshape(sellSignal2 ? dn2 : na, title='Set 2 DownTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(#ff02d1, 0))
+plotshape(sellSignal2 and showsignals2 ? dn2 : na, title='Set 2 Short Label', text='SAT', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(#ff02d1, 0), textcolor=color.new(color.white, 0))
+
+
+// Alert conditions for Set 2
+alertcondition(buySignal2, title='Set 2 SuperTrend Long (ST)', message='Set 2 SuperTrend Long (ST)')
+alertcondition(sellSignal2, title='Set 2 SuperTrend Short (ST)', message='Set 2 SuperTrend Short (ST)')
+
+// Alert condition for Set 2 trend change
+changeCond2 = trend2 != trend2[1]
+alertcondition(changeCond2, title='Set 2 SuperTrend Direction Change (ST)', message='Set 2 SuperTrend has changed direction (ST)')
+
+//----------------------------------------------//----------------------------------------------
+// Set 3 Parameters (LT - Long Term)
+//----------------------------------------------//----------------------------------------------
+Periods3 = input(title='Set 3 ATR Period', defval=10, group="Set 3 - Long Term")
+src3 = input(hl2, title='Set 3 Source', group="Set 3 - Long Term")
+Multiplier3 = input.float(title='Set 3 ATR Multiplier', step=0.1, defval=9.736, group="Set 3 - Long Term")
+changeATR3 = input(title='Set 3 Change ATR Calculation Method?', defval=true, group="Set 3 - Long Term")
+showsignals3 = input(title='Set 3 Show Buy/Sell Signals?', defval=true, group="Set 3 - Long Term")
+highlighting3 = input(title='Set 3 Highlighter On/Off?', defval=true, group="Set 3 - Long Term")
+
+// Calculate ATR for Set 3
+atr33 = ta.sma(ta.tr, Periods3)
+atr3 = changeATR3 ? ta.atr(Periods3) : atr33
+
+// Calculate SuperTrend for Set 3
+up3 = src3 - Multiplier3 * atr3
+up13 = nz(up3[1], up3)
+up3 := close[1] > up13 ? math.max(up3, up13) : up3
+dn3 = src3 + Multiplier3 * atr3
+dn13 = nz(dn3[1], dn3)
+dn3 := close[1] < dn13 ? math.min(dn3, dn13) : dn3
+
+trend3 = 1
+trend3 := nz(trend3[1], trend3)
+trend3 := trend3 == -1 and close > dn13 ? 1 : trend3 == 1 and close < up13 ? -1 : trend3
+
+// Plot SuperTrend lines for Set 3
+upPlot3 = plot(trend3 == 1 ? up3 : na, title='Set 3 Up Trend', style=plot.style_linebr, linewidth=3, color=color.rgb(45, 210, 4, 0))
+dnPlot3 = plot(trend3 == 1 ? na : dn3, title='Set 3 Down Trend', style=plot.style_linebr, linewidth=3, color=color.new(#ff02d1, 0))
+
+// Buy and sell signals for Set 3
+buySignal3 = trend3 == 1 and trend3[1] == -1
+plotshape(buySignal3 ? up3 : na, title='Set 3 UpTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.rgb(45, 210, 4, 0))
+plotshape(buySignal3 and showsignals3 ? up3 : na, title='Set 3 Long Label', text='AL', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.rgb(45, 210, 4, 0), textcolor=color.new(color.white, 0))
+
+sellSignal3 = trend3 == -1 and trend3[1] == 1
+plotshape(sellSignal3 ? dn3 : na, title='Set 3 DownTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(#ff02d1, 0))
+plotshape(sellSignal3 and showsignals3 ? dn3 : na, title='Set 3 Short Label', text='SAT', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(#ff02d1, 0), textcolor=color.new(color.white, 0))
+
+
+// Alert conditions for Set 3
+alertcondition(buySignal3, title='Set 3 SuperTrend Long (LT)', message='Set 3 SuperTrend Long (LT)')
+alertcondition(sellSignal3, title='Set 3 SuperTrend Short (LT)', message='Set 3 SuperTrend Short (LT)')
+
+// Alert condition for Set 3 trend change
+changeCond3 = trend3 != trend3[1]
+alertcondition(changeCond3, title='Set 3 SuperTrend Direction Change (LT)', message='Set 3 SuperTrend has changed direction (LT)')
+
+//----------------------------------------------//----------------------------------------------
+// Set 4 Parameters (LT - Long Term)
+//----------------------------------------------//----------------------------------------------
+Periods4 = input(title='Set 4 ATR Period', defval=10, group="Set 4 - Long Term")
+src4 = input(hl2, title='Set 4 Source', group="Set 4 - Long Term")
+Multiplier4 = input.float(title='Set 4 ATR Multiplier', step=0.1, defval=8.536, group="Set 4 - Long Term")
+changeATR4 = input(title='Set 4 Change ATR Calculation Method?', defval=true, group="Set 4 - Long Term")
+showsignals4 = input(title='Set 4 Show Buy/Sell Signals?', defval=true, group="Set 4 - Long Term")
+highlighting4 = input(title='Set 4 Highlighter On/Off?', defval=true, group="Set 4 - Long Term")
+
+// Calculate ATR for Set 4
+atr44 = ta.sma(ta.tr, Periods4)
+atr4 = changeATR4 ? ta.atr(Periods4) : atr44
+
+// Calculate SuperTrend for Set 4
+up4 = src4 - Multiplier4 * atr4
+up14 = nz(up4[1], up4)
+up4 := close[1] > up14 ? math.max(up4, up14) : up4
+dn4 = src4 + Multiplier4 * atr4
+dn14 = nz(dn4[1], dn4)
+dn4 := close[1] < dn14 ? math.min(dn4, dn14) : dn4
+
+trend4 = 1
+trend4 := nz(trend4[1], trend4)
+trend4 := trend4 == -1 and close > dn14 ? 1 : trend4 == 1 and close < up14 ? -1 : trend4
+
+// Plot SuperTrend lines for Set 4
+upPlot4 = plot(trend4 == 1 ? up4 : na, title='Set 4 Up Trend', style=plot.style_linebr, linewidth=3, color=color.rgb(45, 210, 4, 0))
+dnPlot4 = plot(trend4 == 1 ? na : dn4, title='Set 4 Down Trend', style=plot.style_linebr, linewidth=3, color=color.new(#ff02d1, 0))
+
+// Buy and sell signals for Set 4
+buySignal4 = trend4 == 1 and trend4[1] == -1
+plotshape(buySignal4 ? up4 : na, title='Set 4 UpTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.rgb(45, 210, 4, 0))
+plotshape(buySignal4 and showsignals4 ? up4 : na, title='Set 4 Long Label', text='AL', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.rgb(45, 210, 4, 0), textcolor=color.new(color.white, 0))
+
+sellSignal4 = trend4 == -1 and trend4[1] == 1
+plotshape(sellSignal4 ? dn4 : na, title='Set 4 DownTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(#ff02d1, 0))
+plotshape(sellSignal4 and showsignals4 ? dn4 : na, title='Set 4 Short Label', text='SAT', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(#ff02d1, 0), textcolor=color.new(color.white, 0))
+
+
+// Alert conditions for Set 4
+alertcondition(buySignal4, title='Set 4 SuperTrend Long (LT)', message='Set 4 SuperTrend Long (LT)')
+alertcondition(sellSignal4, title='Set 4 SuperTrend Short (LT)', message='Set 4 SuperTrend Short (LT)')
+
+// Alert condition for Set 4 trend change
+changeCond4 = trend4 != trend4[1]
+alertcondition(changeCond4, title='Set 4 SuperTrend Direction Change (LT)', message='Set 4 SuperTrend has changed direction (LT)')
+
+//----------------------------------------------//----------------------------------------------
+// Cloud Fills 
+//----------------------------------------------//----------------------------------------------
+// Cloud fills between Set 1 and Set 2
+fill(upPlot1, upPlot2, color=color.rgb(45, 210, 4, 80), title="Up Cloud Set 1 and 2",fillgaps = false)
+fill(dnPlot1, dnPlot2, color=color.rgb(2, 2, 2, 80), title="Down Cloud Set 1 and 2", fillgaps = false)
+
+// Cloud fills between Set 3 and Set 4
+fill(upPlot3, upPlot4, color=color.rgb(45, 210, 4, 80), title="Up Cloud Set 3 and 4", fillgaps = false)
+fill(dnPlot3, dnPlot4, color=color.rgb(2, 2, 2, 80), title="Down Cloud Set 3 and 4", fillgaps = false)
+//////////////////////////////////7
+
+
+///////////////////////////////
+src9=input(hlc3,title="source")
+len=input.int(50,title="lenght", maxval=500)
+
+cr(x, y) =>
+    z = 0.0
+    weight = 0.0
+    for i = 0 to y-1
+        z:=z + x[i]*((y-1)/2+1-math.abs(i-(y-1)/2))
+    z/(((y+1)/2)*(y+1)/2)
+cr= cr(src9,2*len-1) 
+
+width=2
+
+//plot(cr, color= #cf0202, linewidth=width,offset=-len+1)
+
+dizii = array.new_float(500)
+for k=0 to len-1
+    sum=0.0
+    for i=0 to 2*len-2-k
+        sum +=(len-math.abs(len-1-k-i))*src9[i]/(len*len-k*(k+1)/2)
+    array.set(dizii,k, sum )
+
+mult = input.float(2.0, minval=0.001, maxval=50, title="StdDev")
+dev = mult * ta.stdev(src9, len)
+upper = cr + cr(dev, 2*len-1)
+lower = cr - cr(dev, 2*len-1)
+cu = input.color(color.rgb(194, 1, 1), "upper band color")
+cl = input.color(color.rgb(34, 135, 0), "lower band color")
+plot(lower, color=  cl, offset=1-len, linewidth=2, display = display.pane)
+plot(upper, color=  cu, offset=1-len, linewidth=2, display = display.pane)
+dashed=input.bool(false)
+transp=input.bool(true)
+d = dashed? 2 : 1
+tra=transp? 1 : 0
+// extrapolation
+diz = array.new_float(500)
+var lin=array.new_line()
+diz2 = array.new_float(500)
+var lin2=array.new_line(0)
+if barstate.islast
+    for k=0 to len-1
+        sum=0.0
+        dv=0.0
+        for i=0 to 2*len-2-k
+            sum +=(len-math.abs(len-1-k-i))*src9[i]/(len*len-k*(k+1)/2) 
+            dv +=(len-math.abs(len-1-k-i))*dev[i]/(len*len-k*(k+1)/2)
+        array.set(diz,k, sum + dv)
+        array.set(diz2,k, sum - dv)
+    for i=0 to (len/d-1)
+        array.push(lin, line.new(na, na, na, na))
+        line.set_xy1(array.get(lin,i), bar_index[len]+i*d+1, array.get(diz,i*d))
+        line.set_xy2(array.get(lin,i), bar_index[len]+i*d+2, array.get(diz,i*d+1))
+        line.set_color(array.get(lin,i),color.new(cu, tra*i*95/(len/d-1)))//array.get(diz,i*2+1)>=array.get(diz,i*2)?  #35cf02 : #cf0202)
+        line.set_width(array.get(lin,i),width)
+        array.push(lin2, line.new(na, na, na, na))
+        line.set_xy1(array.get(lin2,i), bar_index[len]+i*d+1, array.get(diz2,i*d))
+        line.set_xy2(array.get(lin2,i), bar_index[len]+i*d+2, array.get(diz2,i*d+1))
+        line.set_color(array.get(lin2,i),color.new(cl, tra*i*95/(len/d-1)) )//array.get(diz2,i*2+1)>=array.get(diz2,i*2)?  #35cf02 : #cf0202)
+        line.set_width(array.get(lin2,i),width)
+plot(array.get(diz,len-1), color = color.new(cu,100))
+plot(array.get(diz2,len-1), color = color.new(cl,100))
+alertcondition(ta.crossover(close,array.get(diz,len-1)) or ta.crossunder(close,array.get(diz2,len-1)), title = "faytterro bands alert", 
+ message = "warning! this is an early warning alert, not a buy or sell signal. Remember that the indicator repaints to a limited extent on the last bars.")
+
+
+
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  DESTEK DİRENÇ BÖLGELERİ  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+//      INDICATOR SETTINGS
+swing_length = input.int(10, title = 'Swing High/Low Length', group = 'Settings', minval = 1, maxval = 50)
+history_of_demand_to_keep = input.int(20, title = 'History To Keep', minval = 5, maxval = 50)
+box_width = input.float(10, title = 'ARZ/TALEP KUTUSU GENİŞLİĞİ', group = 'AYARLAR', minval = 1, maxval = 10, step = 0.5)
+
+//      INDICATOR VISUAL SETTINGS
+show_zigzag = input.bool(false, title = 'Show Zig Zag', group = 'Visual Settings', inline = '1')
+show_price_action_labels = input.bool(false, title = 'Show Price Action Labels', group = 'Visual Settings', inline = '2')
+
+supply_color = input.color(color.new(#e70000, 95), title = 'ARZ BÖLGESİ', group = 'Visual Settings', inline = '3')
+supply_outline_color = input.color(color.new(#e90808, 91), title = 'Outline', group = 'Visual Settings', inline = '3')
+
+demand_color = input.color(color.new(#22aa00, 89), title = 'TALEP BÖLGESİ', group = 'Visual Settings', inline = '4')
+demand_outline_color = input.color(color.new(#07ec1a, 89), title = 'Outline', group = 'Visual Settings', inline = '4')
+
+bos_label_color = input.color(color.rgb(8, 8, 8), title = 'BOS Label', group = 'Visual Settings', inline = '5')
+poi_label_color = input.color(color.rgb(12, 11, 11), title = 'POI Label', group = 'Visual Settings', inline = '7')
+
+swing_type_color = input.color(color.black, title = 'Price Action Label', group = 'Visual Settings', inline = '8')
+zigzag_color = input.color(color.new(#000000,0), title = 'Zig Zag', group = 'Visual Settings', inline = '9')
+
+//
+//END SETTINGS
+
+//      FUNCTION TO ADD NEW AND REMOVE LAST IN ARRAY
+f_array_add_pop(array, new_value_to_add) =>
+    array.unshift(array, new_value_to_add)
+    array.pop(array)
+
+//      FUNCTION SWING H & L LABELS
+f_sh_sl_labels(array, swing_type) =>
+
+    var string label_text = na
+    if swing_type == 1
+        if array.get(array, 0) >= array.get(array, 1)
+            label_text := 'HH'
+        else
+            label_text := 'LH'
+        label.new(bar_index - swing_length, array.get(array,0), text = label_text, style=label.style_label_down, textcolor = swing_type_color, color = color.new(swing_type_color, 100), size = size.tiny)
+    
+    else if swing_type == -1
+        if array.get(array, 0) >= array.get(array, 1)
+            label_text := 'HL'
+        else
+            label_text := 'LL'
+        label.new(bar_index - swing_length, array.get(array,0), text = label_text, style=label.style_label_up, textcolor = swing_type_color, color = color.new(swing_type_color, 100), size = size.tiny)
+
+//      FUNCTION MAKE SURE SUPPLY ISNT OVERLAPPING
+f_check_overlapping(new_poi, box_array, atr9) =>
+
+    atr9_threshold = atr9 * 2
+    okay_to_draw = true
+
+    for i = 0 to array.size(box_array) - 1
+        top = box.get_top(array.get(box_array, i))
+        bottom = box.get_bottom(array.get(box_array, i))
+        poi = (top + bottom) / 2
+
+        upper_boundary = poi + atr9_threshold
+        lower_boundary = poi - atr9_threshold
+
+        if new_poi >= lower_boundary and new_poi <= upper_boundary
+            okay_to_draw := false
+            break
+        else 
+            okay_to_draw := true
+    okay_to_draw
+
+
+//      FUNCTION TO DRAW SUPPLY OR DEMAND ZONE
+f_supply_demand(value_array, bn_array, box_array, label_array, box_type, atr9) =>
+
+    atr9_buffer = atr9 * (box_width / 10)
+    box_left = array.get(bn_array, 0)
+    box_right = bar_index
+
+    var float box_top = 0.00
+    var float box_bottom = 0.00
+    var float poi = 0.00
+
+
+    if box_type == 1
+        box_top := array.get(value_array, 0)
+        box_bottom := box_top - atr9_buffer
+        poi := (box_top + box_bottom) / 2
+    else if box_type == -1
+        box_bottom := array.get(value_array, 0)
+        box_top := box_bottom + atr9_buffer
+        poi := (box_top + box_bottom) / 2
+
+    okay_to_draw = f_check_overlapping(poi, box_array, atr9)
+    // okay_to_draw = true
+
+    //delete oldest box, and then create a new box and add it to the array
+    if box_type == 1 and okay_to_draw
+        box.delete( array.get(box_array, array.size(box_array) - 1) )
+        f_array_add_pop(box_array, box.new( left = box_left, top = box_top, right = box_right, bottom = box_bottom, border_color = supply_outline_color,
+             bgcolor = supply_color, extend = extend.right, text = 'ARZ BÖLGESİ', text_halign = text.align_center, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+        
+        box.delete( array.get(label_array, array.size(label_array) - 1) )
+        f_array_add_pop(label_array, box.new( left = box_left, top = poi, right = box_right, bottom = poi, border_color = color.new(poi_label_color,90),
+             bgcolor = color.new(poi_label_color,90), extend = extend.right, text = 'POI', text_halign = text.align_left, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+
+    else if box_type == -1 and okay_to_draw
+        box.delete( array.get(box_array, array.size(box_array) - 1) )
+        f_array_add_pop(box_array, box.new( left = box_left, top = box_top, right = box_right, bottom = box_bottom, border_color = demand_outline_color,
+             bgcolor = demand_color, extend = extend.right,  text = 'TALEP BÖLGESİ', text_halign = text.align_center, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+        
+        box.delete( array.get(label_array, array.size(label_array) - 1) )
+        f_array_add_pop(label_array, box.new( left = box_left, top = poi, right = box_right, bottom = poi, border_color = color.new(poi_label_color,90),
+             bgcolor = color.new(poi_label_color,90), extend = extend.right,  text = 'POI', text_halign = text.align_left, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index))
+
+
+//      FUNCTION TO CHANGE SUPPLY/DEMAND TO A BOS IF BROKEN
+f_sd_to_bos(box_array, bos_array, label_array, zone_type) =>
+
+    if zone_type == 1
+        for i = 0 to array.size(box_array) - 1
+            level_to_break = box.get_top(array.get(box_array,i))
+            // if ta.crossover(close, level_to_break)
+            if close >= level_to_break
+                copied_box = box.copy(array.get(box_array,i))
+                f_array_add_pop(bos_array, copied_box)
+                mid = (box.get_top(array.get(box_array,i)) + box.get_bottom(array.get(box_array,i))) / 2
+                box.set_top(array.get(bos_array,0), mid)
+                box.set_bottom(array.get(bos_array,0), mid)
+                box.set_extend( array.get(bos_array,0), extend.none)
+                box.set_right( array.get(bos_array,0), bar_index)
+                box.set_text( array.get(bos_array,0), 'BOS' )
+                box.set_text_color( array.get(bos_array,0), bos_label_color)
+                box.set_text_size( array.get(bos_array,0), size.small)
+                box.set_text_halign( array.get(bos_array,0), text.align_center)
+                box.set_text_valign( array.get(bos_array,0), text.align_center)
+                box.delete(array.get(box_array, i))
+                box.delete(array.get(label_array, i))
+
+
+    if zone_type == -1
+        for i = 0 to array.size(box_array) - 1
+            level_to_break = box.get_bottom(array.get(box_array,i))
+            // if ta.crossunder(close, level_to_break)
+            if close <= level_to_break
+                copied_box = box.copy(array.get(box_array,i))
+                f_array_add_pop(bos_array, copied_box)
+                mid = (box.get_top(array.get(box_array,i)) + box.get_bottom(array.get(box_array,i))) / 2
+                box.set_top(array.get(bos_array,0), mid)
+                box.set_bottom(array.get(bos_array,0), mid)
+                box.set_extend( array.get(bos_array,0), extend.none)
+                box.set_right( array.get(bos_array,0), bar_index)
+                box.set_text( array.get(bos_array,0), 'BOS' )
+                box.set_text_color( array.get(bos_array,0), bos_label_color)
+                box.set_text_size( array.get(bos_array,0), size.small)
+                box.set_text_halign( array.get(bos_array,0), text.align_center)
+                box.set_text_valign( array.get(bos_array,0), text.align_center)
+                box.delete(array.get(box_array, i))
+                box.delete(array.get(label_array, i))
+
+
+
+//      FUNCTION MANAGE CURRENT BOXES BY CHANGING ENDPOINT
+f_extend_box_endpoint(box_array) =>
+
+    for i = 0 to array.size(box_array) - 1
+        box.set_right(array.get(box_array, i), bar_index + 100)
+
+
+//      CALCULATE ATR 
+atr9 = ta.atr(50)
+
+//      CALCULATE SWING HIGHS & SWING LOWS
+swing_high = ta.pivothigh(high, swing_length, swing_length)
+swing_low = ta.pivotlow(low, swing_length, swing_length)
+
+//      ARRAYS FOR SWING H/L & BN 
+var swing_high_values = array.new_float(5,0.00)
+var swing_low_values = array.new_float(5,0.00)
+
+var swing_high_bns = array.new_int(5,0)
+var swing_low_bns = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPLY / DEMAND
+var current_supply_box = array.new_box(history_of_demand_to_keep, na)
+var current_demand_box = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR SUPPLY / DEMAND POI LABELS
+var current_supply_poi = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos = array.new_box(5, na)
+var demand_bos = array.new_box(5, na)
+//
+//END CALCULATIONS
+//
+
+//      NEW SWING HIGH
+if not na(swing_high)
+
+    //MANAGE SWING HIGH VALUES
+    f_array_add_pop(swing_high_values, swing_high)
+    f_array_add_pop(swing_high_bns, bar_index[swing_length])
+    if show_price_action_labels
+        f_sh_sl_labels(swing_high_values, 1)
+
+    f_supply_demand(swing_high_values, swing_high_bns, current_supply_box, current_supply_poi, 1, atr9)
+
+//      NEW SWING LOW
+else if not na(swing_low)
+
+    //MANAGE SWING LOW VALUES
+    f_array_add_pop(swing_low_values, swing_low)
+    f_array_add_pop(swing_low_bns, bar_index[swing_length])
+    if show_price_action_labels
+        f_sh_sl_labels(swing_low_values, -1)
+    
+    f_supply_demand(swing_low_values, swing_low_bns, current_demand_box, current_demand_poi, -1, atr9)
+
+
+f_sd_to_bos(current_supply_box, supply_bos, current_supply_poi, 1)
+f_sd_to_bos(current_demand_box, demand_bos, current_demand_poi, -1)
+
+f_extend_box_endpoint(current_supply_box)
+f_extend_box_endpoint(current_demand_box)
+
+//ZIG ZAG
+h = ta.highest(high, swing_length * 2 + 1)
+l = ta.lowest(low, swing_length * 2 + 1)
+f_isMin(len) =>
+    l == low[len]
+f_isMax(len) =>
+    h == high[len]
+
+var dirUp = false
+var lastLow = high * 100
+var lastHigh = 0.0
+var timeLow = bar_index
+var timeHigh = bar_index
+var line li = na
+
+f_drawLine() =>
+    _li_color = show_zigzag ? zigzag_color : color.new(#ffffff,100)
+    line.new(timeHigh - swing_length, lastHigh, timeLow - swing_length, lastLow, xloc.bar_index, color=_li_color, width=2)
+
+if dirUp
+    if f_isMin(swing_length) and low[swing_length] < lastLow
+        lastLow := low[swing_length]
+        timeLow := bar_index
+        line.delete(li)
+        li := f_drawLine()
+        li
+
+    if f_isMax(swing_length) and high[swing_length] > lastLow
+        lastHigh := high[swing_length]
+        timeHigh := bar_index
+        dirUp := false
+        li := f_drawLine()
+        li
+
+if not dirUp
+    if f_isMax(swing_length) and high[swing_length] > lastHigh
+        lastHigh := high[swing_length]
+        timeHigh := bar_index
+        line.delete(li)
+        li := f_drawLine()
+        li
+    if f_isMin(swing_length) and low[swing_length] < lastHigh
+        lastLow := low[swing_length]
+        timeLow := bar_index
+        dirUp := true
+        li := f_drawLine()
+        if f_isMax(swing_length) and high[swing_length] > lastLow
+            lastHigh := high[swing_length]
+            timeHigh := bar_index
+            dirUp := false
+            li := f_drawLine()
+            li
+

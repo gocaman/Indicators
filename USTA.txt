@@ -1,0 +1,126 @@
+//@version=5
+indicator(title='USTA', overlay=true, max_lines_count=500, max_bars_back = 500)
+
+Periods = input(title='ATR Period', defval=10)
+src = input(hl2, title='Source')
+Multiplier = input.float(title='ATR Multiplier', step=0.1, defval=3.0)
+changeATR = input(title='Change ATR Calculation Method ?', defval=true)
+showsignals = input(title='Show Buy/Sell Signals ?', defval=true)
+highlighting = input(title='Highlighter On/Off ?', defval=true)
+atr2 = ta.sma(ta.tr, Periods)
+atr = changeATR ? ta.atr(Periods) : atr2
+up = src - Multiplier * atr
+up1 = nz(up[1], up)
+up := close[1] > up1 ? math.max(up, up1) : up
+dn = src + Multiplier * atr
+dn1 = nz(dn[1], dn)
+dn := close[1] < dn1 ? math.min(dn, dn1) : dn
+trend = 1
+trend := nz(trend[1], trend)
+trend := trend == -1 and close > dn1 ? 1 : trend == 1 and close < up1 ? -1 : trend
+upPlot = plot(trend == 1 ? up : na, title='Up Trend', style=plot.style_linebr, linewidth=2, color=color.new(color.green, 0))
+buySignal = trend == 1 and trend[1] == -1
+plotshape(buySignal ? up : na, title='UpTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(color.green, 0))
+plotshape(buySignal and showsignals ? up : na, title='AL-ST', text='AL', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(color.green, 0), textcolor=color.new(color.white, 0))
+dnPlot = plot(trend == 1 ? na : dn, title='Down Trend', style=plot.style_linebr, linewidth=2, color=color.new(color.red, 0))
+sellSignal = trend == -1 and trend[1] == 1
+plotshape(sellSignal ? dn : na, title='DownTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(color.red, 0))
+plotshape(sellSignal and showsignals ? dn : na, title='SAT-ST', text='SAT', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(color.red, 0), textcolor=color.new(color.white, 0))
+mPlot = plot(ohlc4, title='', style=plot.style_circles, linewidth=0)
+longFillColor = highlighting ? trend == 1 ? color.green : color.white : color.white
+shortFillColor = highlighting ? trend == -1 ? color.red : color.white : color.white
+fill(mPlot, upPlot, title='UpTrend Highligter', color=longFillColor, transp=90)
+fill(mPlot, dnPlot, title='DownTrend Highligter', color=shortFillColor, transp=90)
+
+alertcondition(buySignal, title='SuperTrend Buy', message='SuperTrend Buy!')
+alertcondition(sellSignal, title='SuperTrend Sell', message='SuperTrend Sell!')
+changeCond = trend != trend[1]
+alertcondition(changeCond, title='SuperTrend Direction Change', message='SuperTrend has changed direction!')
+
+
+///////////////////////////////////ALPHA TREND
+
+
+coeff = input.float(1, 'Multiplier', step=0.1)
+AP = input(14, 'Common Period')
+ATR = ta.sma(ta.tr, AP)
+src5 = input(close)
+showsignalsk = input(title='Show Signals?', defval=true)
+novolumedata = input(title='Change calculation (no volume data)?', defval=false)
+upT = low - ATR * coeff
+downT = high + ATR * coeff
+AlphaTrend = 0.0
+AlphaTrend := (novolumedata ? ta.rsi(src5, AP) >= 50 : ta.mfi(hlc3, AP) >= 50) ? upT < nz(AlphaTrend[1]) ? nz(AlphaTrend[1]) : upT : downT > nz(AlphaTrend[1]) ? nz(AlphaTrend[1]) : downT
+
+color1 = AlphaTrend > AlphaTrend[2] ? #00E60F : AlphaTrend < AlphaTrend[2] ? #80000B : AlphaTrend[1] > AlphaTrend[3] ? #00E60F : #80000B
+k1 = plot(AlphaTrend, color=color.new(#0022FC, 0), linewidth=3)
+k2 = plot(AlphaTrend[2], color=color.new(#FC0400, 0), linewidth=3)
+
+fill(k1, k2, color=color1)
+
+buySignalk = ta.crossover(AlphaTrend, AlphaTrend[2])
+sellSignalk = ta.crossunder(AlphaTrend, AlphaTrend[2])
+
+
+K1 = ta.barssince(buySignalk)
+K2 = ta.barssince(sellSignalk)
+O1 = ta.barssince(buySignalk[1])
+O2 = ta.barssince(sellSignalk[1])
+
+plotshape(buySignalk and showsignalsk and O1 > K2 ? AlphaTrend[2] * 0.9999 : na, title='AL-AT', text='AL', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(#0022FC, 0), textcolor=color.new(color.white, 0))
+
+plotshape(sellSignalk and showsignalsk and O2 > K1 ? AlphaTrend[2] * 1.0001 : na, title='SAT-ST', text='SAT', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(color.maroon, 0), textcolor=color.new(color.white, 0))
+
+
+alertcondition(buySignalk and O1 > K2, title='Potential BUY Alarm', message='BUY SIGNAL!')
+alertcondition(sellSignalk and O2 > K1, title='Potential SELL Alarm', message='SELL SIGNAL!')
+
+alertcondition(buySignalk[1] and O1[1] > K2, title='Confirmed BUY Alarm', message='BUY SIGNAL APPROVED!')
+alertcondition(sellSignalk[1] and O2[1] > K1, title='Confirmed SELL Alarm', message='SELL SIGNAL APPROVED!')
+
+
+
+alertcondition(ta.cross(close, AlphaTrend), title='Price Cross Alert', message='Price - AlphaTrend Crossing!')
+alertcondition(ta.crossover(low, AlphaTrend), title='Candle CrossOver Alarm', message='LAST BAR is ABOVE ALPHATREND')
+alertcondition(ta.crossunder(high, AlphaTrend), title='Candle CrossUnder Alarm', message='LAST BAR is BELOW ALPHATREND!')
+
+alertcondition(ta.cross(close[1], AlphaTrend[1]), title='Price Cross Alert After Bar Close', message='Price - AlphaTrend Crossing!')
+alertcondition(ta.crossover(low[1], AlphaTrend[1]), title='Candle CrossOver Alarm After Bar Close', message='LAST BAR is ABOVE ALPHATREND!')
+alertcondition(ta.crossunder(high[1], AlphaTrend[1]), title='Candle CrossUnder Alarm After Bar Close', message='LAST BAR is BELOW ALPHATREND!')
+
+
+
+////////////////
+
+
+/////////////bollınger
+length55 = input.int(20, minval=1, title='BB MA')
+src9 = input(close, title='BB Source')
+mult = input.float(2.0, minval=0.001, maxval=50, title='Narrow BB Multitude')
+
+basis = ta.ema(src9, length55)
+dev = mult * ta.stdev(src9, length55)
+upper55 = basis + dev
+lower55 = basis - dev
+plot(basis, color=color.new(#d70081, 0), title='BB MA', style=plot.style_cross)
+
+length2 = input.int(20, minval=1, title='Wide BB Length')
+basis2 = ta.ema(src9, length2)
+plot(basis2, color=color.rgb(255, 0, 170), title='BB MA2', style=plot.style_cross)
+
+p1 = plot(upper55, color=color.new(#10da17, 32), title='Narrow Upper')
+p2 = plot(lower55, color=color.new(#f73333, 29), title='Narrow Lower')
+
+length1 = input.int(20, minval=1, title='Wide BB Length')
+mult1 = input.float(3.0, minval=0.001, maxval=50, title='Wide BB Multitude')
+basis1 = ta.ema(src9, length1)
+dev1 = mult1 * ta.stdev(src9, length1)
+upper1 = basis1 + dev1
+lower1 = basis1 - dev1
+
+
+p3 = plot(upper1, color=color.new(#52d857, 28), title='Wide Higher')
+p4 = plot(lower1, color=color.new(color.red, 50), title='Wide Lower')
+fill(p3, p1, color=color.new(#4caf4f, 82), title='Upper Fill')
+fill(p4, p2, color=color.new(#ff5252, 74), title='Lower Fill')
+

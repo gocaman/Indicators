@@ -1,0 +1,167 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © YATIRIM_ANALIZ
+
+//@version=5
+indicator("ARANLAR", shorttitle='ARANLAR', overlay=true, max_bars_back=4000)
+
+src = input(close, title='Source')
+
+
+/////////////////////7
+
+b4 = input(title='Factor4', defval=0.7)
+
+c14 = -b4 * b4 * b4
+c24 = 3 * b4 * b4 + 3 * b4 * b4 * b4
+c34 = -6 * b4 * b4 - 3 * b4 - 3 * b4 * b4 * b4
+c44 = 1 + 3 * b4 + b4 * b4 * b4 + 3 * b4 * b4
+t34(len) =>
+    c14 * ta.ema(ta.ema(ta.ema(ta.ema(ta.ema(ta.ema(close, len), len), len), len), len), len) + c24 * ta.ema(ta.ema(ta.ema(ta.ema(ta.ema(close, len), len), len), len), len) + c34 * ta.ema(ta.ema(ta.ema(ta.ema(close, len), len), len), len) + c44 * ta.ema(ta.ema(ta.ema(close, len), len), len)
+t3plot4 = t34(input(title='Period4', defval=8))
+linewidth = input(title='Linewidth', defval=3)
+col1 = t3plot4 > t3plot4[1]
+col3 = t3plot4 < t3plot4[1]
+color_1 = col1 ? color.rgb(0, 126, 4) : col3 ? color.rgb(171, 0, 0) : color.yellow
+plot(t3plot4, color=color_1, linewidth=3, title='T3')
+
+
+len5 = input.int(5, minval=1, title='9wma')
+out5 = ta.wma(src, len5)
+// plot(out5, color=color.rgb(33, 178, 0), linewidth=2, title='WMA9')
+
+len13 = input.int(15, minval=1, title='15WMA')
+out13 = ta.wma(src, len13)
+// plot(out13, color=color.rgb(249, 166, 1), linewidth=2, title='WMA15')
+
+// Al/Sat Sinyalleri
+longCondition = ta.crossover(out5, out13) 
+shortCondition = ta.crossunder(out5, out13) 
+
+//Al/Sat Etiketleri
+plotshape(longCondition ? true : na, color=color.new(#44c200, 0), style=shape.labelup, title= "AL", location=location.belowbar, size=size.small, textcolor=color.white, text='AL')
+plotshape(shortCondition ? true : na, color=color.new(#ff0000, 0), style=shape.labeldown, title= "SAT", location=location.abovebar, size=size.small, textcolor=color.white, text='SAT')
+
+
+// ///////////////////////////////////7
+length111 = input(100, title="Periyot Uzunluğu", group="YOD")
+// selectedTimeframe = input.timeframe(defval='1D', title="Zaman Periyodu")
+
+a = ta.highest(close, length111)
+b = (ta.highest(close, length111) + ta.lowest(close, length111)) /2
+c = ta.lowest(close, length111)
+
+plot(a, title="a", linewidth=2, color=color.rgb(0, 123, 223))
+plot(b, title="b", linewidth=2, color=color.rgb(42, 132, 0))
+plot(c, title="c", linewidth=2, color=color.rgb(167, 139, 1))
+
+
+
+///////////////////////FIBO
+// //
+fibonacciLookback = input.int(250, title="LOOKBACK")
+
+tepe = ta.highest(close, fibonacciLookback)
+dip = ta.lowest(close, fibonacciLookback)
+
+mutlakDeger(sayi) =>
+    math.abs(sayi)
+
+tepeyeUzaklik = mutlakDeger(ta.highestbars(fibonacciLookback))
+dibeUzaklik = mutlakDeger(ta.lowestbars(fibonacciLookback))
+
+fibHesapla(deger) =>
+    dibeUzaklik > tepeyeUzaklik ? tepe - ((tepe - dip) * deger / 1000) : dip + ((tepe - dip) * deger / 1000)
+
+fib000 = fibHesapla(0)
+// fib110 = fibHesapla(110)
+fib240 = fibHesapla(240)
+fib382 = fibHesapla(380)
+fib500 = fibHesapla(500)
+fib618 = fibHesapla(618)
+// fib720 = fibHesapla(720)
+fib790 = fibHesapla(790)
+fib890 = fibHesapla(890)
+fib1000 = fibHesapla(1000)
+fib1140 = fibHesapla(1140)
+fib1618 = fibHesapla(1618)
+fib2618 = fibHesapla(2618)
+
+var label label000 = na
+// var label label110 = na
+var label label240 = na
+var label label382 = na
+var label label500 = na
+var label label618 = na
+// var label label720 = na
+var label label790 = na
+var label label890 = na
+var label label1000 = na
+var label label1140 = na
+var label label1618 = na
+var label label2618 = na
+
+if bar_index == bar_index
+    label.delete(label000)
+    // label.delete(label110)
+    label.delete(label240)
+    label.delete(label382)
+    label.delete(label500)
+    label.delete(label618)
+    // label.delete(label720)
+    label.delete(label790)
+    label.delete(label890)
+    label.delete(label1000)
+    label.delete(label1140)
+    label.delete(label1618)
+    label.delete(label2618)
+
+renkfib0 = input.color(defval = color.rgb(0, 6, 10))  // Label rengini burada ayarlayın
+// renkfib110 = input.color(defval = color.blue)
+renkfib240 = input.color(defval = color.blue)
+renkfib382 = input.color(defval = color.rgb(254, 74, 3))
+renkfib500 = input.color(defval = color.rgb(0, 0, 0))
+renkfib618 = input.color(defval = color.rgb(209, 122, 0))
+// renkfib720 = input.color(defval = color.rgb(212, 128, 1))
+renkfib790 = input.color(defval = color.rgb(212, 128, 1))
+renkfib890 = input.color(defval = color.rgb(212, 128, 1))
+renkfib1 = input.color(defval = color.blue)
+renkfib1140 = input.color(defval = color.blue)
+renkfib1618 = input.color(defval = color.blue)
+renkfib2618 = input.color(defval = color.blue)
+
+text_color = input.color(defval = color.rgb(16, 0, 0))  // Metin rengini burada ayarlayın
+
+label000 := label.new(x=bar_index+15, y=fib000-1, text="0 : " + str.tostring(fib000), color=renkfib0, textcolor=text_color, style=label.style_none)
+// label110 := label.new(x=bar_index+15, y=fib110-1, text="0.110 : " + str.tostring(fib110), color=renkfib110, textcolor=text_color, style=label.style_none)
+label240 := label.new(x=bar_index+15, y=fib240-1, text="0.240 : " + str.tostring(fib240), color=renkfib240, textcolor=text_color, style=label.style_none)
+label382 := label.new(x=bar_index+15, y=fib382-1, text="0.382 : " + str.tostring(fib382), color=renkfib382, textcolor=text_color, style=label.style_none)
+label500 := label.new(x=bar_index+15, y=fib500-1, text="0.5 : " + str.tostring(fib500), color=renkfib500, textcolor=text_color, style=label.style_none)
+label618 := label.new(x=bar_index+15, y=fib618-1, text="0.618 : " + str.tostring(fib618), color=renkfib618, textcolor=text_color, style=label.style_none)
+// label720 := label.new(x=bar_index+15, y=fib720-1, text="0.720 : " + str.tostring(fib720), color=renkfib720, textcolor=text_color, style=label.style_none)
+label790 := label.new(x=bar_index+15, y=fib790-1, text="0.790 : " + str.tostring(fib790), color=renkfib790, textcolor=text_color, style=label.style_none)
+label890 := label.new(x=bar_index+15, y=fib890-1, text="0.890 : " + str.tostring(fib890), color=renkfib890, textcolor=text_color, style=label.style_none)
+label1000 := label.new(x=bar_index+15, y=fib1000-1, text="1: " + str.tostring(fib1000), color=renkfib1, textcolor=text_color, style=label.style_none)
+label1140 := label.new(x=bar_index+15, y=fib1140-1, text="1140 : " + str.tostring(fib1140), color=renkfib1140, textcolor=text_color, style=label.style_none)
+label1618 := label.new(x=bar_index+15, y=fib1618-1, text="1618 : " + str.tostring(fib1618), color=renkfib1618, textcolor=text_color, style=label.style_none)
+label2618 := label.new(x=bar_index+15, y=fib2618-1, text="2618 : " + str.tostring(fib2618), color=renkfib2618, textcolor=text_color, style=label.style_none)
+
+
+k1 = plot(fib000, color=color.rgb(9, 0, 7), linewidth=1, title='fib 0')
+// k2 = plot(fib110, color=color.rgb(210, 0, 165), linewidth=1, title='fib 110')
+k3 = plot(fib240, color=color.rgb(210, 0, 165), linewidth=1, title='fib 240')
+k4 = plot(fib382, color=color.rgb(210, 0, 165), linewidth=1, title='fib 382')
+k5 = plot(fib500, color=color.rgb(191, 0, 0), linewidth=2, title='fib 500')
+k6 = plot(fib618, color=color.rgb(191, 0, 0), linewidth=2, title='fib 618')
+// k7 = plot(fib720, color=color.rgb(210, 0, 165), linewidth=1, title='fib 720')
+k8 = plot(fib790, color=color.rgb(210, 126, 0), linewidth=1, title='fib 790')
+k9 = plot(fib890, color=color.rgb(210, 126, 0), linewidth=1, title='fib 890')
+k10 = plot(fib1000, color=color.rgb(7, 0, 5), linewidth=1, title='fib 1000')
+k11= plot(fib1140, color=color.rgb(210, 0, 165), linewidth=1, title='fib 1272')
+k12 = plot(fib1618, color=color.rgb(210, 0, 165), linewidth=1, title='fib 1618')
+k13 = plot(fib2618, color=color.rgb(210, 0, 165), linewidth=1, title='fib 2618')
+
+
+fill(k5, k6, color=color.rgb(9, 245, 17, 44), transp=90, title = "fib 500-618")
+
+fill(k8, k9, color=color.rgb(9, 245, 17, 44), transp=90, title = "fib 790-890")
+

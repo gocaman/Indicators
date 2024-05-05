@@ -1,0 +1,59 @@
+////Hareketli Ortalamalar
+
+//@version=5
+indicator('HAREKETLİ ORTALAMALAR', 'HAREKETLİ ORTALAMALAR', overlay=true)
+src = input(close, title='Source')
+
+///EMA
+ma3_len = input(9, "Length", group='EMA9 GÜNLÜK')
+src3 = input(close, "Source")
+res3 = input.timeframe('1D', "Resolution", title="EMA9Periyod")
+htf_ma3 = ta.ema(src3, ma3_len)
+out3 = request.security(syminfo.tickerid, res3, htf_ma3)
+plot(out3, color=color.rgb(201, 197, 0), linewidth=2, title='EMA-9GÜNLÜK')
+
+
+ma4_len = input(14, "Length", group='EMA14GÜNLÜK')
+src4 = input(close, "Source")
+res4 = input.timeframe('1D', "Resolution", title="EMA-14GÜNLÜK")
+htf_ma4 = ta.ema(src4, ma4_len)
+out4 = request.security(syminfo.tickerid, res4, htf_ma4)
+plot(out4, color=color.rgb(239, 0, 0), linewidth=2, title='EMA-14GÜNLÜK')
+
+ma5_len = input(34, "Length", group='EMA34 GÜNLÜK')
+src5 = input(close, "Source")
+res5 = input.timeframe('1D', "Resolution", title="EMA34Periyod")
+htf_ma5 = ta.ema(src5, ma5_len)
+out5 = request.security(syminfo.tickerid, res5, htf_ma5)
+plot(out5, color=color.rgb(233, 2, 140), linewidth=2, title='EMA34 GÜNLÜK')
+
+ma6_len = input(55, "Length", group='EMA55GÜNLÜK')
+src6 = input(close, "Source")
+res6 = input.timeframe('1D', "Resolution", title="EMA55GÜNLÜK")
+htf_ma6 = ta.ema(src6, ma6_len)
+out6 = request.security(syminfo.tickerid, res6, htf_ma6)
+plot(out6, color=color.rgb(102, 2, 224), linewidth=2, title='EMA55GÜNLÜK')
+
+
+///WMA
+
+ma7_len = input(9, "Length", group='WMA9HAFTALIK')
+src7 = input(close, "Source")
+res7 = input.timeframe('1W', "Resolution", title="WMA9HAFTALIK")
+htf_ma7 = ta.wma(src7, ma7_len)
+out7 = request.security(syminfo.tickerid, res7, htf_ma7)
+plot(out7, color=color.rgb(0, 160, 19), linewidth=2, title='WMA9HAFTALIK')
+
+ma8_len = input(15, "Length", group='WMA15 HAFTALIK')
+src8 = input(close, "Source")
+res8 = input.timeframe('1W', "Resolution", title="WMA15 HAFTALIK")
+htf_ma8 = ta.wma(src8, ma8_len)
+out8 = request.security(syminfo.tickerid, res8, htf_ma8)
+plot(out8, color=color.rgb(255, 3, 163), linewidth=2, title='WMA15 HAFTALIK')
+
+ma9_len = input(18, "Length", group='WMA18 HAFTALIK')
+src9 = input(close, "Source")
+res9 = input.timeframe('1W', "Resolution", title="WMA18 HAFTALIK")
+htf_ma9 = ta.wma(src9, ma9_len)
+out9 = request.security(syminfo.tickerid, res9, htf_ma9)
+plot(out9, color=color.rgb(3, 222, 246), linewidth=2, title='WMA19 HAFTALIK')

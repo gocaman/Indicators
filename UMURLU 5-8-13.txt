@@ -1,0 +1,63 @@
+
+
+//@version=5
+indicator(shorttitle='UMURLU-5-8-13-X', title='UMURLU-5-8-13-X', overlay=true)
+
+src = input(close, title='Source')
+
+//5-8-13 Signal
+len5 = input.int(5, minval=1, title='5EMA')
+out5 = ta.ema(src, len5)
+plot(out5, color=color.rgb(33, 178, 0), linewidth=2, title='EMA5')
+
+len8 = input.int(8, minval=1, title='8EMA')
+out8 = ta.ema(src, len8)
+plot(out8, color=color.rgb(255, 196, 0), linewidth=1, title='EMA8')
+
+len13 = input.int(13, minval=1, title='13EMA')
+out13 = ta.ema(src, len13)
+plot(out13, color=color.rgb(63, 2, 197), linewidth=2, title='EMA13')
+
+
+
+
+// Al/Sat Sinyalleri
+longCondition = ta.crossover(out5, out13) 
+shortCondition = ta.crossunder(out5, out13) 
+
+//Al/Sat Etiketleri
+plotshape(longCondition ? true : na, color=color.new(#44c200, 0), style=shape.labelup, title= "AL", location=location.belowbar, size=size.small, textcolor=color.white, text='AL')
+plotshape(shortCondition ? true : na, color=color.new(#ff0000, 0), style=shape.labeldown, title= "SAT", location=location.abovebar, size=size.small, textcolor=color.white, text='SAT')
+
+alertcondition(ta.crossover(out5, out13), title='EMA 5-13 AL KESİŞİM', message='DİKKAT EMA5, EMA13 YUKARI KESTİ- AL')
+alertcondition(ta.crossunder(out5, out13), title='EMA 5-13 SAT KESİŞİM', message='DİKKAT EMA5, EMA13 AŞAĞI KESTİ- SAT')
+
+
+
+
+
+
+/////////////bollÄ±nger
+length = input.int(20, minval=1, title='BB MA')
+src9 = input(close, title='BB Source')
+mult = input.float(2.0, minval=0.001, maxval=50, title='Narrow BB Multitude')
+
+basis = ta.sma(src9, length)
+dev = mult * ta.stdev(src9, length)
+upper = basis + dev
+lower = basis - dev
+plot(basis, color=color.new(#d70081, 0), title='BB MA')
+p1 = plot(upper, color=color.new(color.green, 50), title='Narrow Upper')
+p2 = plot(lower, color=color.new(color.red, 50), title='Narrow Lower')
+
+length1 = input.int(20, minval=1, title='Wide BB Length')
+mult1 = input.float(3.0, minval=0.001, maxval=50, title='Wide BB Multitude')
+basis1 = ta.sma(src9, length1)
+dev1 = mult1 * ta.stdev(src9, length)
+upper1 = basis1 + dev1
+lower1 = basis1 - dev1
+
+p3 = plot(upper1, color=color.new(color.green, 50), title='Wide Higher')
+p4 = plot(lower1, color=color.new(color.red, 50), title='Wide Lower')
+fill(p3, p1, color=color.new(color.green, 95), title='Upper Fill')
+fill(p4, p2, color=color.new(color.red, 95), title='Lower Fill')
