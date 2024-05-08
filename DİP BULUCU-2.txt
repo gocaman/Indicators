@@ -39,8 +39,7 @@ barcolor(ta.cross(wt1, wt2) ? wt2 - wt1 > 0 ? color.aqua : color.yellow : na)
 
 
 
-
-
+//////////////DİP BULUCU
 
 pd = input(22, title='LookBack Period Standard Deviation High')
 bbl = input(20, title='Bolinger Band Length')
@@ -62,7 +61,7 @@ rangeHigh = ta.highest(wvf, lb) * ph
 rangeLow = ta.lowest(wvf, lb) * pl
 
 
-col = wvf >= upperBand or wvf >= rangeHigh ? color.lime : color.gray
+col = wvf >= upperBand or wvf >= rangeHigh ? #ff0000 : color.gray
 
 
 plot(hp and rangeHigh ? rangeHigh : na, title='Range High Percentile', style=plot.style_line, linewidth=4, color=color.new(color.orange, 0))
@@ -272,6 +271,10 @@ label.delete(lab_1[1])
 if str.length(scr_label) > 8
     alert(scr_label,alert.freq_once_per_bar_close)
 //------------------------------------------------------
+
+
+
+
 
 
 
