@@ -97,7 +97,7 @@ alertcondition(sellSignalk[1] and O2[1] > K1, title='Confirmed SELL Alarm', mess
 
 ////////////////
 
-
+cond1 = buySignalk and showsignalsk and O1 > K2 
 
 
 ///////////////// TARAMA
@@ -105,7 +105,7 @@ alertcondition(sellSignalk[1] and O2[1] > K1, title='Confirmed SELL Alarm', mess
 
 func() => 
     
-    cond = buySignalk 
+    cond = cond1 
 
     // cond = ta.crossover(close[1], rma[1]) or (close[1] >= rsi0[1] and close[1] <= rsi10[1]) or ta.crossover(close, rsi10[1]) or ta.crossover(f_var(kaynak, uzunluk), f_var(kaynak, uzunluk1)) or ta.crossover(f_var(kaynak, uzunluk), rma) 
 
