@@ -1,0 +1,629 @@
+//@version=5
+indicator(title='KARPUZLU-RSI KRIPTO', shorttitle='KARPUZLU-RSI KRIPTO', format=format.price, precision=2, max_bars_back=4000)
+
+grupSec = input.string(defval='1', options=['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','ÖZEL LİSTE'], group='Taraması yapılacak 40\'arlı gruplardan birini seçin', title='Grup seç')
+per = input.timeframe(defval='', title='PERİYOT',group = "Tarama yapmak istediğiniz periyotu seçin")
+loc = input.int(defval=20, title='Konum Ayarı', minval = -300,maxval = 500 , step = 5,  group='Tablonun konumunu belirleyin')
+
+
+
+
+
+
+src = input(close, 'Source')
+len1 = input.int(22, minval=1, title='RSI Length')
+len2 = input.int(66, minval=1, title='RSI-EMA Length')
+prd = input.int(defval=10, title='Pivot Point Period', minval=5, maxval=50)
+PPnum = input.int(defval=10, title='Number of Pivot Point to check', minval=2, maxval=10)
+linestylei = input.string(defval='Solid', title='Line Style', options=['Solid', 'Dashed'])
+linewidth = input.int(defval=1, title='Line Width', minval=1, maxval=4)
+line1_color = input.string(title='TopLine-Color', defval='red', options=['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 'silver', 'teal', 'white', 'yellow'])
+line2_color = input.string(title='BottomLine-Color', defval='blue', options=['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 'silver', 'teal', 'white', 'yellow'])
+showbroken = input(defval=true, title='Show Broken Trend Lines')
+extendlines = input(defval=false, title='Extend Lines')
+showpivot = input(defval=false, title='Show Pivot Points')
+
+up = ta.rma(math.max(ta.change(src), 0), len1)
+down = ta.rma(-math.min(ta.change(src), 0), len1)
+rsi = down == 0 ? 100 : up == 0 ? 0 : 100 - 100 / (1 + up / down)
+
+rsiema = ta.ema(rsi, len2)
+
+
+band0 = hline(20, 'Lower Band', color=#000000)
+band1 = hline(80, 'Upper Band', color=#060300)
+band2 = hline(50, 'Middle Band', color=#d80311)
+band3 = hline(30, 'alt band', color=#070400)
+band4 = hline(70, 'üst band', color=#0c0600)
+
+
+fill(band0, band3, color.new(#0946CA, 90), title='Background')
+fill(band1, band4, color.new(#0946CA, 90), title='Background')
+
+Prsi = plot(rsi, 'RSI-22', color=color.new(#9c009c, 0))
+Prsiema = plot(rsiema, 'RSI-66', color=color.new(#9c009c, 0))
+
+fill(Prsi, Prsiema, color=rsi > rsiema ? color.rgb(0, 239, 8) : color.rgb(255, 174, 0), editable=true)
+
+float ph = na
+float pl = na
+ph := ta.pivothigh(rsi, prd, prd)
+pl := ta.pivotlow(rsi, prd, prd)
+
+plotshape(ph and showpivot ? ph : na, text='H', style=shape.labeldown, color=na, textcolor=color.new(color.blue, 0), location=location.absolute, offset=-prd, transp=0)
+plotshape(pl and showpivot ? pl - 5 : na, text='L', style=shape.labeldown, color=na, textcolor=color.new(color.blue, 0), location=location.absolute, offset=-prd, transp=0)
+
+getloc(bar_i) =>
+    _ret = bar_index + prd - bar_i
+    _ret
+
+//get last 10  pivot highs - (hope to have Array in Pine version 5)
+t1pos = ta.valuewhen(ph, bar_index, 0)
+t1val = nz(rsi[getloc(t1pos)])
+t2pos = ta.valuewhen(ph, bar_index, 1)
+t2val = nz(rsi[getloc(t2pos)])
+t3pos = ta.valuewhen(ph, bar_index, 2)
+t3val = nz(rsi[getloc(t3pos)])
+t4pos = ta.valuewhen(ph, bar_index, 3)
+t4val = nz(rsi[getloc(t4pos)])
+t5pos = ta.valuewhen(ph, bar_index, 4)
+t5val = nz(rsi[getloc(t5pos)])
+t6pos = ta.valuewhen(ph, bar_index, 5)
+t6val = nz(rsi[getloc(t6pos)])
+t7pos = ta.valuewhen(ph, bar_index, 6)
+t7val = nz(rsi[getloc(t7pos)])
+t8pos = ta.valuewhen(ph, bar_index, 7)
+t8val = nz(rsi[getloc(t8pos)])
+t9pos = ta.valuewhen(ph, bar_index, 8)
+t9val = nz(rsi[getloc(t9pos)])
+t10pos = ta.valuewhen(ph, bar_index, 9)
+t10val = nz(rsi[getloc(t10pos)])
+
+//get last 10 pivot lows /
+b1pos = ta.valuewhen(pl, bar_index, 0)
+b1val = nz(rsi[getloc(b1pos)])
+b2pos = ta.valuewhen(pl, bar_index, 1)
+b2val = nz(rsi[getloc(b2pos)])
+b3pos = ta.valuewhen(pl, bar_index, 2)
+b3val = nz(rsi[getloc(b3pos)])
+b4pos = ta.valuewhen(pl, bar_index, 3)
+b4val = nz(rsi[getloc(b4pos)])
+b5pos = ta.valuewhen(pl, bar_index, 4)
+b5val = nz(rsi[getloc(b5pos)])
+b6pos = ta.valuewhen(pl, bar_index, 5)
+b6val = nz(rsi[getloc(b6pos)])
+b7pos = ta.valuewhen(pl, bar_index, 6)
+b7val = nz(rsi[getloc(b7pos)])
+b8pos = ta.valuewhen(pl, bar_index, 7)
+b8val = nz(rsi[getloc(b8pos)])
+b9pos = ta.valuewhen(pl, bar_index, 8)
+b9val = nz(rsi[getloc(b9pos)])
+b10pos = ta.valuewhen(pl, bar_index, 9)
+b10val = nz(rsi[getloc(b10pos)])  //
+
+getloval(l1, l2) =>
+    _ret1 = l1 == 1 ? b1val : l1 == 2 ? b2val : l1 == 3 ? b3val : l1 == 4 ? b4val : l1 == 5 ? b5val : l1 == 6 ? b6val : l1 == 7 ? b7val : l1 == 8 ? b8val : l1 == 9 ? b9val : l1 == 10 ? b10val : 0
+    _ret2 = l2 == 1 ? b1val : l2 == 2 ? b2val : l2 == 3 ? b3val : l2 == 4 ? b4val : l2 == 5 ? b5val : l2 == 6 ? b6val : l2 == 7 ? b7val : l2 == 8 ? b8val : l2 == 9 ? b9val : l2 == 10 ? b10val : 0
+    [_ret1, _ret2]
+
+getlopos(l1, l2) =>
+    _ret1 = l1 == 1 ? b1pos : l1 == 2 ? b2pos : l1 == 3 ? b3pos : l1 == 4 ? b4pos : l1 == 5 ? b5pos : l1 == 6 ? b6pos : l1 == 7 ? b7pos : l1 == 8 ? b8pos : l1 == 9 ? b9pos : l1 == 10 ? b10pos : 0
+    _ret2 = l2 == 1 ? b1pos : l2 == 2 ? b2pos : l2 == 3 ? b3pos : l2 == 4 ? b4pos : l2 == 5 ? b5pos : l2 == 6 ? b6pos : l2 == 7 ? b7pos : l2 == 8 ? b8pos : l2 == 9 ? b9pos : l2 == 10 ? b10pos : 0
+    [_ret1, _ret2]
+
+gethival(l1, l2) =>
+    _ret1 = l1 == 1 ? t1val : l1 == 2 ? t2val : l1 == 3 ? t3val : l1 == 4 ? t4val : l1 == 5 ? t5val : l1 == 6 ? t6val : l1 == 7 ? t7val : l1 == 8 ? t8val : l1 == 9 ? t9val : l1 == 10 ? t10val : 0
+    _ret2 = l2 == 1 ? t1val : l2 == 2 ? t2val : l2 == 3 ? t3val : l2 == 4 ? t4val : l2 == 5 ? t5val : l2 == 6 ? t6val : l2 == 7 ? t7val : l2 == 8 ? t8val : l2 == 9 ? t9val : l2 == 10 ? t10val : 0
+    [_ret1, _ret2]
+
+gethipos(l1, l2) =>
+    _ret1 = l1 == 1 ? t1pos : l1 == 2 ? t2pos : l1 == 3 ? t3pos : l1 == 4 ? t4pos : l1 == 5 ? t5pos : l1 == 6 ? t6pos : l1 == 7 ? t7pos : l1 == 8 ? t8pos : l1 == 9 ? t9pos : l1 == 10 ? t10pos : 0
+    _ret2 = l2 == 1 ? t1pos : l2 == 2 ? t2pos : l2 == 3 ? t3pos : l2 == 4 ? t4pos : l2 == 5 ? t5pos : l2 == 6 ? t6pos : l2 == 7 ? t7pos : l2 == 8 ? t8pos : l2 == 9 ? t9pos : l2 == 10 ? t10pos : 0
+    [_ret1, _ret2]
+
+// line definitions
+var line l1 = na
+var line l2 = na
+var line l3 = na
+var line l4 = na
+var line l5 = na
+var line l6 = na
+var line l7 = na
+var line l8 = na
+var line l9 = na
+var line l10 = na
+var line l11 = na
+var line l12 = na
+var line l13 = na
+var line l14 = na
+var line l15 = na
+var line l16 = na
+var line l17 = na
+var line l18 = na
+var line l19 = na
+var line l20 = na
+var line t1 = na
+var line t2 = na
+var line t3 = na
+var line t4 = na
+var line t5 = na
+var line t6 = na
+var line t7 = na
+var line t8 = na
+var line t9 = na
+var line t10 = na
+var line t11 = na
+var line t12 = na
+var line t13 = na
+var line t14 = na
+var line t15 = na
+var line t16 = na
+var line t17 = na
+var line t18 = na
+var line t19 = na
+var line t20 = na
+
+//delete old lines
+line.delete(l1)
+line.delete(l2)
+line.delete(l3)
+line.delete(l4)
+line.delete(l5)
+line.delete(l6)
+line.delete(l7)
+line.delete(l8)
+line.delete(l9)
+line.delete(l10)
+line.delete(l11)
+line.delete(l12)
+line.delete(l13)
+line.delete(l14)
+line.delete(l15)
+line.delete(l16)
+line.delete(l17)
+line.delete(l18)
+line.delete(l19)
+line.delete(l20)
+line.delete(t1)
+line.delete(t2)
+line.delete(t3)
+line.delete(t4)
+line.delete(t5)
+line.delete(t6)
+line.delete(t7)
+line.delete(t8)
+line.delete(t9)
+line.delete(t10)
+line.delete(t11)
+line.delete(t12)
+line.delete(t13)
+line.delete(t14)
+line.delete(t15)
+line.delete(t16)
+line.delete(t17)
+line.delete(t18)
+line.delete(t19)
+line.delete(t20)
+
+// there is limitation for number of lines on chart (<=50), and we use 20 uptrend lines + 20 downtrend lines (total 40) 
+maxline = 20
+
+//Line coloring
+u_line_color = line1_color == 'aqua' ? color.aqua : line1_color == 'black' ? color.black : line1_color == 'blue' ? color.rgb(0, 0, 178) : line1_color == 'fuchsia' ? color.fuchsia : line1_color == 'gray' ? color.gray : line1_color == 'green' ? color.green : line1_color == 'lime' ? color.lime : line1_color == '.maroon' ? color.maroon : line1_color == 'navy' ? color.navy : line1_color == 'olive' ? color.olive : line1_color == 'orange' ? color.orange : line1_color == 'purple' ? color.purple : line1_color == 'red' ? color.rgb(198, 0, 0) : line1_color == 'silver' ? color.silver : line1_color == 'teal' ? color.teal : line1_color == 'white' ? color.white : color.yellow
+d_line_color = line2_color == 'aqua' ? color.aqua : line2_color == 'black' ? color.black : line2_color == 'blue' ? color.rgb(0, 0, 178) : line2_color == 'fuchsia' ? color.fuchsia : line2_color == 'gray' ? color.gray : line2_color == 'green' ? color.green : line2_color == 'lime' ? color.lime : line2_color == '.maroon' ? color.maroon : line2_color == 'navy' ? color.navy : line2_color == 'olive' ? color.olive : line2_color == 'orange' ? color.orange : line2_color == 'purple' ? color.purple : line2_color == 'red' ? color.rgb(198, 0, 0) : line2_color == 'silver' ? color.silver : line2_color == 'teal' ? color.teal : line2_color == 'white' ? color.white : color.yellow
+
+ulcolor = u_line_color
+dlcolor = d_line_color
+
+//Line style
+linestyle = linestylei == 'Solid' ? line.style_solid : line.style_dashed
+brokenstyle = line.style_dotted
+
+// extend lines
+extln = extendlines ? extend.right : extend.none
+
+// loop for pivot points to check if there is possible trend line
+countlinelo = 0
+countlinehi = 0
+for p1 = 1 to PPnum - 1 by 1
+    uv1 = 0.0
+    uv2 = 0.0
+    up1 = 0
+    up2 = 0
+    if countlinelo <= maxline
+        for p2 = PPnum to p1 + 1 by 1
+            [val1, val2] = getloval(p1, p2)
+            [pos1, pos2] = getlopos(p1, p2)
+            if val1 > val2
+                diff = (val1 - val2) / (pos1 - pos2)
+                hline = val2 + diff
+                lloc = bar_index
+                lval = rsi
+                valid = true
+                brokentrend = false
+                for x = pos2 + 1 - prd to bar_index by 1
+                    if nz(rsi[getloc(x + prd)]) < hline
+                        valid := false
+                        if x + prd >= pos1
+                            brokentrend := true
+                            brokentrend
+                        break
+                    lloc := x
+                    lval := hline
+                    hline += diff
+                    hline
+
+                if valid
+                    uv1 := hline
+                    uv2 := val2
+                    up1 := lloc
+                    up2 := pos2
+                    break
+
+                if showbroken and not valid and countlinelo < maxline and brokentrend
+                    countlinelo += 1
+                    l1 := countlinelo == 1 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l1
+                    l2 := countlinelo == 2 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l2
+                    l3 := countlinelo == 3 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l3
+                    l4 := countlinelo == 4 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l4
+                    l5 := countlinelo == 5 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l5
+                    l6 := countlinelo == 6 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l6
+                    l7 := countlinelo == 7 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l7
+                    l8 := countlinelo == 8 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l8
+                    l9 := countlinelo == 9 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l9
+                    l10 := countlinelo == 10 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l10
+                    l11 := countlinelo == 11 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l11
+                    l12 := countlinelo == 12 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l12
+                    l13 := countlinelo == 13 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l13
+                    l14 := countlinelo == 14 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l14
+                    l15 := countlinelo == 15 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l15
+                    l16 := countlinelo == 16 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l16
+                    l17 := countlinelo == 17 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l17
+                    l18 := countlinelo == 18 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l18
+                    l19 := countlinelo == 19 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l19
+                    l20 := countlinelo == 20 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=dlcolor, extend=extln) : l20
+                    l20
+    dv1 = 0.0
+    dv2 = 0.0
+    dp1 = 0
+    dp2 = 0
+    if countlinehi <= maxline
+        for p2 = PPnum to p1 + 1 by 1
+            [val1, val2] = gethival(p1, p2)
+            [pos1, pos2] = gethipos(p1, p2)
+            if val1 < val2
+                diff = (val2 - val1) / (pos1 - pos2)
+                hline = val2 - diff
+                lloc = bar_index
+                lval = rsi
+                valid = true
+                brokentrend = false
+                for x = pos2 + 1 - prd to bar_index by 1
+                    if nz(rsi[getloc(x + prd)]) > hline
+                        valid := false
+                        if x + prd >= pos1
+                            brokentrend := true
+                            brokentrend
+                        break
+                    lloc := x
+                    lval := hline
+                    hline -= diff
+                    hline
+
+                if valid
+                    dv1 := hline
+                    dv2 := val2
+                    dp1 := lloc
+                    dp2 := pos2
+                    break
+
+                if showbroken and not valid and countlinehi < maxline and brokentrend
+                    countlinehi += 1
+                    t1 := countlinehi == 1 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t1
+                    t2 := countlinehi == 2 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t2
+                    t3 := countlinehi == 3 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t3
+                    t4 := countlinehi == 4 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t4
+                    t5 := countlinehi == 5 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t5
+                    t6 := countlinehi == 6 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t6
+                    t7 := countlinehi == 7 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t7
+                    t8 := countlinehi == 8 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t8
+                    t9 := countlinehi == 9 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t9
+                    t10 := countlinehi == 10 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t10
+                    t11 := countlinehi == 11 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t11
+                    t12 := countlinehi == 12 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t12
+                    t13 := countlinehi == 13 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t13
+                    t14 := countlinehi == 14 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t14
+                    t15 := countlinehi == 15 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t15
+                    t16 := countlinehi == 16 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t16
+                    t17 := countlinehi == 17 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t17
+                    t18 := countlinehi == 18 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t18
+                    t19 := countlinehi == 19 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t19
+                    t20 := countlinehi == 20 ? line.new(pos2 - prd, val2, lloc, lval, style=brokenstyle, color=ulcolor) : t20
+                    t20
+
+    // if there is continues uptrend line then draw it
+    if up1 != 0 and up2 != 0 and countlinelo < maxline
+        countlinelo += 1
+        l1 := countlinelo == 1 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l1
+        l2 := countlinelo == 2 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l2
+        l3 := countlinelo == 3 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l3
+        l4 := countlinelo == 4 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l4
+        l5 := countlinelo == 5 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l5
+        l6 := countlinelo == 6 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l6
+        l7 := countlinelo == 7 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l7
+        l8 := countlinelo == 8 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l8
+        l9 := countlinelo == 9 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l9
+        l10 := countlinelo == 10 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l10
+        l11 := countlinelo == 11 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l11
+        l12 := countlinelo == 12 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l12
+        l13 := countlinelo == 13 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l13
+        l14 := countlinelo == 14 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l14
+        l15 := countlinelo == 15 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l15
+        l16 := countlinelo == 16 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l16
+        l17 := countlinelo == 17 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l17
+        l18 := countlinelo == 18 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l18
+        l19 := countlinelo == 19 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l19
+        l20 := countlinelo == 20 ? line.new(up2 - prd, uv2, up1, uv1, style=linestyle, color=dlcolor, width=linewidth, extend=extln) : l20
+        l20
+
+    // if there is continues downtrend line then draw it
+    if dp1 != 0 and dp2 != 0 and countlinehi < maxline
+        countlinehi += 1
+        t1 := countlinehi == 1 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t1
+        t2 := countlinehi == 2 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t2
+        t3 := countlinehi == 3 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t3
+        t4 := countlinehi == 4 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t4
+        t5 := countlinehi == 5 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t5
+        t6 := countlinehi == 6 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t6
+        t7 := countlinehi == 7 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t7
+        t8 := countlinehi == 8 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t8
+        t9 := countlinehi == 9 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t9
+        t10 := countlinehi == 10 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t10
+        t11 := countlinehi == 11 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t11
+        t12 := countlinehi == 12 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t12
+        t13 := countlinehi == 13 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t13
+        t14 := countlinehi == 14 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t14
+        t15 := countlinehi == 15 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t15
+        t16 := countlinehi == 16 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t16
+        t17 := countlinehi == 17 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t17
+        t18 := countlinehi == 18 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t18
+        t19 := countlinehi == 19 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t19
+        t20 := countlinehi == 20 ? line.new(dp2 - prd, dv2, dp1, dv1, style=linestyle, color=ulcolor, width=linewidth, extend=extln) : t20
+        t20
+//////////////////////////////////////////////////////////////////77
+
+
+//DIVERGENCE//
+lbR = input(title='Pivot Lookback Right', defval=5)
+lbL = input(title='Pivot Lookback Left', defval=5)
+rangeUpper = input(title='Max of Lookback Range', defval=60)
+rangeLower = input(title='Min of Lookback Range', defval=5)
+plotBull = input(title='Bullish Divergence', defval=false)
+plotBear = input(title='Bearish Divergence', defval=false)
+bearColor = color.red
+bullColor = color.green
+hiddenBullColor = color.new(color.green, 80)
+hiddenBearColor = color.new(color.red, 80)
+textColor = color.white
+noneColor = color.new(color.white, 100)
+osc = ta.rsi(src, len1)
+
+plFound = na(ta.pivotlow(osc, lbL, lbR)) ? false : true
+phFound = na(ta.pivothigh(osc, lbL, lbR)) ? false : true
+_inRange(cond) =>
+    bars = ta.barssince(cond == true)
+    rangeLower <= bars and bars <= rangeUpper
+
+oscHL = osc[lbR] > ta.valuewhen(plFound, osc[lbR], 1) and _inRange(plFound[1])
+priceLL = low[lbR] < ta.valuewhen(plFound, low[lbR], 1)
+bullCond = plotBull and priceLL and oscHL and plFound
+
+plot(plFound ? osc[lbR] : na, offset=-lbR, title='Bullish Divergence Line', linewidth=2, color=bullCond ? bullColor : noneColor,display=display.none)
+
+plotshape(bullCond ? osc[lbR] : na, offset=-lbR, title='Bullish Divergence Label', text=' Bull ', style=shape.labelup, location=location.absolute, color=color.new(bullColor, 0), textcolor=color.new(textColor, 0))
+
+oscLH = osc[lbR] < ta.valuewhen(phFound, osc[lbR], 1) and _inRange(phFound[1])
+priceHH = high[lbR] > ta.valuewhen(phFound, high[lbR], 1)
+bearCond = plotBear and priceHH and oscLH and phFound
+
+plot(phFound ? osc[lbR] : na, offset=-lbR, title='Bearish Divergence Line', linewidth=2, color=bearCond ? bearColor : noneColor,display=display.none)
+
+plotshape(bearCond ? osc[lbR] : na, offset=-lbR, title='Bearish Divergence Label', text=' Bear ', style=shape.labeldown, location=location.absolute, color=color.new(bearColor, 0), textcolor=color.new(textColor, 0))
+
+
+rsi_crossover_up = ta.crossover(rsi, rsiema)
+rsi_crossover_down = ta.crossunder(rsi, rsiema)
+
+rsi_crossover_up1 = ta.crossover(rsi [1], rsiema[1])
+rsi_crossover_down1 = ta.crossunder(rsi [1], rsiema[1])
+
+
+plotshape(rsi_crossover_up, title='FA', color=color.new(#46c00e, 26), textcolor=color.new(#ffffff, 0), text='A', style=shape.labelup, location = location.bottom)
+plotshape(rsi_crossover_down, title='FS', color=color.new(#dd0303, 0), textcolor=color.new(#ffffff, 0), text='S', style=shape.labeldown, location = location.top)
+
+
+///////////////
+
+
+
+func() =>
+   
+    cond = ta.crossover(rsi, rsiema) and ta.crossover(rsi,50)
+        
+    [close, cond]
+
+
+//GRUP VE TARANACAK HİSSE SAYISINI AYNI ŞEKİLDE DİLEDİĞİNİZ GİBİ ARTIRABİLİRSİNİZ.
+sb1 =  input.symbol(title='1',  defval='',group = "╠═════════════ ÖZEL LİSTE ═════════════╣")
+sb2 =  input.symbol(title='2',  defval='')
+sb3 =  input.symbol(title='3',  defval='')
+sb4 =  input.symbol(title='4',  defval='')
+sb5 =  input.symbol(title='5',  defval='')
+sb6 =  input.symbol(title='6',  defval='')
+sb7 =  input.symbol(title='7',  defval='')
+sb8 =  input.symbol(title='8',  defval='')
+sb9 =  input.symbol(title='9',  defval='')
+sb10 = input.symbol(title='10', defval='')
+sb11 = input.symbol(title='11', defval='')
+sb12 = input.symbol(title='12', defval='')
+sb13 = input.symbol(title='13', defval='')
+sb14 = input.symbol(title='14', defval='')
+sb15 = input.symbol(title='15', defval='')
+sb16 = input.symbol(title='16', defval='')
+sb17 = input.symbol(title='17', defval='')
+sb18 = input.symbol(title='18', defval='')
+sb19 = input.symbol(title='19', defval='')
+sb20 = input.symbol(title='20', defval='')
+sb21 = input.symbol(title='21', defval='')
+sb22 = input.symbol(title='22', defval='')
+sb23 = input.symbol(title='23', defval='')
+sb24 = input.symbol(title='24', defval='')
+sb25 = input.symbol(title='25', defval='')
+sb26 = input.symbol(title='26', defval='')
+sb27 = input.symbol(title='27', defval='')
+sb28 = input.symbol(title='28', defval='')
+sb29 = input.symbol(title='29', defval='')
+sb30 = input.symbol(title='30', defval='')
+sb31 = input.symbol(title='31', defval='')
+sb32 = input.symbol(title='32', defval='')
+sb33 = input.symbol(title='33', defval='')
+sb34 = input.symbol(title='34', defval='')
+sb35 = input.symbol(title='35', defval='')
+sb36 = input.symbol(title='36', defval='')
+sb37 = input.symbol(title='37', defval='')
+sb38 = input.symbol(title='38', defval='')
+sb39 = input.symbol(title='39', defval='')
+sb40 = input.symbol(title='40', defval='')
+
+u1 = grupSec == '1' ? 'BINANCE:1000SATSUSDT' : grupSec == '2' ? 'BINANCE:1INCHUSDT' : grupSec == '3' ? 'BINANCE:AAVEUSDT' : grupSec == '4' ? 'BINANCE:ACAUSDT' : grupSec == '5' ? 'BINANCE:ACEUSDT'  : grupSec == '6' ? 'BINANCE:ACHUSDT' : grupSec == '7' ? 'BINANCE:ACMUSDT' : grupSec == '8' ? 'BINANCE:ADAUSDT'  : grupSec == '9' ? 'BINANCE:ADXUSDT' : grupSec == '10' ? 'BINANCE:AERGOUSDT' : grupSec == 'ÖZEL LİSTE' ? sb1  : na
+u2 = grupSec == '1' ? 'BINANCE:AEURUSDT' : grupSec == '2' ? 'BINANCE:AEVOUSDT' : grupSec == '3' ? 'BINANCE:AGIXUSDT' : grupSec == '4' ? 'BINANCE:AGLDUSDT' : grupSec == '5' ? 'BINANCE:AIUSDT' : grupSec == '6' ? 'BINANCE:AKROUSDT' : grupSec == '7' ? 'BINANCE:ALCXUSDT' : grupSec == '8' ? 'BINANCE:ALGOUSDT' : grupSec == '9' ? 'BINANCE:ALICEUSDT'  : grupSec == '10' ? 'BINANCE:ALPACAUSDT' : grupSec == 'ÖZEL LİSTE' ? sb2  : na
+u3 = grupSec == '1' ? 'BINANCE:ALPHAUSDT'  : grupSec == '2' ? 'BINANCE:ALPINEUSDT' : grupSec == '3' ? 'BINANCE:ALTUSDT' : grupSec == '4' ? 'BINANCE:AMBUSDT'  : grupSec == '5' ? 'BINANCE:AMPUSDT' : grupSec == '6' ? 'BINANCE:ANKRUSDT' : grupSec == '7' ? 'BINANCE:APEUSDT' : grupSec == '8' ? 'BINANCE:API3USDT' : grupSec == '9' ? 'BINANCE:APTUSDT' : grupSec == '10' ? 'BINANCE:ARBUSDT' : grupSec == 'ÖZEL LİSTE' ? sb3  : na
+u4 = grupSec == '1' ? 'BINANCE:ARDRUSDT'  : grupSec == '2' ? 'BINANCE:ARKMUSDT' : grupSec == '3' ? 'BINANCE:ARKUSDT' : grupSec == '4' ? 'BINANCE:ARPAUSDT' : grupSec == '5' ? 'BINANCE:ARUSDT' : grupSec == '6' ? 'BINANCE:ASRUSDT' : grupSec == '7' ? 'BINANCE:ASTRUSDT' : grupSec == '8' ? 'BINANCE:ASTUSDT' : grupSec == '9' ? 'BINANCE:ATAUSDT' : grupSec == '10' ? 'BINANCE:ATMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb4  : na
+u5 = grupSec == '1' ? 'BINANCE:ATOMUSDT'  : grupSec == '2' ? 'BINANCE:AUCTIONUSDT' : grupSec == '3' ? 'BINANCE:AUDIOUSDT' : grupSec == '4' ? 'BINANCE:AVAUSDT' : grupSec == '5' ? 'BINANCE:AVAXUSDT' : grupSec == '6' ? 'BINANCE:AXLUSDT' : grupSec == '7' ? 'BINANCE:AXSUSDT' : grupSec == '8' ? 'BINANCE:BADGERUSDT' : grupSec == '9' ? 'BINANCE:BAKEUSDT' : grupSec == '10' ? 'BINANCE:BALUSDT' : grupSec == 'ÖZEL LİSTE' ? sb5  : na
+u6 = grupSec == '1' ? 'BINANCE:BANDUSDT'  : grupSec == '2' ? 'BINANCE:BARUSDT' : grupSec == '3' ? 'BINANCE:BATUSDT' : grupSec == '4' ? 'BINANCE:BCHUSDT' : grupSec == '5' ? 'BINANCE:BEAMXUSDT' : grupSec == '6' ? 'BINANCE:BELUSDT' : grupSec == '7' ? 'BINANCE:BETAUSDT' : grupSec == '8' ? 'BINANCE:BICOUSDT' : grupSec == '9' ? 'BINANCE:BIFIUSDT' : grupSec == '10' ? 'BINANCE:BLURUSDT' : grupSec == 'ÖZEL LİSTE' ? sb6  : na
+u7 = grupSec == '1' ? 'BINANCE:BLZUSDT'  : grupSec == '2' ? 'BINANCE:BNBUSDT' : grupSec == '3' ? 'BINANCE:BNTUSDT' : grupSec == '4' ? 'BINANCE:BNXUSDT' : grupSec == '5' ? 'BINANCE:BOMEUSDT' : grupSec == '6' ? 'BINANCE:BONDUSDT' : grupSec == '7' ? 'BINANCE:BONKUSDT' : grupSec == '8' ? 'BINANCE:BSWUSDT' : grupSec == '9' ? 'BINANCE:BTCUSDT' : grupSec == '10' ? 'BINANCE:BTTCUSDT' : grupSec == 'ÖZEL LİSTE' ? sb7  : na
+u8 = grupSec == '1' ? 'BINANCE:BURGERUSDT'  : grupSec == '2' ? 'BINANCE:C98USDT' : grupSec == '3' ? 'BINANCE:CAKEUSDT' : grupSec == '4' ? 'BINANCE:CELOUSDT' : grupSec == '5' ? 'BINANCE:CELRUSDT' : grupSec == '6' ? 'BINANCE:CFXUSDT' : grupSec == '7' ? 'BINANCE:CHESSUSDT' : grupSec == '8' ? 'BINANCE:CHRUSDT' : grupSec == '9' ? 'BINANCE:CHZUSDT' : grupSec == '10' ? 'BINANCE:CITYUSDT' : grupSec == 'ÖZEL LİSTE' ? sb8  : na
+u9 = grupSec == '1' ? 'BINANCE:CKBUSDT'  : grupSec == '2' ? 'BINANCE:CLVUSDT' : grupSec == '3' ? 'BINANCE:COMBOUSDT' : grupSec == '4' ? 'BINANCE:COMPUSDT' : grupSec == '5' ? 'BINANCE:COSUSDT' : grupSec == '6' ? 'BINANCE:COTIUSDT' : grupSec == '7' ? 'BINANCE:CREAMUSDT' : grupSec == '8' ? 'BINANCE:CRVUSDT' : grupSec == '9' ? 'BINANCE:CTKUSDT' : grupSec == '10' ? 'BINANCE:CTSIUSDT' : grupSec == 'ÖZEL LİSTE' ? sb9  : na
+u10 = grupSec == '1' ? 'BINANCE:CTXCUSDT'  : grupSec == '2' ? 'BINANCE:CVCUSDT' : grupSec == '3' ? 'BINANCE:CVPUSDT' : grupSec == '4' ? 'BINANCE:CVXUSDT' : grupSec == '5' ? 'BINANCE:CYBERUSDT' : grupSec == '6' ? 'BINANCE:DARUSDT' : grupSec == '7' ? 'BINANCE:DASHUSDT' : grupSec == '8' ? 'BINANCE:DATAUSDT' : grupSec == '9' ? 'BINANCE:DCRUSDT' : grupSec == '10' ? 'BINANCE:DEGOUSDT' : grupSec == 'ÖZEL LİSTE' ? sb10  : na
+u11 = grupSec == '1' ? 'BINANCE:DENTUSDT'  : grupSec == '2' ? 'BINANCE:DEXEUSDT' : grupSec == '3' ? 'BINANCE:DFUSDT' : grupSec == '4' ? 'BINANCE:DGBUSDT' : grupSec == '5' ? 'BINANCE:DIAUSDT' : grupSec == '6' ? 'BINANCE:DOCKUSDT' : grupSec == '7' ? 'BINANCE:DODOUSDT' : grupSec == '8' ? 'BINANCE:DOGEUSDT' : grupSec == '9' ? 'BINANCE:DOTUSDT' : grupSec == '10' ? 'BINANCE:DUSKUSDT' : grupSec == 'ÖZEL LİSTE' ? sb11  : na
+u12 = grupSec == '1' ? 'BINANCE:DYDXUSDT'  : grupSec == '2' ? 'BINANCE:DYMUSDT' : grupSec == '3' ? 'BINANCE:EDUUSDT' : grupSec == '4' ? 'BINANCE:EGLDUSDT' : grupSec == '5' ? 'BINANCE:ELFUSDT' : grupSec == '6' ? 'BINANCE:ENAUSDT' : grupSec == '7' ? 'BINANCE:ENJUSDT' : grupSec == '8' ? 'BINANCE:ENSUSDT' : grupSec == '9' ? 'BINANCE:EOSUSDT' : grupSec == '10' ? 'BINANCE:EPXUSDT' : grupSec == 'ÖZEL LİSTE' ? sb12  : na
+u13 = grupSec == '1' ? 'BINANCE:ERNUSDT'  : grupSec == '2' ? 'BINANCE:ETCUSDT' : grupSec == '3' ? 'BINANCE:ETHFIUSDT' : grupSec == '4' ? 'BINANCE:ETHUSDT' : grupSec == '5' ? 'BINANCE:EURUSDT' : grupSec == '6' ? 'BINANCE:FARMUSDT' : grupSec == '7' ? 'BINANCE:FDUSDUSDT' : grupSec == '8' ? 'BINANCE:FETUSDT' : grupSec == '9' ? 'BINANCE:FIDAUSDT' : grupSec == '10' ? 'BINANCE:FILUSDT' : grupSec == 'ÖZEL LİSTE' ? sb13  : na
+u14 = grupSec == '1' ? 'BINANCE:FIROUSDT'  : grupSec == '2' ? 'BINANCE:FISUSDT' : grupSec == '3' ? 'BINANCE:FLMUSDT' : grupSec == '4' ? 'BINANCE:FLOKIUSDT' : grupSec == '5' ? 'BINANCE:FLOWUSDT' : grupSec == '6' ? 'BINANCE:FLUXUSDT' : grupSec == '7' ? 'BINANCE:FORTHUSDT' : grupSec == '8' ? 'BINANCE:FORUSDT' : grupSec == '9' ? 'BINANCE:FRONTUSDT' : grupSec == '10' ? 'BINANCE:FTMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb14  : na
+u15 = grupSec == '1' ? 'BINANCE:FTTUSDT'  : grupSec == '2' ? 'BINANCE:FUNUSDT' : grupSec == '3' ? 'BINANCE:FXSUSDT' : grupSec == '4' ? 'BINANCE:GALAUSDT' : grupSec == '5' ? 'BINANCE:GALUSDT' : grupSec == '6' ? 'BINANCE:GASUSDT' : grupSec == '7' ? 'BINANCE:GFTUSDT' : grupSec == '8' ? 'BINANCE:GHSTUSDT' : grupSec == '9' ? 'BINANCE:GLMRUSDT' : grupSec == '10' ? 'BINANCE:GLMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb15  : na
+u16 = grupSec == '1' ? 'BINANCE:GMTUSDT'  : grupSec == '2' ? 'BINANCE:GMXUSDT' : grupSec == '3' ? 'BINANCE:GNOUSDT' : grupSec == '4' ? 'BINANCE:GNSUSDT' : grupSec == '5' ? 'BINANCE:GRTUSDT' : grupSec == '6' ? 'BINANCE:GTCUSDT' : grupSec == '7' ? 'BINANCE:HARDUSDT' : grupSec == '8' ? 'BINANCE:HBARUSDT' : grupSec == '9' ? 'BINANCE:HFTUSDT' : grupSec == '10' ? 'BINANCE:HIFIUSDT' : grupSec == 'ÖZEL LİSTE' ? sb16  : na
+u17 = grupSec == '1' ? 'BINANCE:HIGHUSDT'  : grupSec == '2' ? 'BINANCE:HIVEUSDT' : grupSec == '3' ? 'BINANCE:HOOKUSDT' : grupSec == '4' ? 'BINANCE:HOTUSDT' : grupSec == '5' ? 'BINANCE:ICPUSDT' : grupSec == '6' ? 'BINANCE:ICXUSDT' : grupSec == '7' ? 'BINANCE:IDEXUSDT' : grupSec == '8' ? 'BINANCE:IDUSDT' : grupSec == '9' ? 'BINANCE:ILVUSDT' : grupSec == '10' ? 'BINANCE:IMXUSDT' : grupSec == 'ÖZEL LİSTE' ? sb17  : na
+u18 = grupSec == '1' ? 'BINANCE:INJUSDT'  : grupSec == '2' ? 'BINANCE:IOSTUSDT' : grupSec == '3' ? 'BINANCE:IOTAUSDT' : grupSec == '4' ? 'BINANCE:IOTXUSDT' : grupSec == '5' ? 'BINANCE:IQUSDT' : grupSec == '6' ? 'BINANCE:IRISUSDT' : grupSec == '7' ? 'BINANCE:JASMYUSDT' : grupSec == '8' ? 'BINANCE:JOEUSDT' : grupSec == '9' ? 'BINANCE:JSTUSDT' : grupSec == '10' ? 'BINANCE:JTOUSDT' : grupSec == 'ÖZEL LİSTE' ? sb18  : na
+u19 = grupSec == '1' ? 'BINANCE:JUPUSDT'  : grupSec == '2' ? 'BINANCE:JUVUSDT' : grupSec == '3' ? 'BINANCE:KAVAUSDT' : grupSec == '4' ? 'BINANCE:KDAUSDT' : grupSec == '5' ? 'BINANCE:KEYUSDT' : grupSec == '6' ? 'BINANCE:KLAYUSDT' : grupSec == '7' ? 'BINANCE:KMDUSDT' : grupSec == '8' ? 'BINANCE:KNCUSDT' : grupSec == '9' ? 'BINANCE:KP3RUSDT' : grupSec == '10' ? 'BINANCE:KSMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb19  : na
+u20 = grupSec == '1' ? 'BINANCE:LAZIOUSDT'  : grupSec == '2' ? 'BINANCE:LDOUSDT' : grupSec == '3' ? 'BINANCE:LEVERUSDT' : grupSec == '4' ? 'BINANCE:LINAUSDT' : grupSec == '5' ? 'BINANCE:LINKUSDT' : grupSec == '6' ? 'BINANCE:LITUSDT' : grupSec == '7' ? 'BINANCE:LOKAUSDT' : grupSec == '8' ? 'BINANCE:LOOMUSDT' : grupSec == '9' ? 'BINANCE:LPTUSDT' : grupSec == '10' ? 'BINANCE:LQTYUSDT' : grupSec == 'ÖZEL LİSTE' ? sb20  : na
+u21 = grupSec == '1' ? 'BINANCE:LRCUSDT'  : grupSec == '2' ? 'BINANCE:LSKUSDT' : grupSec == '3' ? 'BINANCE:LTCUSDT' : grupSec == '4' ? 'BINANCE:LTOUSDT' : grupSec == '5' ? 'BINANCE:LUNAUSDT' : grupSec == '6' ? 'BINANCE:LUNCUSDT' : grupSec == '7' ? 'BINANCE:MAGICUSDT' : grupSec == '8' ? 'BINANCE:MANAUSDT' : grupSec == '9' ? 'BINANCE:MANTAUSDT' : grupSec == '10' ? 'BINANCE:MASKUSDT' : grupSec == 'ÖZEL LİSTE' ? sb21  : na
+u22 = grupSec == '1' ? 'BINANCE:MATICUSDT'  : grupSec == '2' ? 'BINANCE:MAVUSDT' : grupSec == '3' ? 'BINANCE:MBLUSDT' : grupSec == '4' ? 'BINANCE:MBOXUSDT' : grupSec == '5' ? 'BINANCE:MDTUSDT' : grupSec == '6' ? 'BINANCE:MDXUSDT' : grupSec == '7' ? 'BINANCE:MEMEUSDT' : grupSec == '8' ? 'BINANCE:METISUSDT' : grupSec == '9' ? 'BINANCE:MINAUSDT' : grupSec == '10' ? 'BINANCE:MKRUSDT' : grupSec == 'ÖZEL LİSTE' ? sb22  : na
+u23 = grupSec == '1' ? 'BINANCE:MLNUSDT'  : grupSec == '2' ? 'BINANCE:MOVRUSDT' : grupSec == '3' ? 'BINANCE:MTLUSDT' : grupSec == '4' ? 'BINANCE:NEARUSDT' : grupSec == '5' ? 'BINANCE:NEOUSDT' : grupSec == '6' ? 'BINANCE:NEXOUSDT' : grupSec == '7' ? 'BINANCE:NFPUSDT' : grupSec == '8' ? 'BINANCE:NKNUSDT' : grupSec == '9' ? 'BINANCE:NMRUSDT' : grupSec == '10' ? 'BINANCE:NTRNUSDT' : grupSec == 'ÖZEL LİSTE' ? sb23  : na
+u24 = grupSec == '1' ? 'BINANCE:NULSUSDT'  : grupSec == '2' ? 'BINANCE:OAXUSDT' : grupSec == '3' ? 'BINANCE:OCEANUSDT' : grupSec == '4' ? 'BINANCE:OGNUSDT' : grupSec == '5' ? 'BINANCE:OGUSDT' : grupSec == '6' ? 'BINANCE:OMGUSDT' : grupSec == '7' ? 'BINANCE:OMNIUSDT' : grupSec == '8' ? 'BINANCE:OMUSDT' : grupSec == '9' ? 'BINANCE:ONEUSDT' : grupSec == '10' ? 'BINANCE:ONGUSDT' : grupSec == 'ÖZEL LİSTE' ? sb24  : na
+u25 = grupSec == '1' ? 'BINANCE:ONTUSDT'  : grupSec == '2' ? 'BINANCE:OOKIUSDT' : grupSec == '3' ? 'BINANCE:OPUSDT' : grupSec == '4' ? 'BINANCE:ORBSUSDT' : grupSec == '5' ? 'BINANCE:OXTUSDT' : grupSec == '6' ? 'BINANCE:PALUSDT' : grupSec == '7' ? 'BINANCE:PAXUSDT' : grupSec == '8' ? 'BINANCE:PBTC35AUSDT' : grupSec == '9' ? 'BINANCE:PEARLUSDT' : grupSec == '10' ? 'BINANCE:PERPUSDT' : grupSec == 'ÖZEL LİSTE' ? sb25  : na
+u26 = grupSec == '1' ? 'BINANCE:PGUSDT'  : grupSec == '2' ? 'BINANCE:PHAUSDT' : grupSec == '3' ? 'BINANCE:PHBUSD' : grupSec == '4' ? 'BINANCE:PHXUSDT' : grupSec == '5' ? 'BINANCE:POLSUSDT' : grupSec == '6' ? 'BINANCE:POLYUSDT' : grupSec == '7' ? 'BINANCE:PORTOUSDT' : grupSec == '8' ? 'BINANCE:POWRUSDT' : grupSec == '9' ? 'BINANCE:PRIVUSDT' : grupSec == '10' ? 'BINANCE:PRVUSDT' : grupSec == 'ÖZEL LİSTE' ? sb26  : na
+u27 = grupSec == '1' ? 'BINANCE:PUNDIXUSDT'  : grupSec == '2' ? 'BINANCE:PUNDIXUSDT' : grupSec == '3' ? 'BINANCE:PUNDIXUSDT' : grupSec == '4' ? 'BINANCE:PUNDIXUSDT' : grupSec == '5' ? 'BINANCE:PUNDIXUSDT' : grupSec == '6' ? 'BINANCE:PUNDIXUSDT' : grupSec == '7' ? 'BINANCE:PUNDIXUSDT' : grupSec == '8' ? 'BINANCE:PUNDIXUSDT' : grupSec == '9' ? 'BINANCE:PUNDIXUSDT' : grupSec == '10' ? 'BINANCE:PUNDIXUSDT' : grupSec == 'ÖZEL LİSTE' ? sb27  : na
+u28 = grupSec == '1' ? 'BINANCE:QUICKUSDT'  : grupSec == '2' ? 'BINANCE:QUNUSDT' : grupSec == '3' ? 'BINANCE:RAIUSDT' : grupSec == '4' ? 'BINANCE:RAYUSDT' : grupSec == '5' ? 'BINANCE:REIFUSDT' : grupSec == '6' ? 'BINANCE:REPV2USDT' : grupSec == '7' ? 'BINANCE:REQUSDT' : grupSec == '8' ? 'BINANCE:RIFUSDT' : grupSec == '9' ? 'BINANCE:RINGXUSDT' : grupSec == '10' ? 'BINANCE:RLCUSDT' : grupSec == 'ÖZEL LİSTE' ? sb28  : na
+u29 = grupSec == '1' ? 'BINANCE:RLYUSDT'  : grupSec == '2' ? 'BINANCE:ROSEUSDT' : grupSec == '3' ? 'BINANCE:RSRUSDT' : grupSec == '4' ? 'BINANCE:RUNEUSDT' : grupSec == '5' ? 'BINANCE:SANDUSDT' : grupSec == '6' ? 'BINANCE:SATSUSDT' : grupSec == '7' ? 'BINANCE:SCRTUSDT' : grupSec == '8' ? 'BINANCE:SDXUSDT' : grupSec == '9' ? 'BINANCE:SEROUSDT' : grupSec == '10' ? 'BINANCE:SHIBUSDT' : grupSec == 'ÖZEL LİSTE' ? sb29  : na
+u30 = grupSec == '1' ? 'BINANCE:SHOUSDT'  : grupSec == '2' ? 'BINANCE:SHRUSDT' : grupSec == '3' ? 'BINANCE:SHIBUSDT' : grupSec == '4' ? 'BINANCE:SHRIMUSDT' : grupSec == '5' ? 'BINANCE:SIENUSDT' : grupSec == '6' ? 'BINANCE:SLPUSDT' : grupSec == '7' ? 'BINANCE:SNXUSDT' : grupSec == '8' ? 'BINANCE:SOLUSDT' : grupSec == '9' ? 'BINANCE:SPAUSDT' : grupSec == '10' ? 'BINANCE:SRMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb30  : na
+u31 = grupSec == '1' ? 'BINANCE:SUNUSDT'  : grupSec == '2' ? 'BINANCE:SUPERUSDT' : grupSec == '3' ? 'BINANCE:SUSHIUSDT' : grupSec == '4' ? 'BINANCE:SUTERUSDT' : grupSec == '5' ? 'BINANCE:SWFTCUSDT' : grupSec == '6' ? 'BINANCE:SWINGBYUSDT' : grupSec == '7' ? 'BINANCE:SWRVUSDT' : grupSec == '8' ? 'BINANCE:SXPUSDT' : grupSec == '9' ? 'BINANCE:SYSUSDT' : grupSec == '10' ? 'BINANCE:TENDUSDT' : grupSec == 'ÖZEL LİSTE' ? sb31  : na
+u32 = grupSec == '1' ? 'BINANCE:TERNUSDT'  : grupSec == '2' ? 'BINANCE:TFUELUSDT' : grupSec == '3' ? 'BINANCE:THETAUSDT' : grupSec == '4' ? 'BINANCE:TLMUSDT' : grupSec == '5' ? 'BINANCE:TNBUSDT' : grupSec == '6' ? 'BINANCE:TOMOUSDT' : grupSec == '7' ? 'BINANCE:TORNUSDT' : grupSec == '8' ? 'BINANCE:TRADEUSDT' : grupSec == '9' ? 'BINANCE:TRBUSDT' : grupSec == '10' ? 'BINANCE:TRUUSDT' : grupSec == 'ÖZEL LİSTE' ? sb32  : na
+u33 = grupSec == '1' ? 'BINANCE:TRXUSDT'  : grupSec == '2' ? 'BINANCE:TRYBUSDT' : grupSec == '3' ? 'BINANCE:TUSDU6' : grupSec == '4' ? 'BINANCE:TWTUSDT' : grupSec == '5' ? 'BINANCE:UGSUSDT' : grupSec == '6' ? 'BINANCE:UMAUSDT' : grupSec == '7' ? 'BINANCE:UNIUSDT' : grupSec == '8' ? 'BINANCE:UNUSUSDT' : grupSec == '9' ? 'BINANCE:USDCUSDT' : grupSec == '10' ? 'BINANCE:USDTUSDT' : grupSec == 'ÖZEL LİSTE' ? sb33  : na
+u34 = grupSec == '1' ? 'BINANCE:USDXUSDT'  : grupSec == '2' ? 'BINANCE:USTUSDT' : grupSec == '3' ? 'BINANCE:VALUEUSDT' : grupSec == '4' ? 'BINANCE:VETUSDT' : grupSec == '5' ? 'BINANCE:VIDTUSDT' : grupSec == '6' ? 'BINANCE:VITEUSDT' : grupSec == '7' ? 'BINANCE:VTHOUSDT' : grupSec == '8' ? 'BINANCE:VTHOUSDT' : grupSec == '9' ? 'BINANCE:VXVUSDT' : grupSec == '10' ? 'BINANCE:WAVESUSDT' : grupSec == 'ÖZEL LİSTE' ? sb34  : na
+u35 = grupSec == '1' ? 'BINANCE:WBTCUSDT'  : grupSec == '2' ? 'BINANCE:WICCUSDT' : grupSec == '3' ? 'BINANCE:WINUSDT' : grupSec == '4' ? 'BINANCE:WINGSUSDT' : grupSec == '5' ? 'BINANCE:WOOUSDT' : grupSec == '6' ? 'BINANCE:WRXUSDT' : grupSec == '7' ? 'BINANCE:WTCUSDT' : grupSec == '8' ? 'BINANCE:XEMUSDT' : grupSec == '9' ? 'BINANCE:XLMUSDT' : grupSec == '10' ? 'BINANCE:XMRUSDT' : grupSec == 'ÖZEL LİSTE' ? sb35  : na
+u36 = grupSec == '1' ? 'BINANCE:XPRUSDT'  : grupSec == '2' ? 'BINANCE:XRPUSDT' : grupSec == '3' ? 'BINANCE:XTZUSDT' : grupSec == '4' ? 'BINANCE:XVGUSDT' : grupSec == '5' ? 'BINANCE:YFIIUSDT' : grupSec == '6' ? 'BINANCE:YFIUSDT' : grupSec == '7' ? 'BINANCE:YFVUSDT' : grupSec == '8' ? 'BINANCE:YLDUSDT' : grupSec == '9' ? 'BINANCE:YOPUSDT' : grupSec == '10' ? 'BINANCE:YTSUSDT' : grupSec == 'ÖZEL LİSTE' ? sb36  : na
+u37 = grupSec == '1' ? 'BINANCE:YXBUSDT'  : grupSec == '2' ? 'BINANCE:ZECUSDT' : grupSec == '3' ? 'BINANCE:ZILUSDT' : grupSec == '4' ? 'BINANCE:ZRXUSDT' : grupSec == '5' ? 'BINANCE:ZUSDTUSDT' : grupSec == '6' ? 'BINANCE:ACMUSDT' : grupSec == '7' ? 'BINANCE:BANDUSDT' : grupSec == '8' ? 'BINANCE:BARUSDT' : grupSec == '9' ? 'BINANCE:BATUSDT' : grupSec == '10' ? 'BINANCE:BCHUSDT' : grupSec == 'ÖZEL LİSTE' ? sb37  : na
+u38 = grupSec == '1' ? 'BINANCE:BELUSDT'  : grupSec == '2' ? 'BINANCE:BETAUSDT' : grupSec == '3' ? 'BINANCE:BICOUSDT' : grupSec == '4' ? 'BINANCE:BIFIUSDT' : grupSec == '5' ? 'BINANCE:BLZUSDT' : grupSec == '6' ? 'BINANCE:BNBUSDT' : grupSec == '7' ? 'BINANCE:BNTUSDT' : grupSec == '8' ? 'BINANCE:BNXUSDT' : grupSec == '9' ? 'BINANCE:BOMEUSDT' : grupSec == '10' ? 'BINANCE:BONDUSDT' : grupSec == 'ÖZEL LİSTE' ? sb38  : na
+u39 = grupSec == '1' ? 'BINANCE:BONKUSDT'  : grupSec == '2' ? 'BINANCE:BSWUSDT' : grupSec == '3' ? 'BINANCE:BURGERUSDT' : grupSec == '4' ? 'BINANCE:C98USDT' : grupSec == '5' ? 'BINANCE:CAKEUSDT' : grupSec == '6' ? 'BINANCE:CELOUSDT' : grupSec == '7' ? 'BINANCE:CELRUSDT' : grupSec == '8' ? 'BINANCE:CFXUSDT' : grupSec == '9' ? 'BINANCE:CHESSUSDT' : grupSec == '10' ? 'BINANCE:CHRUSDT' : grupSec == 'ÖZEL LİSTE' ? sb39  : na
+u40 = grupSec == '1' ? 'BINANCE:CHZUSDT'  : grupSec == '2' ? 'BINANCE:CKBUSDT' : grupSec == '3' ? 'BINANCE:CLVUSDT' : grupSec == '4' ? 'BINANCE:COMBOUSDT' : grupSec == '5' ? 'BINANCE:COMPUSDT' : grupSec == '6' ? 'BINANCE:COSUSDT' : grupSec == '7' ? 'BINANCE:COTIUSDT' : grupSec == '8' ? 'BINANCE:CREAMUSDT' : grupSec == '9' ? 'BINANCE:CRVUSDT' : grupSec == '10' ? 'BINANCE:CTKUSDT' : grupSec == 'ÖZEL LİSTE' ? sb40  : na
+
+
+
+
+[v1,s111] = request.security(u1, per, func(),ignore_invalid_symbol = true)
+[v2,s211] = request.security(u2, per, func(),ignore_invalid_symbol = true)
+[v3,s311] = request.security(u3, per, func(),ignore_invalid_symbol = true)
+[v4,s411] = request.security(u4, per, func(),ignore_invalid_symbol = true)
+[v5,s511] = request.security(u5, per, func(),ignore_invalid_symbol = true)
+[v6,s611] = request.security(u6, per, func(),ignore_invalid_symbol = true)
+[v7,s711] = request.security(u7, per, func(),ignore_invalid_symbol = true)
+[v8,s811] = request.security(u8, per, func(),ignore_invalid_symbol = true)
+[v9,s911] = request.security(u9, per, func(),ignore_invalid_symbol = true)
+[v10,s10] = request.security(u10, per, func(),ignore_invalid_symbol = true)
+[v11,s11] = request.security(u11, per, func(),ignore_invalid_symbol = true)
+[v12,s12] = request.security(u12, per, func(),ignore_invalid_symbol = true)
+[v13,s13] = request.security(u13, per, func(),ignore_invalid_symbol = true)
+[v14,s14] = request.security(u14, per, func(),ignore_invalid_symbol = true)
+[v15,s15] = request.security(u15, per, func(),ignore_invalid_symbol = true)
+[v16,s16] = request.security(u16, per, func(),ignore_invalid_symbol = true)
+[v17,s17] = request.security(u17, per, func(),ignore_invalid_symbol = true)
+[v18,s18] = request.security(u18, per, func(),ignore_invalid_symbol = true)
+[v19,s19] = request.security(u19, per, func(),ignore_invalid_symbol = true)
+[v20,s20] = request.security(u20, per, func(),ignore_invalid_symbol = true)
+[v21,s21] = request.security(u21, per, func(),ignore_invalid_symbol = true)
+[v22,s22] = request.security(u22, per, func(),ignore_invalid_symbol = true)
+[v23,s23] = request.security(u23, per, func(),ignore_invalid_symbol = true)
+[v24,s24] = request.security(u24, per, func(),ignore_invalid_symbol = true)
+[v25,s25] = request.security(u25, per, func(),ignore_invalid_symbol = true)
+[v26,s26] = request.security(u26, per, func(),ignore_invalid_symbol = true)
+[v27,s27] = request.security(u27, per, func(),ignore_invalid_symbol = true)
+[v28,s28] = request.security(u28, per, func(),ignore_invalid_symbol = true)
+[v29,s29] = request.security(u29, per, func(),ignore_invalid_symbol = true)
+[v30,s30] = request.security(u30, per, func(),ignore_invalid_symbol = true)
+[v31,s31] = request.security(u31, per, func(),ignore_invalid_symbol = true)
+[v32,s32] = request.security(u32, per, func(),ignore_invalid_symbol = true)
+[v33,s33] = request.security(u33, per, func(),ignore_invalid_symbol = true)
+[v34,s34] = request.security(u34, per, func(),ignore_invalid_symbol = true)
+[v35,s35] = request.security(u35, per, func(),ignore_invalid_symbol = true)
+[v36,s36] = request.security(u36, per, func(),ignore_invalid_symbol = true)
+[v37,s37] = request.security(u37, per, func(),ignore_invalid_symbol = true)
+[v38,s38] = request.security(u38, per, func(),ignore_invalid_symbol = true)
+[v39,s39] = request.security(u39, per, func(),ignore_invalid_symbol = true)
+[v40,s40] = request.security(u40, per, func(),ignore_invalid_symbol = true)
+
+scr_label = 'TARAMA\n'
+scr_label := s111 ? scr_label + syminfo.ticker(u1) + ' ' + str.tostring(v1) + '\n' : scr_label
+scr_label := s211 ? scr_label + syminfo.ticker(u2) + ' ' + str.tostring(v2) + '\n' : scr_label
+scr_label := s311 ? scr_label + syminfo.ticker(u3) + ' ' + str.tostring(v3) + '\n' : scr_label
+scr_label := s411 ? scr_label + syminfo.ticker(u4) + ' ' + str.tostring(v4) + '\n' : scr_label
+scr_label := s511 ? scr_label + syminfo.ticker(u5) + ' ' + str.tostring(v5) + '\n' : scr_label
+scr_label := s611 ? scr_label + syminfo.ticker(u6) + ' ' + str.tostring(v6) + '\n' : scr_label
+scr_label := s711 ? scr_label + syminfo.ticker(u7) + ' ' + str.tostring(v7) + '\n' : scr_label
+scr_label := s811 ? scr_label + syminfo.ticker(u8) + ' ' + str.tostring(v8) + '\n' : scr_label
+scr_label := s911 ? scr_label + syminfo.ticker(u9) + ' ' + str.tostring(v9) + '\n' : scr_label
+scr_label := s10 ? scr_label + syminfo.ticker(u10) + ' ' + str.tostring(v10) + '\n' : scr_label
+scr_label := s11 ? scr_label + syminfo.ticker(u11) + ' ' + str.tostring(v11) + '\n' : scr_label
+scr_label := s12 ? scr_label + syminfo.ticker(u12) + ' ' + str.tostring(v12) + '\n' : scr_label
+scr_label := s13 ? scr_label + syminfo.ticker(u13) + ' ' + str.tostring(v13) + '\n' : scr_label
+scr_label := s14 ? scr_label + syminfo.ticker(u14) + ' ' + str.tostring(v14) + '\n' : scr_label
+scr_label := s15 ? scr_label + syminfo.ticker(u15) + ' ' + str.tostring(v15) + '\n' : scr_label
+scr_label := s16 ? scr_label + syminfo.ticker(u16) + ' ' + str.tostring(v16) + '\n' : scr_label
+scr_label := s17 ? scr_label + syminfo.ticker(u17) + ' ' + str.tostring(v17) + '\n' : scr_label
+scr_label := s18 ? scr_label + syminfo.ticker(u18) + ' ' + str.tostring(v18) + '\n' : scr_label
+scr_label := s19 ? scr_label + syminfo.ticker(u19) + ' ' + str.tostring(v19) + '\n' : scr_label
+scr_label := s20 ? scr_label + syminfo.ticker(u20) + ' ' + str.tostring(v20) + '\n' : scr_label
+scr_label := s21 ? scr_label + syminfo.ticker(u21) + ' ' + str.tostring(v21) + '\n' : scr_label
+scr_label := s22 ? scr_label + syminfo.ticker(u22) + ' ' + str.tostring(v22) + '\n' : scr_label
+scr_label := s23 ? scr_label + syminfo.ticker(u23) + ' ' + str.tostring(v23) + '\n' : scr_label
+scr_label := s24 ? scr_label + syminfo.ticker(u24) + ' ' + str.tostring(v24) + '\n' : scr_label
+scr_label := s25 ? scr_label + syminfo.ticker(u25) + ' ' + str.tostring(v25) + '\n' : scr_label
+scr_label := s26 ? scr_label + syminfo.ticker(u26) + ' ' + str.tostring(v26) + '\n' : scr_label
+scr_label := s27 ? scr_label + syminfo.ticker(u27) + ' ' + str.tostring(v27) + '\n' : scr_label
+scr_label := s28 ? scr_label + syminfo.ticker(u28) + ' ' + str.tostring(v28) + '\n' : scr_label
+scr_label := s29 ? scr_label + syminfo.ticker(u29) + ' ' + str.tostring(v29) + '\n' : scr_label
+scr_label := s30 ? scr_label + syminfo.ticker(u30) + ' ' + str.tostring(v30) + '\n' : scr_label
+scr_label := s31 ? scr_label + syminfo.ticker(u31) + ' ' + str.tostring(v31) + '\n' : scr_label
+scr_label := s32 ? scr_label + syminfo.ticker(u32) + ' ' + str.tostring(v32) + '\n' : scr_label
+scr_label := s33 ? scr_label + syminfo.ticker(u33) + ' ' + str.tostring(v33) + '\n' : scr_label
+scr_label := s34 ? scr_label + syminfo.ticker(u34) + ' ' + str.tostring(v34) + '\n' : scr_label
+scr_label := s35 ? scr_label + syminfo.ticker(u35) + ' ' + str.tostring(v35) + '\n' : scr_label
+scr_label := s36 ? scr_label + syminfo.ticker(u36) + ' ' + str.tostring(v36) + '\n' : scr_label
+scr_label := s37 ? scr_label + syminfo.ticker(u37) + ' ' + str.tostring(v37) + '\n' : scr_label
+scr_label := s38 ? scr_label + syminfo.ticker(u38) + ' ' + str.tostring(v38) + '\n' : scr_label
+scr_label := s39 ? scr_label + syminfo.ticker(u39) + ' ' + str.tostring(v39) + '\n' : scr_label
+scr_label := s40 ? scr_label + syminfo.ticker(u40) + ' ' + str.tostring(v40) + '\n' : scr_label
+
+lab_1 = label.new(bar_index + loc,0, scr_label, color=color.green, textcolor=color.white, style=label.style_label_center)
+label.delete(lab_1[1])
+
+if str.length(scr_label) > 8
+    alert(scr_label,alert.freq_once_per_bar_close)
