@@ -1,0 +1,300 @@
+//@version=5
+indicator(" REG-TREND ",overlay=true)
+
+
+src = input(defval=close, title='Source')
+len = input.int(defval=100, title='Length', minval=10)
+devlen = input.float(defval=2., title='Deviation', minval=0.1, step=0.1)
+extendit = input(defval=true, title='Extend Lines')
+showfibo = input(defval=false, title='Show Fibonacci Levels')
+showbroken = input.bool(defval=true, title='Show Broken Channel', inline='brk')
+brokencol = input.color(defval=color.blue, title='', inline='brk')
+upcol = input.color(defval=#00ab25, title='Up/Down Trend Colors', inline='trcols')
+dncol = input.color(defval=#df0202, title='', inline='trcols')
+widt = input(defval=2, title='Line Width')
+
+var fibo_ratios = array.new_float(0)
+var colors = array.new_color(2)
+if barstate.isfirst
+    array.unshift(colors, upcol)
+    array.unshift(colors, dncol)
+    array.push(fibo_ratios, 0.236)
+    array.push(fibo_ratios, 0.382)
+    array.push(fibo_ratios, 0.618)
+    array.push(fibo_ratios, 0.786)
+
+
+get_channel(src, len) =>
+    mid = math.sum(src, len) / len
+    slope = ta.linreg(src, len, 0) - ta.linreg(src, len, 1)
+    intercept = mid - slope * math.floor(len / 2) + (1 - len % 2) / 2 * slope
+    endy = intercept + slope * (len - 1)
+    dev = 0.0
+    for x = 0 to len - 1 by 1
+        dev += math.pow(src[x] - (slope * (len - x) + intercept), 2)
+        dev
+    dev := math.sqrt(dev / len)
+    [intercept, endy, dev, slope]
+
+[y1_, y2_, dev, slope] = get_channel(src, len)
+
+outofchannel = slope > 0 and close < y2_ - dev * devlen ? 0 : slope < 0 and close > y2_ + dev * devlen ? 2 : -1
+
+var reglines = array.new_line(3)
+var fibolines = array.new_line(4)
+for x = 0 to 2 by 1
+    if not showbroken or outofchannel != x or nz(outofchannel[1], -1) != -1
+        line.delete(array.get(reglines, x))
+    else
+        line.set_color(array.get(reglines, x), color=brokencol)
+        line.set_width(array.get(reglines, x), width=2)
+        line.set_style(array.get(reglines, x), style=line.style_dotted)
+        line.set_extend(array.get(reglines, x), extend=extend.none)
+
+    array.set(reglines, x, line.new(x1=bar_index - (len - 1), y1=y1_ + dev * devlen * (x - 1), x2=bar_index, y2=y2_ + dev * devlen * (x - 1), color=array.get(colors, math.round(math.max(math.sign(slope), 0))), style=x % 2 == 1 ? line.style_solid : line.style_dashed, width=widt, extend=extendit ? extend.right : extend.none))
+if showfibo
+    for x = 0 to 3 by 1
+        line.delete(array.get(fibolines, x))
+        array.set(fibolines, x, line.new(x1=bar_index - (len - 1), y1=y1_ - dev * devlen + dev * devlen * 2 * array.get(fibo_ratios, x), x2=bar_index, y2=y2_ - dev * devlen + dev * devlen * 2 * array.get(fibo_ratios, x), color=array.get(colors, math.round(math.max(math.sign(slope), 0))), style=line.style_dotted, width=widt, extend=extendit ? extend.right : extend.none))
+
+// var label sidelab = label.new(x=bar_index - (len - 1), y=y1_, text='S', size=size.large)
+// // txt = slope > 0 ? slope > slope[1] ? '⇑' : '⇗' : slope < 0 ? slope < slope[1] ? '⇓' : '⇘' : '⇒'
+// stl = slope > 0 ? slope > slope[1] ? label.style_label_up : label.style_label_upper_right : slope < 0 ? slope < slope[1] ? label.style_label_down : label.style_label_lower_right : label.style_label_right
+// // label.set_style(sidelab, stl)
+// // label.set_text(sidelab, txt)
+// label.set_x(sidelab, bar_index - (len - 1))
+// label.set_y(sidelab, slope > 0 ? y1_ - dev * devlen : slope < 0 ? y1_ + dev * devlen : y1_)
+// label.set_color(sidelab, slope > 0 ? upcol : slope < 0 ? dncol : color.blue)
+
+alertcondition(outofchannel, title='Channel Broken', message='Channel Broken')
+
+// direction
+trendisup = math.sign(slope) != math.sign(slope[1]) and slope > 0
+trendisdown = math.sign(slope) != math.sign(slope[1]) and slope < 0
+alertcondition(trendisup, title='Up trend', message='Up trend')
+alertcondition(trendisdown, title='Down trend', message='Down trend')
+
+
+
+
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  OTOMATİK TREND  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+///////////////////////////////////////////////////////////////////////////////////////
+
+// ╠════════════════════════════ OTOMATİK TREND ════════════════════════════╣
+string gr_trend = "╠══════ Otomatik Trend Ayarları ══════╣"
+var int history_bars = input(title='History bars back', defval=300,group = gr_trend)
+col_sup = #3100e3
+style_sup = line.style_solid
+col_res = #e90000
+style_res = line.style_solid
+
+// Функция вычисляет цену в точке t3 для линии,
+// заданной первыми четырьмя координатами (t1, p1, t2, p2)
+price_at(t1, p1, t2, p2, t3) =>
+    p1 + (p2 - p1) * (t3 - t1) / (t2 - t1)
+
+// Alerts
+if 1 == 1
+    alert('test')
+// округление
+round_to_tick(x) =>
+    mult = 1 / syminfo.mintick
+    value = math.ceil(x * mult) / mult
+    value
+
+// Тут храним линии для удаления при появлении нового бара
+var line[] supports = array.new_line()
+var line[] resistances = array.new_line()
+var label[] labels = array.new_label()
+
+// Удаляем прошлые линии и заодно вызываем алерты
+line temp_line = na
+if array.size(supports) > 0
+    for i = array.size(supports) - 1 to 0 by 1
+        temp_line := array.get(supports, i)
+        line.delete(temp_line)
+        array.remove(supports, i)
+if array.size(resistances) > 0
+    for i = array.size(resistances) - 1 to 0 by 1
+        temp_line := array.get(resistances, i)
+        line.delete(temp_line)
+        array.remove(resistances, i)
+label temp_label = na
+if array.size(labels) > 0
+    for i = array.size(labels) - 1 to 0 by 1
+        temp_label := array.get(labels, i)
+        label.delete(temp_label)
+        array.remove(labels, i)
+
+// Определяем экстремумы
+min_values = low
+max_values = high
+xx1 = input(title='Resolution (bars)', defval=6,group= gr_trend)
+xx2 = math.round(xx1 / 2)
+int minimums = 0
+minimums := ta.lowestbars(min_values, xx1) == -xx2 ? xx2 : minimums[1] + 1
+
+int maximums = 0
+maximums := ta.highestbars(max_values, xx1) == -xx2 ? xx2 : maximums[1] + 1
+
+
+int minimum1 = 0
+int minimum2 = 0
+int maximum1 = 0
+int maximum2 = 0
+int medium = 0
+// Поддержка     
+if barstate.islast
+    //label.new(bar_index, close , style=label.style_labeldown, text=timeframe.period, color=color.new(color.red, 90))
+    line last_line = na
+    line last_line2 = na
+    label last_label = na
+    for k1 = 0 to 50 by 1
+        if minimum1 >= history_bars
+            break
+        minimum1 += minimums[minimum1]
+        minimum2 := minimum1 * 2
+        for k2 = 0 to 50 by 1
+            if minimum2 >= minimum1 * 8 or minimum2 >= history_bars
+                break
+            minimum2 += minimums[minimum2]
+
+            if minimum1 >= history_bars or minimum2 >= history_bars
+                break
+
+            bar1 = bar_index - minimum1
+            bar2 = bar_index - minimum2
+
+            price1 = low[minimum1]
+            price2 = low[minimum2]
+
+            current_price = price_at(bar2, price2, bar1, price1, bar_index)
+            current_price2 = price_at(bar1, price1, bar_index, current_price, bar_index)
+            // Если поддержка проходит ниже текущей цены
+            if current_price < high[1]
+
+                // проверяем пересечения
+                crossed = 0
+                medium := 0
+                for k3 = 0 to 50 by 1
+                    if medium >= minimum2
+                        break
+                    medium += minimums[medium]
+                    if medium >= minimum2
+                        break
+                    if price_at(bar2, price2, bar1, price1, bar_index - medium) > math.min(open[medium], close[medium])
+                        crossed := 1
+                        break
+
+                // если нет пересечений        
+                if crossed == 0  // and overtilt == 0
+                    // сравниваем с прошлой созданной линией
+                    if not na(last_line) and not na(last_line2)
+                        last_price = price_at(line.get_x1(last_line), line.get_y1(last_line), line.get_x2(last_line), line.get_y2(last_line), bar_index)
+                        last_price2 = price_at(line.get_x1(last_line2), line.get_y1(last_line2), line.get_x2(last_line2), line.get_y2(last_line2), bar_index)
+                        if bar1 == line.get_x2(last_line) and bar_index == line.get_x2(last_line2)
+                            if current_price > last_price and current_price > last_price2
+                                line.set_xy1(last_line, bar2, price2)
+                                line.set_xy2(last_line, bar1, price1)
+                                line.set_color(last_line, col_sup)
+                                label.set_xy(last_label, bar_index, current_price)
+                                label.set_text(last_label, str.tostring(round_to_tick(current_price)))
+                                line.set_xy1(last_line2, bar1, price1)
+                                line.set_xy2(last_line2, bar_index, current_price)
+                                line.set_color(last_line2, col_sup)
+                                true
+                        else
+                            last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_sup, style=style_sup)
+                            last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_sup, style=line.style_dashed)
+                            // last_label := label.new(bar_index, current_price2, color=col_sup, style=label.style_label_upper_left, text=str.tostring(round_to_tick(current_price)))
+                            array.push(labels, last_label)
+                            array.push(supports, last_line)
+                            array.push(supports, last_line2)
+                            true
+                    else
+                    // добавляем линию
+                        last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_sup, style=style_sup)
+                        last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_sup, style=line.style_dashed)
+                        // last_label := label.new(bar_index, current_price2, color=col_sup, style=label.style_label_upper_left, text=str.tostring(round_to_tick(current_price)))
+                        array.push(labels, last_label)
+                        array.push(supports, last_line)
+                        array.push(supports, last_line2)
+                        true
+
+    last_line := na
+    last_line2 := na
+    last_label := na
+    for k1 = 0 to 100 by 1
+        if maximum1 >= history_bars
+            break
+        maximum1 += maximums[maximum1]
+        maximum2 := maximum1 * 2
+        for k2 = 0 to 50 by 1
+            if maximum2 >= maximum1 * 8 or maximum2 >= history_bars
+                break
+            maximum2 += maximums[maximum2]
+
+            if maximum1 >= history_bars or maximum2 >= history_bars
+                break
+
+            bar1 = bar_index - maximum1
+            bar2 = bar_index - maximum2
+
+            price1 = high[maximum1]
+            price2 = high[maximum2]
+
+            current_price = price_at(bar2, price2, bar1, price1, bar_index)
+            current_price2 = price_at(bar1, price1, bar_index, current_price, bar_index)
+            // Если сопротивоение проходит выше текущей цены
+            if current_price > low[1]
+
+                // проверяем пересечения
+                crossed = 0
+                medium := 0
+                for k3 = 0 to 100 by 1
+                    if medium >= maximum2
+                        break
+                    medium += maximums[medium]
+                    if medium >= maximum2
+                        break
+                    if price_at(bar2, price2, bar1, price1, bar_index - medium) < math.max(open[medium], close[medium])
+                        crossed := 1
+                        break
+
+                // если нет пересечений        
+                if crossed == 0  // and overtilt == 0
+                    // сравниваем с прошлой созданной линией
+                    if not na(last_line) and not na(last_line2)
+                        last_price = price_at(line.get_x1(last_line), line.get_y1(last_line), line.get_x2(last_line), line.get_y2(last_line), bar_index)
+                        last_price2 = price_at(line.get_x1(last_line2), line.get_y1(last_line2), line.get_x2(last_line2), line.get_y2(last_line2), bar_index)
+                        if bar1 == line.get_x2(last_line) and bar_index == line.get_x2(last_line2)
+                            if current_price < last_price and current_price < last_price2
+                                line.set_xy1(last_line, bar2, price2)
+                                line.set_xy2(last_line, bar1, price1)
+                                line.set_color(last_line, col_res)
+                                label.set_xy(last_label, bar_index, current_price)
+                                label.set_text(last_label, str.tostring(round_to_tick(current_price)))
+                                line.set_xy1(last_line2, bar1, price1)
+                                line.set_xy2(last_line2, bar_index, current_price)
+                                line.set_color(last_line2, col_res)
+
+                                true
+                        else
+                            last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_res, style=style_res)
+                            last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_res, style=line.style_dashed)
+                            // last_label := label.new(bar_index, current_price2, color=col_res, style=label.style_label_lower_left, text=str.tostring(round_to_tick(current_price)))
+                            array.push(labels, last_label)
+                            array.push(resistances, last_line)
+                            array.push(resistances, last_line2)
+                            true
+                    else
+                    // добавляем линию
+                        last_line := line.new(bar2, price2, bar1, price1, extend=extend.none, color=col_res, style=style_res)
+                        last_line2 := line.new(bar1, price1, bar_index, current_price, extend=extend.none, color=col_res, style=line.style_dashed)
+                        // last_label := label.new(bar_index, current_price2, color=col_res, style=label.style_label_lower_left, text=str.tostring(round_to_tick(current_price)))
+
+                        array.push(labels, last_label)
+                        array.push(resistances, last_line)
+                        array.push(resistances, last_line2)
+                        true
+
