@@ -27,6 +27,9 @@ sellSignal = almaColor == color.rgb(248, 1, 1) and almaColor[1] == color.rgb(14,
 plotshape(series=buySignal, location=location.belowbar, style=shape.labelup, title = "AL", text="GİR", size=size.tiny, color=#1800ee, textcolor=color.new(color.white, 0))
 plotshape(series=sellSignal, location=location.abovebar, style=shape.labeldown, title = "SAT", text="ÇIK", size=size.tiny, color=#bcbf00, textcolor=color.new(color.white, 0))
 
+alertcondition(buySignal, title='Potential BUY Alarm', message='BUY SIGNAL!')
+alertcondition(sellSignal, title='Potential SELL Alarm', message='SELL SIGNAL!')
+
 ///EMA
 
 src = input(close, title='Source')
