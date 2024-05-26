@@ -6,6 +6,270 @@ per = input.timeframe(defval='', title='PERİYOT',group = "Tarama yapmak istedi�
 loc = input.int(defval=20, title='Konum Ayarı', minval = -300,maxval = 500 , step = 5,  group='Tablonun konumunu belirleyin')
 
 
+// n1 = input(10, 'Channel Length')
+// n2 = input(21, 'Moving Average Length')
+// reaction_wt = input.int(defval=1, title='Reaction to Direction Change', minval=1)
+
+// nsc = input.float(53, 'Overbought Level', minval=0.0)
+// nsv = input.float(-53, 'Oversold Level', maxval=-0.0)
+
+// sales_in_overbought = input(true, title='Only Sales in Overbought')
+// buys_in_oversold = input(true, title='Only Buys in Oversold')
+
+// histogram = input(true, title='Show Histogram')
+// signal_line = input(false, title='Show Signal Line')
+// bars = input(true, title='Paint Bars')
+// regular_div_bear = input(false, title='Show Regular Bearish Divergences')
+// regular_div_bull = input(false, title='Show Regular Bullish Divergences')
+// hidden_div_bear = input(false, title='Show Hidden Bearish Divergences')
+// hidden_div_bull = input(false, title='Show Hidden Bullish Divergences')
+// labels = input(true, title='Show Divergence Labels')
+// extra_ma = input(false, title='Enable Extra Moving Average for WT')
+
+// nsc1 = nsc
+// nsc2 = nsc + 5
+// nsc3 = nsc + 10
+// nsc4 = nsc + 15
+// nsc5 = nsc + 20
+// nsc6 = nsc + 25
+// nsc7 = nsc + 30
+// nsc8 = nsc + 35
+// nsv1 = nsv - 5
+// nsv2 = nsv - 10
+// nsv3 = nsv - 15
+// nsv4 = nsv - 20
+// nsv5 = nsv - 25
+// nsv6 = nsv - 30
+// nsv7 = nsv - 35
+// nsv8 = nsv - 40
+
+// white = #FDFEFE
+// black = #000000
+// red = #FF0000
+// green = #00FF13
+// strong_green = #0AAC00
+// green_1 = #00FF00
+// cyan = #00D4FF
+// cyan_1 = #009BBA
+// orange = #FF8B00
+// yellow = #FFFB00
+// blue = #0066FF
+// pink = #FF33CC
+
+// ap = hlc3
+// esa = ta.ema(ap, n1)
+// d = ta.ema(math.abs(ap - esa), n1)
+// ci = (ap - esa) / (0.015 * d)
+// tci = ta.ema(ci, n2)
+
+// wt1 = tci
+// wt2 = ta.sma(wt1, 4)
+
+// direction = 0
+// direction := ta.rising(wt1, reaction_wt) ? 1 : ta.falling(wt1, reaction_wt) ? -1 : nz(direction[1])
+// direction_change = ta.change(direction, 1)
+// pcol = direction > 0 ? strong_green : direction < 0 ? red : na
+
+// plot(wt1, title='WT Average', color=pcol, linewidth=1, style=plot.style_line, transp=0)
+
+// plot(signal_line ? wt2 : na, style=plot.style_line, color=color.new(orange, 0), linewidth=1, title='Signal Average')
+
+// plot(0, title='Level 0', color=color.new(black, 50), linewidth=1, style=plot.style_line)
+
+// pnsc1 = plot(nsc1, title='Level 1 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+// pnsc2 = plot(nsc2, title='Level 2 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+// pnsc3 = plot(nsc3, title='Level 3 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+// pnsc4 = plot(nsc4, title='Level 4 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+// pnsc5 = plot(nsc5, title='Level 5 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+// pnsc6 = plot(nsc6, title='Level 6 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+// pnsc7 = plot(nsc7, title='Level 7 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+// pnsc8 = plot(nsc8, title='Level 8 Overbought', color=color.new(red, 100), linewidth=1, style=plot.style_line)
+
+// fill(pnsc1, pnsc2, color=color.new(red, 75))
+// fill(pnsc2, pnsc3, color=color.new(red, 70))
+// fill(pnsc3, pnsc4, color=color.new(red, 65))
+// fill(pnsc4, pnsc5, color=color.new(red, 60))
+// fill(pnsc5, pnsc6, color=color.new(red, 55))
+// fill(pnsc6, pnsc7, color=color.new(red, 50))
+// fill(pnsc7, pnsc8, color=color.new(red, 45))
+
+// pnsv1 = plot(nsv1, title='Level 1 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+// pnsv2 = plot(nsv2, title='Level 2 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+// pnsv3 = plot(nsv3, title='Level 3 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+// pnsv4 = plot(nsv4, title='Level 4 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+// pnsv5 = plot(nsv5, title='Level 5 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+// pnsv6 = plot(nsv6, title='Level 6 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+// pnsv7 = plot(nsv7, title='Level 7 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+// pnsv8 = plot(nsv8, title='Level 8 Oversold', color=color.new(green, 100), linewidth=1, style=plot.style_line)
+
+// fill(pnsv1, pnsv2, color=color.new(green, 75))
+// fill(pnsv2, pnsv3, color=color.new(green, 70))
+// fill(pnsv3, pnsv4, color=color.new(green, 65))
+// fill(pnsv4, pnsv5, color=color.new(green, 60))
+// fill(pnsv5, pnsv6, color=color.new(green, 55))
+// fill(pnsv6, pnsv7, color=color.new(green, 50))
+// fill(pnsv7, pnsv8, color=color.new(green, 45))
+
+// midpoint = (nsc + nsv) / 2
+// ploff = (nsc - midpoint) / 8
+
+// sale = ta.crossunder(wt1, wt2) and wt1 >= nsc and sales_in_overbought == true
+// sale_1 = ta.crossunder(wt1, wt2) and sales_in_overbought == false
+
+// buy = ta.crossover(wt1, wt2) and wt1 <= nsv and buys_in_oversold == true
+// buy_1 = ta.crossover(wt1, wt2) and buys_in_oversold == false
+
+// plot(sale ? wt2[1] + ploff : na, style=plot.style_circles, color=color.new(red, 0), linewidth=3, title='Sales in Overbought')
+// plot(sale_1 ? wt2[1] + ploff : na, style=plot.style_circles, color=color.new(red, 0), linewidth=3, title='All Sales')
+
+// plot(buy ? wt2[1] - ploff : na, style=plot.style_circles, color=color.new(strong_green, 0), linewidth=3, title='Buys in Oversold')
+// plot(buy_1 ? wt2[1] - ploff : na, style=plot.style_circles, color=color.new(strong_green, 0), linewidth=3, title='All Buys')
+
+// plot(histogram ? wt1 - wt2 : na, style=plot.style_area, color=color.new(cyan_1, 80), linewidth=1, title='Histogram')
+
+// // barcolor(bars == true and buy == true or bars == true and buy_1 == true ? green_1 : na)
+// // barcolor(bars == true and sale == true or bars == true and sale_1 == true ? red : na)
+
+// /////// Divergences ///////
+
+// f_top_fractal(_src) =>
+//     _src[4] < _src[2] and _src[3] < _src[2] and _src[2] > _src[1] and _src[2] > _src[0]
+// f_bot_fractal(_src) =>
+//     _src[4] > _src[2] and _src[3] > _src[2] and _src[2] < _src[1] and _src[2] < _src[0]
+// f_fractalize(_src) =>
+//     f_top_fractal(_src) ? 1 : f_bot_fractal(_src) ? -1 : 0
+
+// fractal_top1 = f_fractalize(wt1) > 0 ? wt1[2] : na
+// fractal_bot1 = f_fractalize(wt1) < 0 ? wt1[2] : na
+
+// high_prev1 = ta.valuewhen(fractal_top1, wt1[2], 0)[2]
+// high_price1 = ta.valuewhen(fractal_top1, high[2], 0)[2]
+// low_prev1 = ta.valuewhen(fractal_bot1, wt1[2], 0)[2]
+// low_price1 = ta.valuewhen(fractal_bot1, low[2], 0)[2]
+
+// regular_bearish_div1 = fractal_top1 and high[2] > high_price1 and wt1[2] < high_prev1 and regular_div_bear == true
+// hidden_bearish_div1 = fractal_top1 and high[2] < high_price1 and wt1[2] > high_prev1 and hidden_div_bear == true
+// regular_bullish_div1 = fractal_bot1 and low[2] < low_price1 and wt1[2] > low_prev1 and regular_div_bull == true
+// hidden_bullish_div1 = fractal_bot1 and low[2] > low_price1 and wt1[2] < low_prev1 and hidden_div_bull == true
+
+// col1 = regular_bearish_div1 ? red : hidden_bearish_div1 ? red : na
+// col2 = regular_bullish_div1 ? strong_green : hidden_bullish_div1 ? strong_green : na
+
+// plot(title='Bearish Divergences', series=fractal_top1 ? wt1[2] : na, color=col1, linewidth=2, offset=-2, transp=0)
+// plot(title='Bullish Divergences', series=fractal_bot1 ? wt1[2] : na, color=col2, linewidth=2, offset=-2, transp=0)
+
+// plotshape(regular_bearish_div1 and regular_div_bear and labels ? wt1[1] + ploff * 1 : na, title='Regular Bearish Divergence', text='🐻 R', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(red, 0), textcolor=color.new(white, 0), offset=-2)
+// // plotshape(hidden_bearish_div1 and hidden_div_ba and labels  ? wt1[1] + ploff*1 : na, title="Hidden Bearish Divergence", text="🐻 O", location=location.absolute, style=shape.labeldown, size=size.tiny, color=red, textcolor=white,offset=-2, transp=0)
+
+// plotshape(regular_bullish_div1 and regular_div_bull and labels ? wt1[1] - ploff * 1 : na, title='Regular Bullish Divergence', text='🐂 R', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(strong_green, 0), textcolor=color.new(white, 0), offset=-2)
+// // plotshape(hidden_bullish_div1 and hidden_div_al and labels  ? wt1[1] - ploff*1 : na, title="Hidden Bullish Divergence", text="🐂 O", location=location.absolute, style=shape.labelup, size=size.tiny, color=strong_green, textcolor=white,offset=-2, transp=0)
+
+
+// //// Extra Moving Average Applied to WT ///
+
+// ma_type = input.string(defval='EMA', title='Extra MA Type: ', options=['SMA', 'EMA', 'WMA', 'VWMA', 'SMMA', 'DEMA', 'TEMA', 'HullMA', 'ZEMA', 'TMA', 'SSMA'])
+// ma_len = input.int(defval=200, title='Extra MA Length', minval=1)
+// ma_src = wt1
+// reaction = input.int(defval=1, title='Extra MA Reaction', minval=1)
+
+// // SuperSmoother filter
+// // © 2013  John F. Ehlers
+// variant_supersmoother(src, len) =>
+//     a1 = math.exp(-1.414 * 3.14159 / len)
+//     b1 = 2 * a1 * math.cos(1.414 * 3.14159 / len)
+//     c2 = b1
+//     c3 = -a1 * a1
+//     c1 = 1 - c2 - c3
+//     v9 = 0.0
+//     v9 := c1 * (src + nz(src[1])) / 2 + c2 * nz(v9[1]) + c3 * nz(v9[2])
+//     v9
+
+// variant_smoothed(src, len) =>
+//     v5 = 0.0
+//     sma_1 = ta.sma(src, len)
+//     v5 := na(v5[1]) ? sma_1 : (v5[1] * (len - 1) + src) / len
+//     v5
+
+// variant_zerolagema(src, len) =>
+//     ema1 = ta.ema(src, len)
+//     ema2 = ta.ema(ema1, len)
+//     v10 = ema1 + ema1 - ema2
+//     v10
+
+// variant_doubleema(src, len) =>
+//     v2 = ta.ema(src, len)
+//     v6 = 2 * v2 - ta.ema(v2, len)
+//     v6
+
+// variant_tripleema(src, len) =>
+//     v2 = ta.ema(src, len)
+//     v7 = 3 * (v2 - ta.ema(v2, len)) + ta.ema(ta.ema(v2, len), len)
+//     v7
+
+// variant(type, src, len) =>
+//     ema_1 = ta.ema(src, len)
+//     wma_1 = ta.wma(src, len)
+//     vwma_1 = ta.vwma(src, len)
+//     variant_smoothed__1 = variant_smoothed(src, len)
+//     variant_doubleema__1 = variant_doubleema(src, len)
+//     variant_tripleema__1 = variant_tripleema(src, len)
+//     wma_2 = ta.wma(src, len / 2)
+//     wma_3 = ta.wma(src, len)
+//     wma_4 = ta.wma(2 * wma_2 - wma_3, math.round(math.sqrt(len)))
+//     variant_supersmoother__1 = variant_supersmoother(src, len)
+//     variant_zerolagema__1 = variant_zerolagema(src, len)
+//     sma_1 = ta.sma(src, len)
+//     sma_2 = ta.sma(sma_1, len)
+//     sma_3 = ta.sma(src, len)
+//     type == 'EMA' ? ema_1 : type == 'WMA' ? wma_1 : type == 'VWMA' ? vwma_1 : type == 'SMMA' ? variant_smoothed__1 : type == 'DEMA' ? variant_doubleema__1 : type == 'TEMA' ? variant_tripleema__1 : type == 'HullMA' ? wma_4 : type == 'SSMA' ? variant_supersmoother__1 : type == 'ZEMA' ? variant_zerolagema__1 : type == 'TMA' ? sma_2 : sma_3
+
+
+// // === Moving Average
+// ma_series = variant(ma_type, ma_src, ma_len)
+
+// direction_a = 0
+// falling_1 = ta.falling(ma_series, reaction)
+// direction_a := ta.rising(ma_series, reaction) ? 1 : falling_1 ? -1 : nz(direction_a[1])
+// change_direction = ta.change(direction_a, 1)
+
+// pcol_a = direction_a > 0 ? #2E8B57 : direction_a < 0 ? #FF4500 : na
+// plot(extra_ma ? ma_series : na, color=pcol_a, style=plot.style_line, join=true, linewidth=3, title='MA PLOT', transp=10)
+
+// // /////// Spanish Alerts ////////
+
+// // alertcondition(sale, title='Sales in Overbought')
+// // alertcondition(sale_1, title='All Sales')
+
+// // alertcondition(buy, title='Buys in Oversold')
+// // alertcondition(buy_1, title='All Buys')
+
+// // alertcondition(sale or buy, title='Buys/Sales in Overbought/Oversold')
+// // alertcondition(sale_1 or buy_1, title='All Sales/Buys')
+
+// // alertcondition(change_direction, title='WT Direction Change')
+
+// // /////// English Alerts ////////
+
+// // alertcondition(sale, title='Overbought Sales')
+// // alertcondition(sale_1, title='All Sales')
+
+// // alertcondition(buy, title='Oversold Buys')
+// // alertcondition(buy_1, title='All Buys')
+
+// // alertcondition(sale or buy, title='Buys/Sales Overbought/Oversold')
+// // alertcondition(sale_1 or buy_1, title='All Sales/Buys')
+
+// // alertcondition(change_direction, title='WT Direction Change')
+
+// ////////////////
+
+// rescale(_src, _oldMin, _oldMax, _newMin, _newMax) =>
+//     // Rescales series with known min/max.
+//     // _src            : series to rescale.
+//     // _oldMin, _oldMax: min/max values of series to rescale.
+//     // _newMin, _newMin: min/max values of rescaled series.
+//     _newMin + (_newMax - _newMin) * (_src - _oldMin) / math.max(_oldMax - _oldMin, 10e-10)
+
 n1 = input(10, 'Channel Length')
 n2 = input(21, 'Average Length')
 obLevel1 = input(60, 'Over Bought Level 1')
@@ -78,6 +342,142 @@ acAoIsBullish = acIsBlue and aoIsGreen
 acAoIsBearish = acIsRed and acIsRed
 acAoColorIndex = acAoIsBullish ? 1 : acAoIsBearish ? -1 : 0
 
+// // Alligator
+// smma(src, length) =>
+//     smma = 0.0
+//     smma := na(smma[1]) ? ta.sma(src, length) : (smma[1] * (length - 1) + src) / length
+//     smma
+// lipsLength = input(title='🐲 Lips Length', defval=5)
+// teethLength = input(title='🐲 Teeth Length', defval=8)
+// jawLength = input(title='🐲 Jaw Length', defval=13)
+// lipsOffset = input(title='🐲 Lips Offset', defval=3)
+// teethOffset = input(title='🐲 Teeth Offset', defval=5)
+// jawOffset = input(title='🐲 Jaw Offset', defval=8)
+// lips = smma(hl2, lipsLength)
+// teeth = smma(hl2, teethLength)
+// jaw = smma(hl2, jawLength)
+
+// // SMA
+// smaPeriod = input(20, title='SMA Period')
+// smaValues = ta.sma(close, smaPeriod)
+
+
+// // Bayesian Theorem Starts
+// bayesPeriod = input(20, title='Bayesian Lookback Period')
+
+// // Next candles are breaking Down
+// probBbUpperUpSeq = close > bbUpper ? 1 : 0
+// probBbUpperUp = math.sum(probBbUpperUpSeq, bayesPeriod) / bayesPeriod
+// probBbUpperDownSeq = close < bbUpper ? 1 : 0
+// probBbUpperDown = math.sum(probBbUpperDownSeq, bayesPeriod) / bayesPeriod
+
+// probUpBbUpper = probBbUpperUp / (probBbUpperUp + probBbUpperDown)
+
+// probBbBasisUpSeq = close > bbBasis ? 1 : 0
+// probBbBasisUp = math.sum(probBbBasisUpSeq, bayesPeriod) / bayesPeriod
+// probBbBasisDownSeq = close < bbBasis ? 1 : 0
+// probBbBasisDown = math.sum(probBbBasisDownSeq, bayesPeriod) / bayesPeriod
+
+// probUpBbBasis = probBbBasisUp / (probBbBasisUp + probBbBasisDown)
+
+// probSmaUpSeq = close > smaValues ? 1 : 0
+// probSmaUp = math.sum(probSmaUpSeq, bayesPeriod) / bayesPeriod
+// probSmaDownSeq = close < smaValues ? 1 : 0
+// probSmaDown = math.sum(probSmaDownSeq, bayesPeriod) / bayesPeriod
+
+// probUpSma = probSmaUp / (probSmaUp + probSmaDown)
+
+// sigmaProbsDown = nz(probUpBbUpper * probUpBbBasis * probUpSma / probUpBbUpper * probUpBbBasis * probUpSma + (1 - probUpBbUpper) * (1 - probUpBbBasis) * (1 - probUpSma))
+
+// // Next candles are breaking Up
+// probDownBbUpper = probBbUpperDown / (probBbUpperDown + probBbUpperUp)
+// probDownBbBasis = probBbBasisDown / (probBbBasisDown + probBbBasisUp)
+// probDownSma = probSmaDown / (probSmaDown + probSmaUp)
+
+// sigmaProbsUp = nz(probDownBbUpper * probDownBbBasis * probDownSma / probDownBbUpper * probDownBbBasis * probDownSma + (1 - probDownBbUpper) * (1 - probDownBbBasis) * (1 - probDownSma))
+
+// showNextCandleDown = input(true, title='Plot Next Candles Breaking Down?')
+// plot(showNextCandleDown ? sigmaProbsDown * 100 : na, title='Next Candle Breaking Down Probs', style=plot.style_area, color=color.new(color.red, 60), linewidth=2)
+
+// showNextCandleUp = input(true, title='Plot Next Candles Breaking Up?')
+// plot(showNextCandleUp ? sigmaProbsUp * 100 : na, title='Next Candle Breaking Up Probs', style=plot.style_area, color=color.new(color.green, 60), linewidth=2)
+
+// probPrime = nz(sigmaProbsDown * sigmaProbsUp / sigmaProbsDown * sigmaProbsUp + (1 - sigmaProbsDown) * (1 - sigmaProbsUp))
+
+// showPrime = input(true, title='Plot Prime Probability?')
+// plot(showPrime ? probPrime * 100 : na, title='Prime Probability', style=plot.style_area, color=color.new(color.blue, 60), linewidth=2)
+
+// lowerThreshold = input(15.0, title='Lower Threshold')
+
+// sideways = probPrime < lowerThreshold / 100 and sigmaProbsUp < lowerThreshold / 100 and sigmaProbsDown < lowerThreshold / 100
+
+// longUsingProbPrime = probPrime > lowerThreshold / 100 and probPrime[1] == 0
+// longUsingSigmaProbsUp = sigmaProbsUp < 1 and sigmaProbsUp[1] == 1
+
+// shortUsingProbPrime = probPrime == 0 and probPrime[1] > lowerThreshold / 100
+// shortUsingSigmaProbsDown = sigmaProbsDown < 1 and sigmaProbsDown[1] == 1
+
+// milanIsRed = acAoColorIndex == -1
+// milanIsGreen = acAoColorIndex == 1
+// pricesAreMovingAwayUpFromAlligator = close > jaw and open > jaw
+// pricesAreMovingAwayDownFromAlligator = close < jaw and open < jaw
+
+// useBWConfirmation = input(false, title='Use Bill Williams indicators for confirmation?')
+
+// bwConfirmationUp = useBWConfirmation ? milanIsGreen and pricesAreMovingAwayUpFromAlligator : true
+// bwConfirmationDown = useBWConfirmation ? milanIsRed and pricesAreMovingAwayDownFromAlligator : true
+
+// longSignal = bwConfirmationUp and (longUsingProbPrime or longUsingSigmaProbsUp)
+// shortSignal = bwConfirmationDown and (shortUsingProbPrime or shortUsingSigmaProbsDown)
+
+// barcolor(longSignal ? color.lime : na, title='Long Bars')
+// barcolor(shortSignal ? color.maroon : na, title='Short Bars')
+
+// hzl3 = hline(lowerThreshold, color=#333333, linestyle=hline.style_solid)
+// hzl4 = hline(0, color=#333333, linestyle=hline.style_solid)
+// fill(hzl3, hzl4, title="Lower Threshold", color=sideways ? color.gray : color.maroon, transp=70)
+
+// alertcondition(longSignal, title='Long!', message='Bayesian BBSMA - LONG - {{exchange}}:{{ticker}} at {{close}}')
+// alertcondition(shortSignal, title='Short!', message='Bayesian BBSMA - SHORT - {{exchange}}:{{ticker}} at {{close}}')
+
+
+// //#################### nQQE
+
+// src = input(close)
+// length = input.int(14, 'RSI Length', minval=1, group='═════ nQQE settings ═════')
+// SSF = input.int(5, 'SF RSI SMoothing Factor', minval=1)
+// showsignals = input(title='Show Crossing Signals?', defval=false)
+// RSII = ta.ema(ta.rsi(src, length), SSF)
+// TR = math.abs(RSII - RSII[1])
+// wwalpha = 1 / length
+// WWMA = 0.0
+// WWMA := wwalpha * TR + (1 - wwalpha) * nz(WWMA[1])
+// ATRRSI = 0.0
+// ATRRSI := wwalpha * WWMA + (1 - wwalpha) * nz(ATRRSI[1])
+// QQEF = ta.ema(ta.rsi(src, length), SSF)
+// QUP = QQEF + ATRRSI * 4.236
+// QDN = QQEF - ATRRSI * 4.236
+// QQES = 0.0
+// QQES := QUP < nz(QQES[1]) ? QUP : QQEF > nz(QQES[1]) and QQEF[1] < nz(QQES[1]) ? QDN : QDN > nz(QQES[1]) ? QDN : QQEF < nz(QQES[1]) and QQEF[1] > nz(QQES[1]) ? QUP : nz(QQES[1])
+// Colorh = QQEF > 60 ? color.lime : QQEF < 40 ? color.red : #E8E81A
+// QQF = plot(QQEF, 'nQQE FAST', color=#1800ec, linewidth=2, display=display.none)
+// plot(QQEF, color=color.new(Colorh, 30), linewidth=2, style=plot.style_area, histbase=50)
+// QQS = plot(QQES, 'nQQE SLOW', color=#ff0202, linewidth=2, display=display.none)
+// hline(60, color=color.gray, linestyle=hline.style_dashed)
+// hline(40, color=color.gray, linestyle=hline.style_dashed)
+// buySignalr = ta.crossover(QQEF, QQES)
+// plotshape(buySignalr and showsignals ? QQES * 0.995 : na, title='Buy', text='Buy', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(color.black, 50), textcolor=color.new(color.white, 50))
+// sellSignallr = ta.crossunder(QQEF, QQES)
+// plotshape(sellSignallr and showsignals ? QQES * 1.005 : na, title='Sell', text='Sell', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(color.black, 50), textcolor=color.new(color.white, 50))
+// alertcondition(ta.cross(QQEF, QQES), title='Cross Alert', message='QQE Crossing Signal!')
+// alertcondition(ta.crossover(QQEF, QQES), title='Crossover Alarm', message='QQE BUY SIGNAL!')
+// alertcondition(ta.crossunder(QQEF, QQES), title='Crossunder Alarm', message='QQE SELL SIGNAL!')
+// alertcondition(ta.crossover(QQEF, 50), title='Cross 0 Up Alert', message='QQE FAST Crossing 0 UP!')
+// alertcondition(ta.crossunder(QQEF, 50), title='Cross 0 Down Alert', message='QQE FAST Crossing 0 DOWN!')
+// alertcondition(ta.crossover(QQEF, 60), title='Cross 10 Up Alert', message='QQE Above 10 UPTREND SIGNAL!')
+// alertcondition(ta.crossunder(QQEF, 40), title='Cross -10 Down Alert', message='QQE Below -10 DOWNTREND SIGNAL!')
+// alertcondition(ta.crossunder(QQEF, 60) or ta.crossover(QQEF, 40), title='SIDEWAYS', message='QQE Entering Sideways Market!')
+
 
 //#################### L3 Banker
 
@@ -114,7 +514,7 @@ bullbearline = ta.ema((typ - lol) / (hoh - lol) * 100, 13)
 bankerentry = ta.crossover(fundtrend, bullbearline) and bullbearline < 25
 
 //banker fund entry with yellow candle
-plotcandle(0, 50, 0, 50, color=bankerentry ? #030300 : na, bordercolor=color.new(color.black, 100))
+plotcandle(0, 50, 0, 50, color=bankerentry ? #010004 : na, bordercolor=#00020702)
 
 //banker increase position with green candle
 plotcandle(fundtrend, bullbearline, fundtrend, bullbearline, color=fundtrend > bullbearline ? color.new(color.green, 0) : na, bordercolor=color.new(color.black, 100))
@@ -129,12 +529,12 @@ plotcandle(fundtrend, bullbearline, fundtrend, bullbearline, color=fundtrend < b
 plotcandle(fundtrend, bullbearline, fundtrend, bullbearline, color=fundtrend < bullbearline and fundtrend > xrf1(fundtrend * 0.95, 1) ? color.new(color.blue, 0) : na, bordercolor=color.new(color.black, 100))
 
 //overbought and oversold threshold lines
-h1 = hline(80,color=color.red, linestyle=hline.style_dotted)
-h2 = hline(20, color=color.yellow, linestyle=hline.style_dotted)
-h3 = hline(10,color=color.lime, linestyle=hline.style_dotted)
-h4 = hline(90, color=color.fuchsia, linestyle=hline.style_dotted)
-fill(h2,h3,color=color.yellow,transp=70)
-fill(h1,h4,color=color.fuchsia,transp=70)
+// h1 = hline(80,color=color.red, linestyle=hline.style_dotted)
+// h2 = hline(20, color=color.yellow, linestyle=hline.style_dotted)
+// h3 = hline(10,color=color.lime, linestyle=hline.style_dotted)
+// h4 = hline(90, color=color.fuchsia, linestyle=hline.style_dotted)
+// fill(h2,h3,color=color.yellow,transp=70)
+// fill(h1,h4,color=color.fuchsia,transp=70)
 
 alertcondition(bankerentry, title='Alert on Yellow Candle', message='Yellow Candle!')
 alertcondition(fundtrend > bullbearline, title='Alert on Green Candle', message='Green Candle!')
@@ -292,7 +692,7 @@ roundn(x, n) =>
     n >= 0 ? math.round(x * mult) / mult : math.round(x / mult) * mult
 
 
-scr_label = 'TARAMA SONUCU\n'
+scr_label = 'TARAMA\n'
 scr_label := s1 ? scr_label + syminfo.ticker(a01) + ' ' + str.tostring(roundn(v1, 2)) + '\n' : scr_label
 scr_label := s2 ? scr_label + syminfo.ticker(a02) + ' ' + str.tostring(roundn(v2, 2)) + '\n' : scr_label
 scr_label := s3 ? scr_label + syminfo.ticker(a03) + ' ' + str.tostring(roundn(v3, 2)) + '\n' : scr_label
@@ -334,14 +734,13 @@ scr_label := s38 ? scr_label + syminfo.ticker(a38) + ' ' + str.tostring(roundn(v
 scr_label := s39 ? scr_label + syminfo.ticker(a39) + ' ' + str.tostring(roundn(v39, 2)) + '\n' : scr_label
 scr_label := s40 ? scr_label + syminfo.ticker(a40) + ' ' + str.tostring(roundn(v40, 2)) + '\n' : scr_label
 
-lab_1 = label.new(bar_index + loc, 0, scr_label, color=#006cc4, textcolor=color.white, style=label.style_label_center)
+lab_1 = label.new(bar_index + loc,30, scr_label, color=color.green, textcolor=color.white, style=label.style_label_center)
 label.delete(lab_1[1])
 
 
 if str.length(scr_label) > 8
     alert(scr_label,alert.freq_once_per_bar_close)
 //------------------------------------------------------
-
 
 
 
