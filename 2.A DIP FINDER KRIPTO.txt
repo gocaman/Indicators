@@ -259,7 +259,7 @@ bullbearline = ta.ema((typ - lol) / (hoh - lol) * 100, 13)
 bankerentry = ta.crossover(fundtrend, bullbearline) and bullbearline < 25
 
 //banker fund entry with yellow candle
-plotcandle(0, 50, 0, 50, color=bankerentry ? #010004 : na, bordercolor=#00020702)
+plotcandle(0, 50, 0, 50, color=bankerentry ? color.rgb(255, 234, 2) : na, bordercolor=#00020702)
 
 //banker increase position with green candle
 plotcandle(fundtrend, bullbearline, fundtrend, bullbearline, color=fundtrend > bullbearline ? color.new(color.green, 0) : na, bordercolor=color.new(color.black, 100))
