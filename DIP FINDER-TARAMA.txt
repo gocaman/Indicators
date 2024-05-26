@@ -334,7 +334,7 @@ scr_label := s38 ? scr_label + syminfo.ticker(a38) + ' ' + str.tostring(roundn(v
 scr_label := s39 ? scr_label + syminfo.ticker(a39) + ' ' + str.tostring(roundn(v39, 2)) + '\n' : scr_label
 scr_label := s40 ? scr_label + syminfo.ticker(a40) + ' ' + str.tostring(roundn(v40, 2)) + '\n' : scr_label
 
-lab_1 = label.new(bar_index + loc,30, scr_label, color=#006cc4, textcolor=color.white, style=label.style_label_center)
+lab_1 = label.new(bar_index + loc, 0, scr_label, color=#006cc4, textcolor=color.white, style=label.style_label_center)
 label.delete(lab_1[1])
 
 
