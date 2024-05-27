@@ -1,0 +1,19 @@
+//@version=5
+indicator('EMA14 HAFTALIK-AYLIK', shorttitle='EMA14 HAFTALIK-AYLIK', overlay=true, scale=scale.right, linktoseries=true, max_lines_count = 500, max_labels_count = 500, max_boxes_count = 500, max_bars_back = 500, max_polylines_count = 100)
+
+////////////////////
+src55 = input(close, "Source")
+ma_lenght =input(14, "Length", group='LINES')
+htf_ma1 = ta.ema(src55, ma_lenght)
+wma_4H_9 = request.security(syminfo.tickerid, "W", htf_ma1) 
+
+var color H4_color_9 = #c400e7 
+selected_wma_9_4H = timeframe.period=="W" ? wma_4H_9 : na 
+plot(selected_wma_9_4H, color= timeframe.period=="W" ?  H4_color_9 : na, linewidth=2, title="D-1") 
+
+ma_lenght1 =input(14, "Length2", group='LINES')
+htf_ma2 = ta.ema(src55, ma_lenght1)
+wma_4H_91 = request.security(syminfo.tickerid, "M", htf_ma2) 
+var color H4_color_91 = color.rgb(249, 4, 155) 
+selected_wma_9_4H1 = timeframe.period=="W" ? wma_4H_91 : na 
+plot(selected_wma_9_4H1, color= timeframe.period=="W" ?  H4_color_91 : na, linewidth=2, title="D-2") 
