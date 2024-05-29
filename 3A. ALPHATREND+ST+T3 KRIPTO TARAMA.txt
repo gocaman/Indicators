@@ -1,0 +1,333 @@
+//@version=5
+indicator(" ATD+ST+T3 TARAMA ",overlay=true)
+
+
+grupSec = input.string(defval='1', options=['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','ÖZEL LİSTE'], group='Taraması yapılacak 40\'arlı gruplardan birini seçin', title='Grup seç')
+per = input.timeframe(defval='', title='PERİYOT',group = "Tarama yapmak istediğiniz periyotu seçin")
+loc = input.int(defval=20, title='Konum Ayarı', minval = -300,maxval = 500 , step = 5,  group='Tablonun konumunu belirleyin')
+/////////////////////777
+
+/////////////ALPHATREND
+
+
+//////////alpha trend
+coeff = input.float(1, 'Multiplier', step=0.1)
+AP = input(14, 'Common Period')
+ATR = ta.sma(ta.tr, AP)
+src5 = input(close)
+showsignalsk = input(title='Show Signals?', defval=true)
+novolumedata = input(title='Change calculation (no volume data)?', defval=false)
+upT = low - ATR * coeff
+downT = high + ATR * coeff
+AlphaTrend = 0.0
+AlphaTrend := (novolumedata ? ta.rsi(src5, AP) >= 50 : ta.mfi(hlc3, AP) >= 50) ? upT < nz(AlphaTrend[1]) ? nz(AlphaTrend[1]) : upT : downT > nz(AlphaTrend[1]) ? nz(AlphaTrend[1]) : downT
+
+color1 = AlphaTrend > AlphaTrend[2] ? #00E60F : AlphaTrend < AlphaTrend[2] ? #80000B : AlphaTrend[1] > AlphaTrend[3] ? #00E60F : #80000B
+k14 = plot(AlphaTrend, color=color.new(#0022FC, 0), linewidth=3)
+k24 = plot(AlphaTrend[2], color=color.new(#FC0400, 0), linewidth=3)
+
+fill(k14, k24, color=color1)
+
+buySignalk = ta.crossover(AlphaTrend, AlphaTrend[2])
+sellSignalk = ta.crossunder(AlphaTrend, AlphaTrend[2])
+
+
+K1 = ta.barssince(buySignalk)
+K2 = ta.barssince(sellSignalk)
+O1 = ta.barssince(buySignalk[1])
+O2 = ta.barssince(sellSignalk[1])
+
+plotshape(buySignalk and showsignalsk and O1 > K2 ? AlphaTrend[2] * 0.9999 : na, title='BUY', text='BY', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(#0022FC, 0), textcolor=color.new(color.white, 0))
+
+plotshape(sellSignalk and showsignalsk and O2 > K1 ? AlphaTrend[2] * 1.0001 : na, title='SELL', text='SL', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(color.maroon, 0), textcolor=color.new(color.white, 0))
+
+
+alertcondition(buySignalk and O1 > K2, title='Potential BUY Alarm', message='BUY SIGNAL!')
+alertcondition(sellSignalk and O2 > K1, title='Potential SELL Alarm', message='SELL SIGNAL!')
+
+alertcondition(buySignalk[1] and O1[1] > K2, title='Confirmed BUY Alarm', message='BUY SIGNAL APPROVED!')
+alertcondition(sellSignalk[1] and O2[1] > K1, title='Confirmed SELL Alarm', message='SELL SIGNAL APPROVED!')
+
+buycond = buySignalk and showsignalsk and O1 > K2 
+////////////////
+
+
+
+//////////////////SUPERTREND
+
+
+////////////////////
+Periods = input(title='ATR Period', defval=10)
+src88 = input(hl2, title='Source')
+Multiplier = input.float(title='ATR Multiplier', step=0.1, defval=3.0)
+changeATR = input(title='Change ATR Calculation Method ?', defval=true)
+showsignals = input(title='Show Buy/Sell Signals ?', defval=true)
+highlighting = input(title='Highlighter On/Off ?', defval=true)
+atr2 = ta.sma(ta.tr, Periods)
+atr = changeATR ? ta.atr(Periods) : atr2
+up = src88 - Multiplier * atr
+up1 = nz(up[1], up)
+up := close[1] > up1 ? math.max(up, up1) : up
+dn = src88 + Multiplier * atr
+dn1 = nz(dn[1], dn)
+dn := close[1] < dn1 ? math.min(dn, dn1) : dn
+trend = 1
+trend := nz(trend[1], trend)
+trend := trend == -1 and close > dn1 ? 1 : trend == 1 and close < up1 ? -1 : trend
+// upPlot = plot(trend == 1 ? up : na, title='Up Trend', style=plot.style_linebr, linewidth=2, color=color.new(color.green, 0))
+buySignal = trend == 1 and trend[1] == -1
+plotshape(buySignal ? up : na, title='UpTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(color.green, 0))
+plotshape(buySignal and showsignals ? up : na, title='AL-ST', text='AL', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(color.green, 0), textcolor=color.new(color.white, 0))
+// dnPlot = plot(trend == 1 ? na : dn, title='Down Trend', style=plot.style_linebr, linewidth=2, color=color.new(color.red, 0))
+sellSignal = trend == -1 and trend[1] == 1
+plotshape(sellSignal ? dn : na, title='DownTrend Begins', location=location.absolute, style=shape.circle, size=size.tiny, color=color.new(color.red, 0))
+plotshape(sellSignal and showsignals ? dn : na, title='SAT-ST', text='SAT', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(color.red, 0), textcolor=color.new(color.white, 0))
+// mPlot = plot(ohlc4, title='', style=plot.style_circles, linewidth=0)
+// longFillColor = highlighting ? trend == 1 ? color.green : color.white : color.white
+// shortFillColor = highlighting ? trend == -1 ? color.red : color.white : color.white
+// fill(mPlot, upPlot, title='UpTrend Highligter', color=longFillColor, transp=90)
+// fill(mPlot, dnPlot, title='DownTrend Highligter', color=shortFillColor, transp=90)
+alertcondition(buySignal, title='SuperTrend Buy', message='SuperTrend Buy!')
+alertcondition(sellSignal, title='SuperTrend Sell', message='SuperTrend Sell!')
+changeCond = trend != trend[1]
+alertcondition(changeCond, title='SuperTrend Direction Change', message='SuperTrend has changed direction!')
+
+////////////////////
+//////ALMA
+///// ALMA
+// INPUTS: 
+len55 = input.int(14, title='ALMA-1', minval=1, group="ALMA")
+src22 = input(close, title='Source', group="ALMA")
+offset = input.float(0.85, title='ALMA Offset', minval=0.0001)
+sigma = input.int(6, title='ALMA Sigma Value', minval=1)
+trendALMA = ta.alma(src22, len55, offset, sigma)
+
+// PLOTTING:
+almaColor = trendALMA >= trendALMA[1] ? color.rgb(14, 0, 212) : color.rgb(248, 1, 1)
+p01 = plot(trendALMA, title='ALMA-1', color=almaColor, linewidth=2)
+
+// SIGNALS:
+buySignal0 = almaColor == color.rgb(14, 0, 212) and almaColor[1] == color.rgb(248, 1, 1)
+sellSignal0 = almaColor == color.rgb(248, 1, 1) and almaColor[1] == color.rgb(14, 0, 212)
+
+// PLOT SHAPES:
+plotshape(series=buySignal0, location=location.belowbar, style=shape.labelup, title = "AL", text="GİR", size=size.tiny, color=#1800ee, textcolor=color.new(color.white, 0))
+plotshape(series=sellSignal0, location=location.abovebar, style=shape.labeldown, title = "SAT", text="ÇIK", size=size.tiny, color=#bcbf00, textcolor=color.new(color.white, 0))
+
+
+/////BAR HACİM
+
+length77 = input.int(21, 'length', minval=1, group="HACİM BAR")
+avrg = ta.ema(volume, length77)
+
+vold1 = volume > avrg * 1.5 and close < open
+vold2 = volume >= avrg * 0.5 and volume <= avrg * 1.5 and close < open
+vold3 = volume < avrg * 0.5 and close < open
+
+volu1 = volume > avrg * 1.5 and close > open
+volu2 = volume >= avrg * 0.5 and volume <= avrg * 1.5 and close > open
+volu3 = volume < avrg * 0.5 and close > open
+
+
+cold1 = #800000
+cold2 = #FF0000
+cold3 = color.orange
+
+
+colu1 = #006400
+colu2 = color.lime
+colu3 = #7FFFD4
+
+
+color_1 = vold1 ? cold1 : vold2 ? cold2 : vold3 ? cold3 : volu1 ? colu1 : volu2 ? colu2 : volu3 ? colu3 : na
+
+barcolor(color_1)
+
+
+func() => 
+    
+    cond = buycond 
+
+
+    [close, cond]
+
+
+
+//GRUP VE TARANACAK HİSSE SAYISINI AYNI ŞEKİLDE DİLEDİĞİNİZ GİBİ ARTIRABİLİRSİNİZ.
+
+///////////////////////// TARAMA
+
+//GRUP VE TARANACAK HİSSE SAYISINI AYNI ŞEKİLDE DİLEDİĞİNİZ GİBİ ARTIRABİLİRSİNİZ.
+sb1 =  input.symbol(title='1',  defval='',group = "╠═════════════ ÖZEL LİSTE ═════════════╣")
+sb2 =  input.symbol(title='2',  defval='')
+sb3 =  input.symbol(title='3',  defval='')
+sb4 =  input.symbol(title='4',  defval='')
+sb5 =  input.symbol(title='5',  defval='')
+sb6 =  input.symbol(title='6',  defval='')
+sb7 =  input.symbol(title='7',  defval='')
+sb8 =  input.symbol(title='8',  defval='')
+sb9 =  input.symbol(title='9',  defval='')
+sb10 = input.symbol(title='10', defval='')
+sb11 = input.symbol(title='11', defval='')
+sb12 = input.symbol(title='12', defval='')
+sb13 = input.symbol(title='13', defval='')
+sb14 = input.symbol(title='14', defval='')
+sb15 = input.symbol(title='15', defval='')
+sb16 = input.symbol(title='16', defval='')
+sb17 = input.symbol(title='17', defval='')
+sb18 = input.symbol(title='18', defval='')
+sb19 = input.symbol(title='19', defval='')
+sb20 = input.symbol(title='20', defval='')
+sb21 = input.symbol(title='21', defval='')
+sb22 = input.symbol(title='22', defval='')
+sb23 = input.symbol(title='23', defval='')
+sb24 = input.symbol(title='24', defval='')
+sb25 = input.symbol(title='25', defval='')
+sb26 = input.symbol(title='26', defval='')
+sb27 = input.symbol(title='27', defval='')
+sb28 = input.symbol(title='28', defval='')
+sb29 = input.symbol(title='29', defval='')
+sb30 = input.symbol(title='30', defval='')
+sb31 = input.symbol(title='31', defval='')
+sb32 = input.symbol(title='32', defval='')
+sb33 = input.symbol(title='33', defval='')
+sb34 = input.symbol(title='34', defval='')
+sb35 = input.symbol(title='35', defval='')
+sb36 = input.symbol(title='36', defval='')
+sb37 = input.symbol(title='37', defval='')
+sb38 = input.symbol(title='38', defval='')
+sb39 = input.symbol(title='39', defval='')
+sb40 = input.symbol(title='40', defval='')
+
+u1 = grupSec == '1' ? 'BINANCE:1000SATSUSDT' : grupSec == '2' ? 'BINANCE:1INCHUSDT' : grupSec == '3' ? 'BINANCE:AAVEUSDT' : grupSec == '4' ? 'BINANCE:ACAUSDT' : grupSec == '5' ? 'BINANCE:ACEUSDT'  : grupSec == '6' ? 'BINANCE:ACHUSDT' : grupSec == '7' ? 'BINANCE:ACMUSDT' : grupSec == '8' ? 'BINANCE:ADAUSDT'  : grupSec == '9' ? 'BINANCE:ADXUSDT' : grupSec == '10' ? 'BINANCE:AERGOUSDT' : grupSec == 'ÖZEL LİSTE' ? sb1  : na
+u2 = grupSec == '1' ? 'BINANCE:AEURUSDT' : grupSec == '2' ? 'BINANCE:AEVOUSDT' : grupSec == '3' ? 'BINANCE:AGIXUSDT' : grupSec == '4' ? 'BINANCE:AGLDUSDT' : grupSec == '5' ? 'BINANCE:AIUSDT' : grupSec == '6' ? 'BINANCE:AKROUSDT' : grupSec == '7' ? 'BINANCE:ALCXUSDT' : grupSec == '8' ? 'BINANCE:ALGOUSDT' : grupSec == '9' ? 'BINANCE:ALICEUSDT'  : grupSec == '10' ? 'BINANCE:ALPACAUSDT' : grupSec == 'ÖZEL LİSTE' ? sb2  : na
+u3 = grupSec == '1' ? 'BINANCE:ALPHAUSDT'  : grupSec == '2' ? 'BINANCE:ALPINEUSDT' : grupSec == '3' ? 'BINANCE:ALTUSDT' : grupSec == '4' ? 'BINANCE:AMBUSDT'  : grupSec == '5' ? 'BINANCE:AMPUSDT' : grupSec == '6' ? 'BINANCE:ANKRUSDT' : grupSec == '7' ? 'BINANCE:APEUSDT' : grupSec == '8' ? 'BINANCE:API3USDT' : grupSec == '9' ? 'BINANCE:APTUSDT' : grupSec == '10' ? 'BINANCE:ARBUSDT' : grupSec == 'ÖZEL LİSTE' ? sb3  : na
+u4 = grupSec == '1' ? 'BINANCE:ARDRUSDT'  : grupSec == '2' ? 'BINANCE:ARKMUSDT' : grupSec == '3' ? 'BINANCE:ARKUSDT' : grupSec == '4' ? 'BINANCE:ARPAUSDT' : grupSec == '5' ? 'BINANCE:ARUSDT' : grupSec == '6' ? 'BINANCE:ASRUSDT' : grupSec == '7' ? 'BINANCE:ASTRUSDT' : grupSec == '8' ? 'BINANCE:ASTUSDT' : grupSec == '9' ? 'BINANCE:ATAUSDT' : grupSec == '10' ? 'BINANCE:ATMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb4  : na
+u5 = grupSec == '1' ? 'BINANCE:ATOMUSDT'  : grupSec == '2' ? 'BINANCE:AUCTIONUSDT' : grupSec == '3' ? 'BINANCE:AUDIOUSDT' : grupSec == '4' ? 'BINANCE:AVAUSDT' : grupSec == '5' ? 'BINANCE:AVAXUSDT' : grupSec == '6' ? 'BINANCE:AXLUSDT' : grupSec == '7' ? 'BINANCE:AXSUSDT' : grupSec == '8' ? 'BINANCE:BADGERUSDT' : grupSec == '9' ? 'BINANCE:BAKEUSDT' : grupSec == '10' ? 'BINANCE:BALUSDT' : grupSec == 'ÖZEL LİSTE' ? sb5  : na
+u6 = grupSec == '1' ? 'BINANCE:BANDUSDT'  : grupSec == '2' ? 'BINANCE:BARUSDT' : grupSec == '3' ? 'BINANCE:BATUSDT' : grupSec == '4' ? 'BINANCE:BCHUSDT' : grupSec == '5' ? 'BINANCE:BEAMXUSDT' : grupSec == '6' ? 'BINANCE:BELUSDT' : grupSec == '7' ? 'BINANCE:BETAUSDT' : grupSec == '8' ? 'BINANCE:BICOUSDT' : grupSec == '9' ? 'BINANCE:BIFIUSDT' : grupSec == '10' ? 'BINANCE:BLURUSDT' : grupSec == 'ÖZEL LİSTE' ? sb6  : na
+u7 = grupSec == '1' ? 'BINANCE:BLZUSDT'  : grupSec == '2' ? 'BINANCE:BNBUSDT' : grupSec == '3' ? 'BINANCE:BNTUSDT' : grupSec == '4' ? 'BINANCE:BNXUSDT' : grupSec == '5' ? 'BINANCE:BOMEUSDT' : grupSec == '6' ? 'BINANCE:BONDUSDT' : grupSec == '7' ? 'BINANCE:BONKUSDT' : grupSec == '8' ? 'BINANCE:BSWUSDT' : grupSec == '9' ? 'BINANCE:BTCUSDT' : grupSec == '10' ? 'BINANCE:BTTCUSDT' : grupSec == 'ÖZEL LİSTE' ? sb7  : na
+u8 = grupSec == '1' ? 'BINANCE:BURGERUSDT'  : grupSec == '2' ? 'BINANCE:C98USDT' : grupSec == '3' ? 'BINANCE:CAKEUSDT' : grupSec == '4' ? 'BINANCE:CELOUSDT' : grupSec == '5' ? 'BINANCE:CELRUSDT' : grupSec == '6' ? 'BINANCE:CFXUSDT' : grupSec == '7' ? 'BINANCE:CHESSUSDT' : grupSec == '8' ? 'BINANCE:CHRUSDT' : grupSec == '9' ? 'BINANCE:CHZUSDT' : grupSec == '10' ? 'BINANCE:CITYUSDT' : grupSec == 'ÖZEL LİSTE' ? sb8  : na
+u9 = grupSec == '1' ? 'BINANCE:CKBUSDT'  : grupSec == '2' ? 'BINANCE:CLVUSDT' : grupSec == '3' ? 'BINANCE:COMBOUSDT' : grupSec == '4' ? 'BINANCE:COMPUSDT' : grupSec == '5' ? 'BINANCE:COSUSDT' : grupSec == '6' ? 'BINANCE:COTIUSDT' : grupSec == '7' ? 'BINANCE:CREAMUSDT' : grupSec == '8' ? 'BINANCE:CRVUSDT' : grupSec == '9' ? 'BINANCE:CTKUSDT' : grupSec == '10' ? 'BINANCE:CTSIUSDT' : grupSec == 'ÖZEL LİSTE' ? sb9  : na
+u10 = grupSec == '1' ? 'BINANCE:CTXCUSDT'  : grupSec == '2' ? 'BINANCE:CVCUSDT' : grupSec == '3' ? 'BINANCE:CVPUSDT' : grupSec == '4' ? 'BINANCE:CVXUSDT' : grupSec == '5' ? 'BINANCE:CYBERUSDT' : grupSec == '6' ? 'BINANCE:DARUSDT' : grupSec == '7' ? 'BINANCE:DASHUSDT' : grupSec == '8' ? 'BINANCE:DATAUSDT' : grupSec == '9' ? 'BINANCE:DCRUSDT' : grupSec == '10' ? 'BINANCE:DEGOUSDT' : grupSec == 'ÖZEL LİSTE' ? sb10  : na
+u11 = grupSec == '1' ? 'BINANCE:DENTUSDT'  : grupSec == '2' ? 'BINANCE:DEXEUSDT' : grupSec == '3' ? 'BINANCE:DFUSDT' : grupSec == '4' ? 'BINANCE:DGBUSDT' : grupSec == '5' ? 'BINANCE:DIAUSDT' : grupSec == '6' ? 'BINANCE:DOCKUSDT' : grupSec == '7' ? 'BINANCE:DODOUSDT' : grupSec == '8' ? 'BINANCE:DOGEUSDT' : grupSec == '9' ? 'BINANCE:DOTUSDT' : grupSec == '10' ? 'BINANCE:DUSKUSDT' : grupSec == 'ÖZEL LİSTE' ? sb11  : na
+u12 = grupSec == '1' ? 'BINANCE:DYDXUSDT'  : grupSec == '2' ? 'BINANCE:DYMUSDT' : grupSec == '3' ? 'BINANCE:EDUUSDT' : grupSec == '4' ? 'BINANCE:EGLDUSDT' : grupSec == '5' ? 'BINANCE:ELFUSDT' : grupSec == '6' ? 'BINANCE:ENAUSDT' : grupSec == '7' ? 'BINANCE:ENJUSDT' : grupSec == '8' ? 'BINANCE:ENSUSDT' : grupSec == '9' ? 'BINANCE:EOSUSDT' : grupSec == '10' ? 'BINANCE:EPXUSDT' : grupSec == 'ÖZEL LİSTE' ? sb12  : na
+u13 = grupSec == '1' ? 'BINANCE:ERNUSDT'  : grupSec == '2' ? 'BINANCE:ETCUSDT' : grupSec == '3' ? 'BINANCE:ETHFIUSDT' : grupSec == '4' ? 'BINANCE:ETHUSDT' : grupSec == '5' ? 'BINANCE:EURUSDT' : grupSec == '6' ? 'BINANCE:FARMUSDT' : grupSec == '7' ? 'BINANCE:FDUSDUSDT' : grupSec == '8' ? 'BINANCE:FETUSDT' : grupSec == '9' ? 'BINANCE:FIDAUSDT' : grupSec == '10' ? 'BINANCE:FILUSDT' : grupSec == 'ÖZEL LİSTE' ? sb13  : na
+u14 = grupSec == '1' ? 'BINANCE:FIROUSDT'  : grupSec == '2' ? 'BINANCE:FISUSDT' : grupSec == '3' ? 'BINANCE:FLMUSDT' : grupSec == '4' ? 'BINANCE:FLOKIUSDT' : grupSec == '5' ? 'BINANCE:FLOWUSDT' : grupSec == '6' ? 'BINANCE:FLUXUSDT' : grupSec == '7' ? 'BINANCE:FORTHUSDT' : grupSec == '8' ? 'BINANCE:FORUSDT' : grupSec == '9' ? 'BINANCE:FRONTUSDT' : grupSec == '10' ? 'BINANCE:FTMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb14  : na
+u15 = grupSec == '1' ? 'BINANCE:FTTUSDT'  : grupSec == '2' ? 'BINANCE:FUNUSDT' : grupSec == '3' ? 'BINANCE:FXSUSDT' : grupSec == '4' ? 'BINANCE:GALAUSDT' : grupSec == '5' ? 'BINANCE:GALUSDT' : grupSec == '6' ? 'BINANCE:GASUSDT' : grupSec == '7' ? 'BINANCE:GFTUSDT' : grupSec == '8' ? 'BINANCE:GHSTUSDT' : grupSec == '9' ? 'BINANCE:GLMRUSDT' : grupSec == '10' ? 'BINANCE:GLMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb15  : na
+u16 = grupSec == '1' ? 'BINANCE:GMTUSDT'  : grupSec == '2' ? 'BINANCE:GMXUSDT' : grupSec == '3' ? 'BINANCE:GNOUSDT' : grupSec == '4' ? 'BINANCE:GNSUSDT' : grupSec == '5' ? 'BINANCE:GRTUSDT' : grupSec == '6' ? 'BINANCE:GTCUSDT' : grupSec == '7' ? 'BINANCE:HARDUSDT' : grupSec == '8' ? 'BINANCE:HBARUSDT' : grupSec == '9' ? 'BINANCE:HFTUSDT' : grupSec == '10' ? 'BINANCE:HIFIUSDT' : grupSec == 'ÖZEL LİSTE' ? sb16  : na
+u17 = grupSec == '1' ? 'BINANCE:HIGHUSDT'  : grupSec == '2' ? 'BINANCE:HIVEUSDT' : grupSec == '3' ? 'BINANCE:HOOKUSDT' : grupSec == '4' ? 'BINANCE:HOTUSDT' : grupSec == '5' ? 'BINANCE:ICPUSDT' : grupSec == '6' ? 'BINANCE:ICXUSDT' : grupSec == '7' ? 'BINANCE:IDEXUSDT' : grupSec == '8' ? 'BINANCE:IDUSDT' : grupSec == '9' ? 'BINANCE:ILVUSDT' : grupSec == '10' ? 'BINANCE:IMXUSDT' : grupSec == 'ÖZEL LİSTE' ? sb17  : na
+u18 = grupSec == '1' ? 'BINANCE:INJUSDT'  : grupSec == '2' ? 'BINANCE:IOSTUSDT' : grupSec == '3' ? 'BINANCE:IOTAUSDT' : grupSec == '4' ? 'BINANCE:IOTXUSDT' : grupSec == '5' ? 'BINANCE:IQUSDT' : grupSec == '6' ? 'BINANCE:IRISUSDT' : grupSec == '7' ? 'BINANCE:JASMYUSDT' : grupSec == '8' ? 'BINANCE:JOEUSDT' : grupSec == '9' ? 'BINANCE:JSTUSDT' : grupSec == '10' ? 'BINANCE:JTOUSDT' : grupSec == 'ÖZEL LİSTE' ? sb18  : na
+u19 = grupSec == '1' ? 'BINANCE:JUPUSDT'  : grupSec == '2' ? 'BINANCE:JUVUSDT' : grupSec == '3' ? 'BINANCE:KAVAUSDT' : grupSec == '4' ? 'BINANCE:KDAUSDT' : grupSec == '5' ? 'BINANCE:KEYUSDT' : grupSec == '6' ? 'BINANCE:KLAYUSDT' : grupSec == '7' ? 'BINANCE:KMDUSDT' : grupSec == '8' ? 'BINANCE:KNCUSDT' : grupSec == '9' ? 'BINANCE:KP3RUSDT' : grupSec == '10' ? 'BINANCE:KSMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb19  : na
+u20 = grupSec == '1' ? 'BINANCE:LAZIOUSDT'  : grupSec == '2' ? 'BINANCE:LDOUSDT' : grupSec == '3' ? 'BINANCE:LEVERUSDT' : grupSec == '4' ? 'BINANCE:LINAUSDT' : grupSec == '5' ? 'BINANCE:LINKUSDT' : grupSec == '6' ? 'BINANCE:LITUSDT' : grupSec == '7' ? 'BINANCE:LOKAUSDT' : grupSec == '8' ? 'BINANCE:LOOMUSDT' : grupSec == '9' ? 'BINANCE:LPTUSDT' : grupSec == '10' ? 'BINANCE:LQTYUSDT' : grupSec == 'ÖZEL LİSTE' ? sb20  : na
+u21 = grupSec == '1' ? 'BINANCE:LRCUSDT'  : grupSec == '2' ? 'BINANCE:LSKUSDT' : grupSec == '3' ? 'BINANCE:LTCUSDT' : grupSec == '4' ? 'BINANCE:LTOUSDT' : grupSec == '5' ? 'BINANCE:LUNAUSDT' : grupSec == '6' ? 'BINANCE:LUNCUSDT' : grupSec == '7' ? 'BINANCE:MAGICUSDT' : grupSec == '8' ? 'BINANCE:MANAUSDT' : grupSec == '9' ? 'BINANCE:MANTAUSDT' : grupSec == '10' ? 'BINANCE:MASKUSDT' : grupSec == 'ÖZEL LİSTE' ? sb21  : na
+u22 = grupSec == '1' ? 'BINANCE:MATICUSDT'  : grupSec == '2' ? 'BINANCE:MAVUSDT' : grupSec == '3' ? 'BINANCE:MBLUSDT' : grupSec == '4' ? 'BINANCE:MBOXUSDT' : grupSec == '5' ? 'BINANCE:MDTUSDT' : grupSec == '6' ? 'BINANCE:MDXUSDT' : grupSec == '7' ? 'BINANCE:MEMEUSDT' : grupSec == '8' ? 'BINANCE:METISUSDT' : grupSec == '9' ? 'BINANCE:MINAUSDT' : grupSec == '10' ? 'BINANCE:MKRUSDT' : grupSec == 'ÖZEL LİSTE' ? sb22  : na
+u23 = grupSec == '1' ? 'BINANCE:MLNUSDT'  : grupSec == '2' ? 'BINANCE:MOVRUSDT' : grupSec == '3' ? 'BINANCE:MTLUSDT' : grupSec == '4' ? 'BINANCE:NEARUSDT' : grupSec == '5' ? 'BINANCE:NEOUSDT' : grupSec == '6' ? 'BINANCE:NEXOUSDT' : grupSec == '7' ? 'BINANCE:NFPUSDT' : grupSec == '8' ? 'BINANCE:NKNUSDT' : grupSec == '9' ? 'BINANCE:NMRUSDT' : grupSec == '10' ? 'BINANCE:NTRNUSDT' : grupSec == 'ÖZEL LİSTE' ? sb23  : na
+u24 = grupSec == '1' ? 'BINANCE:NULSUSDT'  : grupSec == '2' ? 'BINANCE:OAXUSDT' : grupSec == '3' ? 'BINANCE:OCEANUSDT' : grupSec == '4' ? 'BINANCE:OGNUSDT' : grupSec == '5' ? 'BINANCE:OGUSDT' : grupSec == '6' ? 'BINANCE:OMGUSDT' : grupSec == '7' ? 'BINANCE:OMNIUSDT' : grupSec == '8' ? 'BINANCE:OMUSDT' : grupSec == '9' ? 'BINANCE:ONEUSDT' : grupSec == '10' ? 'BINANCE:ONGUSDT' : grupSec == 'ÖZEL LİSTE' ? sb24  : na
+u25 = grupSec == '1' ? 'BINANCE:ONTUSDT'  : grupSec == '2' ? 'BINANCE:OOKIUSDT' : grupSec == '3' ? 'BINANCE:OPUSDT' : grupSec == '4' ? 'BINANCE:ORBSUSDT' : grupSec == '5' ? 'BINANCE:OXTUSDT' : grupSec == '6' ? 'BINANCE:PALUSDT' : grupSec == '7' ? 'BINANCE:PAXUSDT' : grupSec == '8' ? 'BINANCE:PBTC35AUSDT' : grupSec == '9' ? 'BINANCE:PEARLUSDT' : grupSec == '10' ? 'BINANCE:PERPUSDT' : grupSec == 'ÖZEL LİSTE' ? sb25  : na
+u26 = grupSec == '1' ? 'BINANCE:PGUSDT'  : grupSec == '2' ? 'BINANCE:PHAUSDT' : grupSec == '3' ? 'BINANCE:PHBUSD' : grupSec == '4' ? 'BINANCE:PHXUSDT' : grupSec == '5' ? 'BINANCE:POLSUSDT' : grupSec == '6' ? 'BINANCE:POLYUSDT' : grupSec == '7' ? 'BINANCE:PORTOUSDT' : grupSec == '8' ? 'BINANCE:POWRUSDT' : grupSec == '9' ? 'BINANCE:PRIVUSDT' : grupSec == '10' ? 'BINANCE:PRVUSDT' : grupSec == 'ÖZEL LİSTE' ? sb26  : na
+u27 = grupSec == '1' ? 'BINANCE:PUNDIXUSDT'  : grupSec == '2' ? 'BINANCE:PUNDIXUSDT' : grupSec == '3' ? 'BINANCE:PUNDIXUSDT' : grupSec == '4' ? 'BINANCE:PUNDIXUSDT' : grupSec == '5' ? 'BINANCE:PUNDIXUSDT' : grupSec == '6' ? 'BINANCE:PUNDIXUSDT' : grupSec == '7' ? 'BINANCE:PUNDIXUSDT' : grupSec == '8' ? 'BINANCE:PUNDIXUSDT' : grupSec == '9' ? 'BINANCE:PUNDIXUSDT' : grupSec == '10' ? 'BINANCE:PUNDIXUSDT' : grupSec == 'ÖZEL LİSTE' ? sb27  : na
+u28 = grupSec == '1' ? 'BINANCE:QUICKUSDT'  : grupSec == '2' ? 'BINANCE:QUNUSDT' : grupSec == '3' ? 'BINANCE:RAIUSDT' : grupSec == '4' ? 'BINANCE:RAYUSDT' : grupSec == '5' ? 'BINANCE:REIFUSDT' : grupSec == '6' ? 'BINANCE:REPV2USDT' : grupSec == '7' ? 'BINANCE:REQUSDT' : grupSec == '8' ? 'BINANCE:RIFUSDT' : grupSec == '9' ? 'BINANCE:RINGXUSDT' : grupSec == '10' ? 'BINANCE:RLCUSDT' : grupSec == 'ÖZEL LİSTE' ? sb28  : na
+u29 = grupSec == '1' ? 'BINANCE:RLYUSDT'  : grupSec == '2' ? 'BINANCE:ROSEUSDT' : grupSec == '3' ? 'BINANCE:RSRUSDT' : grupSec == '4' ? 'BINANCE:RUNEUSDT' : grupSec == '5' ? 'BINANCE:SANDUSDT' : grupSec == '6' ? 'BINANCE:SATSUSDT' : grupSec == '7' ? 'BINANCE:SCRTUSDT' : grupSec == '8' ? 'BINANCE:SDXUSDT' : grupSec == '9' ? 'BINANCE:SEROUSDT' : grupSec == '10' ? 'BINANCE:SHIBUSDT' : grupSec == 'ÖZEL LİSTE' ? sb29  : na
+u30 = grupSec == '1' ? 'BINANCE:SHOUSDT'  : grupSec == '2' ? 'BINANCE:SHRUSDT' : grupSec == '3' ? 'BINANCE:SHIBUSDT' : grupSec == '4' ? 'BINANCE:SHRIMUSDT' : grupSec == '5' ? 'BINANCE:SIENUSDT' : grupSec == '6' ? 'BINANCE:SLPUSDT' : grupSec == '7' ? 'BINANCE:SNXUSDT' : grupSec == '8' ? 'BINANCE:SOLUSDT' : grupSec == '9' ? 'BINANCE:SPAUSDT' : grupSec == '10' ? 'BINANCE:SRMUSDT' : grupSec == 'ÖZEL LİSTE' ? sb30  : na
+u31 = grupSec == '1' ? 'BINANCE:SUNUSDT'  : grupSec == '2' ? 'BINANCE:SUPERUSDT' : grupSec == '3' ? 'BINANCE:SUSHIUSDT' : grupSec == '4' ? 'BINANCE:SUTERUSDT' : grupSec == '5' ? 'BINANCE:SWFTCUSDT' : grupSec == '6' ? 'BINANCE:SWINGBYUSDT' : grupSec == '7' ? 'BINANCE:SWRVUSDT' : grupSec == '8' ? 'BINANCE:SXPUSDT' : grupSec == '9' ? 'BINANCE:SYSUSDT' : grupSec == '10' ? 'BINANCE:TENDUSDT' : grupSec == 'ÖZEL LİSTE' ? sb31  : na
+u32 = grupSec == '1' ? 'BINANCE:TERNUSDT'  : grupSec == '2' ? 'BINANCE:TFUELUSDT' : grupSec == '3' ? 'BINANCE:THETAUSDT' : grupSec == '4' ? 'BINANCE:TLMUSDT' : grupSec == '5' ? 'BINANCE:TNBUSDT' : grupSec == '6' ? 'BINANCE:TOMOUSDT' : grupSec == '7' ? 'BINANCE:TORNUSDT' : grupSec == '8' ? 'BINANCE:TRADEUSDT' : grupSec == '9' ? 'BINANCE:TRBUSDT' : grupSec == '10' ? 'BINANCE:TRUUSDT' : grupSec == 'ÖZEL LİSTE' ? sb32  : na
+u33 = grupSec == '1' ? 'BINANCE:TRXUSDT'  : grupSec == '2' ? 'BINANCE:TRYBUSDT' : grupSec == '3' ? 'BINANCE:TUSDU6' : grupSec == '4' ? 'BINANCE:TWTUSDT' : grupSec == '5' ? 'BINANCE:UGSUSDT' : grupSec == '6' ? 'BINANCE:UMAUSDT' : grupSec == '7' ? 'BINANCE:UNIUSDT' : grupSec == '8' ? 'BINANCE:UNUSUSDT' : grupSec == '9' ? 'BINANCE:USDCUSDT' : grupSec == '10' ? 'BINANCE:USDTUSDT' : grupSec == 'ÖZEL LİSTE' ? sb33  : na
+u34 = grupSec == '1' ? 'BINANCE:USDXUSDT'  : grupSec == '2' ? 'BINANCE:USTUSDT' : grupSec == '3' ? 'BINANCE:VALUEUSDT' : grupSec == '4' ? 'BINANCE:VETUSDT' : grupSec == '5' ? 'BINANCE:VIDTUSDT' : grupSec == '6' ? 'BINANCE:VITEUSDT' : grupSec == '7' ? 'BINANCE:VTHOUSDT' : grupSec == '8' ? 'BINANCE:VTHOUSDT' : grupSec == '9' ? 'BINANCE:VXVUSDT' : grupSec == '10' ? 'BINANCE:WAVESUSDT' : grupSec == 'ÖZEL LİSTE' ? sb34  : na
+u35 = grupSec == '1' ? 'BINANCE:WBTCUSDT'  : grupSec == '2' ? 'BINANCE:WICCUSDT' : grupSec == '3' ? 'BINANCE:WINUSDT' : grupSec == '4' ? 'BINANCE:WINGSUSDT' : grupSec == '5' ? 'BINANCE:WOOUSDT' : grupSec == '6' ? 'BINANCE:WRXUSDT' : grupSec == '7' ? 'BINANCE:WTCUSDT' : grupSec == '8' ? 'BINANCE:XEMUSDT' : grupSec == '9' ? 'BINANCE:XLMUSDT' : grupSec == '10' ? 'BINANCE:XMRUSDT' : grupSec == 'ÖZEL LİSTE' ? sb35  : na
+u36 = grupSec == '1' ? 'BINANCE:XPRUSDT'  : grupSec == '2' ? 'BINANCE:XRPUSDT' : grupSec == '3' ? 'BINANCE:XTZUSDT' : grupSec == '4' ? 'BINANCE:XVGUSDT' : grupSec == '5' ? 'BINANCE:YFIIUSDT' : grupSec == '6' ? 'BINANCE:YFIUSDT' : grupSec == '7' ? 'BINANCE:YFVUSDT' : grupSec == '8' ? 'BINANCE:YLDUSDT' : grupSec == '9' ? 'BINANCE:YOPUSDT' : grupSec == '10' ? 'BINANCE:YTSUSDT' : grupSec == 'ÖZEL LİSTE' ? sb36  : na
+u37 = grupSec == '1' ? 'BINANCE:YXBUSDT'  : grupSec == '2' ? 'BINANCE:ZECUSDT' : grupSec == '3' ? 'BINANCE:ZILUSDT' : grupSec == '4' ? 'BINANCE:ZRXUSDT' : grupSec == '5' ? 'BINANCE:ZUSDTUSDT' : grupSec == '6' ? 'BINANCE:ACMUSDT' : grupSec == '7' ? 'BINANCE:BANDUSDT' : grupSec == '8' ? 'BINANCE:BARUSDT' : grupSec == '9' ? 'BINANCE:BATUSDT' : grupSec == '10' ? 'BINANCE:BCHUSDT' : grupSec == 'ÖZEL LİSTE' ? sb37  : na
+u38 = grupSec == '1' ? 'BINANCE:BELUSDT'  : grupSec == '2' ? 'BINANCE:BETAUSDT' : grupSec == '3' ? 'BINANCE:BICOUSDT' : grupSec == '4' ? 'BINANCE:BIFIUSDT' : grupSec == '5' ? 'BINANCE:BLZUSDT' : grupSec == '6' ? 'BINANCE:BNBUSDT' : grupSec == '7' ? 'BINANCE:BNTUSDT' : grupSec == '8' ? 'BINANCE:BNXUSDT' : grupSec == '9' ? 'BINANCE:BOMEUSDT' : grupSec == '10' ? 'BINANCE:BONDUSDT' : grupSec == 'ÖZEL LİSTE' ? sb38  : na
+u39 = grupSec == '1' ? 'BINANCE:BONKUSDT'  : grupSec == '2' ? 'BINANCE:BSWUSDT' : grupSec == '3' ? 'BINANCE:BURGERUSDT' : grupSec == '4' ? 'BINANCE:C98USDT' : grupSec == '5' ? 'BINANCE:CAKEUSDT' : grupSec == '6' ? 'BINANCE:CELOUSDT' : grupSec == '7' ? 'BINANCE:CELRUSDT' : grupSec == '8' ? 'BINANCE:CFXUSDT' : grupSec == '9' ? 'BINANCE:CHESSUSDT' : grupSec == '10' ? 'BINANCE:CHRUSDT' : grupSec == 'ÖZEL LİSTE' ? sb39  : na
+u40 = grupSec == '1' ? 'BINANCE:CHZUSDT'  : grupSec == '2' ? 'BINANCE:CKBUSDT' : grupSec == '3' ? 'BINANCE:CLVUSDT' : grupSec == '4' ? 'BINANCE:COMBOUSDT' : grupSec == '5' ? 'BINANCE:COMPUSDT' : grupSec == '6' ? 'BINANCE:COSUSDT' : grupSec == '7' ? 'BINANCE:COTIUSDT' : grupSec == '8' ? 'BINANCE:CREAMUSDT' : grupSec == '9' ? 'BINANCE:CRVUSDT' : grupSec == '10' ? 'BINANCE:CTKUSDT' : grupSec == 'ÖZEL LİSTE' ? sb40  : na
+
+
+
+
+[v1,s111] = request.security(u1, per, func(),ignore_invalid_symbol = true)
+[v2,s211] = request.security(u2, per, func(),ignore_invalid_symbol = true)
+[v3,s311] = request.security(u3, per, func(),ignore_invalid_symbol = true)
+[v4,s411] = request.security(u4, per, func(),ignore_invalid_symbol = true)
+[v5,s511] = request.security(u5, per, func(),ignore_invalid_symbol = true)
+[v6,s611] = request.security(u6, per, func(),ignore_invalid_symbol = true)
+[v7,s711] = request.security(u7, per, func(),ignore_invalid_symbol = true)
+[v8,s811] = request.security(u8, per, func(),ignore_invalid_symbol = true)
+[v9,s911] = request.security(u9, per, func(),ignore_invalid_symbol = true)
+[v10,s10] = request.security(u10, per, func(),ignore_invalid_symbol = true)
+[v11,s11] = request.security(u11, per, func(),ignore_invalid_symbol = true)
+[v12,s12] = request.security(u12, per, func(),ignore_invalid_symbol = true)
+[v13,s13] = request.security(u13, per, func(),ignore_invalid_symbol = true)
+[v14,s14] = request.security(u14, per, func(),ignore_invalid_symbol = true)
+[v15,s15] = request.security(u15, per, func(),ignore_invalid_symbol = true)
+[v16,s16] = request.security(u16, per, func(),ignore_invalid_symbol = true)
+[v17,s17] = request.security(u17, per, func(),ignore_invalid_symbol = true)
+[v18,s18] = request.security(u18, per, func(),ignore_invalid_symbol = true)
+[v19,s19] = request.security(u19, per, func(),ignore_invalid_symbol = true)
+[v20,s20] = request.security(u20, per, func(),ignore_invalid_symbol = true)
+[v21,s21] = request.security(u21, per, func(),ignore_invalid_symbol = true)
+[v22,s22] = request.security(u22, per, func(),ignore_invalid_symbol = true)
+[v23,s23] = request.security(u23, per, func(),ignore_invalid_symbol = true)
+[v24,s24] = request.security(u24, per, func(),ignore_invalid_symbol = true)
+[v25,s25] = request.security(u25, per, func(),ignore_invalid_symbol = true)
+[v26,s26] = request.security(u26, per, func(),ignore_invalid_symbol = true)
+[v27,s27] = request.security(u27, per, func(),ignore_invalid_symbol = true)
+[v28,s28] = request.security(u28, per, func(),ignore_invalid_symbol = true)
+[v29,s29] = request.security(u29, per, func(),ignore_invalid_symbol = true)
+[v30,s30] = request.security(u30, per, func(),ignore_invalid_symbol = true)
+[v31,s31] = request.security(u31, per, func(),ignore_invalid_symbol = true)
+[v32,s32] = request.security(u32, per, func(),ignore_invalid_symbol = true)
+[v33,s33] = request.security(u33, per, func(),ignore_invalid_symbol = true)
+[v34,s34] = request.security(u34, per, func(),ignore_invalid_symbol = true)
+[v35,s35] = request.security(u35, per, func(),ignore_invalid_symbol = true)
+[v36,s36] = request.security(u36, per, func(),ignore_invalid_symbol = true)
+[v37,s37] = request.security(u37, per, func(),ignore_invalid_symbol = true)
+[v38,s38] = request.security(u38, per, func(),ignore_invalid_symbol = true)
+[v39,s39] = request.security(u39, per, func(),ignore_invalid_symbol = true)
+[v40,s40] = request.security(u40, per, func(),ignore_invalid_symbol = true)
+
+scr_label = 'TARAMA\n'
+scr_label := s111 ? scr_label + syminfo.ticker(u1) + ' ' + str.tostring(v1) + '\n' : scr_label
+scr_label := s211 ? scr_label + syminfo.ticker(u2) + ' ' + str.tostring(v2) + '\n' : scr_label
+scr_label := s311 ? scr_label + syminfo.ticker(u3) + ' ' + str.tostring(v3) + '\n' : scr_label
+scr_label := s411 ? scr_label + syminfo.ticker(u4) + ' ' + str.tostring(v4) + '\n' : scr_label
+scr_label := s511 ? scr_label + syminfo.ticker(u5) + ' ' + str.tostring(v5) + '\n' : scr_label
+scr_label := s611 ? scr_label + syminfo.ticker(u6) + ' ' + str.tostring(v6) + '\n' : scr_label
+scr_label := s711 ? scr_label + syminfo.ticker(u7) + ' ' + str.tostring(v7) + '\n' : scr_label
+scr_label := s811 ? scr_label + syminfo.ticker(u8) + ' ' + str.tostring(v8) + '\n' : scr_label
+scr_label := s911 ? scr_label + syminfo.ticker(u9) + ' ' + str.tostring(v9) + '\n' : scr_label
+scr_label := s10 ? scr_label + syminfo.ticker(u10) + ' ' + str.tostring(v10) + '\n' : scr_label
+scr_label := s11 ? scr_label + syminfo.ticker(u11) + ' ' + str.tostring(v11) + '\n' : scr_label
+scr_label := s12 ? scr_label + syminfo.ticker(u12) + ' ' + str.tostring(v12) + '\n' : scr_label
+scr_label := s13 ? scr_label + syminfo.ticker(u13) + ' ' + str.tostring(v13) + '\n' : scr_label
+scr_label := s14 ? scr_label + syminfo.ticker(u14) + ' ' + str.tostring(v14) + '\n' : scr_label
+scr_label := s15 ? scr_label + syminfo.ticker(u15) + ' ' + str.tostring(v15) + '\n' : scr_label
+scr_label := s16 ? scr_label + syminfo.ticker(u16) + ' ' + str.tostring(v16) + '\n' : scr_label
+scr_label := s17 ? scr_label + syminfo.ticker(u17) + ' ' + str.tostring(v17) + '\n' : scr_label
+scr_label := s18 ? scr_label + syminfo.ticker(u18) + ' ' + str.tostring(v18) + '\n' : scr_label
+scr_label := s19 ? scr_label + syminfo.ticker(u19) + ' ' + str.tostring(v19) + '\n' : scr_label
+scr_label := s20 ? scr_label + syminfo.ticker(u20) + ' ' + str.tostring(v20) + '\n' : scr_label
+scr_label := s21 ? scr_label + syminfo.ticker(u21) + ' ' + str.tostring(v21) + '\n' : scr_label
+scr_label := s22 ? scr_label + syminfo.ticker(u22) + ' ' + str.tostring(v22) + '\n' : scr_label
+scr_label := s23 ? scr_label + syminfo.ticker(u23) + ' ' + str.tostring(v23) + '\n' : scr_label
+scr_label := s24 ? scr_label + syminfo.ticker(u24) + ' ' + str.tostring(v24) + '\n' : scr_label
+scr_label := s25 ? scr_label + syminfo.ticker(u25) + ' ' + str.tostring(v25) + '\n' : scr_label
+scr_label := s26 ? scr_label + syminfo.ticker(u26) + ' ' + str.tostring(v26) + '\n' : scr_label
+scr_label := s27 ? scr_label + syminfo.ticker(u27) + ' ' + str.tostring(v27) + '\n' : scr_label
+scr_label := s28 ? scr_label + syminfo.ticker(u28) + ' ' + str.tostring(v28) + '\n' : scr_label
+scr_label := s29 ? scr_label + syminfo.ticker(u29) + ' ' + str.tostring(v29) + '\n' : scr_label
+scr_label := s30 ? scr_label + syminfo.ticker(u30) + ' ' + str.tostring(v30) + '\n' : scr_label
+scr_label := s31 ? scr_label + syminfo.ticker(u31) + ' ' + str.tostring(v31) + '\n' : scr_label
+scr_label := s32 ? scr_label + syminfo.ticker(u32) + ' ' + str.tostring(v32) + '\n' : scr_label
+scr_label := s33 ? scr_label + syminfo.ticker(u33) + ' ' + str.tostring(v33) + '\n' : scr_label
+scr_label := s34 ? scr_label + syminfo.ticker(u34) + ' ' + str.tostring(v34) + '\n' : scr_label
+scr_label := s35 ? scr_label + syminfo.ticker(u35) + ' ' + str.tostring(v35) + '\n' : scr_label
+scr_label := s36 ? scr_label + syminfo.ticker(u36) + ' ' + str.tostring(v36) + '\n' : scr_label
+scr_label := s37 ? scr_label + syminfo.ticker(u37) + ' ' + str.tostring(v37) + '\n' : scr_label
+scr_label := s38 ? scr_label + syminfo.ticker(u38) + ' ' + str.tostring(v38) + '\n' : scr_label
+scr_label := s39 ? scr_label + syminfo.ticker(u39) + ' ' + str.tostring(v39) + '\n' : scr_label
+scr_label := s40 ? scr_label + syminfo.ticker(u40) + ' ' + str.tostring(v40) + '\n' : scr_label
+
+lab_1 = label.new(bar_index + loc,0, scr_label, color=color.green, textcolor=color.white, style=label.style_label_center)
+label.delete(lab_1[1])
+
+if str.length(scr_label) > 8
+    alert(scr_label,alert.freq_once_per_bar_close)
