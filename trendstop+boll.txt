@@ -1,0 +1,54 @@
+//@version=5
+
+//author KıvanÇ @fr3762 on twitter
+//creator @mavilim0732 on twitter
+
+
+indicator('TrendStop+boll', overlay=true)
+
+
+pr1 = input(21, 'EMA period')
+pr2 = input.int(2, 'normal/vwap', minval=1, maxval=2)
+len = input(14, title='DIRECTIONAL IND. Length')
+up = ta.change(high)
+down = -ta.change(low)
+truerange = ta.rma(ta.tr, len)
+plus = fixnan(100 * ta.rma(up > down and up > 0 ? up : 0, len) / truerange)
+minus = fixnan(100 * ta.rma(down > up and down > 0 ? down : 0, len) / truerange)
+M1 = ta.ema(close, pr2)
+MACDfastLength = input(12)
+MACDslowlength = input(26)
+MACD = ta.ema(close, MACDfastLength) - ta.ema(close, MACDslowlength)
+sum_1 = math.sum(close * volume, pr1)
+sum_2 = math.sum(volume, pr1)
+K1 = pr2 < 2 ? M1 : sum_1 / sum_2
+K2 = ta.valuewhen(MACD > 0 and plus > minus, K1, 0)
+K3 = K2 * 0.975
+
+plot(K2, linewidth=2, color=color.new(color.green, 0))
+plot(K3, linewidth=3, color=color.new(color.red, 0), title='Stop')
+
+//////////////////bollinger
+
+length = input.int(20, minval=1)
+maType = input.string("SMA", "Basis MA Type", options = ["SMA", "EMA", "SMMA (RMA)", "WMA", "VWMA"])
+src = input(close, title="Source")
+mult = input.float(2.0, minval=0.001, maxval=50, title="StdDev")
+
+ma(source, length, _type) =>
+    switch _type
+        "SMA" => ta.sma(source, length)
+        "EMA" => ta.ema(source, length)
+        "SMMA (RMA)" => ta.rma(source, length)
+        "WMA" => ta.wma(source, length)
+        "VWMA" => ta.vwma(source, length)
+
+basis = ma(src, length, maType)
+dev = mult * ta.stdev(src, length)
+upper = basis + dev
+lower = basis - dev
+offset = input.int(0, "Offset", minval = -500, maxval = 500, display = display.data_window)
+plot(basis, "Basis", color=#2962FF, offset = offset)
+p1 = plot(upper, "Upper", color=#F23645, offset = offset)
+p2 = plot(lower, "Lower", color=#089981, offset = offset)
+fill(p1, p2, title = "Background", color=color.rgb(33, 150, 243, 95))
