@@ -14,7 +14,7 @@ src99 = input(close, title='Source')
 ////////////////////////7
 len1 = input.int(50, minval=1, title='EMA-50', group="EMA")
 out1 = ta.ema(src99, len1)
-z1 = plot(out1, color=color.rgb(0, 176, 47), linewidth=2, title='EMA-1')
+z1 = plot(out1, color=color.rgb(250, 3, 11), linewidth=2, title='EMA-1')
 
 /////////////
 ////////////////////////7
@@ -31,7 +31,7 @@ basis = ta.sma(src9, length)
 dev55 = mult * ta.stdev(src9, length)
 upper = basis + dev55
 lower = basis - dev55
-plot(basis, color=#fc0000, title='BB MA')
+plot(basis, color=color.rgb(0, 186, 37), title='BB MA')
 p1 = plot(upper, color=color.new(color.green, 50), title='Narrow Upper')
 p2 = plot(lower, color=color.new(color.red, 50), title='Narrow Lower')
 
@@ -141,7 +141,7 @@ hist_color = hist_up_plus ? color.lime : hist_down_plus ? color.green : hist_up_
 
 func() => 
     
-    cond = ta.crossover(basis, out1)  
+    cond = longCondition 
 
 
 
@@ -329,4 +329,3 @@ label.delete(lab_1[1])
 
 if str.length(scr_label) > 8
     alert(scr_label,alert.freq_once_per_bar_close)
-
