@@ -295,6 +295,11 @@ func() =>
     [close, cond]
 
 
+//GRUP VE TARANACAK HİSSE SAYISINI AYNI ŞEKİLDE DİLEDİĞİNİZ GİBİ ARTIRABİLİRSİNİZ.
+
+///////////////////////// TARAMA
+
+
 sb1 =  input.symbol(title='1',  defval='BIST:AKSA',group = "╠═════════════ ÖZEL LİSTE ═════════════╣")
 sb2 =  input.symbol(title='2',  defval='BIST:ALARK')
 sb3 =  input.symbol(title='3',  defval='BIST:ARCLK')
@@ -335,8 +340,6 @@ sb37 = input.symbol(title='37', defval='BINANCE:ETHUSDT')
 // sb38 = input.symbol(title='38', defval='BINANCE:SOLUSDT')
 // sb39 = input.symbol(title='39', defval='BINANCE:BNBUSDT')
 // sb40 = input.symbol(title='40', defval='BIST:TURSG')
-
-
 
 a01 = grupSec == '1' ? 'BIST:A1CAP' : grupSec == '2' ? 'BIST:ARCLK' : grupSec == '3' ? 'BIST:BIGCH' : grupSec == '4' ? 'BIST:CEMTS' : grupSec == '5' ? 'BIST:DZGYO' : grupSec == '6' ? 'BIST:FLAP' : grupSec == '7' ? 'BIST:HEKTS' : grupSec == '8' ? 'BIST:IZMDC' : grupSec == '9' ? 'BIST:KRSTL' : grupSec == '10' ? 'BIST:MHRGY' : grupSec == '11' ? 'BIST:OZRDN' : grupSec == '12' ? 'BIST:RYGYO' : grupSec == '13' ? 'BIST:TABGD' : grupSec == '14' ? 'BIST:ULUUN' : grupSec == 'ÖZEL LİSTE' ? sb1 : na
 a02 = grupSec == '1' ? 'BIST:ACSEL' : grupSec == '2' ? 'BIST:ARDYZ' : grupSec == '3' ? 'BIST:BIMAS' : grupSec == '4' ? 'BIST:CEOEM' : grupSec == '5' ? 'BIST:EBEBK' : grupSec == '6' ? 'BIST:FMIZP' : grupSec == '7' ? 'BIST:HKTM' : grupSec == '8' ? 'BIST:JANTS' : grupSec == '9' ? 'BIST:KRTEK' : grupSec == '10' ? 'BIST:MIATK' : grupSec == '11' ? 'BIST:OZSUB' : grupSec == '12' ? 'BIST:RYSAS' : grupSec == '13' ? 'BIST:TARKM' : grupSec == '14' ? 'BIST:UMPAS' : grupSec == 'ÖZEL LİSTE' ? sb2 : na
@@ -381,103 +384,94 @@ a37 = grupSec == '1' ? 'BIST:ANGEN' : grupSec == '2' ? 'BIST:BERA' : grupSec == 
 
 
 
-[v1,s1] = request.security(a01, per, func())
-[v2,s2] = request.security(a02, per, func())
-[v3,s3] = request.security(a03, per, func())
-[v4,s4] = request.security(a04, per, func())
-[v5,s5] = request.security(a05, per, func())
-[v6,s6] = request.security(a06, per, func())
-[v7,s7] = request.security(a07, per, func())
-[v8,s8] = request.security(a08, per, func())
-[v9,s9] = request.security(a09, per, func())
-[v10,s10] = request.security(a10, per, func())
-[v11,s11] = request.security(a11, per, func())
-[v12,s12] = request.security(a12, per, func())
-[v13,s13] = request.security(a13, per, func())
-[v14,s14] = request.security(a14, per, func())
-[v15,s15] = request.security(a15, per, func())
-[v16,s16] = request.security(a16, per, func())
-[v17,s17] = request.security(a17, per, func())
-[v18,s18] = request.security(a18, per, func())
-[v19,s19] = request.security(a19, per, func())
-[v20,s20] = request.security(a20, per, func())
-[v21,s21] = request.security(a21, per, func())
-[v22,s22] = request.security(a22, per, func())
-[v23,s23] = request.security(a23, per, func())
-[v24,s24] = request.security(a24, per, func())
-[v25,s25] = request.security(a25, per, func())
-[v26,s26] = request.security(a26, per, func())
-[v27,s27] = request.security(a27, per, func())
-[v28,s28] = request.security(a28, per, func())
-[v29,s29] = request.security(a29, per, func())
-[v30,s30] = request.security(a30, per, func())
-[v31,s31] = request.security(a31, per, func())
-[v32,s32] = request.security(a32, per, func())
-[v33,s33] = request.security(a33, per, func())
-[v34,s34] = request.security(a34, per, func())
-[v35,s35] = request.security(a35, per, func())
-[v36,s36] = request.security(a36, per, func())
-[v37,s37] = request.security(a37, per, func())
-// [v38,s38] = request.security(a38, per, func())
-// [v39,s39] = request.security(a39, per, func())
-// [v40,s40] = request.security(a40, per, func())
 
-roundn(x, n) =>
-    mult = 1
-    if n != 0
-        for i = 1 to math.abs(n) by 1
-            mult *= 10
-            mult
-
-    n >= 0 ? math.round(x * mult) / mult : math.round(x / mult) * mult
-
+[v1,s1] = request.security(a01, per, func(),ignore_invalid_symbol = true)
+[v2,s2] = request.security(a02, per, func(),ignore_invalid_symbol = true)
+[v3,s3] = request.security(a03, per, func(),ignore_invalid_symbol = true)
+[v4,s4] = request.security(a04, per, func(),ignore_invalid_symbol = true)
+[v5,s5] = request.security(a05, per, func(),ignore_invalid_symbol = true)
+[v6,s6] = request.security(a06, per, func(),ignore_invalid_symbol = true)
+[v7,s7] = request.security(a07, per, func(),ignore_invalid_symbol = true)
+[v8,s8] = request.security(a08, per, func(),ignore_invalid_symbol = true)
+[v9,s9] = request.security(a09, per, func(),ignore_invalid_symbol = true)
+[v10,s10] = request.security(a10, per, func(),ignore_invalid_symbol = true)
+[v11,s11] = request.security(a11, per, func(),ignore_invalid_symbol = true)
+[v12,s12] = request.security(a12, per, func(),ignore_invalid_symbol = true)
+[v13,s13] = request.security(a13, per, func(),ignore_invalid_symbol = true)
+[v14,s14] = request.security(a14, per, func(),ignore_invalid_symbol = true)
+[v15,s15] = request.security(a15, per, func(),ignore_invalid_symbol = true)
+[v16,s16] = request.security(a16, per, func(),ignore_invalid_symbol = true)
+[v17,s17] = request.security(a17, per, func(),ignore_invalid_symbol = true)
+[v18,s18] = request.security(a18, per, func(),ignore_invalid_symbol = true)
+[v19,s19] = request.security(a19, per, func(),ignore_invalid_symbol = true)
+[v20,s20] = request.security(a20, per, func(),ignore_invalid_symbol = true)
+[v21,s21] = request.security(a21, per, func(),ignore_invalid_symbol = true)
+[v22,s22] = request.security(a22, per, func(),ignore_invalid_symbol = true)
+[v23,s23] = request.security(a23, per, func(),ignore_invalid_symbol = true)
+[v24,s24] = request.security(a24, per, func(),ignore_invalid_symbol = true)
+[v25,s25] = request.security(a25, per, func(),ignore_invalid_symbol = true)
+[v26,s26] = request.security(a26, per, func(),ignore_invalid_symbol = true)
+[v27,s27] = request.security(a27, per, func(),ignore_invalid_symbol = true)
+[v28,s28] = request.security(a28, per, func(),ignore_invalid_symbol = true)
+[v29,s29] = request.security(a29, per, func(),ignore_invalid_symbol = true)
+[v30,s30] = request.security(a30, per, func(),ignore_invalid_symbol = true)
+[v31,s31] = request.security(a31, per, func(),ignore_invalid_symbol = true)
+[v32,s32] = request.security(a32, per, func(),ignore_invalid_symbol = true)
+[v33,s33] = request.security(a33, per, func(),ignore_invalid_symbol = true)
+[v34,s34] = request.security(a34, per, func(),ignore_invalid_symbol = true)
+[v35,s35] = request.security(a35, per, func(),ignore_invalid_symbol = true)
+[v36,s36] = request.security(a36, per, func(),ignore_invalid_symbol = true)
+[v37,s37] = request.security(a37, per, func(),ignore_invalid_symbol = true)
+// [v38,s38] = request.security(a38, per, func(),ignore_invalid_symbol = true)
+// [v39,s39] = request.security(a39, per, func(),ignore_invalid_symbol = true)
+// [v40,s40] = request.security(a40, per, func(),ignore_invalid_symbol = true)
 
 scr_label = 'TARAMA\n'
-scr_label := s1 ? scr_label + syminfo.ticker(a01) + ' ' + str.tostring(roundn(v1, 2)) + '\n' : scr_label
-scr_label := s2 ? scr_label + syminfo.ticker(a02) + ' ' + str.tostring(roundn(v2, 2)) + '\n' : scr_label
-scr_label := s3 ? scr_label + syminfo.ticker(a03) + ' ' + str.tostring(roundn(v3, 2)) + '\n' : scr_label
-scr_label := s4 ? scr_label + syminfo.ticker(a04) + ' ' + str.tostring(roundn(v4, 2)) + '\n' : scr_label
-scr_label := s5 ? scr_label + syminfo.ticker(a05) + ' ' + str.tostring(roundn(v5, 2)) + '\n' : scr_label
-scr_label := s6 ? scr_label + syminfo.ticker(a06) + ' ' + str.tostring(roundn(v6, 2)) + '\n' : scr_label
-scr_label := s7 ? scr_label + syminfo.ticker(a07) + ' ' + str.tostring(roundn(v7, 2)) + '\n' : scr_label
-scr_label := s8 ? scr_label + syminfo.ticker(a08) + ' ' + str.tostring(roundn(v8, 2)) + '\n' : scr_label
-scr_label := s9 ? scr_label + syminfo.ticker(a09) + ' ' + str.tostring(roundn(v9, 2)) + '\n' : scr_label
-scr_label := s10 ? scr_label + syminfo.ticker(a10) + ' ' + str.tostring(roundn(v10, 2)) + '\n' : scr_label
-scr_label := s11 ? scr_label + syminfo.ticker(a11) + ' ' + str.tostring(roundn(v11, 2)) + '\n' : scr_label
-scr_label := s12 ? scr_label + syminfo.ticker(a12) + ' ' + str.tostring(roundn(v12, 2)) + '\n' : scr_label
-scr_label := s13 ? scr_label + syminfo.ticker(a13) + ' ' + str.tostring(roundn(v13, 2)) + '\n' : scr_label
-scr_label := s14 ? scr_label + syminfo.ticker(a14) + ' ' + str.tostring(roundn(v14, 2)) + '\n' : scr_label
-scr_label := s15 ? scr_label + syminfo.ticker(a15) + ' ' + str.tostring(roundn(v15, 2)) + '\n' : scr_label
-scr_label := s16 ? scr_label + syminfo.ticker(a16) + ' ' + str.tostring(roundn(v16, 2)) + '\n' : scr_label
-scr_label := s17 ? scr_label + syminfo.ticker(a17) + ' ' + str.tostring(roundn(v17, 2)) + '\n' : scr_label
-scr_label := s18 ? scr_label + syminfo.ticker(a18) + ' ' + str.tostring(roundn(v18, 2)) + '\n' : scr_label
-scr_label := s19 ? scr_label + syminfo.ticker(a19) + ' ' + str.tostring(roundn(v19, 2)) + '\n' : scr_label
-scr_label := s20 ? scr_label + syminfo.ticker(a20) + ' ' + str.tostring(roundn(v20, 2)) + '\n' : scr_label
-scr_label := s21 ? scr_label + syminfo.ticker(a21) + ' ' + str.tostring(roundn(v21, 2)) + '\n' : scr_label
-scr_label := s22 ? scr_label + syminfo.ticker(a22) + ' ' + str.tostring(roundn(v22, 2)) + '\n' : scr_label
-scr_label := s23 ? scr_label + syminfo.ticker(a23) + ' ' + str.tostring(roundn(v23, 2)) + '\n' : scr_label
-scr_label := s24 ? scr_label + syminfo.ticker(a24) + ' ' + str.tostring(roundn(v24, 2)) + '\n' : scr_label
-scr_label := s25 ? scr_label + syminfo.ticker(a25) + ' ' + str.tostring(roundn(v25, 2)) + '\n' : scr_label
-scr_label := s26 ? scr_label + syminfo.ticker(a26) + ' ' + str.tostring(roundn(v26, 2)) + '\n' : scr_label
-scr_label := s27 ? scr_label + syminfo.ticker(a27) + ' ' + str.tostring(roundn(v27, 2)) + '\n' : scr_label
-scr_label := s28 ? scr_label + syminfo.ticker(a28) + ' ' + str.tostring(roundn(v28, 2)) + '\n' : scr_label
-scr_label := s29 ? scr_label + syminfo.ticker(a29) + ' ' + str.tostring(roundn(v29, 2)) + '\n' : scr_label
-scr_label := s30 ? scr_label + syminfo.ticker(a30) + ' ' + str.tostring(roundn(v30, 2)) + '\n' : scr_label
-scr_label := s31 ? scr_label + syminfo.ticker(a31) + ' ' + str.tostring(roundn(v31, 2)) + '\n' : scr_label
-scr_label := s32 ? scr_label + syminfo.ticker(a32) + ' ' + str.tostring(roundn(v32, 2)) + '\n' : scr_label
-scr_label := s33 ? scr_label + syminfo.ticker(a33) + ' ' + str.tostring(roundn(v33, 2)) + '\n' : scr_label
-scr_label := s34 ? scr_label + syminfo.ticker(a34) + ' ' + str.tostring(roundn(v34, 2)) + '\n' : scr_label
-scr_label := s35 ? scr_label + syminfo.ticker(a35) + ' ' + str.tostring(roundn(v35, 2)) + '\n' : scr_label
-scr_label := s36 ? scr_label + syminfo.ticker(a36) + ' ' + str.tostring(roundn(v36, 2)) + '\n' : scr_label
-scr_label := s37 ? scr_label + syminfo.ticker(a37) + ' ' + str.tostring(roundn(v37, 2)) + '\n' : scr_label
-// scr_label := s38 ? scr_label + syminfo.ticker(a38) + ' ' + str.tostring(roundn(v38, 2)) + '\n' : scr_label
-// scr_label := s39 ? scr_label + syminfo.ticker(a39) + ' ' + str.tostring(roundn(v39, 2)) + '\n' : scr_label
-// scr_label := s40 ? scr_label + syminfo.ticker(a40) + ' ' + str.tostring(roundn(v40, 2)) + '\n' : scr_label
+scr_label := s1 ? scr_label + syminfo.ticker(a01) + ' ' + str.tostring(v1) + '\n' : scr_label
+scr_label := s2 ? scr_label + syminfo.ticker(a02) + ' ' + str.tostring(v2) + '\n' : scr_label
+scr_label := s3 ? scr_label + syminfo.ticker(a03) + ' ' + str.tostring(v3) + '\n' : scr_label
+scr_label := s4 ? scr_label + syminfo.ticker(a04) + ' ' + str.tostring(v4) + '\n' : scr_label
+scr_label := s5 ? scr_label + syminfo.ticker(a05) + ' ' + str.tostring(v5) + '\n' : scr_label
+scr_label := s6 ? scr_label + syminfo.ticker(a06) + ' ' + str.tostring(v6) + '\n' : scr_label
+scr_label := s7 ? scr_label + syminfo.ticker(a07) + ' ' + str.tostring(v7) + '\n' : scr_label
+scr_label := s8 ? scr_label + syminfo.ticker(a08) + ' ' + str.tostring(v8) + '\n' : scr_label
+scr_label := s9 ? scr_label + syminfo.ticker(a09) + ' ' + str.tostring(v9) + '\n' : scr_label
+scr_label := s10 ? scr_label + syminfo.ticker(a10) + ' ' + str.tostring(v10) + '\n' : scr_label
+scr_label := s11 ? scr_label + syminfo.ticker(a11) + ' ' + str.tostring(v11) + '\n' : scr_label
+scr_label := s12 ? scr_label + syminfo.ticker(a12) + ' ' + str.tostring(v12) + '\n' : scr_label
+scr_label := s13 ? scr_label + syminfo.ticker(a13) + ' ' + str.tostring(v13) + '\n' : scr_label
+scr_label := s14 ? scr_label + syminfo.ticker(a14) + ' ' + str.tostring(v14) + '\n' : scr_label
+scr_label := s15 ? scr_label + syminfo.ticker(a15) + ' ' + str.tostring(v15) + '\n' : scr_label
+scr_label := s16 ? scr_label + syminfo.ticker(a16) + ' ' + str.tostring(v16) + '\n' : scr_label
+scr_label := s17 ? scr_label + syminfo.ticker(a17) + ' ' + str.tostring(v17) + '\n' : scr_label
+scr_label := s18 ? scr_label + syminfo.ticker(a18) + ' ' + str.tostring(v18) + '\n' : scr_label
+scr_label := s19 ? scr_label + syminfo.ticker(a19) + ' ' + str.tostring(v19) + '\n' : scr_label
+scr_label := s20 ? scr_label + syminfo.ticker(a20) + ' ' + str.tostring(v20) + '\n' : scr_label
+scr_label := s21 ? scr_label + syminfo.ticker(a21) + ' ' + str.tostring(v21) + '\n' : scr_label
+scr_label := s22 ? scr_label + syminfo.ticker(a22) + ' ' + str.tostring(v22) + '\n' : scr_label
+scr_label := s23 ? scr_label + syminfo.ticker(a23) + ' ' + str.tostring(v23) + '\n' : scr_label
+scr_label := s24 ? scr_label + syminfo.ticker(a24) + ' ' + str.tostring(v24) + '\n' : scr_label
+scr_label := s25 ? scr_label + syminfo.ticker(a25) + ' ' + str.tostring(v25) + '\n' : scr_label
+scr_label := s26 ? scr_label + syminfo.ticker(a26) + ' ' + str.tostring(v26) + '\n' : scr_label
+scr_label := s27 ? scr_label + syminfo.ticker(a27) + ' ' + str.tostring(v27) + '\n' : scr_label
+scr_label := s28 ? scr_label + syminfo.ticker(a28) + ' ' + str.tostring(v28) + '\n' : scr_label
+scr_label := s29 ? scr_label + syminfo.ticker(a29) + ' ' + str.tostring(v29) + '\n' : scr_label
+scr_label := s30 ? scr_label + syminfo.ticker(a30) + ' ' + str.tostring(v30) + '\n' : scr_label
+scr_label := s31 ? scr_label + syminfo.ticker(a31) + ' ' + str.tostring(v31) + '\n' : scr_label
+scr_label := s32 ? scr_label + syminfo.ticker(a32) + ' ' + str.tostring(v32) + '\n' : scr_label
+scr_label := s33 ? scr_label + syminfo.ticker(a33) + ' ' + str.tostring(v33) + '\n' : scr_label
+scr_label := s34 ? scr_label + syminfo.ticker(a34) + ' ' + str.tostring(v34) + '\n' : scr_label
+scr_label := s35 ? scr_label + syminfo.ticker(a35) + ' ' + str.tostring(v35) + '\n' : scr_label
+scr_label := s36 ? scr_label + syminfo.ticker(a36) + ' ' + str.tostring(v36) + '\n' : scr_label
+scr_label := s37 ? scr_label + syminfo.ticker(a37) + ' ' + str.tostring(v37) + '\n' : scr_label
+// scr_label := s38 ? scr_label + syminfo.ticker(a38) + ' ' + str.tostring(v38) + '\n' : scr_label
+// scr_label := s39 ? scr_label + syminfo.ticker(a39) + ' ' + str.tostring(v39) + '\n' : scr_label
+// scr_label := s40 ? scr_label + syminfo.ticker(a40) + ' ' + str.tostring(v40) + '\n' : scr_label
 
-lab_1 = label.new(bar_index + loc,close, scr_label, color=color.green, textcolor=color.white, style=label.style_label_center)
+lab_1 = label.new(bar_index + loc, close, scr_label, color=color.green, textcolor=color.white, style=label.style_label_center)
 label.delete(lab_1[1])
 
 
 if str.length(scr_label) > 8
     alert(scr_label,alert.freq_once_per_bar_close)
-//--------------------------
+
