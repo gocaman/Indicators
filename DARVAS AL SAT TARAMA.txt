@@ -2,7 +2,7 @@
 indicator('Darvas Box AL SAT', overlay=true)
 grupSec = input.string(defval='1', options=['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','15','ÖZEL LİSTE'], group='Taraması yapılacak 40\'arlı gruplardan birini seçin', title='HİSSE GRUBU SEÇ')
 var ma_type = input.string('EMA', 'Hareketli Ortalama Türü', options=['EMA'])
-per = input.timeframe(defval=' ', title="ZAMAN DİLİMİ SEÇ")
+per = input.timeframe(defval='D', title="ZAMAN DİLİMİ SEÇ")
 loc = input.int(defval=20, title='Konum Ayarı', minval = -300,maxval = 500 , step = 5,  group='Tablonun konumunu belirleyin')
 
 boxp = input.int(defval=7, title='Length', minval=1, maxval=500)
