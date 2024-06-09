@@ -1,0 +1,510 @@
+//@version=5
+indicator(title="P-MACD TARAMA2", shorttitle="P-MACD TARAMA2")
+grupSec = input.string(defval='1', options=['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','ÖZEL LİSTE'], group='Taraması yapılacak 40\'arlı gruplardan birini seçin', title='Grup seç')
+per = input.timeframe(defval='', title='PERİYOT',group = "Tarama yapmak istediğiniz periyotu seçin")
+loc = input.int(defval=20, title='Konum Ayarı', minval = -300,maxval = 500 , step = 5,  group='Tablonun konumunu belirleyin')
+
+
+
+fast_length = input(title="Fast Length", defval=12)
+slow_length = input(title="Slow Length", defval=26)
+src = input(title="Source", defval=close)
+signal_length = input.int(title="Signal Smoothing",  minval = 1, maxval = 50, defval = 9)
+sma_source = input.string(title="Oscillator MA Type",  defval="EMA", options=["SMA", "EMA"])
+sma_signal = input.string(title="Signal Line MA Type", defval="EMA", options=["SMA", "EMA"])
+// Plot colors
+col_macd = input(#0238cd, "MACD Line  ", group="Color Settings", inline="MACD")
+col_signal = input(#FF6D00, "Signal Line  ", group="Color Settings", inline="Signal")
+col_grow_above = input(#26A69A, "Above   Grow", group="Histogram", inline="Above")
+col_fall_above = input(#B2DFDB, "Fall", group="Histogram", inline="Above")
+col_grow_below = input(#FFCDD2, "Below Grow", group="Histogram", inline="Below")
+col_fall_below = input(#FF5252, "Fall", group="Histogram", inline="Below")
+// Calculating
+fast_ma = sma_source == "SMA" ? ta.sma(src, fast_length) : ta.ema(src, fast_length)
+slow_ma = sma_source == "SMA" ? ta.sma(src, slow_length) : ta.ema(src, slow_length)
+macd = fast_ma - slow_ma
+signal = sma_signal == "SMA" ? ta.sma(macd, signal_length) : ta.ema(macd, signal_length)
+hist = macd - signal
+hline(0, "Zero Line", color=color.new(#787B86, 50))
+// plot(hist, title="Histogram", style=plot.style_columns, color=(hist>=0 ? (hist[1] < hist ? col_grow_above : col_fall_above) : (hist[1] < hist ? col_grow_below : col_fall_below)))
+// plot(macd, title="MACD", color=col_macd)
+// plot(signal, title="Signal", color=col_signal)
+
+/////////////////
+
+// MACD -----
+// [macd, sig, hist] = ta.macd(src, s_len, l_len, sig_len)
+gc = ta.crossover(macd, signal)
+dc = ta.crossunder(macd, signal)
+// histogram pattern -----
+hist_up_plus = hist > 0 and hist > hist[1]
+hist_down_plus = hist > 0 and hist < hist[1]
+hist_up_minus = hist < 0 and hist > hist[1]
+hist_down_minus = hist < 0 and hist < hist[1]
+hist_color = hist_up_plus ? color.lime : hist_down_plus ? color.green : hist_up_minus ? color.maroon : color.red
+// plot -----
+plot(hist, 'histogram', hist_color, 2, plot.style_histogram)
+plot(signal, 'signal', color.new(#ff6a00, 0), 1)
+plot(macd, 'MACD', color.new(#0268b2, 0), 1)
+plot(macd, 'GC/DC', gc ? color.rgb(98, 159, 0) : dc ? color.rgb(205, 0, 0) : na, 4, plot.style_circles, transp=0)
+
+
+
+
+///DIVERGENCE
+
+donttouchzero = input(title='Don\'t touch the zero line?', defval=true)
+
+lbR = input(title='Pivot Lookback Right', defval=5)
+lbL = input(title='Pivot Lookback Left', defval=5)
+rangeUpper = input(title='Max of Lookback Range', defval=60)
+rangeLower = input(title='Min of Lookback Range', defval=5)
+plotBull = input(title='Plot Bullish', defval=true)
+plotHiddenBull = false
+plotBear = input(title='Plot Bearish', defval=true)
+plotHiddenBear = false
+bearColor = color.red
+bullColor = color.green
+hiddenBullColor = color.new(color.green, 80)
+hiddenBearColor = color.new(color.red, 80)
+textColor = color.white
+noneColor = color.new(color.white, 100)
+osc = macd
+
+plFound = na(ta.pivotlow(osc, lbL, lbR)) ? false : true
+phFound = na(ta.pivothigh(osc, lbL, lbR)) ? false : true
+_inRange(cond) =>
+    bars = ta.barssince(cond == true)
+    rangeLower <= bars and bars <= rangeUpper
+
+//------------------------------------------------------------------------------
+// Regular Bullish
+// Osc: Higher Low
+
+oscHL = osc[lbR] > ta.valuewhen(plFound, osc[lbR], 1) and _inRange(plFound[1]) and osc[lbR] < 0
+
+// Price: Lower Low
+
+priceLL = low[lbR] < ta.valuewhen(plFound, low[lbR], 1)
+priceHHZero = ta.highest(osc, lbL + lbR + 5)
+//plot(priceHHZero,title="priceHHZero",color=color.green)
+blowzero = donttouchzero ? priceHHZero < 0 : true
+bullCond = plotBull and priceLL and oscHL and plFound and blowzero
+
+plot(plFound ? osc[lbR] : na, offset=-lbR, title='Regular Bullish', linewidth=2, color=bullCond ? bullColor : noneColor, transp=0)
+
+plotshape(bullCond ? osc[lbR] : na, offset=-lbR, title='Regular Bullish Label', text=' Bull ', style=shape.labelup, location=location.absolute, color=color.new(bullColor, 0), textcolor=color.new(textColor, 0))
+
+//------------------------------------------------------------------------------
+// Hidden Bullish
+// Osc: Lower Low
+
+oscLL = osc[lbR] < ta.valuewhen(plFound, osc[lbR], 1) and _inRange(plFound[1])
+
+// Price: Higher Low
+
+priceHL = low[lbR] > ta.valuewhen(plFound, low[lbR], 1)
+hiddenBullCond = plotHiddenBull and priceHL and oscLL and plFound
+
+plot(plFound ? osc[lbR] : na, offset=-lbR, title='Hidden Bullish', linewidth=2, color=hiddenBullCond ? hiddenBullColor : noneColor, transp=0)
+
+plotshape(hiddenBullCond ? osc[lbR] : na, offset=-lbR, title='Hidden Bullish Label', text=' H Bull ', style=shape.labelup, location=location.absolute, color=color.new(bullColor, 0), textcolor=color.new(textColor, 0))
+
+//------------------------------------------------------------------------------
+// Regular Bearish
+// Osc: Lower High
+
+oscLH = osc[lbR] < ta.valuewhen(phFound, osc[lbR], 1) and _inRange(phFound[1]) and osc[lbR] > 0
+
+priceLLZero = ta.lowest(osc, lbL + lbR + 5)
+//plot(priceLLZero,title="priceLLZero", color=color.red)
+bearzero = donttouchzero ? priceLLZero > 0 : true
+
+
+// Price: Higher High
+
+priceHH = high[lbR] > ta.valuewhen(phFound, high[lbR], 1)
+
+bearCond = plotBear and priceHH and oscLH and phFound and bearzero
+
+plot(phFound ? osc[lbR] : na, offset=-lbR, title='Regular Bearish', linewidth=2, color=bearCond ? bearColor : noneColor, transp=0)
+
+plotshape(bearCond ? osc[lbR] : na, offset=-lbR, title='Regular Bearish Label', text=' Bear ', style=shape.labeldown, location=location.absolute, color=color.new(bearColor, 0), textcolor=color.new(textColor, 0))
+
+//------------------------------------------------------------------------------
+// Hidden Bearish
+// Osc: Higher High
+
+oscHH = osc[lbR] > ta.valuewhen(phFound, osc[lbR], 1) and _inRange(phFound[1])
+
+// Price: Lower High
+
+priceLH = high[lbR] < ta.valuewhen(phFound, high[lbR], 1)
+
+hiddenBearCond = plotHiddenBear and priceLH and oscHH and phFound
+
+plot(phFound ? osc[lbR] : na, offset=-lbR, title='Hidden Bearish', linewidth=2, color=hiddenBearCond ? hiddenBearColor : noneColor, transp=0)
+
+plotshape(hiddenBearCond ? osc[lbR] : na, offset=-lbR, title='Hidden Bearish Label', text=' H Bear ', style=shape.labeldown, location=location.absolute, color=color.new(bearColor, 0), textcolor=color.new(textColor, 0))
+
+
+
+alertcondition(bullCond, title='Bull', message='Regular Bull Div {{ticker}} XXmin')
+alertcondition(bearCond, title='Bear', message='Regular Bear Div {{ticker}} XXmin')
+alertcondition(hiddenBullCond, title='H Bull', message='Hidden Bull Div {{ticker}} XXmin')
+alertcondition(hiddenBearCond, title='H Bear', message='Hidden Bear Div {{ticker}} XXmin')
+
+
+Var_Func(source, length) =>
+    valpha = 2 / (length + 1)
+    vud1 = source > source[1] ? source - source[1] : 0
+    vdd1 = source < source[1] ? source[1] - source : 0
+    vUD = math.sum(vud1, 9)
+    vDD = math.sum(vdd1, 9)
+    vCMO = nz((vUD - vDD) / (vUD + vDD))
+    VAR = 0.0
+    VAR := nz(valpha * math.abs(vCMO) * source) + (1 - valpha * math.abs(vCMO)) * nz(VAR[1])
+    VAR
+
+
+
+ma(source, length, type) =>
+    switch type
+        "SMA" => ta.sma(source, length)
+        "Bollinger Bands" => ta.sma(source, length)
+        "EMA" => ta.ema(source, length)
+        "SMMA (RMA)" => ta.rma(source, length)
+        "WMA" => ta.wma(source, length)
+        "VWMA" => ta.vwma(source, length)
+		"VAR" => Var_Func(source, length)
+
+rsiLengthInput = input.int(14, minval=1, title="RSI Length", group="RSI Settings")
+rsiSourceInput = input.source(close, "Source", group="RSI Settings")
+maTypeInput = input.string("VAR", title="MA Type", options=["SMA", "Bollinger Bands", "EMA", "SMMA (RMA)", "WMA", "VWMA", "VAR"], group="MOST Settings")
+maLengthInput = input.int(5, title="MA Length", group="MOST Settings")
+percent = input.float(9.0, 'STOP LOSS Percent', step=0.1, minval=0, group="MOST Settings")
+bbMultInput = input.float(2.0, minval=0.001, maxval=50, title="BB StdDev", group="MOST Settings", display = display.data_window)
+showDivergence = input.bool(true, title="Show Divergence", group="RSI Settings", display = display.data_window)
+showsignalsk = input(title='Show Signals?', defval=false)
+
+up = ta.rma(math.max(ta.change(rsiSourceInput), 0), rsiLengthInput)
+down = ta.rma(-math.min(ta.change(rsiSourceInput), 0), rsiLengthInput)
+rsi = down == 0 ? 100 : up == 0 ? 0 : 100 - (100 / (1 + up / down))
+rsiMA = ma(rsi, maLengthInput, maTypeInput)
+isBB = maTypeInput == "Bollinger Bands"
+
+exMov = rsiMA
+fark = exMov * percent * 0.01
+longStop = exMov - fark
+longStopPrev = nz(longStop[1], longStop)
+longStop := exMov > longStopPrev ? math.max(longStop, longStopPrev) : longStop
+shortStop = exMov + fark
+shortStopPrev = nz(shortStop[1], shortStop)
+shortStop := exMov < shortStopPrev ? math.min(shortStop, shortStopPrev) : shortStop
+dir = 1
+dir := nz(dir[1], dir)
+dir := dir == -1 and exMov > shortStopPrev ? 1 : dir == 1 and exMov < longStopPrev ? -1 : dir
+MOST = dir == 1 ? longStop : shortStop
+cro= ta.crossover(exMov, MOST)
+cru= ta.crossunder(exMov, MOST)
+direction = 0
+direction := cro ? 1 : cru ? -1 : direction[1]
+// plot(MOST, color=color.new(color.maroon, 0), linewidth=3, title='MOST')
+// plotshape(cro and showsignalsk, title='BUY', text='BUY', location=location.bottom, style=shape.labelup, size=size.tiny, color=color.new(#0F18BF, 0), textcolor=color.new(color.white, 0))
+// plotshape(cru and showsignalsk, title='SELL', text='SELL', location=location.top, style=shape.labeldown, size=size.tiny, color=color.new(#0F18BF, 0), textcolor=color.new(color.white, 0))
+// alertcondition(cro, title='BUY', message='BUY SIGNAL!')
+// alertcondition(cru, title='SELL', message='SELL SIGNAL!')
+/////////////////////
+
+// ////////////TKE
+// period = input.int(14, title='period', minval=1, maxval=500)
+// emaperiod = input.int(5, title='HHOperiod', minval=1, maxval=500)
+// novolumedata = input(title='Exclude Volume in Calculation?', defval=false)
+// EMA = input(false, title='Show HHO Line?')
+// momentum = close / close[period] * 100
+// cci = ta.cci(hlc3, period)
+// rsi1 = ta.rsi(close, period)
+// willr = (ta.highest(high, period) - close) / (ta.highest(high, period) - ta.lowest(low, period)) * -100
+// stosk = ta.stoch(close, high, low, period)
+// upper_s = math.sum(volume * (ta.change(hlc3) <= 0 ? 0 : hlc3), period)
+// lower_s = math.sum(volume * (ta.change(hlc3) >= 0 ? 0 : hlc3), period)
+// mfi = 100.0 - 100.0 / (1.0 + upper_s / lower_s)
+
+// spacing = input(7)
+// length7 = input.int(7, minval=1)
+// length14 = input.int(14, minval=1)
+// length28 = input.int(28, minval=1)
+// average(bp, tr_, length) =>
+//     math.sum(bp, length) / math.sum(tr_, length)
+// high_ = math.max(high, close[1])
+// low_ = math.min(low, close[1])
+// bp = close - low_
+// tr_ = high_ - low_
+// avg7 = average(bp, tr_, length7)
+// avg14 = average(bp, tr_, length14)
+// avg28 = average(bp, tr_, length28)
+// ult = 100 * (4 * avg7 + 2 * avg14 + avg28) / 7
+
+// TKEline = novolumedata ? (ult + momentum + cci + rsi1 + willr + stosk) / 6 : (ult + mfi + momentum + cci + rsi1 + willr + stosk) / 7
+// EMAline = ta.ema(TKEline, emaperiod)
+
+// plot(TKEline, color=color.new(#0010f7, 0), linewidth=1, title='TKE')
+
+// plot(EMA and EMAline ? EMAline : na, title='HHO Line', style=plot.style_line, linewidth=1, color=color.new(#fd0101, 0))
+
+// plot(20, color=color.new(color.blue, 0), linewidth=0, title='20')
+// plot(80, color=color.new(color.red, 0), linewidth=0, title='80')
+// plot(0, color=color.new(color.purple, 0), linewidth=0, title='0')
+// plot(50, color=color.new(#ff0000, 0), linewidth=0, title='50')
+
+
+// band0 = hline(0, 'Lower Band', color=#0a0500)
+// band1 = hline(20, 'Lower Band', color=#110901)
+// band2 = hline(50, 'Middle Band', color=#f30000)
+// band3 = hline(80, 'Upper Band', color=#0a0500)
+// band4 = hline(100, 'Upper Band', color=#110901)
+
+// fill(band0, band1, color.new(#fef606, 68), title='Background')
+// fill(band3, band4, color.new(#fef606, 68), title='Background')
+
+
+
+// band8 = hline(0, 'ZERO line', color=#070000)
+// band9 = hline(50, 'Orta Çizgi', color=#fc0404)
+
+
+
+// TKE_crossover_up = ta.crossover(TKEline, EMAline)
+// TKE_crossover_down = ta.crossunder(TKEline, EMAline)
+
+
+// plotshape(TKE_crossover_up, title='AL', color=color.new(#46c00e, 26), textcolor=color.new(#ffffff, 0), text='A', style=shape.labelup, location = location.bottom)
+// plotshape(TKE_crossover_down, title='SAT', color=color.new(#dd0303, 0), textcolor=color.new(#ffffff, 0), text='S', style=shape.labeldown, location = location.top)
+
+
+
+/////////////////////////// TARAMA
+
+
+MACDKES = ta.crossover(macd, signal) and macd <=  0
+RSI50 = ta.crossover(rsi, 50)
+// TKEKES=ta.crossover(TKEline, EMAline) and TKEline <= 20
+
+
+
+func() =>
+   
+    cond = MACDKES or bullCond
+
+
+
+
+    // cond = (MACDKES and RSI50 ? true : false) or (MACDKES and RSI50 and TKEKES? true : false)
+    
+    // cond = (MACDKES ? RSI50 : na) or  (TKEKES ? MACDKES : na) or (TKEKES ? RSI50 : na)
+
+    // cond = (ta.crossover(macd, signal) and (macd <= 0 or macd >= 0)) and ((ta.crossover(rsi, MOST) or ta.crossover(exMov, MOST) or ta.crossover(rsi, 50)) or (ta.crossover(TKEline, EMAline) or TKEline < 20))
+
+    [close, cond]
+
+
+
+
+
+////////////////////
+//GRUP VE TARANACAK HİSSE SAYISINI AYNI ŞEKİLDE DİLEDİĞİNİZ GİBİ ARTIRABİLİRSİNİZ.
+sb1 =  input.symbol(title='1',  defval='BIST:AKSA',group = "╠═════════════ ÖZEL LİSTE ═════════════╣")
+sb2 =  input.symbol(title='2',  defval='BIST:ALARK')
+sb3 =  input.symbol(title='3',  defval='BIST:ARCLK')
+sb4 =  input.symbol(title='4',  defval='BIST:AYGAZ')
+sb5 =  input.symbol(title='5',  defval='BIST:BRSAN')
+sb6 =  input.symbol(title='6',  defval='BIST:CCOLA')
+sb7 =  input.symbol(title='7',  defval='BIST:CIMSA')
+sb8 =  input.symbol(title='8',  defval='BIST:DOAS')
+sb9 =  input.symbol(title='9',  defval='BIST:ENJSA')
+sb10 = input.symbol(title='10', defval='BIST:FROTO')
+sb11 = input.symbol(title='11', defval='BIST:INDES')
+sb12 = input.symbol(title='12', defval='BIST:JANTS')
+sb13 = input.symbol(title='13', defval='BIST:KCAER')
+sb14 = input.symbol(title='14', defval='BIST:KCHOL')
+sb15 = input.symbol(title='15', defval='BIST:MAVI')
+sb16 = input.symbol(title='16', defval='BIST:MGROS')
+sb17 = input.symbol(title='17', defval='BIST:OTKAR')
+sb18 = input.symbol(title='18', defval='BIST:PGSUS')
+sb19 = input.symbol(title='19', defval='BIST:SAHOL')
+sb20 = input.symbol(title='20', defval='BIST:TAVHL')
+sb21 = input.symbol(title='21', defval='BIST:THYAO')
+sb22 = input.symbol(title='22', defval='BIST:TOASO')
+sb23 = input.symbol(title='23', defval='BIST:TTRAK')
+sb24 = input.symbol(title='24', defval='BIST:TUPRS')
+sb25 = input.symbol(title='25', defval='BIST:SISE')
+sb26 = input.symbol(title='26', defval='BIST:CWENE')
+sb27 = input.symbol(title='27', defval='BIST:ASTOR')
+sb28 = input.symbol(title='28', defval='BIST:BINHO')
+sb29 = input.symbol(title='29', defval='BIST:AKBNK')
+sb30 = input.symbol(title='30', defval='BIST:VAKKO')
+sb31 = input.symbol(title='31', defval='BIST:BIMAS')
+sb32 = input.symbol(title='32', defval='BIST:HALKB')
+sb33 = input.symbol(title='33', defval='BIST:SOKM')
+sb34 = input.symbol(title='34', defval='BIST:TCELL')
+sb35 = input.symbol(title='35', defval='BINANCE:BTCUSDT')
+sb36 = input.symbol(title='36', defval='BINANCE:ADAUSDT')
+sb37 = input.symbol(title='37', defval='BINANCE:ETHUSDT')
+sb38 = input.symbol(title='38', defval='BINANCE:SOLUSDT')
+sb39 = input.symbol(title='39', defval='BINANCE:BNBUSDT')
+sb40 = input.symbol(title='40', defval='BIST:TURSG')
+
+
+
+
+
+
+
+a01 = grupSec == '1' ? 'BIST:A1CAP' : grupSec == '2' ? 'BIST:ARCLK' : grupSec == '3' ? 'BIST:BIGCH' : grupSec == '4' ? 'BIST:CEMTS' : grupSec == '5' ? 'BIST:DZGYO' : grupSec == '6' ? 'BIST:FLAP' : grupSec == '7' ? 'BIST:HEKTS' : grupSec == '8' ? 'BIST:IZMDC' : grupSec == '9' ? 'BIST:KRSTL' : grupSec == '10' ? 'BIST:MHRGY' : grupSec == '11' ? 'BIST:OZRDN' : grupSec == '12' ? 'BIST:RYGYO' : grupSec == '13' ? 'BIST:TABGD' : grupSec == '14' ? 'BIST:ULUUN' : grupSec == 'ÖZEL LİSTE' ? sb1 : na
+a02 = grupSec == '1' ? 'BIST:ACSEL' : grupSec == '2' ? 'BIST:ARDYZ' : grupSec == '3' ? 'BIST:BIMAS' : grupSec == '4' ? 'BIST:CEOEM' : grupSec == '5' ? 'BIST:EBEBK' : grupSec == '6' ? 'BIST:FMIZP' : grupSec == '7' ? 'BIST:HKTM' : grupSec == '8' ? 'BIST:JANTS' : grupSec == '9' ? 'BIST:KRTEK' : grupSec == '10' ? 'BIST:MIATK' : grupSec == '11' ? 'BIST:OZSUB' : grupSec == '12' ? 'BIST:RYSAS' : grupSec == '13' ? 'BIST:TARKM' : grupSec == '14' ? 'BIST:UMPAS' : grupSec == 'ÖZEL LİSTE' ? sb2 : na
+a03 = grupSec == '1' ? 'BIST:ADEL' : grupSec == '2' ? 'BIST:ARENA' : grupSec == '3' ? 'BIST:BINHO' : grupSec == '4' ? 'BIST:CIMSA' : grupSec == '5' ? 'BIST:ECILC' : grupSec == '6' ? 'BIST:FONET' : grupSec == '7' ? 'BIST:HLGYO' : grupSec == '8' ? 'BIST:KAPLM' : grupSec == '9' ? 'BIST:KRVGD' : grupSec == '10' ? 'BIST:MIPAZ' : grupSec == '11' ? 'BIST:PAGYO' : grupSec == '12' ? 'BIST:SAFKR' : grupSec == '13' ? 'BIST:TATEN' : grupSec == '14' ? 'BIST:UNLU' : grupSec == 'ÖZEL LİSTE' ? sb3 : na
+a04 = grupSec == '1' ? 'BIST:ADESE' : grupSec == '2' ? 'BIST:ARSAN' : grupSec == '3' ? 'BIST:BIOEN' : grupSec == '4' ? 'BIST:CLEBI' : grupSec == '5' ? 'BIST:ECZYT' : grupSec == '6' ? 'BIST:FORMT' : grupSec == '7' ? 'BIST:HTTBT' : grupSec == '8' ? 'BIST:KAREL' : grupSec == '9' ? 'BIST:KSTUR' : grupSec == '10' ? 'BIST:MMCAS' : grupSec == '11' ? 'BIST:PAMEL' : grupSec == '12' ? 'BIST:SAHOL' : grupSec == '13' ? 'BIST:TATGD' : grupSec == '14' ? 'BIST:USAK' : grupSec == 'ÖZEL LİSTE' ? sb4 : na
+a05 = grupSec == '1' ? 'BIST:ADGYO' : grupSec == '2' ? 'BIST:ARTMS' : grupSec == '3' ? 'BIST:BIZIM' : grupSec == '4' ? 'BIST:CMBTN' : grupSec == '5' ? 'BIST:EDATA' : grupSec == '6' ? 'BIST:FORTE' : grupSec == '7' ? 'BIST:HUBVC' : grupSec == '8' ? 'BIST:KARSN' : grupSec == '9' ? 'BIST:KTLEV' : grupSec == '10' ? 'BIST:MNDRS' : grupSec == '11' ? 'BIST:PAPIL' : grupSec == '12' ? 'BIST:SAMAT' : grupSec == '13' ? 'BIST:TAVHL' : grupSec == '14' ? 'BIST:UZERB' : grupSec == 'ÖZEL LİSTE' ? sb5 : na
+a06 = grupSec == '1' ? 'BIST:AEFES' : grupSec == '2' ? 'BIST:ARZUM' : grupSec == '3' ? 'BIST:BIGCH' : grupSec == '4' ? 'BIST:CMENT' : grupSec == '5' ? 'BIST:EDIP' : grupSec == '6' ? 'BIST:FRIGO' : grupSec == '7' ? 'BIST:HUNER' : grupSec == '8' ? 'BIST:KARTN' : grupSec == '9' ? 'BIST:KTSKR' : grupSec == '10' ? 'BIST:MNDTR' : grupSec == '11' ? 'BIST:PARSN' : grupSec == '12' ? 'BIST:SANEL' : grupSec == '13' ? 'BIST:TBORG' : grupSec == '14' ? 'BIST:VAKBN' : grupSec == 'ÖZEL LİSTE' ? sb6 : na
+a07 = grupSec == '1' ? 'BIST:AFYON' : grupSec == '2' ? 'BIST:ASELS' : grupSec == '3' ? 'BIST:BIMAS' : grupSec == '4' ? 'BIST:CONSE' : grupSec == '5' ? 'BIST:EGEEN' : grupSec == '6' ? 'BIST:FROTO' : grupSec == '7' ? 'BIST:HURGZ' : grupSec == '8' ? 'BIST:KARYE' : grupSec == '9' ? 'BIST:KUTPO' : grupSec == '10' ? 'BIST:MOBTL' : grupSec == '11' ? 'BIST:PASEU' : grupSec == '12' ? 'BIST:SANFM' : grupSec == '13' ? 'BIST:TCELL' : grupSec == '14' ? 'BIST:VAKFN' : grupSec == 'ÖZEL LİSTE' ? sb7 : na
+a08 = grupSec == '1' ? 'BIST:AGESA' : grupSec == '2' ? 'BIST:ASGYO' : grupSec == '3' ? 'BIST:BINHO' : grupSec == '4' ? 'BIST:COSMO' : grupSec == '5' ? 'BIST:EGEPO' : grupSec == '6' ? 'BIST:FZLGY' : grupSec == '7' ? 'BIST:ICBCT' : grupSec == '8' ? 'BIST:KATMR' : grupSec == '9' ? 'BIST:KUVVA' : grupSec == '10' ? 'BIST:MOGAN' : grupSec == '11' ? 'BIST:PATEK' : grupSec == '12' ? 'BIST:SANKO' : grupSec == '13' ? 'BIST:TDGYO' : grupSec == '14' ? 'BIST:VAKKO' : grupSec == 'ÖZEL LİSTE' ? sb8 : na
+a09 = grupSec == '1' ? 'BIST:AGHOL' : grupSec == '2' ? 'BIST:ASTOR' : grupSec == '3' ? 'BIST:BIOEN' : grupSec == '4' ? 'BIST:CRDFA' : grupSec == '5' ? 'BIST:EGGUB' : grupSec == '6' ? 'BIST:GARAN' : grupSec == '7' ? 'BIST:ICUGS' : grupSec == '8' ? 'BIST:KAYSE' : grupSec == '9' ? 'BIST:KUYAS' : grupSec == '10' ? 'BIST:MPARK' : grupSec == '11' ? 'BIST:PCILT' : grupSec == '12' ? 'BIST:SARKY' : grupSec == '13' ? 'BIST:TEKTU' : grupSec == '14' ? 'BIST:VANGD' : grupSec == 'ÖZEL LİSTE' ? sb9 : na
+a10 = grupSec == '1' ? 'BIST:AGROT' : grupSec == '2' ? 'BIST:ASUZU' : grupSec == '3' ? 'BIST:BIZIM' : grupSec == '4' ? 'BIST:CRFSA' : grupSec == '5' ? 'BIST:EGPRO' : grupSec == '6' ? 'BIST:GARFA' : grupSec == '7' ? 'BIST:IDGYO' : grupSec == '8' ? 'BIST:KBORU' : grupSec == '9' ? 'BIST:KZBGY' : grupSec == '10' ? 'BIST:MRGYO' : grupSec == '11' ? 'BIST:PEGYO' : grupSec == '12' ? 'BIST:SASA' : grupSec == '13' ? 'BIST:TERA' : grupSec == '14' ? 'BIST:VBTYZ' : grupSec == 'ÖZEL LİSTE' ? sb10 : na
+a11 = grupSec == '1' ? 'BIST:AGYO' : grupSec == '2' ? 'BIST:ATAGY' : grupSec == '3' ? 'BIST:BJKAS' : grupSec == '4' ? 'BIST:CUSAN' : grupSec == '5' ? 'BIST:EGSER' : grupSec == '6' ? 'BIST:GEDIK' : grupSec == '7' ? 'BIST:IEYHO' : grupSec == '8' ? 'BIST:KCAER' : grupSec == '9' ? 'BIST:KZGYO' : grupSec == '10' ? 'BIST:MRSHL' : grupSec == '11' ? 'BIST:PEKGY' : grupSec == '12' ? 'BIST:SAYAS' : grupSec == '13' ? 'BIST:TETMT' : grupSec == '14' ? 'BIST:VERTU' : grupSec == 'ÖZEL LİSTE' ? sb11 : na
+a12 = grupSec == '1' ? 'BIST:AHGAZ' : grupSec == '2' ? 'BIST:ATAKP' : grupSec == '3' ? 'BIST:BLCYT' : grupSec == '4' ? 'BIST:CVKMD' : grupSec == '5' ? 'BIST:EKGYO' : grupSec == '6' ? 'BIST:GEDZA' : grupSec == '7' ? 'BIST:IHAAS' : grupSec == '8' ? 'BIST:KCHOL' : grupSec == '9' ? 'BIST:LIDER' : grupSec == '10' ? 'BIST:MSGYO' : grupSec == '11' ? 'BIST:PENGD' : grupSec == '12' ? 'BIST:SDTTR' : grupSec == '13' ? 'BIST:TEZOL' : grupSec == '14' ? 'BIST:VERUS' : grupSec == 'ÖZEL LİSTE' ? sb12 : na
+a13 = grupSec == '1' ? 'BIST:AKBNK' : grupSec == '2' ? 'BIST:ATATP' : grupSec == '3' ? 'BIST:BMSCH' : grupSec == '4' ? 'BIST:CWENE' : grupSec == '5' ? 'BIST:EKIZ' : grupSec == '6' ? 'BIST:GENIL' : grupSec == '7' ? 'BIST:IHEVA' : grupSec == '8' ? 'BIST:KENT' : grupSec == '9' ? 'BIST:LIDFA' : grupSec == '10' ? 'BIST:MTRKS' : grupSec == '11' ? 'BIST:PENTA' : grupSec == '12' ? 'BIST:SEGYO' : grupSec == '13' ? 'BIST:TGSAS' : grupSec == '14' ? 'BIST:VESBE' : grupSec == 'ÖZEL LİSTE' ? sb13 : na
+a14 = grupSec == '1' ? 'BIST:AKCNS' : grupSec == '2' ? 'BIST:ATEKS' : grupSec == '3' ? 'BIST:BMSTL' : grupSec == '4' ? 'BIST:DAGHL' : grupSec == '5' ? 'BIST:EKOS' : grupSec == '6' ? 'BIST:GENTS' : grupSec == '7' ? 'BIST:IHGZT' : grupSec == '8' ? 'BIST:KERVN' : grupSec == '9' ? 'BIST:LINK' : grupSec == '10' ? 'BIST:MTRYO' : grupSec == '11' ? 'BIST:PETKM' : grupSec == '12' ? 'BIST:SEKFK' : grupSec == '13' ? 'BIST:THYAO' : grupSec == '14' ? 'BIST:VESTL' : grupSec == 'ÖZEL LİSTE' ? sb14 : na
+a15 = grupSec == '1' ? 'BIST:AKENR' : grupSec == '2' ? 'BIST:ATLAS' : grupSec == '3' ? 'BIST:BNTAS' : grupSec == '4' ? 'BIST:DAGI' : grupSec == '5' ? 'BIST:EKSUN' : grupSec == '6' ? 'BIST:GEREL' : grupSec == '7' ? 'BIST:IHLAS' : grupSec == '8' ? 'BIST:KERVT' : grupSec == '9' ? 'BIST:LKMNH' : grupSec == '10' ? 'BIST:MZHLD' : grupSec == '11' ? 'BIST:PETUN' : grupSec == '12' ? 'BIST:SEKUR' : grupSec == '13' ? 'BIST:TKFEN' : grupSec == '14' ? 'BIST:VKFYO' : grupSec == 'ÖZEL LİSTE' ? sb15 : na
+a16 = grupSec == '1' ? 'BIST:AKFGY' : grupSec == '2' ? 'BIST:ATSYH' : grupSec == '3' ? 'BIST:BOBET' : grupSec == '4' ? 'BIST:DAPGM' : grupSec == '5' ? 'BIST:ELITE' : grupSec == '6' ? 'BIST:GESAN' : grupSec == '7' ? 'BIST:IHLGM' : grupSec == '8' ? 'BIST:KFEIN' : grupSec == '9' ? 'BIST:LMKDC' : grupSec == '10' ? 'BIST:NATEN' : grupSec == '11' ? 'BIST:PGSUS' : grupSec == '12' ? 'BIST:SELEC' : grupSec == '13' ? 'BIST:TKNSA' : grupSec == '14' ? 'BIST:VKGYO' : grupSec == 'ÖZEL LİSTE' ? sb16 : na
+a17 = grupSec == '1' ? 'BIST:AKFYE' : grupSec == '2' ? 'BIST:AVGYO' : grupSec == '3' ? 'BIST:BORLS' : grupSec == '4' ? 'BIST:DARDL' : grupSec == '5' ? 'BIST:EMKEL' : grupSec == '6' ? 'BIST:GIPTA' : grupSec == '7' ? 'BIST:IHYAY' : grupSec == '8' ? 'BIST:KGYO' : grupSec == '9' ? 'BIST:LOGO' : grupSec == '10' ? 'BIST:NETAS' : grupSec == '11' ? 'BIST:PINSU' : grupSec == '12' ? 'BIST:SELGD' : grupSec == '13' ? 'BIST:TLMAN' : grupSec == '14' ? 'BIST:VKING' : grupSec == 'ÖZEL LİSTE' ? sb17 : na
+a18 = grupSec == '1' ? 'BIST:AKGRT' : grupSec == '2' ? 'BIST:AVHOL' : grupSec == '3' ? 'BIST:BORSK' : grupSec == '4' ? 'BIST:DENGE' : grupSec == '5' ? 'BIST:EMNIS' : grupSec == '6' ? 'BIST:GLBMD' : grupSec == '7' ? 'BIST:IMASM' : grupSec == '8' ? 'BIST:KIMMR' : grupSec == '9' ? 'BIST:LRSHO' : grupSec == '10' ? 'BIST:NIBAS' : grupSec == '11' ? 'BIST:PKART' : grupSec == '12' ? 'BIST:SELVA' : grupSec == '13' ? 'BIST:TMPOL' : grupSec == '14' ? 'BIST:VRGYO' : grupSec == 'ÖZEL LİSTE' ? sb18 : na
+a19 = grupSec == '1' ? 'BIST:AKMGY' : grupSec == '2' ? 'BIST:AVOD' : grupSec == '3' ? 'BIST:BOSSA' : grupSec == '4' ? 'BIST:DERHL' : grupSec == '5' ? 'BIST:ENERY' : grupSec == '6' ? 'BIST:GLCVY' : grupSec == '7' ? 'BIST:INDES' : grupSec == '8' ? 'BIST:KLGYO' : grupSec == '9' ? 'BIST:LUKSK' : grupSec == '10' ? 'BIST:NTGAZ' : grupSec == '11' ? 'BIST:PKENT' : grupSec == '12' ? 'BIST:SEYKM' : grupSec == '13' ? 'BIST:TMSN' : grupSec == '14' ? 'BIST:YAPRK' : grupSec == 'ÖZEL LİSTE' ? sb19 : na
+a20 = grupSec == '1' ? 'BIST:AKSA' : grupSec == '2' ? 'BIST:AVPGY' : grupSec == '3' ? 'BIST:BRISA' : grupSec == '4' ? 'BIST:DERIM' : grupSec == '5' ? 'BIST:ENJSA' : grupSec == '6' ? 'BIST:GLRYH' : grupSec == '7' ? 'BIST:INFO' : grupSec == '8' ? 'BIST:KLKIM' : grupSec == '9' ? 'BIST:MAALT' : grupSec == '10' ? 'BIST:NTHOL' : grupSec == '11' ? 'BIST:PLTUR' : grupSec == '12' ? 'BIST:SILVR' : grupSec == '13' ? 'BIST:TNZTP' : grupSec == '14' ? 'BIST:YATAS' : grupSec == 'ÖZEL LİSTE' ? sb20 : na
+a21 = grupSec == '1' ? 'BIST:AKSEN' : grupSec == '2' ? 'BIST:AVTUR' : grupSec == '3' ? 'BIST:BRKO' : grupSec == '4' ? 'BIST:DESA' : grupSec == '5' ? 'BIST:ENKAI' : grupSec == '6' ? 'BIST:GLYHO' : grupSec == '7' ? 'BIST:INGRM' : grupSec == '8' ? 'BIST:KLMSN' : grupSec == '9' ? 'BIST:MACKO' : grupSec == '10' ? 'BIST:NUGYO' : grupSec == '11' ? 'BIST:PNLSN' : grupSec == '12' ? 'BIST:SISE' : grupSec == '13' ? 'BIST:TOASO' : grupSec == '14' ? 'BIST:YAYLA' : grupSec == 'ÖZEL LİSTE' ? sb21 : na
+a22 = grupSec == '1' ? 'BIST:AKSGY' : grupSec == '2' ? 'BIST:AYCES' : grupSec == '3' ? 'BIST:BRKSN' : grupSec == '4' ? 'BIST:DESPC' : grupSec == '5' ? 'BIST:ENSRI' : grupSec == '6' ? 'BIST:GMTAS' : grupSec == '7' ? 'BIST:INTEM' : grupSec == '8' ? 'BIST:KLNMA' : grupSec == '9' ? 'BIST:MAGEN' : grupSec == '10' ? 'BIST:NUHCM' : grupSec == '11' ? 'BIST:PNSUT' : grupSec == '12' ? 'BIST:SKBNK' : grupSec == '13' ? 'BIST:TRCAS' : grupSec == '14' ? 'BIST:YBTAS' : grupSec == 'ÖZEL LİSTE' ? sb22 : na
+a23 = grupSec == '1' ? 'BIST:AKSUE' : grupSec == '2' ? 'BIST:AYDEM' : grupSec == '3' ? 'BIST:BRKVY' : grupSec == '4' ? 'BIST:DEVA' : grupSec == '5' ? 'BIST:EPLAS' : grupSec == '6' ? 'BIST:GOKNR' : grupSec == '7' ? 'BIST:INVEO' : grupSec == '8' ? 'BIST:KLRHO' : grupSec == '9' ? 'BIST:MAKIM' : grupSec == '10' ? 'BIST:OBAMS' : grupSec == '11' ? 'BIST:POLHO' : grupSec == '12' ? 'BIST:SKTAS' : grupSec == '13' ? 'BIST:TRGYO' : grupSec == '14' ? 'BIST:YEOTK' : grupSec == 'ÖZEL LİSTE' ? sb23 : na
+a24 = grupSec == '1' ? 'BIST:AKYHO' : grupSec == '2' ? 'BIST:AYEN' : grupSec == '3' ? 'BIST:BRLSM' : grupSec == '4' ? 'BIST:DGATE' : grupSec == '5' ? 'BIST:ERBOS' : grupSec == '6' ? 'BIST:GOLTS' : grupSec == '7' ? 'BIST:INVES' : grupSec == '8' ? 'BIST:KLSER' : grupSec == '9' ? 'BIST:MAKTK' : grupSec == '10' ? 'BIST:OBASE' : grupSec == '11' ? 'BIST:POLTK' : grupSec == '12' ? 'BIST:SKYLP' : grupSec == '13' ? 'BIST:TRILC' : grupSec == '14' ? 'BIST:YESIL' : grupSec == 'ÖZEL LİSTE' ? sb24 : na
+a25 = grupSec == '1' ? 'BIST:ALARK' : grupSec == '2' ? 'BIST:AYES' : grupSec == '3' ? 'BIST:BRMEN' : grupSec == '4' ? 'BIST:DGGYO' : grupSec == '5' ? 'BIST:ERCB' : grupSec == '6' ? 'BIST:GOODY' : grupSec == '7' ? 'BIST:IPEKE' : grupSec == '8' ? 'BIST:KLSYN' : grupSec == '9' ? 'BIST:MANAS' : grupSec == '10' ? 'BIST:ODAS' : grupSec == '11' ? 'BIST:PRDGS' : grupSec == '12' ? 'BIST:SKYMD' : grupSec == '13' ? 'BIST:TSGYO' : grupSec == '14' ? 'BIST:YGGYO' : grupSec == 'ÖZEL LİSTE' ? sb25 : na
+a26 = grupSec == '1' ? 'BIST:ALBRK' : grupSec == '2' ? 'BIST:AYGAZ' : grupSec == '3' ? 'BIST:BRSAN' : grupSec == '4' ? 'BIST:DGNMO' : grupSec == '5' ? 'BIST:EREGL' : grupSec == '6' ? 'BIST:GOZDE' : grupSec == '7' ? 'BIST:ISATR' : grupSec == '8' ? 'BIST:KMPUR' : grupSec == '9' ? 'BIST:MARBL' : grupSec == '10' ? 'BIST:OFSYM' : grupSec == '11' ? 'BIST:PRKAB' : grupSec == '12' ? 'BIST:SMART' : grupSec == '13' ? 'BIST:TSKB' : grupSec == '14' ? 'BIST:YGYO' : grupSec == 'ÖZEL LİSTE' ? sb26 : na
+a27 = grupSec == '1' ? 'BIST:ALCAR' : grupSec == '2' ? 'BIST:AZTEK' : grupSec == '3' ? 'BIST:BRYAT' : grupSec == '4' ? 'BIST:DIRIT' : grupSec == '5' ? 'BIST:ERSU' : grupSec == '6' ? 'BIST:GRNYO' : grupSec == '7' ? 'BIST:ISBIR' : grupSec == '8' ? 'BIST:KNFRT' : grupSec == '9' ? 'BIST:MARKA' : grupSec == '10' ? 'BIST:ONCSM' : grupSec == '11' ? 'BIST:PRKME' : grupSec == '12' ? 'BIST:SMRTG' : grupSec == '13' ? 'BIST:TSPOR' : grupSec == '14' ? 'BIST:YKBNK' : grupSec == 'ÖZEL LİSTE' ? sb27 : na
+a28 = grupSec == '1' ? 'BIST:ALCTL' : grupSec == '2' ? 'BIST:BAGFS' : grupSec == '3' ? 'BIST:BSOKE' : grupSec == '4' ? 'BIST:DITAS' : grupSec == '5' ? 'BIST:ESCAR' : grupSec == '6' ? 'BIST:GRSEL' : grupSec == '7' ? 'BIST:ISBTR' : grupSec == '8' ? 'BIST:KONKA' : grupSec == '9' ? 'BIST:MARTI' : grupSec == '10' ? 'BIST:ORCAY' : grupSec == '11' ? 'BIST:PRZMA' : grupSec == '12' ? 'BIST:SNGYO' : grupSec == '13' ? 'BIST:TTKOM' : grupSec == '14' ? 'BIST:YKSLN' : grupSec == 'ÖZEL LİSTE' ? sb28 : na
+a29 = grupSec == '1' ? 'BIST:ALFAS' : grupSec == '2' ? 'BIST:BAKAB' : grupSec == '3' ? 'BIST:BTCIM' : grupSec == '4' ? 'BIST:DMRGD' : grupSec == '5' ? 'BIST:ESCOM' : grupSec == '6' ? 'BIST:GRTRK' : grupSec == '7' ? 'BIST:ISCTR' : grupSec == '8' ? 'BIST:KONTR' : grupSec == '9' ? 'BIST:MAVI' : grupSec == '10' ? 'BIST:ORGE' : grupSec == '11' ? 'BIST:PSDTC' : grupSec == '12' ? 'BIST:SNICA' : grupSec == '13' ? 'BIST:TTRAK' : grupSec == '14' ? 'BIST:YONGA' : grupSec == 'ÖZEL LİSTE' ? sb29 : na
+a30 = grupSec == '1' ? 'BIST:ALGYO' : grupSec == '2' ? 'BIST:BALAT' : grupSec == '3' ? 'BIST:BUCIM' : grupSec == '4' ? 'BIST:DMSAS' : grupSec == '5' ? 'BIST:ESEN' : grupSec == '6' ? 'BIST:GSDDE' : grupSec == '7' ? 'BIST:ISDMR' : grupSec == '8' ? 'BIST:KONYA' : grupSec == '9' ? 'BIST:MEDTR' : grupSec == '10' ? 'BIST:ORMA' : grupSec == '11' ? 'BIST:PSGYO' : grupSec == '12' ? 'BIST:SNKRN' : grupSec == '13' ? 'BIST:TUCLK' : grupSec == '14' ? 'BIST:YUNSA' : grupSec == 'ÖZEL LİSTE' ? sb30 : na
+a31 = grupSec == '1' ? 'BIST:ALKA' : grupSec == '2' ? 'BIST:BANVT' : grupSec == '3' ? 'BIST:BURCE' : grupSec == '4' ? 'BIST:DNISI' : grupSec == '5' ? 'BIST:ETILR' : grupSec == '6' ? 'BIST:GSDHO' : grupSec == '7' ? 'BIST:ISFIN' : grupSec == '8' ? 'BIST:KOPOL' : grupSec == '9' ? 'BIST:MEGAP' : grupSec == '10' ? 'BIST:OSMEN' : grupSec == '11' ? 'BIST:QNBFB' : grupSec == '12' ? 'BIST:SNPAM' : grupSec == '13' ? 'BIST:TUKAS' : grupSec == '14' ? 'BIST:YYAPI' : grupSec == 'ÖZEL LİSTE' ? sb31 : na
+a32 = grupSec == '1' ? 'BIST:ALKIM' : grupSec == '2' ? 'BIST:BARMA' : grupSec == '3' ? 'BIST:BURVA' : grupSec == '4' ? 'BIST:DOAS' : grupSec == '5' ? 'BIST:ETYAT' : grupSec == '6' ? 'BIST:GSRAY' : grupSec == '7' ? 'BIST:ISGSY' : grupSec == '8' ? 'BIST:KORDS' : grupSec == '9' ? 'BIST:MEGMT' : grupSec == '10' ? 'BIST:OSTIM' : grupSec == '11' ? 'BIST:QNBFL' : grupSec == '12' ? 'BIST:SODSN' : grupSec == '13' ? 'BIST:TUPRS' : grupSec == '14' ? 'BIST:YYLGD' : grupSec == 'ÖZEL LİSTE' ? sb32 : na
+a33 = grupSec == '1' ? 'BIST:ALMAD' : grupSec == '2' ? 'BIST:BASCM' : grupSec == '3' ? 'BIST:BVSAN' : grupSec == '4' ? 'BIST:DOBUR' : grupSec == '5' ? 'BIST:EUHOL' : grupSec == '6' ? 'BIST:GUBRF' : grupSec == '7' ? 'BIST:ISGYO' : grupSec == '8' ? 'BIST:KOZAA' : grupSec == '9' ? 'BIST:MEKAG' : grupSec == '10' ? 'BIST:OTKAR' : grupSec == '11' ? 'BIST:QUAGR' : grupSec == '12' ? 'BIST:SOKE' : grupSec == '13' ? 'BIST:TUREX' : grupSec == '14' ? 'BIST:ZEDUR' : grupSec == 'ÖZEL LİSTE' ? sb33 : na
+a34 = grupSec == '1' ? 'BIST:ALTIN' : grupSec == '2' ? 'BIST:BASGZ' : grupSec == '3' ? 'BIST:BYDNR' : grupSec == '4' ? 'BIST:DOCO' : grupSec == '5' ? 'BIST:EUKYO' : grupSec == '6' ? 'BIST:GWIND' : grupSec == '7' ? 'BIST:ISKPL' : grupSec == '8' ? 'BIST:KOZAL' : grupSec == '9' ? 'BIST:MEPET' : grupSec == '10' ? 'BIST:OTTO' : grupSec == '11' ? 'BIST:RALYH' : grupSec == '12' ? 'BIST:SOKM' : grupSec == '13' ? 'BIST:TURGG' : grupSec == '14' ? 'BIST:ZOREN' : grupSec == 'ÖZEL LİSTE' ? sb34 : na
+a35 = grupSec == '1' ? 'BIST:ALVES' : grupSec == '2' ? 'BIST:BAYRK' : grupSec == '3' ? 'BIST:CANTE' : grupSec == '4' ? 'BIST:DOFER' : grupSec == '5' ? 'BIST:EUPWR' : grupSec == '6' ? 'BIST:GZNMI' : grupSec == '7' ? 'BIST:ISKUR' : grupSec == '8' ? 'BIST:KRDMA' : grupSec == '9' ? 'BIST:MERCN' : grupSec == '10' ? 'BIST:OYAKC' : grupSec == '11' ? 'BIST:RAYSG' : grupSec == '12' ? 'BIST:SONME' : grupSec == '13' ? 'BIST:TURSG' : grupSec == '14' ? 'BIST:ZRGYO' : grupSec == 'ÖZEL LİSTE' ? sb35 : na
+a36 = grupSec == '1' ? 'BIST:ANELE' : grupSec == '2' ? 'BIST:BEGYO' : grupSec == '3' ? 'BIST:CASA' : grupSec == '4' ? 'BIST:DOGUB' : grupSec == '5' ? 'BIST:EUREN' : grupSec == '6' ? 'BIST:HALKB' : grupSec == '7' ? 'BIST:ISMEN' : grupSec == '8' ? 'BIST:KRDMB' : grupSec == '9' ? 'BIST:MERIT' : grupSec == '10' ? 'BIST:OYAYO' : grupSec == '11' ? 'BIST:REEDR' : grupSec == '12' ? 'BIST:SRVGY' : grupSec == '13' ? 'BIST:UFUK' : grupSec == '14' ? '' : grupSec == 'ÖZEL LİSTE' ? sb36 : na
+a37 = grupSec == '1' ? 'BIST:ANGEN' : grupSec == '2' ? 'BIST:BERA' : grupSec == '3' ? 'BIST:CATES' : grupSec == '4' ? 'BIST:DOHOL' : grupSec == '5' ? 'BIST:EUYO' : grupSec == '6' ? 'BIST:HATEK' : grupSec == '7' ? 'BIST:ISSEN' : grupSec == '8' ? 'BIST:KRDMD' : grupSec == '9' ? 'BIST:MERKO' : grupSec == '10' ? 'BIST:OYLUM' : grupSec == '11' ? 'BIST:RNPOL' : grupSec == '12' ? 'BIST:SUMAS' : grupSec == '13' ? 'BIST:ULAS' : grupSec == '14' ? '' : grupSec == 'ÖZEL LİSTE' ? sb37 : na
+a38 = grupSec == '1' ? 'BIST:ANHYT' : grupSec == '2' ? 'BIST:BEYAZ' : grupSec == '3' ? 'BIST:CCOLA' : grupSec == '4' ? 'BIST:DOKTA' : grupSec == '5' ? 'BIST:EYGYO' : grupSec == '6' ? 'BIST:HATSN' : grupSec == '7' ? 'BIST:IZENR' : grupSec == '8' ? 'BIST:KRGYO' : grupSec == '9' ? 'BIST:METRO' : grupSec == '10' ? 'BIST:OYYAT' : grupSec == '11' ? 'BIST:RODRG' : grupSec == '12' ? 'BIST:SUNTK' : grupSec == '13' ? 'BIST:ULKER' : grupSec == '14' ? '' : grupSec == 'ÖZEL LİSTE' ? sb38 : na
+a39 = grupSec == '1' ? 'BIST:ANSGR' : grupSec == '2' ? 'BIST:BFREN' : grupSec == '3' ? 'BIST:CELHA' : grupSec == '4' ? 'BIST:DURDO' : grupSec == '5' ? 'BIST:FADE' : grupSec == '6' ? 'BIST:HDFGS' : grupSec == '7' ? 'BIST:IZFAS' : grupSec == '8' ? 'BIST:KRONT' : grupSec == '9' ? 'BIST:METUR' : grupSec == '10' ? 'BIST:OZGYO' : grupSec == '11' ? 'BIST:RTALB' : grupSec == '12' ? 'BIST:SURGY' : grupSec == '13' ? 'BIST:ULUFA' : grupSec == '14' ? '' : grupSec == 'ÖZEL LİSTE' ? sb39 : na
+a40 = grupSec == '1' ? 'BIST:ARASE' : grupSec == '2' ? 'BIST:BIENY' : grupSec == '3' ? 'BIST:CEMAS' : grupSec == '4' ? 'BIST:DYOBY' : grupSec == '5' ? 'BIST:FENER' : grupSec == '6' ? 'BIST:HEDEF' : grupSec == '7' ? 'BIST:IZINV' : grupSec == '8' ? 'BIST:KRPLS' : grupSec == '9' ? 'BIST:MGROS' : grupSec == '10' ? 'BIST:OZKGY' : grupSec == '11' ? 'BIST:RUBNS' : grupSec == '12' ? 'BIST:SUWEN' : grupSec == '13' ? 'BIST:ULUSE' : grupSec == '14' ? '' : grupSec == 'ÖZEL LİSTE' ? sb40 : na
+
+
+
+[v1,s1] = request.security(a01, per, func())
+[v2,s2] = request.security(a02, per, func())
+[v3,s3] = request.security(a03, per, func())
+[v4,s4] = request.security(a04, per, func())
+[v5,s5] = request.security(a05, per, func())
+[v6,s6] = request.security(a06, per, func())
+[v7,s7] = request.security(a07, per, func())
+[v8,s8] = request.security(a08, per, func())
+[v9,s9] = request.security(a09, per, func())
+[v10,s10] = request.security(a10, per, func())
+[v11,s11] = request.security(a11, per, func())
+[v12,s12] = request.security(a12, per, func())
+[v13,s13] = request.security(a13, per, func())
+[v14,s14] = request.security(a14, per, func())
+[v15,s15] = request.security(a15, per, func())
+[v16,s16] = request.security(a16, per, func())
+[v17,s17] = request.security(a17, per, func())
+[v18,s18] = request.security(a18, per, func())
+[v19,s19] = request.security(a19, per, func())
+[v20,s20] = request.security(a20, per, func())
+[v21,s21] = request.security(a21, per, func())
+[v22,s22] = request.security(a22, per, func())
+[v23,s23] = request.security(a23, per, func())
+[v24,s24] = request.security(a24, per, func())
+[v25,s25] = request.security(a25, per, func())
+[v26,s26] = request.security(a26, per, func())
+[v27,s27] = request.security(a27, per, func())
+[v28,s28] = request.security(a28, per, func())
+[v29,s29] = request.security(a29, per, func())
+[v30,s30] = request.security(a30, per, func())
+[v31,s31] = request.security(a31, per, func())
+[v32,s32] = request.security(a32, per, func())
+[v33,s33] = request.security(a33, per, func())
+[v34,s34] = request.security(a34, per, func())
+[v35,s35] = request.security(a35, per, func())
+[v36,s36] = request.security(a36, per, func())
+[v37,s37] = request.security(a37, per, func())
+[v38,s38] = request.security(a38, per, func())
+[v39,s39] = request.security(a39, per, func())
+[v40,s40] = request.security(a40, per, func())
+
+roundn(x, n) =>
+    mult = 1
+    if n != 0
+        for i = 1 to math.abs(n) by 1
+            mult *= 10
+            mult
+
+    n >= 0 ? math.round(x * mult) / mult : math.round(x / mult) * mult
+
+
+scr_label = 'TARAMA\n'
+scr_label := s1 ? scr_label + syminfo.ticker(a01) + ' ' + str.tostring(roundn(v1, 2)) + '\n' : scr_label
+scr_label := s2 ? scr_label + syminfo.ticker(a02) + ' ' + str.tostring(roundn(v2, 2)) + '\n' : scr_label
+scr_label := s3 ? scr_label + syminfo.ticker(a03) + ' ' + str.tostring(roundn(v3, 2)) + '\n' : scr_label
+scr_label := s4 ? scr_label + syminfo.ticker(a04) + ' ' + str.tostring(roundn(v4, 2)) + '\n' : scr_label
+scr_label := s5 ? scr_label + syminfo.ticker(a05) + ' ' + str.tostring(roundn(v5, 2)) + '\n' : scr_label
+scr_label := s6 ? scr_label + syminfo.ticker(a06) + ' ' + str.tostring(roundn(v6, 2)) + '\n' : scr_label
+scr_label := s7 ? scr_label + syminfo.ticker(a07) + ' ' + str.tostring(roundn(v7, 2)) + '\n' : scr_label
+scr_label := s8 ? scr_label + syminfo.ticker(a08) + ' ' + str.tostring(roundn(v8, 2)) + '\n' : scr_label
+scr_label := s9 ? scr_label + syminfo.ticker(a09) + ' ' + str.tostring(roundn(v9, 2)) + '\n' : scr_label
+scr_label := s10 ? scr_label + syminfo.ticker(a10) + ' ' + str.tostring(roundn(v10, 2)) + '\n' : scr_label
+scr_label := s11 ? scr_label + syminfo.ticker(a11) + ' ' + str.tostring(roundn(v11, 2)) + '\n' : scr_label
+scr_label := s12 ? scr_label + syminfo.ticker(a12) + ' ' + str.tostring(roundn(v12, 2)) + '\n' : scr_label
+scr_label := s13 ? scr_label + syminfo.ticker(a13) + ' ' + str.tostring(roundn(v13, 2)) + '\n' : scr_label
+scr_label := s14 ? scr_label + syminfo.ticker(a14) + ' ' + str.tostring(roundn(v14, 2)) + '\n' : scr_label
+scr_label := s15 ? scr_label + syminfo.ticker(a15) + ' ' + str.tostring(roundn(v15, 2)) + '\n' : scr_label
+scr_label := s16 ? scr_label + syminfo.ticker(a16) + ' ' + str.tostring(roundn(v16, 2)) + '\n' : scr_label
+scr_label := s17 ? scr_label + syminfo.ticker(a17) + ' ' + str.tostring(roundn(v17, 2)) + '\n' : scr_label
+scr_label := s18 ? scr_label + syminfo.ticker(a18) + ' ' + str.tostring(roundn(v18, 2)) + '\n' : scr_label
+scr_label := s19 ? scr_label + syminfo.ticker(a19) + ' ' + str.tostring(roundn(v19, 2)) + '\n' : scr_label
+scr_label := s20 ? scr_label + syminfo.ticker(a20) + ' ' + str.tostring(roundn(v20, 2)) + '\n' : scr_label
+scr_label := s21 ? scr_label + syminfo.ticker(a21) + ' ' + str.tostring(roundn(v21, 2)) + '\n' : scr_label
+scr_label := s22 ? scr_label + syminfo.ticker(a22) + ' ' + str.tostring(roundn(v22, 2)) + '\n' : scr_label
+scr_label := s23 ? scr_label + syminfo.ticker(a23) + ' ' + str.tostring(roundn(v23, 2)) + '\n' : scr_label
+scr_label := s24 ? scr_label + syminfo.ticker(a24) + ' ' + str.tostring(roundn(v24, 2)) + '\n' : scr_label
+scr_label := s25 ? scr_label + syminfo.ticker(a25) + ' ' + str.tostring(roundn(v25, 2)) + '\n' : scr_label
+scr_label := s26 ? scr_label + syminfo.ticker(a26) + ' ' + str.tostring(roundn(v26, 2)) + '\n' : scr_label
+scr_label := s27 ? scr_label + syminfo.ticker(a27) + ' ' + str.tostring(roundn(v27, 2)) + '\n' : scr_label
+scr_label := s28 ? scr_label + syminfo.ticker(a28) + ' ' + str.tostring(roundn(v28, 2)) + '\n' : scr_label
+scr_label := s29 ? scr_label + syminfo.ticker(a29) + ' ' + str.tostring(roundn(v29, 2)) + '\n' : scr_label
+scr_label := s30 ? scr_label + syminfo.ticker(a30) + ' ' + str.tostring(roundn(v30, 2)) + '\n' : scr_label
+scr_label := s31 ? scr_label + syminfo.ticker(a31) + ' ' + str.tostring(roundn(v31, 2)) + '\n' : scr_label
+scr_label := s32 ? scr_label + syminfo.ticker(a32) + ' ' + str.tostring(roundn(v32, 2)) + '\n' : scr_label
+scr_label := s33 ? scr_label + syminfo.ticker(a33) + ' ' + str.tostring(roundn(v33, 2)) + '\n' : scr_label
+scr_label := s34 ? scr_label + syminfo.ticker(a34) + ' ' + str.tostring(roundn(v34, 2)) + '\n' : scr_label
+scr_label := s35 ? scr_label + syminfo.ticker(a35) + ' ' + str.tostring(roundn(v35, 2)) + '\n' : scr_label
+scr_label := s36 ? scr_label + syminfo.ticker(a36) + ' ' + str.tostring(roundn(v36, 2)) + '\n' : scr_label
+scr_label := s37 ? scr_label + syminfo.ticker(a37) + ' ' + str.tostring(roundn(v37, 2)) + '\n' : scr_label
+scr_label := s38 ? scr_label + syminfo.ticker(a38) + ' ' + str.tostring(roundn(v38, 2)) + '\n' : scr_label
+scr_label := s39 ? scr_label + syminfo.ticker(a39) + ' ' + str.tostring(roundn(v39, 2)) + '\n' : scr_label
+scr_label := s40 ? scr_label + syminfo.ticker(a40) + ' ' + str.tostring(roundn(v40, 2)) + '\n' : scr_label
+
+lab_1 = label.new(bar_index + loc,0, scr_label, color=color.green, textcolor=color.white, style=label.style_label_center)
+label.delete(lab_1[1])
+
+
+if str.length(scr_label) > 8
+    alert(scr_label,alert.freq_once_per_bar_close)
+//------------------------------------------------------
+
+
+
+
+
