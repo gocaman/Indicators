@@ -185,44 +185,6 @@ acAoColorIndex = acAoIsBullish ? 1 : acAoIsBearish ? -1 : 0
 // alertcondition(shortSignal, title='Short!', message='Bayesian BBSMA - SHORT - {{exchange}}:{{ticker}} at {{close}}')
 
 
-// //#################### nQQE
-
-// src = input(close)
-// length = input.int(14, 'RSI Length', minval=1, group='═════ nQQE settings ═════')
-// SSF = input.int(5, 'SF RSI SMoothing Factor', minval=1)
-// showsignals = input(title='Show Crossing Signals?', defval=false)
-// RSII = ta.ema(ta.rsi(src, length), SSF)
-// TR = math.abs(RSII - RSII[1])
-// wwalpha = 1 / length
-// WWMA = 0.0
-// WWMA := wwalpha * TR + (1 - wwalpha) * nz(WWMA[1])
-// ATRRSI = 0.0
-// ATRRSI := wwalpha * WWMA + (1 - wwalpha) * nz(ATRRSI[1])
-// QQEF = ta.ema(ta.rsi(src, length), SSF)
-// QUP = QQEF + ATRRSI * 4.236
-// QDN = QQEF - ATRRSI * 4.236
-// QQES = 0.0
-// QQES := QUP < nz(QQES[1]) ? QUP : QQEF > nz(QQES[1]) and QQEF[1] < nz(QQES[1]) ? QDN : QDN > nz(QQES[1]) ? QDN : QQEF < nz(QQES[1]) and QQEF[1] > nz(QQES[1]) ? QUP : nz(QQES[1])
-// Colorh = QQEF > 60 ? color.lime : QQEF < 40 ? color.red : #E8E81A
-// QQF = plot(QQEF, 'nQQE FAST', color=#1800ec, linewidth=2, display=display.none)
-// plot(QQEF, color=color.new(Colorh, 30), linewidth=2, style=plot.style_area, histbase=50)
-// QQS = plot(QQES, 'nQQE SLOW', color=#ff0202, linewidth=2, display=display.none)
-// hline(60, color=color.gray, linestyle=hline.style_dashed)
-// hline(40, color=color.gray, linestyle=hline.style_dashed)
-// buySignalr = ta.crossover(QQEF, QQES)
-// plotshape(buySignalr and showsignals ? QQES * 0.995 : na, title='Buy', text='Buy', location=location.absolute, style=shape.labelup, size=size.tiny, color=color.new(color.black, 50), textcolor=color.new(color.white, 50))
-// sellSignallr = ta.crossunder(QQEF, QQES)
-// plotshape(sellSignallr and showsignals ? QQES * 1.005 : na, title='Sell', text='Sell', location=location.absolute, style=shape.labeldown, size=size.tiny, color=color.new(color.black, 50), textcolor=color.new(color.white, 50))
-// alertcondition(ta.cross(QQEF, QQES), title='Cross Alert', message='QQE Crossing Signal!')
-// alertcondition(ta.crossover(QQEF, QQES), title='Crossover Alarm', message='QQE BUY SIGNAL!')
-// alertcondition(ta.crossunder(QQEF, QQES), title='Crossunder Alarm', message='QQE SELL SIGNAL!')
-// alertcondition(ta.crossover(QQEF, 50), title='Cross 0 Up Alert', message='QQE FAST Crossing 0 UP!')
-// alertcondition(ta.crossunder(QQEF, 50), title='Cross 0 Down Alert', message='QQE FAST Crossing 0 DOWN!')
-// alertcondition(ta.crossover(QQEF, 60), title='Cross 10 Up Alert', message='QQE Above 10 UPTREND SIGNAL!')
-// alertcondition(ta.crossunder(QQEF, 40), title='Cross -10 Down Alert', message='QQE Below -10 DOWNTREND SIGNAL!')
-// alertcondition(ta.crossunder(QQEF, 60) or ta.crossover(QQEF, 40), title='SIDEWAYS', message='QQE Entering Sideways Market!')
-
-
 //#################### L3 Banker
 
 //functions
@@ -286,197 +248,7 @@ alertcondition(fundtrend < xrf1(fundtrend * 0.95, 1), title='Alert on White Cand
 alertcondition(fundtrend < bullbearline, title='Alert on Red Candle', message='Red Candle!')
 alertcondition(fundtrend < bullbearline and fundtrend > xrf1(fundtrend * 0.95, 1), title='Alert on Blue Candle', message='Blue Candle!')
 
-
-//////////////DİP BULUCU-2
-
-// pd = input(22, title='LookBack Period Standard Deviation High')
-// bbl = input(20, title='Bolinger Band Length')
-// mult = input.float(2.0, minval=1, maxval=5, title='Bollinger Band Standard Devaition Up')
-// lb = input(50, title='Look Back Period Percentile High')
-// ph = input(.85, title='Highest Percentile - 0.90=90%, 0.95=95%, 0.99=99%')
-// pl = input(1.01, title='Lowest Percentile - 1.10=90%, 1.05=95%, 1.01=99%')
-// hp = input(false, title='Show High Range - Based on Percentile and LookBack Period?')
-// sd = input(false, title='Show Standard Deviation Line?')
-
-// wvf = (ta.highest(close, pd) - low) / ta.highest(close, pd) * 100
-
-// sDev = mult * ta.stdev(wvf, bbl)
-// midLine = ta.sma(wvf, bbl)
-// lowerBand = midLine - sDev
-// upperBand = midLine + sDev
-
-// rangeHigh = ta.highest(wvf, lb) * ph
-// rangeLow = ta.lowest(wvf, lb) * pl
-
-
-// col = wvf >= upperBand or wvf >= rangeHigh ? #ff0000 : color.gray
-
-
-// plot(hp and rangeHigh ? rangeHigh : na, title='Range High Percentile', style=plot.style_line, linewidth=4, color=color.new(color.orange, 0))
-// plot(hp and rangeLow ? rangeLow : na, title='Range High Percentile', style=plot.style_line, linewidth=4, color=color.new(color.orange, 0))
-// plot(wvf, title='Williams Vix Fix', style=plot.style_histogram, linewidth=4, color=col)
-// plot(sd and upperBand ? upperBand : na, title='Upper Band', style=plot.style_line, linewidth=3, color=color.new(color.aqua, 0))
-
-
-// dipbulucu = wvf >= upperBand or wvf >= rangeHigh
-// dipbulucu1 = wvf <= upperBand or wvf <= rangeHigh
-
-// x = ta.crossover(wt1, wt2)
-
-//////////macd
-
-
-///////////////////MACD
-
-fast_length = input(title="Fast Length", defval=10)
-slow_length = input(title="Slow Length", defval=20)
-src = input(title="Source", defval=close)
-signal_length = input.int(title="Signal Smoothing",  minval = 1, maxval = 50, defval = 9)
-sma_source = input.string(title="Oscillator MA Type",  defval="EMA", options=["SMA", "EMA"])
-sma_signal = input.string(title="Signal Line MA Type", defval="EMA", options=["SMA", "EMA"])
-
-
-// // Plot colors
-// col_macd = input(#2962FF, "MACD Line  ", group="Color Settings", inline="MACD")
-// col_signal = input(#FF6D00, "Signal Line  ", group="Color Settings", inline="Signal")
-// col_grow_above = input(#26A69A, "Above   Grow", group="Histogram", inline="Above")
-// col_fall_above = input(#B2DFDB, "Fall", group="Histogram", inline="Above")
-// col_grow_below = input(#FFCDD2, "Below Grow", group="Histogram", inline="Below")
-// col_fall_below = input(#FF5252, "Fall", group="Histogram", inline="Below")
-// Calculating
-fast_ma = sma_source == "SMA" ? ta.sma(src, fast_length) : ta.ema(src, fast_length)
-slow_ma = sma_source == "SMA" ? ta.sma(src, slow_length) : ta.ema(src, slow_length)
-macd = fast_ma - slow_ma
-signal = sma_signal == "SMA" ? ta.sma(macd, signal_length) : ta.ema(macd, signal_length)
-hist = macd - signal
-// hline(0, "Zero Line", color=color.new(#787B86, 50))
-// plot(hist, title="Histogram", style=plot.style_columns, color=(hist>=0 ? (hist[1] < hist ? col_grow_above : col_fall_above) : (hist[1] < hist ? col_grow_below : col_fall_below)))
-// plot(macd, title="MACD", color=col_macd)
-// plot(signal, title="Signal", color=col_signal)
-
-/////////////////
-
-// MACD -----
-// [macd, sig, hist] = ta.macd(src, s_len, l_len, sig_len)
-gc = ta.crossover(macd, signal)
-dc = ta.crossunder(macd, signal)
-// histogram pattern -----
-hist_up_plus = hist > 0 and hist > hist[1]
-hist_down_plus = hist > 0 and hist < hist[1]
-hist_up_minus = hist < 0 and hist > hist[1]
-hist_down_minus = hist < 0 and hist < hist[1]
-hist_color = hist_up_plus ? color.lime : hist_down_plus ? color.green : hist_up_minus ? color.maroon : color.red
-// // plot -----
-// plot(hist, 'histogram', hist_color, 2, plot.style_histogram)
-// plot(signal, 'signal', color.new(#ff6a00, 0), 2)
-// plot(macd, 'MACD', color.new(#0094ff, 0), 3)
-// plot(macd, 'GC/DC', gc ? color.rgb(98, 159, 0) : dc ? color.rgb(205, 0, 0) : na, 4, plot.style_circles, transp=0)
-
-
-
-
-// ///DIVERGENCE
-
-// donttouchzero = input(title='Don\'t touch the zero line?', defval=true)
-
-// lbR = input(title='Pivot Lookback Right', defval=5)
-// lbL = input(title='Pivot Lookback Left', defval=5)
-// rangeUpper = input(title='Max of Lookback Range', defval=60)
-// rangeLower = input(title='Min of Lookback Range', defval=5)
-// plotBull = input(title='Plot Bullish', defval=true)
-// plotHiddenBull = false
-// plotBear = input(title='Plot Bearish', defval=true)
-// plotHiddenBear = false
-// bearColor = color.red
-// bullColor = color.green
-// hiddenBullColor = color.new(color.green, 80)
-// hiddenBearColor = color.new(color.red, 80)
-// textColor = color.white
-// noneColor = color.new(color.white, 100)
-// osc = macd
-
-// plFound = na(ta.pivotlow(osc, lbL, lbR)) ? false : true
-// phFound = na(ta.pivothigh(osc, lbL, lbR)) ? false : true
-// _inRange(cond) =>
-//     bars = ta.barssince(cond == true)
-//     rangeLower <= bars and bars <= rangeUpper
-
-// //------------------------------------------------------------------------------
-// // Regular Bullish
-// // Osc: Higher Low
-
-// oscHL = osc[lbR] > ta.valuewhen(plFound, osc[lbR], 1) and _inRange(plFound[1]) and osc[lbR] < 0
-
-// // Price: Lower Low
-
-// priceLL = low[lbR] < ta.valuewhen(plFound, low[lbR], 1)
-// priceHHZero = ta.highest(osc, lbL + lbR + 5)
-// //plot(priceHHZero,title="priceHHZero",color=color.green)
-// blowzero = donttouchzero ? priceHHZero < 0 : true
-// bullCond = plotBull and priceLL and oscHL and plFound and blowzero
-
-// plot(plFound ? osc[lbR] : na, offset=-lbR, title='Regular Bullish', linewidth=2, color=bullCond ? bullColor : noneColor, transp=0)
-
-// plotshape(bullCond ? osc[lbR] : na, offset=-lbR, title='Regular Bullish Label', text=' Bull ', style=shape.labelup, location=location.absolute, color=color.new(bullColor, 0), textcolor=color.new(textColor, 0))
-
-// //------------------------------------------------------------------------------
-// // Hidden Bullish
-// // Osc: Lower Low
-
-// oscLL = osc[lbR] < ta.valuewhen(plFound, osc[lbR], 1) and _inRange(plFound[1])
-
-// // Price: Higher Low
-
-// priceHL = low[lbR] > ta.valuewhen(plFound, low[lbR], 1)
-// hiddenBullCond = plotHiddenBull and priceHL and oscLL and plFound
-
-// plot(plFound ? osc[lbR] : na, offset=-lbR, title='Hidden Bullish', linewidth=2, color=hiddenBullCond ? hiddenBullColor : noneColor, transp=0)
-
-// plotshape(hiddenBullCond ? osc[lbR] : na, offset=-lbR, title='Hidden Bullish Label', text=' H Bull ', style=shape.labelup, location=location.absolute, color=color.new(bullColor, 0), textcolor=color.new(textColor, 0))
-
-// //------------------------------------------------------------------------------
-// // Regular Bearish
-// // Osc: Lower High
-
-// oscLH = osc[lbR] < ta.valuewhen(phFound, osc[lbR], 1) and _inRange(phFound[1]) and osc[lbR] > 0
-
-// priceLLZero = ta.lowest(osc, lbL + lbR + 5)
-// //plot(priceLLZero,title="priceLLZero", color=color.red)
-// bearzero = donttouchzero ? priceLLZero > 0 : true
-
-
-// // Price: Higher High
-
-// priceHH = high[lbR] > ta.valuewhen(phFound, high[lbR], 1)
-
-// bearCond = plotBear and priceHH and oscLH and phFound and bearzero
-
-// plot(phFound ? osc[lbR] : na, offset=-lbR, title='Regular Bearish', linewidth=2, color=bearCond ? bearColor : noneColor, transp=0)
-
-// plotshape(bearCond ? osc[lbR] : na, offset=-lbR, title='Regular Bearish Label', text=' Bear ', style=shape.labeldown, location=location.absolute, color=color.new(bearColor, 0), textcolor=color.new(textColor, 0))
-
-// //------------------------------------------------------------------------------
-// // Hidden Bearish
-// // Osc: Higher High
-
-// oscHH = osc[lbR] > ta.valuewhen(phFound, osc[lbR], 1) and _inRange(phFound[1])
-
-// // Price: Lower High
-
-// priceLH = high[lbR] < ta.valuewhen(phFound, high[lbR], 1)
-
-// hiddenBearCond = plotHiddenBear and priceLH and oscHH and phFound
-
-// plot(phFound ? osc[lbR] : na, offset=-lbR, title='Hidden Bearish', linewidth=2, color=hiddenBearCond ? hiddenBearColor : noneColor, transp=0)
-
-// plotshape(hiddenBearCond ? osc[lbR] : na, offset=-lbR, title='Hidden Bearish Label', text=' H Bear ', style=shape.labeldown, location=location.absolute, color=color.new(bearColor, 0), textcolor=color.new(textColor, 0))
-
-
-
-// alertcondition(bullCond, title='Bull', message='Regular Bull Div {{ticker}} XXmin')
-// alertcondition(bearCond, title='Bear', message='Regular Bear Div {{ticker}} XXmin')
-// alertcondition(hiddenBullCond, title='H Bull', message='Hidden Bull Div {{ticker}} XXmin')
-// alertcondition(hiddenBearCond, title='H Bear', message='Hidden Bear Div {{ticker}} XXmin')
+//////////////////
 
 
 ////////////////////////STOKASTİK
@@ -497,10 +269,7 @@ h1 = hline(20, "Lower Band", color=#787B86)
 
 
 fill(h0, h1, color=color.rgb(33, 150, 243, 90), title="Background")
-////////////////////
-condsto = k < 30 and d55 < 30 and k > d55
 
-condwta = wt1 < -50 and wt2 < -50 and wt1 > wt2
 
 /////////////////////////// TARAMA
 
@@ -509,9 +278,7 @@ func() =>
    
     cond = bankerentry
 
-    // cond = bankerentry and condsto and (ta.crossover(wt1, wt2))
-
-    // cond = rmi <= -330 or (ta.crossover(close[2], out2 [2]) and close > out2)
+    
     [close, cond]
 
 
