@@ -252,7 +252,7 @@ alertcondition(fundtrend < bullbearline and fundtrend > xrf1(fundtrend * 0.95, 1
 
 
 ////////////////////////STOKASTİK
-
+src = close
 smoothK = input.int(3, "K", minval=1)
 smoothD = input.int(3, "D", minval=1)
 lengthRSI = input.int(14, "RSI Length", minval=1)
