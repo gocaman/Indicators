@@ -1,6 +1,6 @@
 //@version=5
 //
-indicator(shorttitle='P-DİPMIX', title='P-DİPMIX', overlay=false)
+indicator(shorttitle='DİPMIX', title='DİPMIX', overlay=false)
 grupSec = input.string(defval='1', options=['1', '2', '3', '4', '5','6','7','8','9','10','11','12','13','14','ÖZEL LİSTE'], group='Taraması yapılacak 40\'arlı gruplardan birini seçin', title='Grup seç')
 per = input.timeframe(defval='', title='PERİYOT',group = "Tarama yapmak istediğiniz periyotu seçin")
 loc = input.int(defval=20, title='Konum Ayarı', minval = -300,maxval = 500 , step = 5,  group='Tablonun konumunu belirleyin')
