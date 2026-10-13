@@ -1,0 +1,462 @@
+//@version=5
+// ══════════════════════════════════════════════════════════════════════════════
+//  HEPSİ BİR ARADA - BIST
+//  Bu repodaki indikatörlerin AL/SAT kuralları tek indikatörde toplandı (24 strateji
+//  + bunların ortak kararı). Ücretsiz TradingView hesabında tek indikatör olarak çalışır.
+//
+//  NASIL ÇALIŞIR?
+//  - Her strateji, açık olan grafikte (hisse / XU100 / zaman dilimi) geriye dönük test edilir:
+//    AL sinyalinde kapanıştan girer, kendi SAT sinyalinde ya da en fazla "bekleme" barı
+//    dolunca çıkar. Komisyon düşülür.
+//  - Sağ üstteki tablo stratejileri bu sonuca göre SIRALAR. En iyisi otomatik seçilir ve
+//    grafikte onun AL/SAT etiketleri gösterilir.
+//  - Geçmiş performans geleceği garanti etmez. Yatırım tavsiyesi değildir.
+// ══════════════════════════════════════════════════════════════════════════════
+indicator("HEPSİ BİR ARADA - BIST", shorttitle = "HEPSİ BİR ARADA", overlay = true, max_labels_count = 500, max_bars_back = 1000)
+
+// ════════════════════════════ AYARLAR ════════════════════════════
+G1 = "1) GRAFİKTE NE GÖSTERİLSİN?"
+modSec = input.string("En iyi strateji (otomatik)", "Gösterim", options = ["En iyi strateji (otomatik)", "Ortak karar (çoklu onay)", "Tek strateji seç"], group = G1)
+tekSec = input.string("04 AlphaTrend", "Tek strateji", options = ["01 RSI Karpuzlu", "02 Dip Bulucu (Banker)", "03 Dip Bulucu-2 (VixFix)", "04 AlphaTrend", "05 SuperTrend", "06 AlphaTrend + SuperTrend", "07 Parabolic SAR", "08 MACD Dip Kesişimi", "09 ALMA Dönüşü", "10 T3 Tillson Dönüşü", "11 Bollinger Orta Bant", "12 Bollinger20 x EMA50", "13 EMA 5x13 (Umurlu)", "14 EMA 5x22 (Aydın)", "15 WMA 9x15 (Efeler)", "16 SMMA 21x55", "17 Darvas Kutusu", "18 Fisher Dip", "19 CCI Dip", "20 TSI Dip", "21 Haftalık MACD", "22 Erik Kombo", "23 EMA Kombo", "24 Bollinger Kombo", "25 ORTAK KARAR"], group = G1, tooltip = "Sadece Gösterim = 'Tek strateji seç' iken kullanılır.")
+etiketBar = input.int(300, "Etiketler son kaç barda gösterilsin", minval = 50, maxval = 900, group = G1)
+
+G2 = "2) PERFORMANS TESTİ"
+testBas = input.time(timestamp("01 Jan 2020 00:00 +0300"), "Test başlangıç tarihi", group = G2)
+maxBar = input.int(40, "Bir işlemde en fazla bekleme (bar)", minval = 1, maxval = 500, group = G2, tooltip = "Strateji SAT vermese bile bu kadar bar sonra işlem kapatılır. Kendi SAT sinyali olmayan dip stratejileri için önemlidir.")
+komisyon = input.float(0.2, "Komisyon + kayma (al+sat toplam, %)", minval = 0, step = 0.05, group = G2)
+olcut = input.string("Toplam getiri", "Sıralama ölçütü", options = ["Toplam getiri", "Ortalama getiri", "Kazanma oranı"], group = G2)
+minIslem = input.int(5, "Sıralamaya girmek için en az işlem", minval = 1, group = G2)
+hacimYok = input.bool(false, "Hacim verisi yok (AlphaTrend RSI kullansın)", group = G2)
+
+G3 = "3) ORTAK KARAR"
+ortakBar = input.int(3, "Son kaç bardaki sinyaller sayılsın", minval = 1, maxval = 20, group = G3)
+ortakEsik = input.int(4, "AL/SAT için en az kaç strateji aynı yönde", minval = 2, maxval = 24, group = G3)
+
+G4 = "4) TABLO"
+tabloGoster = input.bool(true, "Performans tablosunu göster", group = G4)
+tabloSatir = input.int(10, "Tabloda kaç strateji", minval = 3, maxval = 25, group = G4)
+tabloYer = input.string("Sağ üst", "Tablo konumu", options = ["Sağ üst", "Sağ alt", "Sol üst", "Sol alt", "Orta alt"], group = G4)
+tabloYazi = input.string("Küçük", "Yazı boyutu", options = ["Çok küçük", "Küçük", "Normal"], group = G4)
+
+// ════════════════════════════ ORTAK HESAPLAR ════════════════════════════
+ema5   = ta.ema(close, 5)
+ema13  = ta.ema(close, 13)
+ema14  = ta.ema(close, 14)
+ema22  = ta.ema(close, 22)
+ema34  = ta.ema(close, 34)
+ema50  = ta.ema(close, 50)
+sma10  = ta.sma(close, 10)
+sma20  = ta.sma(close, 20)
+sma200 = ta.sma(close, 200)
+rsi14  = ta.rsi(close, 14)
+mfi14  = ta.mfi(hlc3, 14)
+[mL, mS, mH] = ta.macd(close, 12, 26, 9)
+[m2L, m2S, m2H] = ta.macd(close, 10, 20, 9)
+
+// ════════════════════════════ 24 STRATEJİ ════════════════════════════
+// 01 RSI Karpuzlu  (KARPUZLU-RSI): RSI(22), kendi EMA(66)'sını yukarı keser
+rsiK = ta.rsi(close, 22)
+rsiKema = ta.ema(rsiK, 66)
+b01 = ta.crossover(rsiK, rsiKema)
+s01 = ta.crossunder(rsiK, rsiKema)
+
+// 02 Dip Bulucu (Banker girişi)  (DIP FINDER, DİPMIX): fon trendi, boğa/ayı çizgisini 25 altında yukarı keser
+f_xsa(float src, int len, int wei) =>
+    var float out = na
+    ma = ta.sma(src, len)
+    out := na(out) ? ma : (src * wei + out * (len - wei)) / len
+    out
+stoch27 = (close - ta.lowest(low, 27)) / (ta.highest(high, 27) - ta.lowest(low, 27)) * 100
+fx1 = f_xsa(stoch27, 5, 1)
+fx2 = f_xsa(fx1, 3, 1)
+fonTrend = (3 * fx1 - 2 * fx2 - 50) * 1.032 + 50
+typ = (2 * close + high + low + open) / 5
+lol34 = ta.lowest(low, 34)
+hoh34 = ta.highest(high, 34)
+bogaAyi = ta.ema((typ - lol34) / (hoh34 - lol34) * 100, 13)
+b02 = ta.crossover(fonTrend, bogaAyi) and bogaAyi < 25
+s02 = ta.crossunder(fonTrend, bogaAyi)
+
+// 03 Dip Bulucu-2 (Williams VixFix)  (DİP BULUCU-2): korku göstergesi tavan yaptığında
+wvfTepe = ta.highest(close, 22)
+wvf = (wvfTepe - low) / wvfTepe * 100
+wvfUst = ta.sma(wvf, 20) + 2.0 * ta.stdev(wvf, 20)
+wvfYuksek = ta.highest(wvf, 50) * 0.85
+wvfDip = wvf >= wvfUst or wvf >= wvfYuksek
+b03 = wvfDip and not wvfDip[1]
+s03 = false  // kendi SAT sinyali yok, en fazla bekleme süresi kadar tutulur
+
+// 04 AlphaTrend  (AT+T3, M+AT+BOLL+T3, GERMENCİK-AT, USTA, ATD+ST+T3)
+atAtr = ta.sma(ta.tr, 14)
+atKosul = hacimYok ? rsi14 >= 50 : mfi14 >= 50
+float alpha = 0.0
+alpha := atKosul ? (low - atAtr < nz(alpha[1]) ? nz(alpha[1]) : low - atAtr) : (high + atAtr > nz(alpha[1]) ? nz(alpha[1]) : high + atAtr)
+atAlHam = ta.crossover(alpha, alpha[2])
+atSatHam = ta.crossunder(alpha, alpha[2])
+atK1 = ta.barssince(atAlHam)
+atK2 = ta.barssince(atSatHam)
+atO1 = ta.barssince(atAlHam[1])
+atO2 = ta.barssince(atSatHam[1])
+b04 = atAlHam and atO1 > atK2
+s04 = atSatHam and atO2 > atK1
+var bool atYukari = false
+if b04
+    atYukari := true
+if s04
+    atYukari := false
+
+// 05 SuperTrend (10, 3)  (USTA, NAZİLLİ-SUPERTREND, ATD+ST+T3)
+[stDeger, stYon] = ta.supertrend(3.0, 10)
+stYukari = stYon < 0
+b05 = stYukari and not stYukari[1]
+s05 = not stYukari and stYukari[1]
+
+// 06 AlphaTrend + SuperTrend  (ODIE AT-DDT): ikisi birlikte yukarı dönünce
+ikisi = atYukari and stYukari
+b06 = ikisi and not ikisi[1]
+s06 = not ikisi and ikisi[1]
+
+// 07 Parabolic SAR  (PSAR TARAMA, NYSA-TREND)
+psar = ta.sar(0.02, 0.02, 0.2)
+psarYon = psar < close ? 1 : -1
+b07 = psarYon == 1 and psarYon[1] == -1
+s07 = psarYon == -1 and psarYon[1] == 1
+
+// 08 MACD Dip Kesişimi  (P-MACD TARAMA): sıfırın altında MACD sinyali yukarı keser
+b08 = ta.crossover(mL, mS) and mL <= 0
+s08 = ta.crossunder(mL, mS)
+
+// 09 ALMA Dönüşü (14, 0.85, 6)  (ALMA TARAMA, ODIE, SÖKE OVASI)
+alma = ta.alma(close, 14, 0.85, 6)
+almaYukari = alma >= alma[1]
+b09 = almaYukari and not almaYukari[1]
+s09 = not almaYukari and almaYukari[1]
+
+// 10 T3 Tillson Dönüşü (8, 0.7)  (AT+T3, ARANLAR, M+AT+BOLL+T3)
+f_t3(float src, int len, float a) =>
+    e1 = ta.ema(src, len)
+    e2 = ta.ema(e1, len)
+    e3 = ta.ema(e2, len)
+    e4 = ta.ema(e3, len)
+    e5 = ta.ema(e4, len)
+    e6 = ta.ema(e5, len)
+    c1 = -a * a * a
+    c2 = 3 * a * a + 3 * a * a * a
+    c3 = -6 * a * a - 3 * a - 3 * a * a * a
+    c4 = 1 + 3 * a + a * a * a + 3 * a * a
+    c1 * e6 + c2 * e5 + c3 * e4 + c4 * e3
+t3 = f_t3((high + low + 2 * close) / 4, 8, 0.7)
+t3Yukari = t3 > t3[1]
+b10 = t3Yukari and not t3Yukari[1]
+s10 = not t3Yukari and t3Yukari[1]
+
+// 11 Bollinger Orta Bant  (YÖRÜKALİEFE): fiyat 20'lik orta bandı yukarı keser
+b11 = ta.crossover(close, sma20)
+s11 = ta.crossunder(close, sma20)
+
+// 12 Bollinger20 x EMA50  (BOLL-20-50 TARAMA)
+b12 = ta.crossover(sma20, ema50)
+s12 = ta.crossunder(sma20, ema50)
+
+// 13 EMA 5x13  (UMURLU 5-8-13, REG-TREND)
+b13 = ta.crossover(ema5, ema13)
+s13 = ta.crossunder(ema5, ema13)
+
+// 14 EMA 5x22  (AYDIN-FİBO, ATCA-HO)
+b14 = ta.crossover(ema5, ema22)
+s14 = ta.crossunder(ema5, ema22)
+
+// 15 WMA 9x15  (EFELER-DDT, ARANLAR)
+wma9 = ta.wma(close, 9)
+wma15 = ta.wma(close, 15)
+b15 = ta.crossover(wma9, wma15)
+s15 = ta.crossunder(wma9, wma15)
+
+// 16 SMMA 21x55  (P-EMA21)
+smma21 = ta.rma(close, 21)
+smma55 = ta.rma(close, 55)
+b16 = ta.crossover(smma21, smma55)
+s16 = ta.crossunder(smma21, smma55)
+
+// 17 Darvas Kutusu Kırılımı (7)  (DARVAS AL SAT, DEREKÖY-DARVAS)
+dLL = ta.lowest(low, 7)
+dK1 = ta.highest(high, 7)
+dK2 = ta.highest(high, 6)
+dK3 = ta.highest(high, 5)
+dNH = ta.valuewhen(high > dK1[1], high, 0)
+dKutu = ta.barssince(high > dK1[1]) == 5 and dK3 < dK2
+dUst = ta.valuewhen(dKutu, dNH, 0)
+dAlt = ta.valuewhen(dKutu, dLL, 0)
+b17 = ta.crossover(close, dUst)
+s17 = ta.crossunder(close, dAlt)
+
+// 18 Fisher Dip (7)  (FISHER TARAMA): -1.5 altında yukarı dönüş
+fH = ta.highest(hl2, 7)
+fL = ta.lowest(hl2, 7)
+f_sinir(float x) =>
+    x > 0.99 ? 0.999 : x < -0.99 ? -0.999 : x
+float fDeger = 0.0
+fDeger := f_sinir(0.66 * ((hl2 - fL) / (fH - fL) - 0.5) + 0.67 * nz(fDeger[1]))
+float fish = 0.0
+fish := 0.5 * math.log((1 + fDeger) / (1 - fDeger)) + 0.5 * nz(fish[1])
+fTet = fish[1]
+b18 = ta.crossover(fish, fTet) and fTet <= -1.5
+s18 = ta.crossunder(fish, fTet) and fTet >= 1.5
+
+// 19 CCI Dip (20)  (CCI TARAMA): -100'ü yukarı keser
+cci = ta.cci(hlc3, 20)
+b19 = ta.crossover(cci, -100)
+s19 = ta.crossunder(cci, 100)
+
+// 20 TSI Dip (3, 9)  (P-LINEAR TSI): -0.8 altına iner
+tsi = ta.tsi(close, 3, 9)
+b20 = tsi <= -0.8 and tsi[1] > -0.8
+s20 = tsi >= 0.8 and tsi[1] < 0.8
+
+// 21 Haftalık MACD  (MUSLUCA-V2, SÖKE OVASI, NYSA-TREND) - tamamlanmış haftalık mumla, tekrar boyamaz
+f_haftalikMacd() =>
+    [hm, hs, hh] = ta.macd(close, 12, 26, 9)
+    [hm[1], hs[1]]
+[hM, hS] = request.security(syminfo.tickerid, "W", f_haftalikMacd(), lookahead = barmerge.lookahead_on)
+b21 = ta.crossover(hM, hS)
+s21 = ta.crossunder(hM, hS)
+
+// 22 Erik Kombo  (P-ERİK TARAMA): 7 koşul aynı anda
+f_orta(int len) =>
+    math.avg(ta.highest(high, len), ta.lowest(low, len))
+haftaKijun = request.security(syminfo.tickerid, "W", f_orta(26)[1], lookahead = barmerge.lookahead_on)
+donusum9 = f_orta(9)
+erikKesisim = ta.crossover(ema5, sma10)
+rsi5 = ta.rsi(close, 5)
+rsi9 = ta.rsi(close, 9)
+hma9 = ta.hma(close, 9)
+b22 = erikKesisim and close > donusum9 and mL > mS and rsi5 > rsi9 and mfi14 > 50 and hma9 < close and close > haftaKijun
+s22 = ta.crossunder(ema5, sma10)
+
+// 23 EMA Kombo  (EMA-TARAMA / KOMP-EMA): EMA5 x EMA14 + fiyat EMA34 üstü + MACD pozitif + RSI 50 üstü
+b23 = ta.crossover(ema5, ema14) and close > ema34 and m2L > m2S and rsi14 > 50
+s23 = ta.crossunder(ema5, ema14)
+
+// 24 Bollinger Kombo  (BOLL-ORT TARAMA): orta bant kırılımı + SMA200 üstü + MACD pozitif
+b24 = ta.crossover(close, sma20) and close >= sma200 and m2L > m2S
+s24 = ta.crossunder(close, sma20)
+
+// ════════════════════════════ 25 ORTAK KARAR ════════════════════════════
+alDizi = array.from(b01, b02, b03, b04, b05, b06, b07, b08, b09, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24)
+satDizi = array.from(s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24)
+var int[] sonAl = array.new_int(24, -100000)
+var int[] sonSat = array.new_int(24, -100000)
+int alSay = 0
+int satSay = 0
+for i = 0 to 23
+    if array.get(alDizi, i)
+        array.set(sonAl, i, bar_index)
+    if array.get(satDizi, i)
+        array.set(sonSat, i, bar_index)
+    if bar_index - array.get(sonAl, i) < ortakBar
+        alSay += 1
+    if bar_index - array.get(sonSat, i) < ortakBar
+        satSay += 1
+b25 = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
+s25 = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
+
+// ════════════════════════════ GERİYE DÖNÜK TEST ════════════════════════════
+// AL'da kapanıştan gir, kendi SAT'ında ya da maxBar dolunca kapanıştan çık.
+f_test(bool al, bool sat) =>
+    var bool poz = false
+    var float giris = na
+    var int girisBar = 0
+    var int adet = 0
+    var int kazanan = 0
+    var float topGetiri = 0.0
+    var float sermaye = 1.0
+    if poz and (sat or bar_index - girisBar >= maxBar)
+        r = (close / giris - 1) * 100 - komisyon
+        adet += 1
+        kazanan += r > 0 ? 1 : 0
+        topGetiri += r
+        sermaye *= 1 + r / 100
+        poz := false
+    else if al and not poz and time >= testBas
+        poz := true
+        giris := close
+        girisBar := bar_index
+    [adet, kazanan, topGetiri, sermaye, poz]
+
+[n01, w01, t01, e01, p01] = f_test(b01, s01)
+[n02, w02, t02, e02, p02] = f_test(b02, s02)
+[n03, w03, t03, e03, p03] = f_test(b03, s03)
+[n04, w04, t04, e04, p04] = f_test(b04, s04)
+[n05, w05, t05, e05, p05] = f_test(b05, s05)
+[n06, w06, t06, e06, p06] = f_test(b06, s06)
+[n07, w07, t07, e07, p07] = f_test(b07, s07)
+[n08, w08, t08, e08, p08] = f_test(b08, s08)
+[n09, w09, t09, e09, p09] = f_test(b09, s09)
+[n10, w10, t10, e10, p10] = f_test(b10, s10)
+[n11, w11, t11, e11, p11] = f_test(b11, s11)
+[n12, w12, t12, e12, p12] = f_test(b12, s12)
+[n13, w13, t13, e13, p13] = f_test(b13, s13)
+[n14, w14, t14, e14, p14] = f_test(b14, s14)
+[n15, w15, t15, e15, p15] = f_test(b15, s15)
+[n16, w16, t16, e16, p16] = f_test(b16, s16)
+[n17, w17, t17, e17, p17] = f_test(b17, s17)
+[n18, w18, t18, e18, p18] = f_test(b18, s18)
+[n19, w19, t19, e19, p19] = f_test(b19, s19)
+[n20, w20, t20, e20, p20] = f_test(b20, s20)
+[n21, w21, t21, e21, p21] = f_test(b21, s21)
+[n22, w22, t22, e22, p22] = f_test(b22, s22)
+[n23, w23, t23, e23, p23] = f_test(b23, s23)
+[n24, w24, t24, e24, p24] = f_test(b24, s24)
+[n25, w25, t25, e25, p25] = f_test(b25, s25)
+
+var string[] adlar = array.from("01 RSI Karpuzlu", "02 Dip Bulucu (Banker)", "03 Dip Bulucu-2 (VixFix)", "04 AlphaTrend", "05 SuperTrend", "06 AlphaTrend + SuperTrend", "07 Parabolic SAR", "08 MACD Dip Kesişimi", "09 ALMA Dönüşü", "10 T3 Tillson Dönüşü", "11 Bollinger Orta Bant", "12 Bollinger20 x EMA50", "13 EMA 5x13 (Umurlu)", "14 EMA 5x22 (Aydın)", "15 WMA 9x15 (Efeler)", "16 SMMA 21x55", "17 Darvas Kutusu", "18 Fisher Dip", "19 CCI Dip", "20 TSI Dip", "21 Haftalık MACD", "22 Erik Kombo", "23 EMA Kombo", "24 Bollinger Kombo", "25 ORTAK KARAR")
+adetA = array.from(n01, n02, n03, n04, n05, n06, n07, n08, n09, n10, n11, n12, n13, n14, n15, n16, n17, n18, n19, n20, n21, n22, n23, n24, n25)
+kazA = array.from(w01, w02, w03, w04, w05, w06, w07, w08, w09, w10, w11, w12, w13, w14, w15, w16, w17, w18, w19, w20, w21, w22, w23, w24, w25)
+topA = array.from(t01, t02, t03, t04, t05, t06, t07, t08, t09, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25)
+serA = array.from(e01, e02, e03, e04, e05, e06, e07, e08, e09, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, e21, e22, e23, e24, e25)
+pozA = array.from(p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25)
+
+f_skor(int n, int w, float t, float e) =>
+    n < minIslem ? -1e10 : olcut == "Toplam getiri" ? (e - 1) * 100 : olcut == "Ortalama getiri" ? t / n : w * 100.0 / n
+
+skorlar = array.new_float(25, 0.0)
+for i = 0 to 24
+    array.set(skorlar, i, f_skor(array.get(adetA, i), array.get(kazA, i), array.get(topA, i), array.get(serA, i)))
+yeterliVeri = array.max(skorlar) > -1e9
+enIyi = yeterliVeri ? array.indexof(skorlar, array.max(skorlar)) + 1 : 25
+
+tekIdx = array.indexof(adlar, tekSec) + 1
+secIdx = modSec == "Tek strateji seç" ? tekIdx : modSec == "Ortak karar (çoklu onay)" ? 25 : enIyi
+
+// k numaralı stratejinin i bar önceki pozisyon durumu
+f_poz(int k, int i) =>
+    switch k
+        1 => p01[i]
+        2 => p02[i]
+        3 => p03[i]
+        4 => p04[i]
+        5 => p05[i]
+        6 => p06[i]
+        7 => p07[i]
+        8 => p08[i]
+        9 => p09[i]
+        10 => p10[i]
+        11 => p11[i]
+        12 => p12[i]
+        13 => p13[i]
+        14 => p14[i]
+        15 => p15[i]
+        16 => p16[i]
+        17 => p17[i]
+        18 => p18[i]
+        19 => p19[i]
+        20 => p20[i]
+        21 => p21[i]
+        22 => p22[i]
+        23 => p23[i]
+        24 => p24[i]
+        25 => p25[i]
+        => false
+
+// ════════════════════════════ GRAFİK ETİKETLERİ ════════════════════════════
+var label[] etiketler = array.new_label()
+if barstate.islast
+    while array.size(etiketler) > 0
+        label.delete(array.pop(etiketler))
+    lim = math.min(etiketBar, bar_index - 1)
+    float girisFiyat = na
+    for i = lim to 0
+        simdi = f_poz(secIdx, i)
+        once = f_poz(secIdx, i + 1)
+        if simdi and not once
+            girisFiyat := close[i]
+            array.push(etiketler, label.new(bar_index - i, low[i], "AL", yloc = yloc.belowbar, style = label.style_label_up, color = color.new(#089981, 0), textcolor = color.white, size = size.small))
+        if not simdi and once
+            sonuc = na(girisFiyat) ? "" : "\n" + (close[i] >= girisFiyat ? "+" : "") + str.tostring((close[i] / girisFiyat - 1) * 100 - komisyon, "0.0") + "%"
+            array.push(etiketler, label.new(bar_index - i, high[i], "SAT" + sonuc, yloc = yloc.abovebar, style = label.style_label_down, color = color.new(#F23645, 0), textcolor = color.white, size = size.small))
+            girisFiyat := na
+
+// ════════════════════════════ PERFORMANS TABLOSU ════════════════════════════
+var float alTutBas = na
+if na(alTutBas) and time >= testBas
+    alTutBas := close
+alTutGetiri = (close / alTutBas - 1) * 100
+
+tYer = switch tabloYer
+    "Sağ üst" => position.top_right
+    "Sağ alt" => position.bottom_right
+    "Sol üst" => position.top_left
+    "Sol alt" => position.bottom_left
+    => position.bottom_center
+tBoy = switch tabloYazi
+    "Çok küçük" => size.tiny
+    "Normal" => size.normal
+    => size.small
+
+var table tablo = table.new(tYer, 7, 30, bgcolor = color.new(#131722, 0), border_color = color.new(#363A45, 0), border_width = 1)
+
+f_hucre(int sut, int sat, string metin, color yazi, color zemin, string hiza) =>
+    table.cell(tablo, sut, sat, metin, text_color = yazi, bgcolor = zemin, text_size = tBoy, text_halign = hiza)
+
+f_yuzde(float x) =>
+    (x >= 0 ? "+" : "") + str.tostring(x, "0.0") + "%"
+
+if barstate.islast and tabloGoster
+    table.clear(tablo, 0, 0, 6, 29)
+    baslik = color.new(#2A2E39, 0)
+    zemin = color.new(#131722, 0)
+    yazi = color.new(#D1D4DC, 0)
+    table.cell(tablo, 0, 0, "PERFORMANS SIRALAMASI • " + syminfo.ticker + " • " + timeframe.period, text_color = color.white, bgcolor = color.new(#2962FF, 0), text_size = tBoy)
+    table.merge_cells(tablo, 0, 0, 6, 0)
+    f_hucre(0, 1, "#", yazi, baslik, text.align_center)
+    f_hucre(1, 1, "Strateji", yazi, baslik, text.align_left)
+    f_hucre(2, 1, "Şimdi", yazi, baslik, text.align_center)
+    f_hucre(3, 1, "İşlem", yazi, baslik, text.align_center)
+    f_hucre(4, 1, "Kazanma", yazi, baslik, text.align_center)
+    f_hucre(5, 1, "Ort.", yazi, baslik, text.align_center)
+    f_hucre(6, 1, "Toplam", yazi, baslik, text.align_center)
+    sirali = array.sort_indices(skorlar, order.descending)
+    for j = 0 to tabloSatir - 1
+        k = array.get(sirali, j)
+        n = array.get(adetA, k)
+        az = n < minIslem
+        satirZemin = j == 0 and not az ? color.new(#089981, 70) : k + 1 == secIdx ? color.new(#2962FF, 70) : zemin
+        satirYazi = az ? color.new(#787B86, 0) : yazi
+        top = (array.get(serA, k) - 1) * 100
+        ort = n > 0 ? array.get(topA, k) / n : 0.0
+        kaz = n > 0 ? array.get(kazA, k) * 100.0 / n : 0.0
+        r = j + 2
+        f_hucre(0, r, str.tostring(j + 1), satirYazi, satirZemin, text.align_center)
+        f_hucre(1, r, array.get(adlar, k) + (az ? " (az işlem)" : ""), satirYazi, satirZemin, text.align_left)
+        f_hucre(2, r, array.get(pozA, k) ? "AL'da" : "—", array.get(pozA, k) ? color.new(#22AB94, 0) : satirYazi, satirZemin, text.align_center)
+        f_hucre(3, r, str.tostring(n), satirYazi, satirZemin, text.align_center)
+        f_hucre(4, r, n > 0 ? str.tostring(kaz, "0") + "%" : "-", satirYazi, satirZemin, text.align_center)
+        f_hucre(5, r, n > 0 ? f_yuzde(ort) : "-", n > 0 and ort < 0 ? color.new(#F23645, 0) : satirYazi, satirZemin, text.align_center)
+        f_hucre(6, r, n > 0 ? f_yuzde(top) : "-", n > 0 and top < 0 ? color.new(#F23645, 0) : satirYazi, satirZemin, text.align_center)
+    rAt = tabloSatir + 2
+    f_hucre(0, rAt, "—", yazi, baslik, text.align_center)
+    f_hucre(1, rAt, "Al-Tut (karşılaştırma)", yazi, baslik, text.align_left)
+    table.merge_cells(tablo, 1, rAt, 5, rAt)
+    f_hucre(6, rAt, na(alTutGetiri) ? "-" : f_yuzde(alTutGetiri), yazi, baslik, text.align_center)
+    rNot = tabloSatir + 3
+    table.cell(tablo, 0, rNot, "Grafikteki: " + array.get(adlar, secIdx - 1) + " | Ölçüt: " + olcut + " | Komisyon %" + str.tostring(komisyon) + " | En fazla " + str.tostring(maxBar) + " bar", text_color = color.new(#787B86, 0), bgcolor = zemin, text_size = size.tiny, text_halign = text.align_left)
+    table.merge_cells(tablo, 0, rNot, 6, rNot)
+
+// ════════════════════════════ ALARMLAR ════════════════════════════
+plot(alSay, "AL veren strateji sayısı", display = display.data_window)
+plot(satSay, "SAT veren strateji sayısı", display = display.data_window)
+
+secPoz = f_poz(secIdx, 0)
+secPozOnce = f_poz(secIdx, 1)
+alertcondition(b25, "ORTAK KARAR - AL", "{{ticker}} ({{interval}}): Birden fazla strateji AL veriyor")
+alertcondition(s25, "ORTAK KARAR - SAT", "{{ticker}} ({{interval}}): Birden fazla strateji SAT veriyor")
+alertcondition(secPoz and not secPozOnce, "Grafikteki strateji - AL", "{{ticker}} ({{interval}}): AL")
+alertcondition(not secPoz and secPozOnce, "Grafikteki strateji - SAT", "{{ticker}} ({{interval}}): SAT")
+
+// "Herhangi bir alert() fonksiyon çağrısı" ile kurulursa: o an en iyi olan stratejinin AL/SAT'ını, adıyla bildirir
+enIyiPoz = f_poz(enIyi, 0)
+enIyiPozOnce = f_poz(enIyi, 1)
+if barstate.isconfirmed and enIyiPoz and not enIyiPozOnce
+    alert(syminfo.ticker + " AL • " + array.get(adlar, enIyi - 1), alert.freq_once_per_bar_close)
+if barstate.isconfirmed and not enIyiPoz and enIyiPozOnce
+    alert(syminfo.ticker + " SAT • " + array.get(adlar, enIyi - 1), alert.freq_once_per_bar_close)
