@@ -109,14 +109,14 @@ f_orta(int len) =>
     math.avg(ta.highest(high, len), ta.lowest(low, len))
 
 // AL'da pozisyona gir, SAT'ta ya da maxBar dolunca çık. Pozisyon durumunu döndürür.
+// (if bloğu yerine üçlü ifade: TradingView'in 550 "yerel kapsam" sınırına takılmamak için)
 f_durum(bool al, bool sat) =>
     var bool poz = false
     var int girisBar = 0
-    if poz and (sat or bar_index - girisBar >= maxBar)
-        poz := false
-    else if al and not poz
-        poz := true
-        girisBar := bar_index
+    cik = poz and (sat or bar_index - girisBar >= maxBar)
+    gir = al and not poz
+    girisBar := gir ? bar_index : girisBar
+    poz := cik ? false : gir ? true : poz
     poz
 
 // Aday listesi: 0-24 tek stratejiler, sonra 24 stratejinin tüm ikili kombinleri (276)
@@ -220,10 +220,7 @@ f_hepsi(bool aktif) =>
     b04 = atAlHam and atO1 > atK2
     s04 = atSatHam and atO2 > atK1
     var bool atYukari = false
-    if b04
-        atYukari := true
-    if s04
-        atYukari := false
+    atYukari := s04 ? false : b04 ? true : atYukari
     // 05 SuperTrend (10, 3)
     [stDeger, stYon] = ta.supertrend(3.0, 10)
     stYukari = stYon < 0
@@ -329,9 +326,8 @@ if SCALPER:
     // 26 İlk Mum Kırılımı: günün ilk mumunun tepesi kırılınca AL, dibi kırılınca SAT
     var float orUst = na
     var float orAlt = na
-    if session.isfirstbar
-        orUst := high
-        orAlt := low
+    orUst := session.isfirstbar ? high : orUst
+    orAlt := session.isfirstbar ? low : orAlt
     b26 = ta.crossover(close, orUst) and not session.isfirstbar
     s26 = ta.crossunder(close, orAlt)
     // 27 RSI(2) Dip
@@ -369,14 +365,10 @@ w(f'''    var int[] sonAl = array.new_int({NS}, -100000)
     int alSay = 0
     int satSay = 0
     for i = 0 to {NS - 1}''')
-w('''        if array.get(alDizi, i)
-            array.set(sonAl, i, bar_index)
-        if array.get(satDizi, i)
-            array.set(sonSat, i, bar_index)
-        if bar_index - array.get(sonAl, i) < ortakBar
-            alSay += 1
-        if bar_index - array.get(sonSat, i) < ortakBar
-            satSay += 1
+w('''        array.set(sonAl, i, array.get(alDizi, i) ? bar_index : array.get(sonAl, i))
+        array.set(sonSat, i, array.get(satDizi, i) ? bar_index : array.get(sonSat, i))
+        alSay += bar_index - array.get(sonAl, i) < ortakBar ? 1 : 0
+        satSay += bar_index - array.get(sonSat, i) < ortakBar ? 1 : 0
     bOrtak = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
     sOrtak = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
     // ── pozisyon durumları
@@ -418,8 +410,7 @@ w('''    // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan
         array.set(onceki, k, array.get(poz, k))
     float maske = 0.0
     for k = 0 to @NS@
-        if array.get(poz, k)
-            maske += math.pow(2, k)
+        maske += array.get(poz, k) ? math.pow(2, k) : 0.0
     nB = array.get(adet, enIyi)
     ortB = nB > 0 ? array.get(top, enIyi) / nB : 0.0
     alTut = (close / alTutBas - 1) * 100

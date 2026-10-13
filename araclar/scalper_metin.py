@@ -30,11 +30,9 @@ tfW = input.bool(true, "Haftalık", group = G2, inline = "tf")''', '''tf5 = inpu
 tf15 = input.bool(true, "15 Dakika", group = G2, inline = "tf")
 tf60 = input.bool(true, "1 Saat", group = G2, inline = "tf")''')
     # gece taşıma yok
-    m = _degistir(m, '''    if poz and (sat or bar_index - girisBar >= maxBar)
-        poz := false
-    else if al and not poz''', '''    if poz and (sat or bar_index - girisBar >= maxBar or session.islastbar)
-        poz := false
-    else if al and not poz and not session.islastbar''')
+    m = _degistir(m, '''    cik = poz and (sat or bar_index - girisBar >= maxBar)
+    gir = al and not poz''', '''    cik = poz and (sat or bar_index - girisBar >= maxBar or session.islastbar)
+    gir = al and not poz and not session.islastbar''')
     # not kutusu ve karar
     m = _degistir(m, "            k1 = topG > alTut\n", "            k1 = hazir ? yil > 0 : topG > 0\n")
     m = _degistir(m, "            k3 = yil > 0\n", "            k3 = hazir ? alTut >= 1.3 : yil > 0\n")
