@@ -19,6 +19,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import risk
+
 KOK = Path(__file__).resolve().parent.parent
 TEST_BAS = pd.Timestamp("2020-01-01")
 MAX_BAR = 40
@@ -503,36 +505,77 @@ def islemler(durumlar, kapanis, bas_i):
     return sonuc
 
 
+EGITIM_ORAN = 0.70     # seçim dönemin ilk %70'inde yapılır, son %30 kontrol (saf test)
+MIN_ISLEM_KONTROL = 2
+ILK_K = 10              # risk modları en iyi kaç aday için denensin
+
+
+def atr14(df):
+    h, l, c = (df[k].to_numpy(float) for k in ("High", "Low", "Close"))
+    return rma(tr(h, l, c), 14)
+
+
+def _olc(r, gun):
+    if len(r) == 0:
+        return {"islem": 0, "kazanma": 0.0, "toplam": 0.0, "yillik": 0.0}
+    ser = float(np.prod(1 + r / 100))
+    return {"islem": int(len(r)), "kazanma": round(float((r > 0).mean() * 100), 1),
+            "toplam": round((ser - 1) * 100, 1),
+            "yillik": round(((ser ** (365.25 / max(gun, 1)) - 1) * 100) if ser > 0 else -100.0, 1)}
+
+
 def zaman_dilimi_test(df, tf):
     poz = stratejiler(df)
-    kapanis = df["Close"].to_numpy(float)
+    o, h, l, kapanis = (df[x].to_numpy(float) for x in ("Open", "High", "Low", "Close"))
+    atr = atr14(df)
     zaman = df.index
     bas_i = max(ISINMA, int(np.searchsorted(zaman, TEST_BAS)))
-    if bas_i >= len(df) - 20:
+    if bas_i >= len(df) - 30:
         return []
+    bolme = bas_i + int((len(df) - bas_i) * EGITIM_ORAN)
     gun = max((zaman[-1] - zaman[bas_i]).days, 1)
+    gun_e = max((zaman[bolme] - zaman[bas_i]).days, 1)
+    gun_k = max((zaman[-1] - zaman[bolme]).days, 1)
     al_tut = (kapanis[-1] / kapanis[bas_i] - 1) * 100
+    al_tut_k = (kapanis[-1] / kapanis[bolme] - 1) * 100
     son_yil_bas = zaman[-1] - pd.Timedelta(days=365)
-    sonuclar = []
-    for c, (a, b) in enumerate(ADAYLAR):
+
+    def degerlendir(c, mod):
+        a, b = ADAYLAR[c]
         d = poz[a] if b < 0 else (poz[a] & poz[b])
-        tr_ = islemler(d, kapanis, bas_i)
-        if len(tr_) < MIN_ISLEM:
-            continue
-        g = np.array([x[0] for x in tr_]); k = np.array([x[1] for x in tr_])
-        r = (kapanis[k] / kapanis[g] - 1) * 100 - KOMISYON
-        ser = float(np.prod(1 + r / 100))
-        yil_mask = zaman[k] >= son_yil_bas
-        ser_y = float(np.prod(1 + r[yil_mask] / 100)) if yil_mask.any() else 1.0
-        yillik = (ser ** (365.25 / gun) - 1) * 100 if ser > 0 else -100.0
-        sonuclar.append({
-            "aday": c, "ad": aday_adi(c), "tf": tf, "tf_ad": TF_ADLARI[tf],
-            "islem": int(len(r)), "kazanma": round(float((r > 0).mean() * 100), 1),
-            "ortalama": round(float(r.mean()), 2), "toplam": round((ser - 1) * 100, 1),
-            "yillik": round(yillik, 1), "son_yil": round((ser_y - 1) * 100, 1),
+        g, k, f, n = risk.risk_islemler(d, o, h, l, kapanis, atr, bas_i, mod)
+        if len(g) < MIN_ISLEM:
+            return None
+        r = (f / kapanis[g] - 1) * 100 - KOMISYON
+        egitim = g < bolme
+        if egitim.sum() < MIN_ISLEM - 1 or (~egitim).sum() < MIN_ISLEM_KONTROL:
+            return None
+        o_e, o_k, o_t = _olc(r[egitim], gun_e), _olc(r[~egitim], gun_k), _olc(r, gun)
+        yil = zaman[k] >= son_yil_bas
+        ser_y = float(np.prod(1 + r[yil] / 100)) if yil.any() else 1.0
+        return {
+            "aday": c, "aday_ab": [a, b], "ad": aday_adi(c), "tf": tf, "tf_ad": TF_ADLARI[tf],
+            "mod": list(mod), "mod_ad": risk.mod_adi(mod),
+            "skor": o_e["yillik"],                      # seçim SADECE eğitim dönemine göre
+            "islem": o_t["islem"], "kazanma": o_t["kazanma"], "ortalama": round(float(r.mean()), 2),
+            "toplam": o_t["toplam"], "yillik": o_t["yillik"], "son_yil": round((ser_y - 1) * 100, 1),
             "al_tut": round(float(al_tut), 1), "baslangic": str(zaman[bas_i].date()),
-        })
-    return sonuclar
+            "kontrol_bas": str(zaman[bolme].date()), "egitim": o_e,
+            "kontrol": {**o_k, "al_tut": round(float(al_tut_k), 1)},
+            "stop_cikis": int((n == 1).sum()), "hedef_cikis": int((n == 2).sum()),
+        }
+
+    # 1) tüm adaylar sadece sinyal çıkışıyla
+    tum = [x for x in (degerlendir(c, risk.MODLAR[0]) for c in range(len(ADAYLAR))) if x]
+    # 2) eğitimde en iyi ILK_K aday için stop / hedef / iz stop ayarlarını dene (parametre iyileştirme)
+    tum.sort(key=lambda x: x["skor"], reverse=True)
+    ek = []
+    for x in tum[:ILK_K]:
+        for mod in risk.MODLAR[1:]:
+            y = degerlendir(x["aday"], mod)
+            if y:
+                ek.append(y)
+    return tum + ek
 
 
 # ───────────────────────────── veri ─────────────────────────────
@@ -604,10 +647,24 @@ def main():
               if x.strip() and not x.startswith("#")]
     if "--ilk" in sys.argv:
         kodlar = kodlar[: int(sys.argv[sys.argv.index("--ilk") + 1])]
-    hisseler = {}
+    hedef = KOK / "veri" / ("deneme_sonuclar.json" if sentetik else "bist100_sonuclar.json")
+    eski = json.loads(hedef.read_text(encoding="utf-8")) if hedef.exists() and not sentetik else None
+    bugun = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    hisseler, karne = {}, []
     for kod in kodlar:
         t0 = time.time()
         veri = sentetik_veri(kod) if sentetik else yahoo_veri(kod)
+        # canlı karne: önceki seçimin o tarihten bu yana gerçek sonucu
+        if eski and kod in eski.get("hisseler", {}):
+            e0 = dict(eski["hisseler"][kod]["en_iyi"])
+            e0.setdefault("aday_ab", list(ADAYLAR[e0["aday"]]))
+            e0.setdefault("secim_tarihi", eski["tarih"])
+            try:
+                satir = risk.karne_satiri(kod, e0, veri, KOMISYON, stratejiler, atr14)
+                if satir:
+                    karne.append(satir)
+            except Exception as hata:  # karne asıl testi durdurmasın
+                print(f"  {kod}: karne hesaplanamadı ({hata})", flush=True)
         tum = []
         for tf in (1, 2, 3):
             df = veri.get(tf)
@@ -616,35 +673,43 @@ def main():
         if not tum:
             print(f"{kod}: veri yok/yetersiz, atlandı", flush=True)
             continue
-        tum.sort(key=lambda x: x["yillik"], reverse=True)
+        # seçim yalnızca eğitim dönemine göre (kontrol dönemi seçimi etkilemez)
+        tum.sort(key=lambda x: x["skor"], reverse=True)
+        tum[0]["secim_tarihi"] = bugun
         hisseler[kod] = {"en_iyi": tum[0], "ilk5": tum[:5]}
         e = tum[0]
-        print(f"{kod}: {e['ad']} • {e['tf_ad']} • yıllık %{e['yillik']} • {e['islem']} işlem ({time.time() - t0:.1f} sn)", flush=True)
+        print(f"{kod}: {e['ad']} • {e['tf_ad']} • {e['mod_ad']} • eğitim yıllık %{e['skor']} • "
+              f"kontrol {e['kontrol']['toplam']:+.1f}% ({time.time() - t0:.1f} sn)", flush=True)
     if not hisseler:
         sys.exit("Hiçbir hisse için sonuç üretilemedi; eski sonuçlar korunuyor.")
     cikti = {
-        "tarih": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "tarih": bugun,
         "ayarlar": {"test_bas": str(TEST_BAS.date()), "max_bar": MAX_BAR, "komisyon": KOMISYON,
-                    "min_islem": MIN_ISLEM, "olcut": "yıllık getiri"},
+                    "min_islem": MIN_ISLEM, "egitim_orani": EGITIM_ORAN,
+                    "cikis_modlari": [risk.mod_adi(m) for m in risk.MODLAR],
+                    "olcut": "yalnızca eğitim dönemi yıllık getirisi; kontrol dönemi saf test"},
         "sentetik": sentetik,
         "hisseler": hisseler,
     }
-    hedef = KOK / "veri" / ("deneme_sonuclar.json" if sentetik else "bist100_sonuclar.json")
     hedef.parent.mkdir(exist_ok=True)
     hedef.write_text(json.dumps(cikti, ensure_ascii=False, indent=1), encoding="utf-8")
     if not sentetik:
         satirlar = [f"# BIST 100 en iyi strateji/kombin listesi ({cikti['tarih']})", "",
-                    "Ölçüt: yıllık getiri (en az 6 işlem). Komisyon %0,2 düşülmüş. Karar: Al-Tut'u geçiyor mu, "
-                    "kazanma ≥ %50 mi, son 1 yılda kârda mı (3 şart).", "",
-                    "| Hisse | En iyi strateji / kombin | Zaman | İşlem | Kazanma | Toplam | Al-Tut | Son 1 yıl | Yıllık | Karar |",
+                    "Seçim yalnızca dönemin ilk %70'ine (eğitim) bakılarak yapıldı; 24 strateji + 276 kombin, sonra en iyi 10 aday için "
+                    "11 farklı stop / hedef / iz stop ayarı denendi. **Kontrol** = seçimde hiç kullanılmayan son %30. "
+                    "Komisyon %0,2 düşülmüş. Karar: Al-Tut'u geçiyor mu, kazanma ≥ %50 mi, kontrol döneminde kârda mı (3 şart).", "",
+                    "| Hisse | En iyi strateji / kombin | Zaman | Çıkış | İşlem | Kazanma | Toplam | Al-Tut | Kontrol | Karar |",
                     "|---|---|---|---|---|---|---|---|---|---|"]
-        for kod, v in sorted(hisseler.items(), key=lambda kv: -kv[1]["en_iyi"]["yillik"]):
+        for kod, v in sorted(hisseler.items(), key=lambda kv: -kv[1]["en_iyi"]["kontrol"]["toplam"]):
             e = v["en_iyi"]
-            puan = (e["toplam"] > e["al_tut"]) + (e["kazanma"] >= 50) + (e["son_yil"] > 0)
+            puan = (e["toplam"] > e["al_tut"]) + (e["kazanma"] >= 50) + (e["kontrol"]["toplam"] > 0)
             karar = ["ZAYIF", "ZAYIF", "ORTA", "GÜÇLÜ"][puan]
-            satirlar.append(f"| {kod} | {e['ad']} | {e['tf_ad']} | {e['islem']} | %{e['kazanma']:.0f} | "
-                            f"{e['toplam']:+.0f}% | {e['al_tut']:+.0f}% | {e['son_yil']:+.0f}% | {e['yillik']:+.0f}% | {karar} |")
+            satirlar.append(f"| {kod} | {e['ad']} | {e['tf_ad']} | {e['mod_ad']} | {e['islem']} | %{e['kazanma']:.0f} | "
+                            f"{e['toplam']:+.0f}% | {e['al_tut']:+.0f}% | {e['kontrol']['toplam']:+.1f}% | {karar} |")
         (KOK / "veri" / "BIST100_SONUCLAR.md").write_text("\n".join(satirlar) + "\n", encoding="utf-8")
+        if karne:
+            risk.karne_yaz(KOK / "veri" / "karne_swing.json", KOK / "veri" / "KARNE_SWING.md", karne,
+                           "Canlı karne: OTO-BIST (genel)")
     print(f"\n{len(hisseler)} hisse yazıldı: {hedef}")
 
 

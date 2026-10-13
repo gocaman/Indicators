@@ -24,6 +24,7 @@ import numpy as np
 import pandas as pd
 
 import backtest as bt
+import risk
 from backtest import (KOK, asagi_kes, buyuk, ema, gecikme, highest, kucuk, kucuk_esit, lowest, rsi, sma,
                       stdev, supertrend, yukari_kes)
 
@@ -135,40 +136,55 @@ def olcumler(r, bekleme, gun_sayisi):
     }
 
 
+ILK_K = 10  # risk modları eğitimde en iyi kaç aday için denensin
+
+
 def zaman_dilimi_test(df, tf):
     poz = stratejiler(df)
-    kapanis = df["Close"].to_numpy(float)
+    o, h, l, kapanis = (df[x].to_numpy(float) for x in ("Open", "High", "Low", "Close"))
+    atr = bt.atr14(df)
     gunler = pd.DatetimeIndex(df.index).normalize()
     bas_i = ISINMA
     if bas_i >= len(df) - 100:
         return []
     bolme = bas_i + int((len(df) - bas_i) * EGITIM_ORAN)
     gun_e = len(np.unique(gunler[bas_i:bolme])); gun_k = len(np.unique(gunler[bolme:]))
-    sonuclar = []
-    for c, (a, b) in enumerate(ADAYLAR):
+
+    def degerlendir(c, mod):
+        a, b = ADAYLAR[c]
         d = poz[a] if b < 0 else (poz[a] & poz[b])
-        tr_ = bt.islemler(d, kapanis, bas_i)
-        if len(tr_) < MIN_ISLEM_EGITIM + MIN_ISLEM_KONTROL:
-            continue
-        g = np.array([x[0] for x in tr_]); k = np.array([x[1] for x in tr_])
-        r = (kapanis[k] / kapanis[g] - 1) * 100 - KOMISYON
+        g, k, f, n = risk.risk_islemler(d, o, h, l, kapanis, atr, bas_i, mod)
+        if len(g) < MIN_ISLEM_EGITIM + MIN_ISLEM_KONTROL:
+            return None
+        r = (f / kapanis[g] - 1) * 100 - KOMISYON
         egitim = g < bolme
         if egitim.sum() < MIN_ISLEM_EGITIM or (~egitim).sum() < MIN_ISLEM_KONTROL:
-            continue
+            return None
         o_e = olcumler(r[egitim], (k - g)[egitim], gun_e)
-        o_k = olcumler(r[~egitim], (k - g)[~egitim], gun_k)
         if o_e["gunluk_islem"] < MIN_GUNLUK_ISLEM:
-            continue
+            return None
+        o_k = olcumler(r[~egitim], (k - g)[~egitim], gun_k)
         o_t = olcumler(r, k - g, gun_e + gun_k)
         # eğitim dönemindeki günlük bileşik getiri: farklı uzunluktaki dönemleri karşılaştırılabilir yapar
         skor = ((1 + o_e["toplam"] / 100) ** (1 / max(gun_e, 1)) - 1) * 100
-        sonuclar.append({
-            "aday": c, "ad": aday_adi(c), "tf": tf, "tf_ad": TF_ADLARI[tf], "skor": round(skor, 4),
+        return {
+            "aday": c, "aday_ab": [a, b], "ad": aday_adi(c), "tf": tf, "tf_ad": TF_ADLARI[tf],
+            "mod": list(mod), "mod_ad": risk.mod_adi(mod), "skor": round(skor, 4),
             "baslangic": str(df.index[bas_i].date()), "kontrol_bas": str(df.index[bolme].date()),
             **o_t, "egitim": o_e, "kontrol": o_k,
             "kontrol_gecti": bool(o_k["toplam"] > 0 and o_k["kar_faktoru"] > 1.0),
-        })
-    return sonuclar
+            "stop_cikis": int((n == 1).sum()), "hedef_cikis": int((n == 2).sum()),
+        }
+
+    tum = [x for x in (degerlendir(c, risk.MODLAR[0]) for c in range(len(ADAYLAR))) if x]
+    tum.sort(key=lambda x: x["skor"], reverse=True)
+    ek = []
+    for x in tum[:ILK_K]:                     # parametre iyileştirme: stop / hedef / iz stop
+        for mod in risk.MODLAR[1:]:
+            y = degerlendir(x["aday"], mod)
+            if y:
+                ek.append(y)
+    return tum + ek
 
 
 def veri_cek(kod):
@@ -219,10 +235,23 @@ def main():
               if x.strip() and not x.startswith("#")]
     if "--ilk" in sys.argv:
         kodlar = kodlar[: int(sys.argv[sys.argv.index("--ilk") + 1])]
-    hisseler = {}
+    hedef = KOK / "veri" / ("deneme_scalper.json" if sentetik else "scalper_sonuclar.json")
+    eski = json.loads(hedef.read_text(encoding="utf-8")) if hedef.exists() and not sentetik else None
+    bugun = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    hisseler, karne = {}, []
     for kod in kodlar:
         t0 = time.time()
         veri = sentetik_veri(kod) if sentetik else veri_cek(kod)
+        if eski and kod in eski.get("hisseler", {}):
+            e0 = dict(eski["hisseler"][kod]["en_iyi"])
+            e0.setdefault("aday_ab", list(ADAYLAR[e0["aday"]]))
+            e0.setdefault("secim_tarihi", eski["tarih"])
+            try:
+                satir = risk.karne_satiri(kod, e0, veri, KOMISYON, stratejiler, bt.atr14)
+                if satir:
+                    karne.append(satir)
+            except Exception as hata:
+                print(f"  {kod}: karne hesaplanamadı ({hata})", flush=True)
         tum = []
         for tf in (0, 1, 2):
             df = veri.get(tf)
@@ -233,40 +262,43 @@ def main():
             continue
         # Seçim yalnızca eğitim skoruna göre; kontrol dönemi sonucu seçimi etkilemez (saf test)
         tum.sort(key=lambda x: x["skor"], reverse=True)
+        tum[0]["secim_tarihi"] = bugun
         hisseler[kod] = {"en_iyi": tum[0], "ilk5": tum[:5], "aday_sayisi": len(tum)}
         havuz = tum
         e = havuz[0]
-        print(f"{kod}: {e['ad']} • {e['tf_ad']} • {e['islem']} işlem • %{e['kazanma']} kazanma • KF {e['kar_faktoru']} • "
+        print(f"{kod}: {e['ad']} • {e['tf_ad']} • {e['mod_ad']} • {e['islem']} işlem • %{e['kazanma']} kazanma • KF {e['kar_faktoru']} • "
               f"kontrol {e['kontrol']['toplam']:+.1f}% ({time.time() - t0:.1f} sn)", flush=True)
     if not hisseler:
         sys.exit("Hiçbir hisse için sonuç üretilemedi; eski sonuçlar korunuyor.")
     cikti = {
-        "tarih": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "tarih": bugun,
         "ayarlar": {"max_bar": MAX_BAR, "komisyon": KOMISYON, "egitim_orani": EGITIM_ORAN,
                     "min_islem_egitim": MIN_ISLEM_EGITIM, "min_islem_kontrol": MIN_ISLEM_KONTROL,
-                    "min_gunluk_islem": MIN_GUNLUK_ISLEM,
+                    "min_gunluk_islem": MIN_GUNLUK_ISLEM, "cikis_modlari": [risk.mod_adi(m) for m in risk.MODLAR],
                     "olcut": "yalnızca eğitim dönemi günlük bileşik getiri; kontrol dönemi saf test"},
         "sentetik": sentetik,
         "hisseler": hisseler,
     }
-    hedef = KOK / "veri" / ("deneme_scalper.json" if sentetik else "scalper_sonuclar.json")
     hedef.parent.mkdir(exist_ok=True)
     hedef.write_text(json.dumps(cikti, ensure_ascii=False, indent=1), encoding="utf-8")
     if not sentetik:
         sat = [f"# BIST 100 gün içi (scalper) en iyi strateji listesi ({cikti['tarih']})", "",
                "Gece taşıma yok (pozisyon gün sonunda kapanır). Komisyon+kayma %0,15. Seçim yalnızca dönemin ilk %70'ine "
-               "bakılarak yapıldı (günde en az 0,5 işlem şartıyla); **Kontrol** sütunu seçimde hiç kullanılmayan son %30'daki "
+               "bakılarak yapıldı (günde en az 0,5 işlem şartıyla); en iyi 10 aday için 11 stop / hedef / iz stop ayarı denendi. **Kontrol** sütunu seçimde hiç kullanılmayan son %30'daki "
                "gerçek sonuçtur. Karar: kontrolde kârlı mı, "
                "kâr faktörü ≥ 1,3 mü, kazanma ≥ %50 mi (3 şart).", "",
-               "| Hisse | En iyi strateji / kombin | Zaman | İşlem | Günlük işlem | Kazanma | Kâr faktörü | En büyük düşüş | Toplam | Kontrol | Karar |",
-               "|---|---|---|---|---|---|---|---|---|---|---|"]
+               "| Hisse | En iyi strateji / kombin | Zaman | Çıkış | İşlem | Günlük işlem | Kazanma | Kâr faktörü | En büyük düşüş | Toplam | Kontrol | Karar |",
+               "|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for kod, v in sorted(hisseler.items(), key=lambda kv: -kv[1]["en_iyi"]["kontrol"]["toplam"]):
             e = v["en_iyi"]
             puan = (e["kontrol"]["toplam"] > 0) + (e["kar_faktoru"] >= 1.3) + (e["kazanma"] >= 50)
             karar = ["ZAYIF", "ZAYIF", "ORTA", "GÜÇLÜ"][puan]
-            sat.append(f"| {kod} | {e['ad']} | {e['tf_ad']} | {e['islem']} | {e['gunluk_islem']} | %{e['kazanma']:.0f} | "
+            sat.append(f"| {kod} | {e['ad']} | {e['tf_ad']} | {e['mod_ad']} | {e['islem']} | {e['gunluk_islem']} | %{e['kazanma']:.0f} | "
                        f"{e['kar_faktoru']} | {e['max_dusus']}% | {e['toplam']:+.1f}% | {e['kontrol']['toplam']:+.1f}% | {karar} |")
         (KOK / "veri" / "SCALPER_SONUCLAR.md").write_text("\n".join(sat) + "\n", encoding="utf-8")
+        if karne:
+            risk.karne_yaz(KOK / "veri" / "karne_scalper.json", KOK / "veri" / "KARNE_SCALPER.md", karne,
+                           "Canlı karne: OTO-SCALP (gün içi)")
     print(f"\n{len(hisseler)} hisse yazıldı: {hedef}")
 
 

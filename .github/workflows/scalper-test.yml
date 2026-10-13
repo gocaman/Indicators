@@ -11,6 +11,7 @@ on:
     paths:
       - "araclar/scalper.py"
       - "araclar/backtest.py"
+      - "araclar/risk.py"
       - "araclar/bist100.txt"
       - ".github/workflows/scalper-test.yml"
 
@@ -48,7 +49,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/sonuc
-          cp "veri/scalper_sonuclar.json" "veri/SCALPER_SONUCLAR.md" /tmp/sonuc/
+          for f in scalper_sonuclar.json SCALPER_SONUCLAR.md karne_scalper.json KARNE_SCALPER.md; do
+            if [ -f "veri/$f" ]; then cp "veri/$f" /tmp/sonuc/; fi
+          done
           for deneme in 1 2 3 4; do
             git fetch -q origin "$GITHUB_REF_NAME"
             git reset -q --hard "origin/$GITHUB_REF_NAME"

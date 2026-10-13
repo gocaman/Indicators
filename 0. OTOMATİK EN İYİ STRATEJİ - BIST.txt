@@ -384,6 +384,9 @@ var float[] hTop = array.from(3578.5, 964.8, 2890.7, -6.6, 1159.9, 817.9, 79.3, 
 var float[] hAlTut = array.from(63.2, 977.4, 1925.3, -83.0, 980.2, 229.3, 1.4, 2245.1, 1200.8, 1964.1, -80.5, -25.6, 1506.4, 323.7, 4490.4, 71.9, 496.1, 102.7, -46.7, -40.4, 5588.0, 2662.9, 59.8, 1702.1, 11.6, 126.6, 3336.7, 1583.6, -44.3, 3143.4, 1008.0, 14.0, 233.1, 90.4, 442.3, 948.7, 119.4, 1030.0, -4.6, -93.0, 1441.9, 1375.7, 423.9, 1399.7, 1444.8, 4321.8, 165.7, 390.4, 1271.0, 4328.4, 75.2, 1180.7, -98.2, 1185.9, 1624.3, 428.5, -13.9, 1537.8, 1299.9, 569.4, 1056.1, -50.7, 123.9, 1152.7, 1318.4, 39.8, 535.1, 654.5, -75.8, 1013.2, 1079.1, 44.4, 464.6, 7.5, -62.8, 475.5, 31.1, 890.9, 694.5, 1874.2, 475.6, 961.0, 770.4, 771.8, 369.7, -13.4, 4557.6, 5391.7, 361.3, 521.6, -40.3, 1509.8, 1618.5, 41.6, 1112.1, -9.7, 1.0)
 var float[] hYil = array.from(6.8, 1.8, 3.9, -20.8, 43.9, -45.6, 32.7, 10.9, 50.2, 22.2, 22.1, 4.1, 21.7, -2.7, 64.2, 175.8, -42.7, 39.1, 18.2, -38.7, 41.1, -24.9, 81.4, 17.0, 2.7, 47.1, -11.2, -3.5, 13.5, 3.6, -23.7, -0.6, -6.1, 5.1, 30.2, 99.2, 13.9, 19.1, 108.4, 0.0, 1.3, 2.5, 44.1, -16.8, 3.9, 76.0, 85.2, 11.7, 1.5, 0.4, 53.7, 0.6, 66.8, -15.1, 22.0, 984.7, 54.3, -5.3, 20.7, -40.2, 0.0, 24.8, 31.6, -16.1, 2.9, 210.5, 15.8, -20.7, 22.1, 41.4, -9.3, 291.5, 18.8, 143.8, 46.6, 69.0, 10.3, 31.5, -10.5, -16.7, 239.0, 30.0, -34.8, -23.4, -13.2, 2.6, 109.3, 0.8, -1.3, 38.4, 0.0, 96.2, -16.0, -10.8, -5.0, 935.9, 28.1)
 var float[] hYillik = array.from(70.2, 41.8, 65.1, -3.2, 45.3, 38.7, 26.1, 50.5, 58.0, 61.1, 22.3, 17.4, 58.2, 32.7, 82.7, 52.7, 39.4, 37.3, 52.2, 48.9, 94.8, 66.8, 100.6, 72.2, 39.2, 35.9, 61.2, 61.2, 22.7, 54.3, 40.8, 48.3, 46.5, 56.0, 68.5, 41.8, 44.8, 33.5, 42.8, 35.6, 33.9, 55.7, 66.0, 70.1, 109.0, 79.2, 58.4, 61.1, 58.5, 72.5, 42.8, 43.2, 45.7, 67.4, 51.1, 577.3, 29.1, 59.8, 50.3, 82.0, 62.2, 83.4, 56.3, 52.5, 49.5, 93.6, 35.4, 48.6, 3.6, 45.6, 53.3, 118.0, 30.8, 100.5, 24.7, 35.8, 21.3, 46.2, 30.1, 58.9, 143.0, 47.2, 57.3, 38.9, 43.0, 47.6, 69.1, 64.8, 36.9, 46.8, 36.0, 108.8, 51.2, 35.8, 47.6, 1119.1, 41.8)
+var float[] hMSl = array.from(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+var float[] hMTp = array.from(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+var float[] hMIzs = array.from(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 var string[] hBas = array.from("2020-01-02", "2020-01-02", "2020-01-02", "2024-09-13", "2020-01-02", "2020-01-02", "2024-04-08", "2020-01-02", "2021-03-29", "2020-01-02", "2023-09-07", "2025-03-03", "2021-03-29", "2020-01-02", "2021-03-29", "2023-11-09", "2020-01-02", "2024-04-08", "2025-01-13", "2020-01-02", "2020-01-02", "2020-01-02", "2021-03-29", "2020-01-02", "2022-02-18", "2020-01-02", "2020-01-02", "2020-01-02", "2024-04-08", "2020-01-02", "2020-01-02", "2024-04-08", "2021-03-29", "2024-04-08", "2024-06-07", "2021-12-06", "2024-04-08", "2020-01-02", "2024-04-08", "2021-03-29", "2020-01-02", "2020-01-02", "2022-06-03", "2020-01-02", "2022-12-26", "2020-01-02", "2024-04-08", "2020-01-02", "2020-01-02", "2020-01-02", "2023-04-18", "2021-03-29", "2024-04-08", "2020-01-02", "2020-01-02", "2025-01-13", "2024-12-16", "2021-04-12", "2021-03-29", "2022-09-08", "2021-12-13", "2024-12-23", "2021-03-29", "2020-01-02", "2020-01-02", "2025-01-13", "2020-01-02", "2020-01-02", "2025-01-14", "2020-01-02", "2020-01-02", "2024-04-08", "2021-03-29", "2024-04-08", "2023-01-10", "2020-01-02", "2024-08-16", "2020-01-02", "2021-03-29", "2020-01-02", "2024-04-08", "2021-03-29", "2020-01-02", "2020-01-02", "2021-03-29", "2020-01-02", "2021-03-29", "2020-01-02", "2021-03-29", "2020-01-02", "2021-03-29", "2022-06-17", "2020-01-02", "2021-03-29", "2021-03-29", "2025-07-07", "2025-06-17")
 hazir = hazirKullan and hIdx >= 0 and syminfo.currency == "TRY"
 hI = math.max(hIdx, 0)
@@ -625,12 +628,21 @@ if array.size(destekler) > 25
     array.shift(destekler)
 var line[] seviyeCizgi = array.new<line>()
 
+f_modAd(float sl, float tp, float izs) =>
+    sl <= 0 ? "sinyal çıkışı" : "stop " + str.tostring(sl) + " ATR" + (tp > 0 ? " + hedef " + str.tostring(tp) + "R" : "") + (izs > 0 ? " + iz stop " + str.tostring(izs) + " ATR" : "")
+
 f_yuzde(float x) =>
     na(x) ? "-" : (x >= 0 ? "+" : "") + str.tostring(x, "0.0") + "%"
 
 // ════════════════════════════ GRAFİĞE OTOMATİK YERLEŞTİRME ════════════════════════════
 secAday = hazir ? array.get(hAday, hI) : gecerli ? int(f_aday(secTf)) : 0
 tfUygun = gecerli and array.get(tfSaniye, secTf) >= timeframe.in_seconds()
+mSl = hazir ? array.get(hMSl, hI) : 0.0
+mTp = hazir ? array.get(hMTp, hI) : 0.0
+mIzs = hazir ? array.get(hMIzs, hI) : 0.0
+hazirMod = mSl > 0
+// stop/hedef çıkışları grafikte ancak grafik, seçilen zaman diliminde açıksa birebir çizilebilir
+riskAktif = hazirMod and array.get(tfSaniye, secTf) == timeframe.in_seconds()
 
 var label[] etiketler = array.new<label>()
 var polyline[] cizgiler = array.new<polyline>()
@@ -661,6 +673,8 @@ if barstate.islast
     float girisAtr = na
     float tepeH = na
     int girisX = na
+    float stop0 = na
+    float hedefF = na
     if tfUygun
         // AL / SAT etiketleri
         for i = lim to 0
@@ -670,9 +684,18 @@ if barstate.islast
                 girisFiyat := close[i]
                 girisAtr := atrG[i]
                 girisX := bar_index - i
+                stop0 := close[i] - mSl * atrG[i]
+                hedefF := mTp > 0 ? close[i] + mTp * mSl * atrG[i] : na
                 array.push(etiketler, label.new(bar_index - i, low[i], "AL", yloc = yloc.belowbar, style = label.style_label_up, color = color.new(#089981, 0), textcolor = color.white, size = size.small))
-            if not simdi and once
-                sonuc = na(girisFiyat) ? "" : "\n" + f_yuzde((close[i] / girisFiyat - 1) * 100 - komisyon)
+            // optimize stop / hedef (hazır sonuçtaki ayar): girişten sonraki mumlarda kontrol edilir
+            if riskAktif and simdi and once and not na(girisFiyat)
+                st = mIzs > 0 ? math.max(stop0, tepeH - mIzs * atrG[i + 1]) : stop0
+                cikisF = low[i] <= st ? math.min(open[i], st) : not na(hedefF) and high[i] >= hedefF ? math.max(open[i], hedefF) : na
+                if not na(cikisF)
+                    array.push(etiketler, label.new(bar_index - i, low[i] <= st ? low[i] : high[i], (low[i] <= st ? "STOP" : "HEDEF") + "\n" + f_yuzde((cikisF / girisFiyat - 1) * 100 - komisyon), yloc = low[i] <= st ? yloc.belowbar : yloc.abovebar, style = low[i] <= st ? label.style_label_up : label.style_label_down, color = low[i] <= st ? color.new(#F23645, 0) : color.new(#2962FF, 0), textcolor = color.white, size = size.small))
+                    girisFiyat := na
+            if not simdi and once and not na(girisFiyat)
+                sonuc = "\n" + f_yuzde((close[i] / girisFiyat - 1) * 100 - komisyon)
                 array.push(etiketler, label.new(bar_index - i, high[i], "SAT" + sonuc, yloc = yloc.abovebar, style = label.style_label_down, color = color.new(#F23645, 0), textcolor = color.white, size = size.small))
                 girisFiyat := na
             tepeH := na(girisFiyat) ? na : math.max(nz(tepeH, high[i]), high[i])
@@ -703,20 +726,25 @@ if barstate.islast
     acik = not na(girisFiyat)
     rGiris = acik ? girisFiyat : close
     rAtr = acik ? nz(girisAtr, atrG) : atrG
-    rStop = rGiris - slAtr * rAtr
+    kSl = hazirMod ? mSl : slAtr
+    kTp1 = hazirMod ? mTp : tp1R
+    kIzs = hazirMod ? mIzs : izsAtr
+    rStop = rGiris - kSl * rAtr
     rRisk = rGiris - rStop
-    rTp1 = rGiris + tp1R * rRisk
-    rTp2 = rGiris + tp2R * rRisk
-    rIzs = acik ? math.max(rStop, tepeH - izsAtr * atrG) : na
+    rTp1 = kTp1 > 0 ? rGiris + kTp1 * rRisk : na
+    rTp2 = hazirMod ? na : rGiris + tp2R * rRisk
+    rIzs = acik and kIzs > 0 ? math.max(rStop, tepeH - kIzs * atrG) : na
     rLot = rRisk > 0 ? math.floor(riskTL / rRisk) : 0.0
     rX = acik ? girisX : bar_index
     if riskGoster and gecerli
         bas = acik ? "Giriş " : "AL gelirse "
         f_seviye(seviyeCizgi, etiketler, rX, rGiris, bas + f_fiyat(rGiris), color.new(#787B86, 0), line.style_solid)
         f_seviye(seviyeCizgi, etiketler, rX, rStop, "STOP " + f_fiyat(rStop) + " " + f_yuzde((rStop / rGiris - 1) * 100), color.new(#F23645, 0), line.style_solid)
-        f_seviye(seviyeCizgi, etiketler, rX, rTp1, "HEDEF 1 " + f_fiyat(rTp1) + " " + f_yuzde((rTp1 / rGiris - 1) * 100), color.new(#089981, 0), line.style_dashed)
-        f_seviye(seviyeCizgi, etiketler, rX, rTp2, "HEDEF 2 " + f_fiyat(rTp2) + " " + f_yuzde((rTp2 / rGiris - 1) * 100), color.new(#089981, 0), line.style_dashed)
-        if acik
+        if not na(rTp1)
+            f_seviye(seviyeCizgi, etiketler, rX, rTp1, (hazirMod ? "HEDEF " : "HEDEF 1 ") + f_fiyat(rTp1) + " " + f_yuzde((rTp1 / rGiris - 1) * 100), color.new(#089981, 0), line.style_dashed)
+        if not na(rTp2)
+            f_seviye(seviyeCizgi, etiketler, rX, rTp2, "HEDEF 2 " + f_fiyat(rTp2) + " " + f_yuzde((rTp2 / rGiris - 1) * 100), color.new(#089981, 0), line.style_dashed)
+        if not na(rIzs)
             f_seviye(seviyeCizgi, etiketler, rX, rIzs, "İZ STOP " + f_fiyat(rIzs), color.new(#FF9800, 0), line.style_dotted)
 
     // ── Destek / direnç: son tepe ve diplerden fiyata en yakın olanlar
@@ -779,20 +807,20 @@ if barstate.islast
             simdiPoz = f_poz(secTf, secAday, 0)
             table.cell(notTablo, 0, 0, "★ " + f_adayAd(secAday) + " • " + array.get(tfAd, secTf) + (hazir ? " • hazır test " + HAZIR_TARIH : " • canlı test (" + syminfo.prefix + ":" + syminfo.ticker + " " + syminfo.currency + (hazirKullan ? "" : ", hazır kapalı") + ")"), text_color = color.white, text_size = notBoyB, text_halign = text.align_left)
             table.cell(notTablo, 0, 1, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazanç • Toplam " + f_yuzde(topG) + " (Al-Tut " + f_yuzde(alTut) + ")", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
-            table.cell(notTablo, 0, 2, "Karar: " + karar + " (" + str.tostring(puan) + "/3) • Son 1 yıl " + f_yuzde(yil) + " • Şu an: " + (simdiPoz ? "AL'da" : "beklemede"), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 2, "Karar: " + karar + " (" + str.tostring(puan) + "/3)" + (hazir ? " • Kontrol " : " • Son 1 yıl ") + f_yuzde(yil) + " • Şu an: " + (simdiPoz ? "AL'da" : "beklemede"), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
             r = 3
             rejim = adxG >= 25 ? (close > ema200G ? "TREND YUKARI" : "TREND AŞAĞI") : "YATAY"
-            table.cell(notTablo, 0, r, (acik ? "Açık işlem" : "AL gelirse") + ": stop " + f_fiyat(rStop) + " • hedef " + f_fiyat(rTp1) + " / " + f_fiyat(rTp2) + " • " + str.tostring(rLot, "#") + " lot", text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, r, (acik ? "Açık işlem" : "AL gelirse") + ": stop " + f_fiyat(rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + " • " + str.tostring(rLot, "#") + " lot" + (hazirMod ? "\nÇıkış (en iyi bulunan): " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, r + 1, "Piyasa: " + rejim + " (ADX " + str.tostring(adxG, "0") + ") • oynaklık %" + str.tostring(atrG / close * 100, "0.0"), text_color = rejim == "YATAY" ? soluk : rejim == "TREND YUKARI" ? color.new(#22AB94, 0) : color.new(#F23645, 0), text_size = notBoyK, text_halign = text.align_left)
             r += 2
             if not tfUygun
                 table.cell(notTablo, 0, r, "⚠ Sinyalleri görmek için grafiği " + array.get(tfAd, secTf) + " yap", text_color = color.new(#FF9800, 0), text_size = notBoyK, text_halign = text.align_left)
                 r += 1
             if notMod == "Detaylı"
-                nasil = hazir ? "NASIL SEÇİLDİ: BIST 100 hisseleri her ay GitHub'da test edilir\n(son: " + HAZIR_TARIH + "). Bu hissede 24 strateji + 276 kombin, 4S/G/H\nzaman dilimlerinde " + array.get(hBas, hI) + "'den beri denendi; yıllık\ngetirisi en yüksek olan seçildi (en az 6 işlem). Yıllık: " + f_yuzde(array.get(hYillik, hI)) : "NASIL SEÇİLDİ: 24 strateji + 276 ikili kombin, seçili zaman\ndilimlerinde " + str.tostring(year(testBas)) + "'den beri test edildi. " + olcut + " en\nyüksek olan seçildi (en az " + str.tostring(minIslem) + " işlem şartıyla)."
+                nasil = hazir ? "NASIL SEÇİLDİ: BIST 100 hisseleri her ay GitHub'da test edilir\n(son: " + HAZIR_TARIH + "). Bu hissede 24 strateji + 276 kombin, 4S/G/H\nzaman dilimlerinde " + array.get(hBas, hI) + "'den beri denendi. Sadece ilk %70'e\nbakılarak seçildi; en iyi 10 aday için 11 stop/hedef ayarı denendi.\nKontrol = seçimde hiç kullanılmayan son %30. Yıllık: " + f_yuzde(array.get(hYillik, hI)) : "NASIL SEÇİLDİ: 24 strateji + 276 ikili kombin, seçili zaman\ndilimlerinde " + str.tostring(year(testBas)) + "'den beri test edildi. " + olcut + " en\nyüksek olan seçildi (en az " + str.tostring(minIslem) + " işlem şartıyla)."
                 table.cell(notTablo, 0, r, nasil, text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
                 table.cell(notTablo, 0, r + 1, "KURAL: AL'da kapanıştan girilir, SAT'ta (ya da en fazla\n" + str.tostring(maxBar) + " bar sonra) çıkılır. Her işlemden %" + str.tostring(komisyon) + " komisyon düşülür.", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
-                table.cell(notTablo, 0, r + 2, "NASIL KARAR VERİLİR (3 şart):\n" + (k1 ? "✓" : "✗") + " Toplam getiri Al-Tut'tan yüksek\n" + (k2 ? "✓" : "✗") + " Kazanma oranı %50 veya üstü\n" + (k3 ? "✓" : "✗") + " Son 1 yılda da kârda\n3/3 GÜÇLÜ: sinyale güvenilebilir • 2/3 ORTA: dikkatli ol\n0-1/3 ZAYIF: bu hissede sinyale güvenme", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
+                table.cell(notTablo, 0, r + 2, "NASIL KARAR VERİLİR (3 şart):\n" + (k1 ? "✓" : "✗") + " Toplam getiri Al-Tut'tan yüksek\n" + (k2 ? "✓" : "✗") + " Kazanma oranı %50 veya üstü\n" + (k3 ? "✓" : "✗") + (hazir ? " Kontrol döneminde de kârda" : " Son 1 yılda da kârda") + "\n3/3 GÜÇLÜ: sinyale güvenilebilir • 2/3 ORTA: dikkatli ol\n0-1/3 ZAYIF: bu hissede sinyale güvenme", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
                 table.cell(notTablo, 0, r + 3, "Geçmiş sonuç geleceği garanti etmez. Yatırım tavsiyesi değildir.", text_color = color.new(#787B86, 0), text_size = notBoyK, text_halign = text.align_left)
 
 // ════════════════════════════ ALARMLAR ════════════════════════════

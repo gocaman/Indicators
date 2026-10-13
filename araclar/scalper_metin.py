@@ -39,8 +39,10 @@ tf60 = input.bool(true, "1 Saat", group = G2, inline = "tf")''')
     m = _degistir(m, '''str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazanç • Toplam " + f_yuzde(topG) + " (Al-Tut " + f_yuzde(alTut) + ")"''',
                   '''str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazanç • Toplam " + f_yuzde(topG) + (hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") + " işlem" : "")''')
     m = _degistir(m, '''"/3) • Son 1 yıl " + f_yuzde(yil)''', '''"/3)" + (hazir ? " • Kontrol " : " • Son 30 gün ") + f_yuzde(yil)''')
-    m = _degistir(m, '''"NASIL SEÇİLDİ: BIST 100 hisseleri her ay GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). Bu hissede 24 strateji + 276 kombin, 4S/G/H\\nzaman dilimlerinde " + array.get(hBas, hI) + "'den beri denendi; yıllık\\ngetirisi en yüksek olan seçildi (en az 6 işlem). Yıllık: " + f_yuzde(array.get(hYillik, hI))''',
-                  '''"NASIL SEÇİLDİ: BIST 100 hisseleri her hafta GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). 31 strateji + 465 kombin 5dk/15dk/1S'te\\n" + array.get(hBas, hI) + "'den beri denendi. Sadece dönemin ilk %70'ine bakılarak\\nseçildi (günde en az 0,5 işlem). Son %30 KONTROL dönemidir: seçimde hiç\\nkullanılmadı, stratejinin gerçek sınavıdır."''')
+    # swing'deki "nasıl seçildi" metni (hazır sonuç) baştan sona scalper metniyle değiştirilir
+    bas = m.index('"NASIL SEÇİLDİ: BIST 100 hisseleri her ay')
+    son = m.index("f_yuzde(array.get(hYillik, hI))", bas) + len("f_yuzde(array.get(hYillik, hI))")
+    m = m[:bas] + '''"NASIL SEÇİLDİ: BIST 100 hisseleri her hafta GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). 31 strateji + 465 kombin 5dk/15dk/1S'te\\n" + array.get(hBas, hI) + "'den beri denendi. Sadece dönemin ilk %70'ine bakılarak\\nseçildi (günde en az 0,5 işlem); en iyi 10 aday için 11 stop/hedef ayarı\\ndenendi. Son %30 KONTROL dönemi: seçimde hiç kullanılmadı."''' + m[son:]
     m = _degistir(m, '''"NASIL SEÇİLDİ: 24 strateji + 276 ikili kombin, seçili zaman\\ndilimlerinde "''', '''"NASIL SEÇİLDİ: 31 strateji + 465 ikili kombin, seçili zaman\\ndilimlerinde "''')
     m = _degistir(m, '''" bar sonra) çıkılır. Her işlemden %" + str.tostring(komisyon) + " komisyon düşülür."''',
                   '''" bar sonra) çıkılır. Gün sonunda pozisyon kapatılır,\\ngece taşınmaz. Her işlemden %" + str.tostring(komisyon) + " komisyon+kayma düşülür."''')

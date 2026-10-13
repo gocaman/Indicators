@@ -79,6 +79,23 @@ Ayarlarda **5) RİSK YÖNETİMİ VE SEVİYELER** bölümünde değiştirilebilir
 
 > Not: Tablodaki geçmiş test sonuçları, strateji kendi SAT sinyalinde çıkılarak hesaplanır. Stop ve hedefler şu an sadece yol gösterici seviyelerdir; teste dahil değildir.
 
+### Kendini geliştirme: eğitim / kontrol, stop-hedef iyileştirme ve canlı karne
+Her iki indikatörün GitHub'daki testleri şu şekilde çalışır:
+1. **Eğitim / kontrol ayrımı:** Seçim sadece dönemin ilk %70'ine bakılarak yapılır. Son %30 **kontrol dönemidir**: seçimde hiç kullanılmaz, seçilen stratejinin gerçek sınavıdır. Not kutusunda "Kontrol" olarak görünür.
+2. **Stop / hedef iyileştirme:** Eğitimde en iyi 10 aday için 11 farklı çıkış ayarı denenir: stop 1,5 veya 2,5 ATR; hedef yok, 2R veya 3R; iz süren stop açık veya kapalı. En iyisi o hissenin ayarı olur. Grafikte işlemler bu ayarla çizilir; stopla kapanan işlemde **STOP**, hedefle kapananda **HEDEF** etiketi çıkar. Not kutusunda "Çıkış (en iyi bulunan)" satırı yazar.
+3. **Canlı karne:** Her çalışmada, bir önceki çalışmada seçilen stratejinin o tarihten sonra gerçekte ne yaptığı ölçülür. Sonuçlar `veri/KARNE_SWING.md` ve `veri/KARNE_SCALPER.md` dosyalarına yazılır. Geçmiş test her zaman iyi görünür; karne ise indikatörün gerçek doğruluğunu gösterir. Zamanla doldukça hangi yaklaşımın gerçekten işe yaradığı ortaya çıkar.
+
+> Stop/hedef çıkışları grafikte birebir ancak grafik, seçilen zaman diliminde açıkken çizilir (not kutusu hangisi olduğunu söyler).
+
+### Güncellemeler TradingView'e nasıl gelir?
+TradingView kodu kendisi güncelleyemez. Yeni sürümü sen yapıştırırsın, 1 dakikalık iş:
+1. Kopyalama sayfasını aç ve **Kodu kopyala**'ya bas.
+2. TradingView'i bilgisayarda (ya da telefonda masaüstü görünümünde) aç, **Pine Editor**'de ilgili indikatörü aç.
+3. İçindekileri tamamen sil, yapıştır ve **Save**'e bas. **Add to chart**'a basma; grafikteki indikatör kendiliğinden güncellenir.
+4. Telefon uygulaması güncel sürümü kendisi alır. Almazsa grafiği kapatıp yeniden aç.
+
+Ne zaman yapıştırmalı: sonuçlar her ayın 1'inde (genel) ve her cumartesi (scalper) yenilenir. Yapıştırmazsan indikatör eski sonuçlarla çalışmaya devam eder, bozulmaz.
+
 ## ⚡ OTOMATİK SCALPER - BIST (gün içi işlem)
 
 Dosya: **`0. OTOMATİK SCALPER - BIST.txt`**

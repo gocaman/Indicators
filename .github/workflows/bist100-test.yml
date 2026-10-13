@@ -9,6 +9,7 @@ on:
   push:
     paths:
       - "araclar/backtest.py"
+      - "araclar/risk.py"
       - "araclar/bist100.txt"
       - ".github/workflows/bist100-test.yml"
 
@@ -46,7 +47,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
           mkdir -p /tmp/sonuc
-          cp "veri/bist100_sonuclar.json" "veri/BIST100_SONUCLAR.md" /tmp/sonuc/
+          for f in bist100_sonuclar.json BIST100_SONUCLAR.md karne_swing.json KARNE_SWING.md; do
+            if [ -f "veri/$f" ]; then cp "veri/$f" /tmp/sonuc/; fi
+          done
           for deneme in 1 2 3 4; do
             git fetch -q origin "$GITHUB_REF_NAME"
             git reset -q --hard "origin/$GITHUB_REF_NAME"
