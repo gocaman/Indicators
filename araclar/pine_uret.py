@@ -600,7 +600,7 @@ if barstate.islast
         bA = array.get(cA, secAday)
         bB = array.get(cB, secAday)
         cizgiVar = f_strCizgi1(bA) > 0 or (bB >= 0 and f_strCizgi1(math.max(bB, 0)) > 0)
-        table.cell(baslikTablo, 0, 0, "★ " + f_adayAd(secAday) + "  •  " + array.get(tfAd, secTf) + (cizgiVar ? "" : "\n(osilatör: çizgisi yok, AL/SAT etiketlerine bak)"), text_color = color.white, bgcolor = color.new(#2962FF, 25), text_size = size.normal)
+        table.cell(baslikTablo, 0, 0, "★ " + f_adayAd(secAday) + "  •  " + array.get(tfAd, secTf) + (cizgiVar ? "" : "\\n(osilatör: çizgisi yok, AL/SAT etiketlerine bak)"), text_color = color.white, bgcolor = color.new(#2962FF, 25), text_size = size.normal)
 
     // ── Not kutusu (küçük, köşede)
     table.clear(notTablo, 0, 0, 0, 8)
