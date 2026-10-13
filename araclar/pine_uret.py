@@ -425,15 +425,14 @@ if HAZIR:
     kodlar = list(hs.keys())
     e = [hs[k]["en_iyi"] for k in kodlar]
     w(f'HAZIR_TARIH = "{HAZIR["tarih"]}"')
-    w("hIdx = switch syminfo.ticker")
-    for i, k in enumerate(kodlar):
-        w(f'    "{k}" => {i}')
-    w("    => -1")
-    w("// hazır sonucun zaman dilimi (basit/simple değer): gerekmeyen zaman dilimlerinde sadece 50 mum hesaplanır")
-    w("hTfS = switch syminfo.ticker")
-    for i, k in enumerate(kodlar):
-        w(f'    "{k}" => {e[i]["tf"]}')
-    w("    => -1")
+    # Hisse arama: switch her kolu ayrı "yerel kapsam" sayıldığı için (550 sınırı) sabit genişlikli metin içinde aranır.
+    # Her kod 6 karaktere tamamlanır; konum / 6 = hissenin sırası. Sonuçlar "simple" kalır (request.security için gerekli).
+    w('HAZIR_KODLAR = "' + "".join(k.ljust(6) for k in kodlar) + '"')
+    w('HAZIR_TFLER = "' + "".join(str(x["tf"]) for x in e) + '"')
+    w('hAra = syminfo.ticker + str.substring("      ", 0, math.max(0, 6 - str.length(syminfo.ticker)))')
+    w('hPos = str.length(syminfo.ticker) <= 6 ? str.pos(HAZIR_KODLAR, hAra) : na')
+    w('hIdx = na(hPos) ? -1 : hPos % 6 == 0 ? int(hPos / 6) : -1')
+    w('hTfS = hIdx >= 0 ? int(str.tonumber(str.substring(HAZIR_TFLER, hIdx, hIdx + 1))) : -1')
     fmt = lambda xs: ", ".join(str(x) for x in xs)
     w(f"var int[] hAday = array.from({fmt(x['aday'] for x in e)})")
     w(f"var int[] hTf = array.from({fmt(x['tf'] for x in e)})")
