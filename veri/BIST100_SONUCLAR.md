@@ -1,103 +1,103 @@
 # BIST 100 en iyi strateji/kombin listesi (2026-10-13)
 
-Ölçüt: yıllık getiri (en az 6 işlem). Komisyon %0,2 düşülmüş. Karar: Al-Tut'u geçiyor mu, kazanma ≥ %50 mi, son 1 yılda kârda mı (3 şart).
+Seçim yalnızca dönemin ilk %70'ine (eğitim) bakılarak yapıldı; 24 strateji + 276 kombin, sonra en iyi 10 aday için 11 farklı stop / hedef / iz stop ayarı denendi. **Kontrol** = seçimde hiç kullanılmayan son %30. Komisyon %0,2 düşülmüş. Karar: Al-Tut'u geçiyor mu, kazanma ≥ %50 mi, kontrol döneminde kârda mı (3 şart).
 
-| Hisse | En iyi strateji / kombin | Zaman | İşlem | Kazanma | Toplam | Al-Tut | Son 1 yıl | Yıllık | Karar |
+| Hisse | En iyi strateji / kombin | Zaman | Çıkış | İşlem | Kazanma | Toplam | Al-Tut | Kontrol | Karar |
 |---|---|---|---|---|---|---|---|---|---|
-| DSTKF | 09 ALMA | 4 Saat | 22 | %59 | +2264% | -10% | +936% | +1119% | GÜÇLÜ |
-| KTLEV | 09 ALMA | Günlük | 17 | %82 | +2726% | +428% | +985% | +577% | GÜÇLÜ |
-| TKFEN | 09 ALMA | 4 Saat | 71 | %41 | +832% | +476% | +239% | +143% | ORTA |
-| SELEC | 13 EMA 5x13 | 4 Saat | 31 | %36 | +609% | +44% | +292% | +118% | ORTA |
-| GRSEL | 03 Dip Bulucu-2 (VixFix) | Günlük | 16 | %75 | +1542% | +1445% | +4% | +109% | GÜÇLÜ |
-| YEOTK | 10 T3 Tillson | Günlük | 39 | %49 | +2309% | +1510% | +96% | +109% | ORTA |
-| BSOKE | 07 Parabolic SAR | Haftalık | 11 | %54 | +4630% | +60% | +81% | +101% | GÜÇLÜ |
-| SKBNK | 09 ALMA | 4 Saat | 73 | %38 | +474% | +8% | +144% | +100% | ORTA |
-| BRSAN | 11 Bollinger Orta Bant | Günlük | 75 | %41 | +9083% | +5588% | +41% | +95% | ORTA |
-| PASEU | 18 Fisher Dip | Günlük | 8 | %88 | +217% | +40% | +210% | +94% | GÜÇLÜ |
-| OBAMS | 03 Dip Bulucu-2 (VixFix) + 09 ALMA | Günlük | 18 | %61 | +199% | -51% | +25% | +83% | GÜÇLÜ |
-| ASELS | 09 ALMA | Haftalık | 17 | %29 | +2718% | +4490% | +64% | +83% | ZAYIF |
-| MIATK | 01 RSI Karpuzlu + 09 ALMA | Günlük | 46 | %30 | +1062% | +569% | -40% | +82% | ZAYIF |
-| GUBRF | 11 Bollinger Orta Bant | Günlük | 86 | %31 | +5118% | +4322% | +76% | +79% | ORTA |
-| ISMEN | 09 ALMA | Günlük | 95 | %44 | +3931% | +4328% | +0% | +72% | ZAYIF |
-| BTCIM | 09 ALMA | Günlük | 101 | %42 | +3888% | +1702% | +17% | +72% | ORTA |
-| ADEL | 09 ALMA | Günlük | 101 | %41 | +3578% | +63% | +7% | +70% | ORTA |
-| GOLTS | 03 Dip Bulucu-2 (VixFix) | Günlük | 29 | %66 | +3563% | +1400% | -17% | +70% | ORTA |
-| TUPRS | 11 Bollinger Orta Bant | Haftalık | 14 | %36 | +1735% | +4558% | +109% | +69% | ZAYIF |
-| ENERY | 03 Dip Bulucu-2 (VixFix) | Günlük | 9 | %56 | +240% | +442% | +30% | +68% | ORTA |
-| KONYA | 11 Bollinger Orta Bant | Günlük | 71 | %37 | +3194% | +1186% | -15% | +67% | ZAYIF |
-| BRYAT | 11 Bollinger Orta Bant | Günlük | 87 | %31 | +3107% | +2663% | -25% | +67% | ZAYIF |
-| GESAN | 07 Parabolic SAR | Günlük | 43 | %51 | +812% | +424% | +44% | +66% | GÜÇLÜ |
-| AGHOL | 01 RSI Karpuzlu | Günlük | 69 | %44 | +2891% | +1925% | +4% | +65% | ORTA |
-| TURSG | 10 T3 Tillson | Günlük | 58 | %45 | +2852% | +5392% | +1% | +65% | ZAYIF |
-| MPARK | 03 Dip Bulucu-2 (VixFix) + 07 Parabolic SAR | Haftalık | 6 | %67 | +934% | +1056% | +0% | +62% | ZAYIF |
-| CIMSA | 09 ALMA | Günlük | 103 | %42 | +2448% | +3337% | -11% | +61% | ZAYIF |
-| CLEBI | 03 Dip Bulucu-2 (VixFix) + 09 ALMA | Günlük | 83 | %43 | +2440% | +1584% | -4% | +61% | ZAYIF |
-| ALARK | 13 EMA 5x13 | Günlük | 46 | %44 | +2430% | +1964% | +22% | +61% | ORTA |
-| HEKTS | 03 Dip Bulucu-2 (VixFix) | Günlük | 29 | %59 | +2437% | +390% | +12% | +61% | GÜÇLÜ |
-| MAVI | 15 WMA 9x15 | Haftalık | 8 | %75 | +1216% | +1538% | -5% | +60% | ZAYIF |
-| THYAO | 03 Dip Bulucu-2 (VixFix) | Günlük | 30 | %67 | +2207% | +1874% | -17% | +59% | ORTA |
-| ISCTR | 11 Bollinger Orta Bant + 13 EMA 5x13 | Günlük | 69 | %42 | +2172% | +1271% | +2% | +58% | ORTA |
-| HALKB | 25 Ortak Karar | 4 Saat | 48 | %50 | +218% | +166% | +85% | +58% | GÜÇLÜ |
-| ANSGR | 23 EMA Kombo | Haftalık | 7 | %57 | +1167% | +1506% | +22% | +58% | ORTA |
-| AKSEN | 09 ALMA | Haftalık | 15 | %60 | +1161% | +1201% | +50% | +58% | ORTA |
-| TSKB | 13 EMA 5x13 | Günlük | 55 | %40 | +2052% | +770% | -35% | +57% | ZAYIF |
-| ODAS | 11 Bollinger Orta Bant + 15 WMA 9x15 | Haftalık | 9 | %44 | +1087% | +124% | +32% | +56% | ORTA |
-| EKGYO | 19 CCI Dip | 4 Saat | 32 | %84 | +206% | +90% | +5% | +56% | GÜÇLÜ |
-| GARAN | 03 Dip Bulucu-2 (VixFix) | Günlük | 30 | %70 | +1908% | +1376% | +2% | +56% | GÜÇLÜ |
-| DOAS | 11 Bollinger Orta Bant | Günlük | 86 | %36 | +1794% | +3143% | +4% | +54% | ZAYIF |
-| SASA | 15 WMA 9x15 + 17 Darvas Kutusu | Günlük | 30 | %70 | +1712% | +1079% | -9% | +53% | ORTA |
-| ASTOR | 11 Bollinger Orta Bant | Günlük | 35 | %31 | +245% | +72% | +176% | +53% | ORTA |
-| OTKAR | 09 ALMA | Günlük | 102 | %40 | +1648% | +1153% | -16% | +52% | ZAYIF |
-| BINHO | 08 MACD Dip + 09 ALMA | Günlük | 16 | %50 | +108% | -47% | +18% | +52% | GÜÇLÜ |
-| YKBNK | 11 Bollinger Orta Bant + 13 EMA 5x13 | Günlük | 65 | %45 | +1550% | +1618% | -16% | +51% | ZAYIF |
-| KRDMD | 01 RSI Karpuzlu | Günlük | 74 | %42 | +1543% | +1624% | +22% | +51% | ZAYIF |
-| AKSA | 03 Dip Bulucu-2 (VixFix) | Günlük | 29 | %72 | +1500% | +2245% | +11% | +50% | ORTA |
-| MGROS | 09 ALMA | Haftalık | 17 | %59 | +854% | +1300% | +21% | +50% | ORTA |
-| OYAKC | 09 ALMA | Günlük | 108 | %45 | +1428% | +1318% | +3% | +50% | ORTA |
-| BJKAS | 01 RSI Karpuzlu | Günlük | 78 | %36 | +1385% | -40% | -39% | +49% | ZAYIF |
-| PGSUS | 03 Dip Bulucu-2 (VixFix) | Günlük | 30 | %63 | +1366% | +654% | -21% | +49% | ORTA |
-| ECILC | 09 ALMA | 4 Saat | 70 | %43 | +169% | +14% | -1% | +48% | ZAYIF |
-| TUKAS | 11 Bollinger Orta Bant | Günlük | 79 | %32 | +1303% | -13% | +3% | +48% | ORTA |
-| AKCNS | 09 ALMA + 13 EMA 5x13 | Haftalık | 11 | %54 | +763% | +1112% | -5% | +48% | ZAYIF |
-| TOASO | 13 EMA 5x13 + 14 EMA 5x22 | Haftalık | 6 | %83 | +753% | +961% | +30% | +47% | ORTA |
-| VAKBN | 02 Dip Bulucu (Banker) | Günlük | 23 | %65 | +1252% | +522% | +38% | +47% | GÜÇLÜ |
-| EGEEN | 11 Bollinger Orta Bant + 13 EMA 5x13 | Haftalık | 6 | %50 | +728% | +233% | -6% | +46% | ORTA |
-| TAVHL | 03 Dip Bulucu-2 (VixFix) | Günlük | 30 | %67 | +1216% | +891% | +32% | +46% | GÜÇLÜ |
-| KONTR | 06 AlphaTrend+SuperTrend + 18 Fisher Dip | 4 Saat | 17 | %71 | +157% | -98% | +67% | +46% | GÜÇLÜ |
-| SAHOL | 03 Dip Bulucu-2 (VixFix) | Günlük | 30 | %67 | +1178% | +1013% | +41% | +46% | GÜÇLÜ |
-| AKBNK | 07 Parabolic SAR + 09 ALMA | Günlük | 86 | %46 | +1160% | +980% | +44% | +45% | ORTA |
-| ENKAI | 03 Dip Bulucu-2 (VixFix) | 4 Saat | 21 | %67 | +153% | +119% | +14% | +45% | GÜÇLÜ |
-| KCHOL | 15 WMA 9x15 | Haftalık | 10 | %70 | +630% | +1181% | +1% | +43% | ORTA |
-| TTRAK | 09 ALMA | Haftalık | 16 | %44 | +625% | +370% | -13% | +43% | ZAYIF |
-| EUPWR | 01 RSI Karpuzlu + 03 Dip Bulucu-2 (VixFix) | 4 Saat | 43 | %37 | +145% | -5% | +108% | +43% | ORTA |
-| KCAER | 12 Bollinger20 x EMA50 | Günlük | 7 | %86 | +247% | +75% | +54% | +43% | GÜÇLÜ |
-| AEFES | 06 AlphaTrend+SuperTrend | Günlük | 21 | %71 | +965% | +977% | +2% | +42% | ORTA |
-| ENJSA | 10 T3 Tillson | Haftalık | 6 | %67 | +444% | +949% | +99% | +42% | ORTA |
-| GLRMK | 11 Bollinger Orta Bant + 15 WMA 9x15 | 4 Saat | 26 | %31 | +58% | +1% | +28% | +42% | ORTA |
-| DOHOL | 14 EMA 5x22 | Günlük | 42 | %45 | +918% | +1008% | -24% | +41% | ZAYIF |
-| BERA | 09 ALMA | Günlük | 103 | %40 | +851% | +496% | -43% | +39% | ZAYIF |
-| CANTE | 03 Dip Bulucu-2 (VixFix) + 15 WMA 9x15 | Günlük | 30 | %60 | +366% | +12% | +3% | +39% | GÜÇLÜ |
-| TTKOM | 03 Dip Bulucu-2 (VixFix) | Günlük | 31 | %64 | +826% | +772% | -23% | +39% | ORTA |
-| AKFGY | 01 RSI Karpuzlu + 14 EMA 5x22 | Günlük | 69 | %28 | +818% | +229% | -46% | +39% | ZAYIF |
-| BIMAS | 19 CCI Dip | 4 Saat | 28 | %79 | +122% | +103% | +39% | +37% | GÜÇLÜ |
-| ULKER | 07 Parabolic SAR + 10 T3 Tillson | Haftalık | 11 | %36 | +468% | +361% | -1% | +37% | ZAYIF |
-| VESTL | 03 Dip Bulucu-2 (VixFix) + 19 CCI Dip | Haftalık | 7 | %100 | +448% | -40% | +0% | +36% | ORTA |
-| CCOLA | 05 SuperTrend | Günlük | 18 | %94 | +700% | +127% | +47% | +36% | GÜÇLÜ |
-| SOKM | 09 ALMA | Günlük | 103 | %47 | +695% | +476% | +69% | +36% | ORTA |
-| ZOREN | 25 Ortak Karar | Haftalık | 8 | %50 | +445% | +42% | -11% | +36% | ORTA |
-| FENER | 09 ALMA + 23 EMA Kombo | Haftalık | 6 | %83 | +440% | -93% | +0% | +36% | ORTA |
-| PETKM | 25 Ortak Karar | Günlük | 63 | %56 | +681% | +535% | +16% | +35% | GÜÇLÜ |
-| FROTO | 01 RSI Karpuzlu + 13 EMA 5x13 | Günlük | 70 | %33 | +624% | +1442% | +1% | +34% | ZAYIF |
-| EREGL | 05 SuperTrend | Günlük | 24 | %58 | +608% | +1030% | +19% | +34% | ORTA |
-| ARCLK | 01 RSI Karpuzlu + 06 AlphaTrend+SuperTrend | Günlük | 39 | %46 | +581% | +324% | -3% | +33% | ZAYIF |
-| SISE | 03 Dip Bulucu-2 (VixFix) + 13 EMA 5x13 | Haftalık | 9 | %56 | +343% | +465% | +19% | +31% | ORTA |
-| TCELL | 09 ALMA | Haftalık | 17 | %53 | +330% | +694% | -10% | +30% | ZAYIF |
-| LMKDC | 01 RSI Karpuzlu + 19 CCI Dip | Günlük | 13 | %77 | +59% | -14% | +54% | +29% | GÜÇLÜ |
-| AKFYE | 11 Bollinger Orta Bant + 19 CCI Dip | 4 Saat | 41 | %44 | +79% | +1% | +33% | +26% | ORTA |
-| SMRTG | 12 Bollinger20 x EMA50 + 21 MACD Kesişimi | Günlük | 12 | %50 | +129% | -63% | +47% | +25% | GÜÇLÜ |
-| CWENE | 07 Parabolic SAR + 18 Fisher Dip | 4 Saat | 35 | %54 | +67% | -44% | +14% | +23% | GÜÇLÜ |
-| ALFAS | 14 EMA 5x22 + 15 WMA 9x15 | Günlük | 14 | %36 | +87% | -80% | +22% | +22% | ORTA |
-| TABGD | 14 EMA 5x22 + 23 EMA Kombo | Günlük | 7 | %71 | +52% | +31% | +10% | +21% | GÜÇLÜ |
-| ALTNY | 02 Dip Bulucu (Banker) + 10 T3 Tillson | Günlük | 9 | %44 | +30% | -26% | +4% | +17% | ORTA |
-| REEDR | 02 Dip Bulucu (Banker) + 03 Dip Bulucu-2 (VixFix) | Günlük | 11 | %36 | +6% | -76% | +22% | +4% | ORTA |
-| AGROT | 03 Dip Bulucu-2 (VixFix) + 18 Fisher Dip | Günlük | 14 | %64 | -7% | -83% | -21% | -3% | ORTA |
+| TKFEN | 09 ALMA | 4 Saat | Sinyal çıkışı | 71 | %41 | +824% | +467% | +247.5% | ORTA |
+| SKBNK | 09 ALMA | Günlük | Sinyal çıkışı | 103 | %40 | +5614% | +375% | +172.1% | ORTA |
+| YEOTK | 10 T3 Tillson | Günlük | Sinyal çıkışı | 39 | %49 | +2309% | +1505% | +100.6% | ORTA |
+| BRSAN | 11 Bollinger Orta Bant | Günlük | Sinyal çıkışı | 75 | %41 | +9083% | +5567% | +90.1% | ORTA |
+| SELEC | 09 ALMA | Haftalık | Sinyal çıkışı | 13 | %77 | +1268% | +671% | +84.7% | GÜÇLÜ |
+| TUPRS | 11 Bollinger Orta Bant | Haftalık | Sinyal çıkışı | 14 | %36 | +1735% | +4555% | +82.0% | ZAYIF |
+| TUKAS | 11 Bollinger Orta Bant | Günlük | stop 2.5 ATR + iz stop 3 ATR | 79 | %34 | +2388% | -13% | +72.6% | ORTA |
+| GUBRF | 17 Darvas Kutusu | Günlük | Sinyal çıkışı | 28 | %57 | +4702% | +4330% | +55.0% | GÜÇLÜ |
+| GESAN | 07 Parabolic SAR | Günlük | Sinyal çıkışı | 43 | %51 | +812% | +425% | +52.3% | GÜÇLÜ |
+| KRDMD | 01 RSI Karpuzlu | Günlük | stop 2.5 ATR + hedef 3R | 74 | %42 | +1856% | +1624% | +51.8% | ORTA |
+| AKSEN | 09 ALMA | Haftalık | Sinyal çıkışı | 15 | %60 | +1161% | +1199% | +49.6% | ORTA |
+| KTLEV | 11 Bollinger Orta Bant | Günlük | stop 2.5 ATR + iz stop 3 ATR | 17 | %65 | +2108% | +428% | +49.4% | GÜÇLÜ |
+| AKBNK | 09 ALMA | Günlük | stop 2.5 ATR + iz stop 3 ATR | 103 | %45 | +1294% | +982% | +46.1% | ORTA |
+| ISCTR | 11 Bollinger Orta Bant + 13 EMA 5x13 | Günlük | Sinyal çıkışı | 69 | %42 | +2172% | +1272% | +43.8% | ORTA |
+| BIMAS | 07 Parabolic SAR | Haftalık | stop 2.5 ATR + hedef 3R + iz stop 3 ATR | 13 | %77 | +616% | +1262% | +37.9% | ORTA |
+| ALARK | 13 EMA 5x13 | Günlük | Sinyal çıkışı | 46 | %44 | +2430% | +1964% | +34.3% | ORTA |
+| ADEL | 09 ALMA | Günlük | stop 2.5 ATR + iz stop 3 ATR | 101 | %44 | +4769% | +63% | +34.0% | ORTA |
+| OTKAR | 09 ALMA | Günlük | Sinyal çıkışı | 102 | %40 | +1648% | +1155% | +31.6% | ORTA |
+| SOKM | 09 ALMA | Günlük | Sinyal çıkışı | 103 | %47 | +695% | +476% | +31.5% | ORTA |
+| VAKBN | 10 T3 Tillson + 11 Bollinger Orta Bant | Günlük | Sinyal çıkışı | 68 | %37 | +964% | +521% | +23.5% | ORTA |
+| AKSA | 03 Dip Bulucu-2 (VixFix) | Günlük | Sinyal çıkışı | 29 | %72 | +1500% | +2243% | +22.4% | ORTA |
+| HALKB | 25 Ortak Karar | 4 Saat | stop 2.5 ATR + iz stop 3 ATR | 48 | %50 | +232% | +166% | +20.2% | GÜÇLÜ |
+| ASELS | 10 T3 Tillson | 4 Saat | stop 2.5 ATR + iz stop 3 ATR | 45 | %44 | +352% | +496% | +19.1% | ZAYIF |
+| KCAER | 09 ALMA + 14 EMA 5x22 | Günlük | stop 1.5 ATR + hedef 3R | 38 | %53 | +340% | +77% | +19.0% | GÜÇLÜ |
+| ISMEN | 09 ALMA | Günlük | Sinyal çıkışı | 95 | %44 | +3931% | +4338% | +18.9% | ZAYIF |
+| ENERY | 09 ALMA | Günlük | stop 2.5 ATR + hedef 3R + iz stop 3 ATR | 34 | %35 | +283% | +442% | +18.1% | ZAYIF |
+| BINHO | 08 MACD Dip | Günlük | stop 2.5 ATR + hedef 2R | 10 | %60 | +156% | -46% | +16.0% | GÜÇLÜ |
+| YKBNK | 13 EMA 5x13 + 14 EMA 5x22 | Günlük | stop 2.5 ATR + iz stop 3 ATR | 50 | %52 | +2483% | +1621% | +15.0% | GÜÇLÜ |
+| AGHOL | 01 RSI Karpuzlu | Günlük | Sinyal çıkışı | 69 | %44 | +2891% | +1926% | +13.1% | ORTA |
+| CIMSA | 09 ALMA | Günlük | stop 2.5 ATR + iz stop 3 ATR | 103 | %42 | +2663% | +3338% | +12.9% | ZAYIF |
+| DOHOL | 14 EMA 5x22 | Günlük | Sinyal çıkışı | 42 | %45 | +918% | +1010% | +12.2% | ZAYIF |
+| BRYAT | 11 Bollinger Orta Bant | Günlük | Sinyal çıkışı | 87 | %31 | +3107% | +2659% | +11.9% | ORTA |
+| LMKDC | 01 RSI Karpuzlu + 19 CCI Dip | Günlük | Sinyal çıkışı | 13 | %77 | +59% | -14% | +10.9% | GÜÇLÜ |
+| AGROT | 03 Dip Bulucu-2 (VixFix) + 18 Fisher Dip | Günlük | stop 1.5 ATR + hedef 2R + iz stop 3 ATR | 14 | %79 | +119% | -83% | +10.8% | GÜÇLÜ |
+| ODAS | 11 Bollinger Orta Bant + 13 EMA 5x13 | Haftalık | Sinyal çıkışı | 9 | %44 | +992% | +124% | +10.7% | ORTA |
+| TURSG | 10 T3 Tillson | Günlük | Sinyal çıkışı | 58 | %45 | +2852% | +5362% | +10.3% | ZAYIF |
+| TABGD | 01 RSI Karpuzlu + 14 EMA 5x22 | Günlük | stop 2.5 ATR + hedef 3R + iz stop 3 ATR | 14 | %50 | +62% | +31% | +9.1% | GÜÇLÜ |
+| KCHOL | 15 WMA 9x15 | Haftalık | Sinyal çıkışı | 10 | %70 | +630% | +1189% | +4.1% | ORTA |
+| MGROS | 11 Bollinger Orta Bant | Haftalık | Sinyal çıkışı | 13 | %38 | +792% | +1301% | +3.3% | ZAYIF |
+| EUPWR | 01 RSI Karpuzlu + 19 CCI Dip | 4 Saat | stop 2.5 ATR + hedef 2R + iz stop 3 ATR | 40 | %42 | +146% | -4% | +3.0% | ORTA |
+| BTCIM | 09 ALMA | Günlük | Sinyal çıkışı | 100 | %42 | +4207% | +1740% | +2.3% | ORTA |
+| TTKOM | 07 Parabolic SAR | Haftalık | stop 2.5 ATR + hedef 2R + iz stop 3 ATR | 11 | %73 | +722% | +805% | +2.2% | ORTA |
+| TOASO | 25 Ortak Karar | Haftalık | stop 1.5 ATR + iz stop 3 ATR | 11 | %54 | +601% | +960% | +0.9% | ORTA |
+| SMRTG | 03 Dip Bulucu-2 (VixFix) | Günlük | stop 1.5 ATR + iz stop 3 ATR | 17 | %35 | +128% | -63% | -1.1% | ZAYIF |
+| HEKTS | 03 Dip Bulucu-2 (VixFix) | Günlük | Sinyal çıkışı | 29 | %59 | +2437% | +388% | -1.7% | ORTA |
+| ENKAI | 03 Dip Bulucu-2 (VixFix) | 4 Saat | Sinyal çıkışı | 21 | %67 | +149% | +120% | -2.3% | ORTA |
+| MAVI | 15 WMA 9x15 | Haftalık | stop 1.5 ATR + iz stop 3 ATR | 8 | %62 | +1212% | +1538% | -4.9% | ZAYIF |
+| AKCNS | 09 ALMA + 13 EMA 5x13 | Haftalık | Sinyal çıkışı | 11 | %54 | +763% | +1113% | -5.0% | ZAYIF |
+| SAHOL | 11 Bollinger Orta Bant + 13 EMA 5x13 | Günlük | stop 1.5 ATR + iz stop 3 ATR | 69 | %36 | +836% | +1016% | -5.1% | ZAYIF |
+| CLEBI | 03 Dip Bulucu-2 (VixFix) + 09 ALMA | Günlük | stop 2.5 ATR + hedef 3R + iz stop 3 ATR | 83 | %43 | +2776% | +1581% | -6.0% | ZAYIF |
+| CWENE | 07 Parabolic SAR | 4 Saat | stop 2.5 ATR + hedef 2R | 50 | %48 | +144% | -44% | -7.0% | ZAYIF |
+| REEDR | 03 Dip Bulucu-2 (VixFix) + 19 CCI Dip | Günlük | stop 2.5 ATR + iz stop 3 ATR | 9 | %33 | +28% | -76% | -7.5% | ZAYIF |
+| DSTKF | 07 Parabolic SAR | Günlük | Sinyal çıkışı | 7 | %71 | +498% | -64% | -7.8% | ORTA |
+| ALFAS | 01 RSI Karpuzlu + 09 ALMA | Günlük | stop 1.5 ATR + hedef 3R | 36 | %33 | +46% | -80% | -7.9% | ZAYIF |
+| GRSEL | 03 Dip Bulucu-2 (VixFix) | Günlük | Sinyal çıkışı | 16 | %75 | +1542% | +1467% | -8.0% | ORTA |
+| THYAO | 03 Dip Bulucu-2 (VixFix) | Günlük | Sinyal çıkışı | 30 | %67 | +2207% | +1878% | -8.9% | ORTA |
+| TAVHL | 11 Bollinger Orta Bant | Haftalık | stop 1.5 ATR + iz stop 3 ATR | 16 | %44 | +712% | +1186% | -9.4% | ZAYIF |
+| ENJSA | 11 Bollinger Orta Bant + 15 WMA 9x15 | 4 Saat | stop 2.5 ATR + hedef 2R | 50 | %40 | +73% | +84% | -10.1% | ZAYIF |
+| AKFYE | 05 SuperTrend | Günlük | Sinyal çıkışı | 10 | %60 | +77% | +52% | -10.7% | ORTA |
+| MPARK | 07 Parabolic SAR | Haftalık | stop 1.5 ATR + iz stop 3 ATR | 10 | %50 | +901% | +1053% | -11.8% | ZAYIF |
+| ALTNY | 01 RSI Karpuzlu + 10 T3 Tillson | Günlük | stop 2.5 ATR + hedef 3R + iz stop 3 ATR | 14 | %36 | +65% | -26% | -12.2% | ZAYIF |
+| ASTOR | 01 RSI Karpuzlu + 07 Parabolic SAR | 4 Saat | stop 1.5 ATR + hedef 2R + iz stop 3 ATR | 52 | %38 | +52% | +104% | -12.7% | ZAYIF |
+| OBAMS | 03 Dip Bulucu-2 (VixFix) + 09 ALMA | Günlük | stop 1.5 ATR + hedef 3R + iz stop 3 ATR | 18 | %61 | +202% | -51% | -12.8% | ORTA |
+| FROTO | 13 EMA 5x13 | Haftalık | stop 2.5 ATR + hedef 3R | 11 | %46 | +311% | +379% | -13.6% | ZAYIF |
+| GLRMK | 13 EMA 5x13 + 15 WMA 9x15 | 4 Saat | Sinyal çıkışı | 21 | %33 | +58% | +1% | -13.6% | ZAYIF |
+| EKGYO | 18 Fisher Dip + 19 CCI Dip | 4 Saat | stop 2.5 ATR + hedef 3R | 31 | %77 | +218% | +91% | -14.0% | ORTA |
+| BSOKE | 03 Dip Bulucu-2 (VixFix) + 07 Parabolic SAR | 4 Saat | Sinyal çıkışı | 29 | %62 | +303% | -74% | -14.4% | ORTA |
+| PETKM | 09 ALMA | Günlük | stop 2.5 ATR + hedef 3R | 117 | %41 | +608% | +535% | -14.4% | ZAYIF |
+| GARAN | 11 Bollinger Orta Bant | Günlük | Sinyal çıkışı | 89 | %35 | +1220% | +1376% | -14.5% | ZAYIF |
+| ECILC | 09 ALMA | 4 Saat | stop 1.5 ATR + iz stop 3 ATR | 69 | %45 | +260% | +16% | -15.3% | ZAYIF |
+| EREGL | 11 Bollinger Orta Bant + 14 EMA 5x22 | 4 Saat | stop 2.5 ATR + hedef 2R | 39 | %46 | +90% | +78% | -15.7% | ZAYIF |
+| OYAKC | 09 ALMA | Haftalık | stop 2.5 ATR + hedef 3R + iz stop 3 ATR | 16 | %56 | +820% | +1056% | -16.0% | ZAYIF |
+| SASA | 01 RSI Karpuzlu + 10 T3 Tillson | Günlük | stop 1.5 ATR + iz stop 3 ATR | 80 | %35 | +1550% | +1086% | -16.8% | ZAYIF |
+| ANSGR | 09 ALMA | Haftalık | Sinyal çıkışı | 18 | %50 | +829% | +1509% | -17.1% | ZAYIF |
+| KONYA | 11 Bollinger Orta Bant | Günlük | Sinyal çıkışı | 71 | %37 | +3194% | +1186% | -17.7% | ZAYIF |
+| PASEU | 03 Dip Bulucu-2 (VixFix) + 07 Parabolic SAR | Günlük | Sinyal çıkışı | 17 | %59 | +94% | +39% | -17.8% | ORTA |
+| CANTE | 11 Bollinger Orta Bant | Günlük | Sinyal çıkışı | 55 | %27 | +258% | +12% | -21.1% | ZAYIF |
+| GOLTS | 03 Dip Bulucu-2 (VixFix) | Günlük | Sinyal çıkışı | 29 | %66 | +3563% | +1400% | -21.2% | ORTA |
+| ARCLK | 01 RSI Karpuzlu | Günlük | Sinyal çıkışı | 83 | %30 | +433% | +323% | -21.5% | ZAYIF |
+| ULKER | 07 Parabolic SAR + 10 T3 Tillson | Haftalık | Sinyal çıkışı | 11 | %36 | +468% | +362% | -22.6% | ZAYIF |
+| TTRAK | 09 ALMA | Haftalık | Sinyal çıkışı | 16 | %44 | +625% | +368% | -23.8% | ZAYIF |
+| SISE | 11 Bollinger Orta Bant | Haftalık | stop 1.5 ATR + iz stop 3 ATR | 17 | %35 | +283% | +465% | -24.3% | ZAYIF |
+| ZOREN | 25 Ortak Karar | Haftalık | Sinyal çıkışı | 8 | %50 | +445% | +39% | -24.3% | ORTA |
+| CCOLA | 10 T3 Tillson + 21 MACD Kesişimi | Günlük | stop 2.5 ATR + hedef 3R | 63 | %48 | +652% | +126% | -27.5% | ZAYIF |
+| AEFES | 15 WMA 9x15 | Günlük | Sinyal çıkışı | 58 | %45 | +841% | +976% | -28.0% | ZAYIF |
+| FENER | 07 Parabolic SAR | Günlük | stop 1.5 ATR + iz stop 3 ATR | 64 | %42 | +1109% | -84% | -28.6% | ZAYIF |
+| AKFGY | 01 RSI Karpuzlu + 14 EMA 5x22 | Günlük | stop 2.5 ATR + iz stop 3 ATR | 69 | %28 | +1016% | +229% | -31.6% | ZAYIF |
+| PGSUS | 09 ALMA + 13 EMA 5x13 | Günlük | stop 2.5 ATR + hedef 3R | 77 | %43 | +1526% | +655% | -35.6% | ZAYIF |
+| TSKB | 13 EMA 5x13 | Günlük | Sinyal çıkışı | 55 | %40 | +2052% | +769% | -36.0% | ZAYIF |
+| DOAS | 07 Parabolic SAR | Haftalık | stop 2.5 ATR + hedef 3R | 11 | %54 | +866% | +939% | -38.0% | ZAYIF |
+| TCELL | 09 ALMA | Haftalık | Sinyal çıkışı | 17 | %53 | +330% | +696% | -38.7% | ZAYIF |
+| VESTL | 09 ALMA | Haftalık | Sinyal çıkışı | 14 | %43 | +219% | -40% | -40.2% | ZAYIF |
+| BERA | 09 ALMA | Günlük | stop 1.5 ATR + iz stop 3 ATR | 103 | %42 | +1344% | +500% | -43.5% | ZAYIF |
+| BJKAS | 25 Ortak Karar | Günlük | Sinyal çıkışı | 68 | %43 | +1090% | -41% | -52.3% | ZAYIF |
+| MIATK | 09 ALMA | Günlük | Sinyal çıkışı | 61 | %36 | +891% | +569% | -52.6% | ZAYIF |
+| KONTR | 09 ALMA | Günlük | stop 1.5 ATR + iz stop 3 ATR | 74 | %38 | +577% | -40% | -52.8% | ZAYIF |
+| EGEEN | 11 Bollinger Orta Bant | Haftalık | Sinyal çıkışı | 14 | %21 | +378% | +233% | -54.5% | ZAYIF |
