@@ -1,0 +1,70 @@
+# BIST 100 hisselerinde tüm strateji ve kombinleri test eder, her hisse için en iyisini
+# "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt" indikatörüne gömer.
+name: BIST100 strateji testi
+
+on:
+  workflow_dispatch:          # Actions sekmesinden elle çalıştırma
+  schedule:
+    - cron: "17 3 1 * *"      # her ayın 1'i, 06:17 (TSİ)
+  push:
+    paths:
+      - "araclar/backtest.py"
+      - "araclar/risk.py"
+      - "araclar/bist100.txt"
+      - ".github/workflows/bist100-test.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bist100-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Paketleri kur
+        run: pip install yfinance pandas numpy
+
+      - name: BIST 100 testini çalıştır
+        run: python araclar/backtest.py
+
+      - name: İndikatörü sonuçlarla yeniden üret
+        run: python araclar/pine_uret.py
+
+      - name: Sonuçları kaydet
+        # Diğer görev aynı dala yazmış olabilir: en güncel hali alıp sonuçları üstüne koy,
+        # indikatörü güncel üreticiyle yeniden üret, sonra gönder (çakışma olursa tekrar dene).
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/sonuc
+          for f in bist100_sonuclar.json BIST100_SONUCLAR.md karne_swing.json KARNE_SWING.md; do
+            if [ -f "veri/$f" ]; then cp "veri/$f" /tmp/sonuc/; fi
+          done
+          for deneme in 1 2 3 4; do
+            git fetch -q origin "$GITHUB_REF_NAME"
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            cp /tmp/sonuc/* veri/
+            python araclar/pine_uret.py
+            git add veri "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt"
+            if git diff --cached --quiet; then
+              echo "Değişiklik yok"
+              exit 0
+            fi
+            git commit -q -m "BIST 100 test sonuçları güncellendi ($(date +%Y-%m-%d))"
+            if git push -q origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            echo "Gönderim çakıştı, tekrar deneniyor ($deneme)"
+            sleep $((deneme * 10))
+          done
+          exit 1
