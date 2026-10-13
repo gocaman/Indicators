@@ -4,8 +4,9 @@ Swing testinden farkları:
 - Gece taşıma yok: pozisyon her günün son mumunda kapanır, son mumda yeni işlem açılmaz.
 - 24 stratejiye ek olarak gün içine özel 7 strateji (VWAP, ilk mum kırılımı, RSI(2), Stokastik RSI,
   EMA 9x21 + VWAP, hızlı SuperTrend, Bollinger sıkışma) ve bunların hepsinin ikili kombinleri.
-- Eğitim / kontrol ayrımı (walk-forward): seçim dönemin ilk %70'inde yapılır, kalan %30'da
-  (strateji bu veriyi "görmeden") tekrar ölçülür. Sadece kontrol döneminde de kâr eden seçilir.
+- Eğitim / kontrol ayrımı (walk-forward): seçim SADECE dönemin ilk %70'ine (eğitim) bakılarak yapılır.
+  Kalan %30 (kontrol) seçimde hiç kullanılmaz; seçilen stratejinin orada ne yaptığı dürüstçe raporlanır.
+- Scalper şartı: eğitim döneminde günde en az MIN_GUNLUK_ISLEM işlem yapmayan strateji seçilmez.
 - Kâr faktörü, en büyük düşüş, günlük işlem sayısı ve ortalama bekleme süresi raporlanır.
 
 Yahoo sınırı: 5 ve 15 dakikalık veri son 60 gün, 1 saatlik veri son 730 gün.
@@ -30,6 +31,7 @@ MAX_BAR = 30
 KOMISYON = 0.15        # %, al+sat toplam (komisyon + kayma)
 MIN_ISLEM_EGITIM = 10  # eğitim döneminde en az işlem
 MIN_ISLEM_KONTROL = 3  # kontrol döneminde en az işlem
+MIN_GUNLUK_ISLEM = 0.5  # eğitim döneminde günde en az işlem (scalper şartı)
 EGITIM_ORAN = 0.70
 ISINMA = 200
 
@@ -155,6 +157,8 @@ def zaman_dilimi_test(df, tf):
             continue
         o_e = olcumler(r[egitim], (k - g)[egitim], gun_e)
         o_k = olcumler(r[~egitim], (k - g)[~egitim], gun_k)
+        if o_e["gunluk_islem"] < MIN_GUNLUK_ISLEM:
+            continue
         o_t = olcumler(r, k - g, gun_e + gun_k)
         # eğitim dönemindeki günlük bileşik getiri: farklı uzunluktaki dönemleri karşılaştırılabilir yapar
         skor = ((1 + o_e["toplam"] / 100) ** (1 / max(gun_e, 1)) - 1) * 100
@@ -227,10 +231,10 @@ def main():
         if not tum:
             print(f"{kod}: veri yok/yetersiz, atlandı", flush=True)
             continue
-        gecen = [x for x in tum if x["kontrol_gecti"]]
-        havuz = gecen or tum
-        havuz.sort(key=lambda x: x["skor"], reverse=True)
-        hisseler[kod] = {"en_iyi": havuz[0], "ilk5": havuz[:5], "kontrolu_gecen_aday": len(gecen)}
+        # Seçim yalnızca eğitim skoruna göre; kontrol dönemi sonucu seçimi etkilemez (saf test)
+        tum.sort(key=lambda x: x["skor"], reverse=True)
+        hisseler[kod] = {"en_iyi": tum[0], "ilk5": tum[:5], "aday_sayisi": len(tum)}
+        havuz = tum
         e = havuz[0]
         print(f"{kod}: {e['ad']} • {e['tf_ad']} • {e['islem']} işlem • %{e['kazanma']} kazanma • KF {e['kar_faktoru']} • "
               f"kontrol {e['kontrol']['toplam']:+.1f}% ({time.time() - t0:.1f} sn)", flush=True)
@@ -240,7 +244,8 @@ def main():
         "tarih": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "ayarlar": {"max_bar": MAX_BAR, "komisyon": KOMISYON, "egitim_orani": EGITIM_ORAN,
                     "min_islem_egitim": MIN_ISLEM_EGITIM, "min_islem_kontrol": MIN_ISLEM_KONTROL,
-                    "olcut": "eğitim dönemi günlük bileşik getiri; kontrol döneminde kârlı ve KF>1 olanlar öncelikli"},
+                    "min_gunluk_islem": MIN_GUNLUK_ISLEM,
+                    "olcut": "yalnızca eğitim dönemi günlük bileşik getiri; kontrol dönemi saf test"},
         "sentetik": sentetik,
         "hisseler": hisseler,
     }
@@ -249,8 +254,9 @@ def main():
     hedef.write_text(json.dumps(cikti, ensure_ascii=False, indent=1), encoding="utf-8")
     if not sentetik:
         sat = [f"# BIST 100 gün içi (scalper) en iyi strateji listesi ({cikti['tarih']})", "",
-               "Gece taşıma yok (pozisyon gün sonunda kapanır). Komisyon+kayma %0,15. Seçim dönemin ilk %70'inde yapıldı; "
-               "**Kontrol** sütunu stratejinin hiç görmediği son %30'daki sonuçtur. Karar: kontrolde kârlı mı, "
+               "Gece taşıma yok (pozisyon gün sonunda kapanır). Komisyon+kayma %0,15. Seçim yalnızca dönemin ilk %70'ine "
+               "bakılarak yapıldı (günde en az 0,5 işlem şartıyla); **Kontrol** sütunu seçimde hiç kullanılmayan son %30'daki "
+               "gerçek sonuçtur. Karar: kontrolde kârlı mı, "
                "kâr faktörü ≥ 1,3 mü, kazanma ≥ %50 mi (3 şart).", "",
                "| Hisse | En iyi strateji / kombin | Zaman | İşlem | Günlük işlem | Kazanma | Kâr faktörü | En büyük düşüş | Toplam | Kontrol | Karar |",
                "|---|---|---|---|---|---|---|---|---|---|---|"]

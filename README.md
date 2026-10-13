@@ -76,8 +76,8 @@ Bu ayrı bir indikatördür. Kurulumu ana indikatörle aynıdır, TradingView'e 
 - **Gece taşıma yok:** Pozisyon her günün son mumunda kapanır, son mumda yeni işlem açılmaz.
 - **Gün içine özel 7 strateji daha:** VWAP kesişimi, ilk mum kırılımı, RSI(2) dip, Stokastik RSI, EMA 9x21 + VWAP, hızlı SuperTrend (7,2), Bollinger sıkışma kırılımı. Toplam 31 strateji, 465 ikili kombin ve ortak karar.
 - **Daha sıkı test (eğitim / kontrol):**
-  - Her hissede seçim, dönemin ilk %70'inde yapılır. Kalan %30, stratejinin hiç görmediği **kontrol dönemi** olarak tekrar ölçülür.
-  - Sadece kontrol döneminde de kâr eden ve kâr faktörü 1'in üstünde olan adaylar öncelikli seçilir. Böylece "geçmişe fazla uyan" stratejiler elenir.
+  - Her hissede seçim **sadece** dönemin ilk %70'ine (eğitim) bakılarak yapılır. Ayrıca günde en az 0,5 işlem şartı aranır, yani gerçekten gün içi işlem yapan stratejiler seçilir.
+  - Kalan %30, seçimde hiç kullanılmayan **kontrol dönemidir**. Seçilen stratejinin orada ne yaptığı olduğu gibi gösterilir. Bu, "geçmişe fazla uyan" stratejileri ortaya çıkarmanın en dürüst yoludur.
   - Kâr faktörü, en büyük düşüş, günlük işlem sayısı ve ortalama bekleme süresi de ölçülür.
 - **Komisyon + kayma:** Varsayılan %0,15 (al+sat toplam). Gün içinde işlem sayısı yüksek olduğu için bu değer sonucu çok etkiler. Kendi komisyonunu ayarlardan gir.
 - **Karar (3 şart):**
