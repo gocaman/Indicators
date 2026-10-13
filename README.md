@@ -20,6 +20,16 @@ BIST 100'de **herhangi bir hisseyi açtığında** indikatör kendiliğinden şu
 
 Ücretsiz TradingView hesabında tek indikatör hakkıyla çalışır. Ücretsiz hesap tek grafik açtırdığı için indikatör grafiğin zaman dilimini kendisi değiştiremez. En iyi sonuç başka bir zaman diliminde çıkarsa not kutusu bunu söyler (ör. "⚠ Sinyalleri görmek için grafiği Günlük yap").
 
+### BIST 100 hazır sonuçları (hızlı açılış)
+Her ayın 1'inde GitHub'da otomatik bir görev (`.github/workflows/bist100-test.yml`) çalışır:
+1. Yahoo Finance'ten BIST 100 hisselerinin verisini çeker. Hisse listesi `araclar/bist100.txt` dosyasındadır.
+2. Her hissede 24 stratejiyi ve 276 kombini 4 Saat, Günlük ve Haftalık'ta test eder (`araclar/backtest.py`). 4 Saatlik test son 2 yılla sınırlıdır, çünkü Yahoo daha eskisini vermez.
+3. Her hissenin en iyi kombinini indikatöre gömer (`araclar/pine_uret.py`). Özet tablo `veri/BIST100_SONUCLAR.md` dosyasına yazılır.
+
+Bu sayede listedeki bir hisseyi açtığında indikatör test yapmaz ve hazır sonucu **anında** çizer. Not kutusunda "hazır test" ve tarih yazar. Listede olmayan bir hissede indikatör testi bugünkü gibi kendisi yapar.
+
+Görevi elle çalıştırmak için GitHub'da **Actions → BIST100 strateji testi → Run workflow**'a bas. Görev bitince güncel indikatör kodunu TradingView'deki koda yeniden yapıştırman gerekir. TradingView kodu GitHub'dan kendisi çekemez.
+
 ### Değerlendirme: nasıl karar verilir?
 Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 
