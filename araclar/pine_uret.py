@@ -573,10 +573,17 @@ var color[] renkler = array.from(color.new(#2962FF, 0), color.new(#FF9800, 0), c
 f_fiyat(float x) =>
     str.tostring(x, format.mintick)
 
-// Yatay seviye çizgisi + sağında okunaklı etiket
+// Yatay seviye çizgisi + son mumun SAĞINDA okunaklı etiket (mumların üstüne binmez)
 f_seviye(line[] cizgiDizi, label[] etiketDizi, int x1, float y, string metin, color renk, string stil) =>
-    array.push(cizgiDizi, line.new(x1, y, bar_index + 8, y, color = renk, width = 2, style = stil))
-    array.push(etiketDizi, label.new(bar_index, y, metin, style = label.style_label_lower_right, color = color.new(renk, 0), textcolor = color.white, size = size.small))
+    array.push(cizgiDizi, line.new(x1, y, bar_index + 2, y, color = renk, width = 2, style = stil))
+    array.push(etiketDizi, label.new(bar_index + 2, y, metin, style = label.style_label_left, color = color.new(renk, 0), textcolor = color.white, size = size.small))
+
+// x, dizideki seviyelerden birine "yakın"dan daha yakın mı? (etiketler üst üste binmesin)
+f_yakinVar(float[] dizi, float x, float yakin) =>
+    bool var_ = false
+    for d in dizi
+        var_ := var_ or math.abs(x - d) < yakin
+    var_
 
 // ════════════════════════════ RİSK VE SEVİYE HESAPLARI (grafik zaman diliminde) ════════════════════════════
 atrG = ta.atr(14)
@@ -708,11 +715,20 @@ if barstate.islast
     rIzs = acik and kIzs > 0 ? math.max(rStop, tepeH - kIzs * atrG) : na
     rLot = rRisk > 0 ? math.floor(riskTL / rRisk) : 0.0
     rX = acik ? girisX : bar_index
+    doluSeviye = array.new_float()
     if riskGoster and gecerli
         // Açık işlem yoksa çizgiler bir PLAN'dır: "şimdi AL gelse giriş/stop/hedef nerede olurdu" (soluk, kesikli)
         on = acik ? "" : "OLASI "
         sSt = acik ? line.style_solid : line.style_dotted
         sSaydam = acik ? 0 : 45
+        array.push(doluSeviye, rGiris)
+        array.push(doluSeviye, rStop)
+        if not na(rTp1)
+            array.push(doluSeviye, rTp1)
+        if not na(rTp2)
+            array.push(doluSeviye, rTp2)
+        if not na(rIzs)
+            array.push(doluSeviye, rIzs)
         f_seviye(seviyeCizgi, etiketler, rX, rGiris, (acik ? "GİRİŞ " : "OLASI GİRİŞ ") + f_fiyat(rGiris), color.new(#787B86, sSaydam), sSt)
         f_seviye(seviyeCizgi, etiketler, rX, rStop, on + "STOP " + f_fiyat(rStop) + " " + f_yuzde((rStop / rGiris - 1) * 100), color.new(#F23645, sSaydam), sSt)
         if not na(rTp1)
@@ -732,19 +748,20 @@ if barstate.islast
             array.push(x > close ? ustler : altlar, x)
         array.sort(ustler, order.ascending)
         array.sort(altlar, order.descending)
-        // birbirine (ve fiyata) yarım ATR'den yakın seviyeler tek seviye sayılır: çizgiler üst üste binmesin
+        // birbirine (ve fiyata) yarım ATR'den yakın seviyeler tek seviye sayılır: çizgiler üst üste binmesin.
+        // Giriş / stop / hedef çizgisine yakın destek-direnç çizilmez (o çizgi zaten orada)
         aralik = 0.5 * atrG
         kac = 0
         float son = close
         for x in ustler
-            if kac < drAdet and x - son >= aralik
+            if kac < drAdet and x - son >= aralik and not f_yakinVar(doluSeviye, x, aralik)
                 f_seviye(seviyeCizgi, etiketler, bar_index - 60, x, "Direnç " + f_fiyat(x), color.new(#B22833, 30), line.style_solid)
                 son := x
                 kac += 1
         kac := 0
         son := close
         for x in altlar
-            if kac < drAdet and son - x >= aralik
+            if kac < drAdet and son - x >= aralik and not f_yakinVar(doluSeviye, x, aralik)
                 f_seviye(seviyeCizgi, etiketler, bar_index - 60, x, "Destek " + f_fiyat(x), color.new(#1B7F5B, 30), line.style_solid)
                 son := x
                 kac += 1
