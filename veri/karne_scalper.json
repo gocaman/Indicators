@@ -8,18 +8,18 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.28
+  "al_tut": -1.6
  },
  {
   "hisse": "AEFES",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "26 İlk Mum Kırılımı + 28 Stokastik RSI",
-  "tf": "5 Dakika",
+  "aday": "03 Dip Bulucu-2 (VixFix) + 28 Stokastik RSI",
+  "tf": "15 Dakika",
   "islem": 1,
-  "kazanan": 0,
-  "getiri": -0.47,
-  "al_tut": 0.32
+  "kazanan": 1,
+  "getiri": 1.16,
+  "al_tut": 0.11
  },
  {
   "hisse": "AGHOL",
@@ -36,8 +36,8 @@
   "hisse": "AGROT",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "03 Dip Bulucu-2 (VixFix) + 12 Bollinger20 x EMA50",
-  "tf": "5 Dakika",
+  "aday": "10 T3 Tillson + 26 İlk Mum Kırılımı",
+  "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
@@ -52,7 +52,7 @@
   "islem": 1,
   "kazanan": 0,
   "getiri": -0.22,
-  "al_tut": 0.58
+  "al_tut": 0.51
  },
  {
   "hisse": "AKFGY",
@@ -63,29 +63,29 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.82
+  "al_tut": 1.22
  },
  {
   "hisse": "AKFYE",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "07 Parabolic SAR + 17 Darvas Kutusu",
+  "aday": "03 Dip Bulucu-2 (VixFix) + 17 Darvas Kutusu",
   "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.53
+  "al_tut": 0.26
  },
  {
   "hisse": "AKSA",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "05 SuperTrend + 29 EMA 9x21 + VWAP",
+  "aday": "05 SuperTrend + 17 Darvas Kutusu",
   "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.71
+  "al_tut": -1.52
  },
  {
   "hisse": "AKSEN",
@@ -106,25 +106,25 @@
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 1,
-  "getiri": 0.13,
-  "al_tut": -1.63
+  "getiri": 0.5,
+  "al_tut": -1.27
  },
  {
   "hisse": "ALFAS",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "20 TSI Dip + 27 RSI(2) Dip",
+  "aday": "09 ALMA + 20 TSI Dip",
   "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.53
+  "al_tut": -1.73
  },
  {
   "hisse": "ALTNY",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "03 Dip Bulucu-2 (VixFix) + 24 Bollinger Kombo",
+  "aday": "13 EMA 5x13 + 24 Bollinger Kombo",
   "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
@@ -140,18 +140,18 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.75
+  "al_tut": 0.91
  },
  {
   "hisse": "ARCLK",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "04 AlphaTrend + 25 VWAP Kesişimi",
+  "aday": "02 Dip Bulucu (Banker) + 28 Stokastik RSI",
   "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.44
+  "al_tut": -0.32
  },
  {
   "hisse": "ASELS",
@@ -173,18 +173,18 @@
   "islem": 2,
   "kazanan": 0,
   "getiri": -1.19,
-  "al_tut": 1.82
+  "al_tut": 1.87
  },
  {
   "hisse": "BERA",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "30 Hızlı SuperTrend",
+  "aday": "10 T3 Tillson + 18 Fisher Dip",
   "tf": "15 Dakika",
   "islem": 1,
-  "kazanan": 0,
-  "getiri": -0.32,
-  "al_tut": 0.0
+  "kazanan": 1,
+  "getiri": 0.56,
+  "al_tut": 0.09
  },
  {
   "hisse": "BIMAS",
@@ -195,7 +195,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 2.9
+  "al_tut": 2.83
  },
  {
   "hisse": "BINHO",
@@ -205,41 +205,41 @@
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.15,
-  "al_tut": -2.82
+  "getiri": -0.32,
+  "al_tut": -2.99
  },
  {
   "hisse": "BJKAS",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "14 EMA 5x22 + 21 MACD Kesişimi",
-  "tf": "15 Dakika",
+  "aday": "05 SuperTrend",
+  "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.0
+  "al_tut": -0.66
  },
  {
   "hisse": "BRSAN",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "11 Bollinger Orta Bant + 30 Hızlı SuperTrend",
+  "aday": "07 Parabolic SAR + 26 İlk Mum Kırılımı",
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.53,
-  "al_tut": 0.76
+  "getiri": -0.6,
+  "al_tut": 0.68
  },
  {
   "hisse": "BRYAT",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "14 EMA 5x22 + 15 WMA 9x15",
+  "aday": "14 EMA 5x22 + 25 VWAP Kesişimi",
   "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.79
+  "al_tut": -0.57
  },
  {
   "hisse": "BSOKE",
@@ -250,13 +250,13 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -3.41
+  "al_tut": -4.49
  },
  {
   "hisse": "BTCIM",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "27 RSI(2) Dip + 30 Hızlı SuperTrend",
+  "aday": "07 Parabolic SAR + 20 TSI Dip",
   "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
@@ -272,7 +272,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.93
+  "al_tut": -1.85
  },
  {
   "hisse": "CCOLA",
@@ -283,29 +283,29 @@
   "islem": 1,
   "kazanan": 0,
   "getiri": -0.63,
-  "al_tut": 1.22
+  "al_tut": 1.28
  },
  {
   "hisse": "CIMSA",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "23 EMA Kombo + 30 Hızlı SuperTrend",
+  "aday": "08 MACD Dip + 25 VWAP Kesişimi",
   "tf": "15 Dakika",
-  "islem": 0,
+  "islem": 2,
   "kazanan": 0,
-  "getiri": 0.0,
-  "al_tut": -0.75
+  "getiri": -0.55,
+  "al_tut": -0.55
  },
  {
   "hisse": "CLEBI",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "08 MACD Dip + 13 EMA 5x13",
+  "aday": "21 MACD Kesişimi + 29 EMA 9x21 + VWAP",
   "tf": "15 Dakika",
-  "islem": 0,
+  "islem": 1,
   "kazanan": 0,
-  "getiri": 0.0,
-  "al_tut": -0.96
+  "getiri": -0.52,
+  "al_tut": -0.89
  },
  {
   "hisse": "CWENE",
@@ -316,17 +316,17 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.94
+  "al_tut": 0.77
  },
  {
   "hisse": "DOAS",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "06 AlphaTrend+SuperTrend + 29 EMA 9x21 + VWAP",
-  "tf": "5 Dakika",
-  "islem": 1,
-  "kazanan": 1,
-  "getiri": 0.2,
+  "aday": "06 AlphaTrend+SuperTrend + 11 Bollinger Orta Bant",
+  "tf": "15 Dakika",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
   "al_tut": 0.14
  },
  {
@@ -337,8 +337,8 @@
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.15,
-  "al_tut": -0.43
+  "getiri": -0.04,
+  "al_tut": -0.32
  },
  {
   "hisse": "ECILC",
@@ -348,19 +348,19 @@
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.57,
-  "al_tut": -1.58
+  "getiri": -1.19,
+  "al_tut": -1.83
  },
  {
   "hisse": "EGEEN",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "06 AlphaTrend+SuperTrend + 11 Bollinger Orta Bant",
+  "aday": "04 AlphaTrend + 11 Bollinger Orta Bant",
   "tf": "15 Dakika",
   "islem": 2,
   "kazanan": 0,
   "getiri": -1.38,
-  "al_tut": 0.35
+  "al_tut": -0.25
  },
  {
   "hisse": "EKGYO",
@@ -371,18 +371,18 @@
   "islem": 3,
   "kazanan": 0,
   "getiri": -1.25,
-  "al_tut": 0.0
+  "al_tut": -0.2
  },
  {
   "hisse": "ENERY",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "19 CCI Dip + 28 Stokastik RSI",
-  "tf": "5 Dakika",
+  "aday": "15 WMA 9x15 + 25 VWAP Kesişimi",
+  "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.75
+  "al_tut": 0.82
  },
  {
   "hisse": "ENJSA",
@@ -393,7 +393,7 @@
   "islem": 1,
   "kazanan": 1,
   "getiri": 0.29,
-  "al_tut": 0.09
+  "al_tut": 0.44
  },
  {
   "hisse": "ENKAI",
@@ -404,7 +404,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.06
+  "al_tut": -0.31
  },
  {
   "hisse": "EREGL",
@@ -415,7 +415,7 @@
   "islem": 1,
   "kazanan": 0,
   "getiri": -0.84,
-  "al_tut": -0.59
+  "al_tut": -0.53
  },
  {
   "hisse": "EUPWR",
@@ -425,8 +425,8 @@
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.45,
-  "al_tut": 0.5
+  "getiri": -1.14,
+  "al_tut": -0.2
  },
  {
   "hisse": "FENER",
@@ -448,7 +448,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.35
+  "al_tut": -1.42
  },
  {
   "hisse": "GARAN",
@@ -459,51 +459,51 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 1.16
+  "al_tut": 0.85
  },
  {
   "hisse": "GESAN",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "11 Bollinger Orta Bant + 15 WMA 9x15",
+  "aday": "02 Dip Bulucu (Banker)",
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.3,
-  "al_tut": -0.35
+  "getiri": -0.79,
+  "al_tut": -0.79
  },
  {
   "hisse": "GOLTS",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "10 T3 Tillson + 18 Fisher Dip",
-  "tf": "15 Dakika",
+  "aday": "17 Darvas Kutusu + 26 İlk Mum Kırılımı",
+  "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.58
+  "al_tut": -1.66
  },
  {
   "hisse": "GRSEL",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "02 Dip Bulucu (Banker) + 05 SuperTrend",
-  "tf": "5 Dakika",
-  "islem": 1,
+  "aday": "02 Dip Bulucu (Banker) + 08 MACD Dip",
+  "tf": "15 Dakika",
+  "islem": 0,
   "kazanan": 0,
-  "getiri": -0.77,
-  "al_tut": 0.98
+  "getiri": 0.0,
+  "al_tut": 2.23
  },
  {
   "hisse": "GUBRF",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "13 EMA 5x13 + 25 VWAP Kesişimi",
-  "tf": "15 Dakika",
+  "aday": "05 SuperTrend + 07 Parabolic SAR",
+  "tf": "5 Dakika",
   "islem": 2,
   "kazanan": 0,
-  "getiri": -0.85,
-  "al_tut": 0.49
+  "getiri": -0.79,
+  "al_tut": 0.68
  },
  {
   "hisse": "HALKB",
@@ -514,18 +514,18 @@
   "islem": 2,
   "kazanan": 0,
   "getiri": -0.66,
-  "al_tut": -0.14
+  "al_tut": -0.09
  },
  {
   "hisse": "HEKTS",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "18 Fisher Dip + 27 RSI(2) Dip",
-  "tf": "15 Dakika",
+  "aday": "18 Fisher Dip + 28 Stokastik RSI",
+  "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.47
+  "al_tut": 0.0
  },
  {
   "hisse": "ISCTR",
@@ -547,7 +547,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.88
+  "al_tut": -0.81
  },
  {
   "hisse": "KCAER",
@@ -557,8 +557,8 @@
   "tf": "5 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.52,
-  "al_tut": 0.47
+  "getiri": -0.7,
+  "al_tut": 0.28
  },
  {
   "hisse": "KCHOL",
@@ -569,7 +569,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 2.61
+  "al_tut": 2.71
  },
  {
   "hisse": "KONTR",
@@ -586,23 +586,23 @@
   "hisse": "KONYA",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "12 Bollinger20 x EMA50 + 18 Fisher Dip",
-  "tf": "5 Dakika",
-  "islem": 1,
+  "aday": "03 Dip Bulucu-2 (VixFix) + 28 Stokastik RSI",
+  "tf": "15 Dakika",
+  "islem": 0,
   "kazanan": 0,
-  "getiri": -0.08,
-  "al_tut": 0.87
+  "getiri": 0.0,
+  "al_tut": 0.58
  },
  {
   "hisse": "KRDMD",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "14 EMA 5x22",
+  "aday": "10 T3 Tillson + 23 EMA Kombo",
   "tf": "15 Dakika",
-  "islem": 2,
+  "islem": 0,
   "kazanan": 0,
-  "getiri": -1.52,
-  "al_tut": -0.14
+  "getiri": 0.0,
+  "al_tut": 0.14
  },
  {
   "hisse": "KTLEV",
@@ -624,7 +624,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.42
+  "al_tut": -1.51
  },
  {
   "hisse": "MAVI",
@@ -635,7 +635,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.8
+  "al_tut": 0.75
  },
  {
   "hisse": "MGROS",
@@ -644,9 +644,9 @@
   "aday": "11 Bollinger Orta Bant + 23 EMA Kombo",
   "tf": "15 Dakika",
   "islem": 1,
-  "kazanan": 1,
-  "getiri": 0.25,
-  "al_tut": 0.3
+  "kazanan": 0,
+  "getiri": -0.05,
+  "al_tut": 0.0
  },
  {
   "hisse": "MIATK",
@@ -663,12 +663,12 @@
   "hisse": "MPARK",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "01 RSI Karpuzlu + 24 Bollinger Kombo",
+  "aday": "07 Parabolic SAR + 08 MACD Dip",
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.44,
-  "al_tut": -0.29
+  "getiri": -0.94,
+  "al_tut": -1.44
  },
  {
   "hisse": "OBAMS",
@@ -679,7 +679,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.46
+  "al_tut": -0.69
  },
  {
   "hisse": "ODAS",
@@ -690,7 +690,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.51
+  "al_tut": -0.17
  },
  {
   "hisse": "OTKAR",
@@ -701,7 +701,7 @@
   "islem": 1,
   "kazanan": 0,
   "getiri": -0.59,
-  "al_tut": -0.45
+  "al_tut": -0.07
  },
  {
   "hisse": "OYAKC",
@@ -709,10 +709,10 @@
   "olcum_tarihi": "2026-10-13",
   "aday": "29 EMA 9x21 + VWAP + 30 Hızlı SuperTrend",
   "tf": "5 Dakika",
-  "islem": 0,
+  "islem": 1,
   "kazanan": 0,
-  "getiri": 0.0,
-  "al_tut": -1.17
+  "getiri": -0.15,
+  "al_tut": -0.78
  },
  {
   "hisse": "PASEU",
@@ -721,9 +721,9 @@
   "aday": "15 WMA 9x15",
   "tf": "15 Dakika",
   "islem": 1,
-  "kazanan": 1,
-  "getiri": 0.39,
-  "al_tut": -5.25
+  "kazanan": 0,
+  "getiri": -1.71,
+  "al_tut": -7.24
  },
  {
   "hisse": "PETKM",
@@ -740,12 +740,12 @@
   "hisse": "PGSUS",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "13 EMA 5x13 + 21 MACD Kesişimi",
+  "aday": "14 EMA 5x22 + 26 İlk Mum Kırılımı",
   "tf": "15 Dakika",
-  "islem": 1,
+  "islem": 0,
   "kazanan": 0,
-  "getiri": -0.45,
-  "al_tut": -0.38
+  "getiri": 0.0,
+  "al_tut": -0.23
  },
  {
   "hisse": "REEDR",
@@ -766,8 +766,8 @@
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 1,
-  "getiri": 0.2,
-  "al_tut": 0.89
+  "getiri": 0.26,
+  "al_tut": 0.95
  },
  {
   "hisse": "SASA",
@@ -778,7 +778,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.0
+  "al_tut": -0.54
  },
  {
   "hisse": "SELEC",
@@ -795,34 +795,34 @@
   "hisse": "SISE",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "07 Parabolic SAR + 10 T3 Tillson",
+  "aday": "13 EMA 5x13",
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.42,
-  "al_tut": 0.21
+  "getiri": -0.47,
+  "al_tut": 0.27
  },
  {
   "hisse": "SKBNK",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "10 T3 Tillson + 18 Fisher Dip",
+  "aday": "08 MACD Dip + 10 T3 Tillson",
   "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.96
+  "al_tut": -1.34
  },
  {
   "hisse": "SMRTG",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "12 Bollinger20 x EMA50 + 19 CCI Dip",
+  "aday": "02 Dip Bulucu (Banker) + 05 SuperTrend",
   "tf": "5 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.24
+  "al_tut": -1.87
  },
  {
   "hisse": "SOKM",
@@ -844,7 +844,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.61
+  "al_tut": -1.7
  },
  {
   "hisse": "TAVHL",
@@ -855,7 +855,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 0.28
+  "al_tut": 0.66
  },
  {
   "hisse": "TCELL",
@@ -864,9 +864,9 @@
   "aday": "05 SuperTrend + 26 İlk Mum Kırılımı",
   "tf": "15 Dakika",
   "islem": 1,
-  "kazanan": 1,
-  "getiri": 0.05,
-  "al_tut": 1.39
+  "kazanan": 0,
+  "getiri": -0.05,
+  "al_tut": 1.28
  },
  {
   "hisse": "THYAO",
@@ -877,7 +877,7 @@
   "islem": 1,
   "kazanan": 0,
   "getiri": -0.24,
-  "al_tut": 0.35
+  "al_tut": 0.53
  },
  {
   "hisse": "TKFEN",
@@ -887,8 +887,8 @@
   "tf": "15 Dakika",
   "islem": 2,
   "kazanan": 0,
-  "getiri": -1.95,
-  "al_tut": -5.51
+  "getiri": -2.36,
+  "al_tut": -5.9
  },
  {
   "hisse": "TOASO",
@@ -899,7 +899,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.86
+  "al_tut": -0.57
  },
  {
   "hisse": "TSKB",
@@ -909,8 +909,8 @@
   "tf": "15 Dakika",
   "islem": 1,
   "kazanan": 0,
-  "getiri": -0.75,
-  "al_tut": -0.1
+  "getiri": -0.85,
+  "al_tut": 0.1
  },
  {
   "hisse": "TTKOM",
@@ -927,12 +927,12 @@
   "hisse": "TTRAK",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "03 Dip Bulucu-2 (VixFix) + 28 Stokastik RSI",
-  "tf": "5 Dakika",
-  "islem": 2,
+  "aday": "01 RSI Karpuzlu + 29 EMA 9x21 + VWAP",
+  "tf": "15 Dakika",
+  "islem": 0,
   "kazanan": 0,
-  "getiri": -1.01,
-  "al_tut": -1.6
+  "getiri": 0.0,
+  "al_tut": -1.47
  },
  {
   "hisse": "TUKAS",
@@ -951,10 +951,10 @@
   "olcum_tarihi": "2026-10-13",
   "aday": "17 Darvas Kutusu",
   "tf": "15 Dakika",
-  "islem": 0,
+  "islem": 1,
   "kazanan": 0,
-  "getiri": 0.0,
-  "al_tut": 0.98
+  "getiri": -0.28,
+  "al_tut": 1.43
  },
  {
   "hisse": "TURSG",
@@ -965,7 +965,7 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.36
+  "al_tut": -0.55
  },
  {
   "hisse": "ULKER",
@@ -976,29 +976,29 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.66
+  "al_tut": -1.72
  },
  {
   "hisse": "VAKBN",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "01 RSI Karpuzlu",
+  "aday": "13 EMA 5x13 + 30 Hızlı SuperTrend",
   "tf": "15 Dakika",
-  "islem": 2,
+  "islem": 0,
   "kazanan": 0,
-  "getiri": -0.65,
-  "al_tut": 0.35
+  "getiri": 0.0,
+  "al_tut": 0.17
  },
  {
   "hisse": "VESTL",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "08 MACD Dip",
+  "aday": "02 Dip Bulucu (Banker) + 08 MACD Dip",
   "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -0.4
+  "al_tut": -0.58
  },
  {
   "hisse": "YEOTK",
@@ -1009,18 +1009,18 @@
   "islem": 1,
   "kazanan": 0,
   "getiri": -0.67,
-  "al_tut": -0.81
+  "al_tut": -0.88
  },
  {
   "hisse": "YKBNK",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "11 Bollinger Orta Bant + 31 Bollinger Sıkışma",
-  "tf": "5 Dakika",
+  "aday": "11 Bollinger Orta Bant + 30 Hızlı SuperTrend",
+  "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": 1.46
+  "al_tut": 1.51
  },
  {
   "hisse": "ZOREN",
@@ -1031,18 +1031,18 @@
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -2.76
+  "al_tut": -1.66
  },
  {
   "hisse": "AKCNS",
   "secim_tarihi": "2026-10-13",
   "olcum_tarihi": "2026-10-13",
-  "aday": "24 Bollinger Kombo + 25 VWAP Kesişimi",
-  "tf": "5 Dakika",
+  "aday": "09 ALMA + 29 EMA 9x21 + VWAP",
+  "tf": "15 Dakika",
   "islem": 0,
   "kazanan": 0,
   "getiri": 0.0,
-  "al_tut": -1.42
+  "al_tut": -1.32
  },
  {
   "hisse": "DSTKF",
@@ -1064,6 +1064,6 @@
   "islem": 1,
   "kazanan": 0,
   "getiri": -1.03,
-  "al_tut": -1.84
+  "al_tut": -1.69
  }
 ]
