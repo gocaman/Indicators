@@ -1,0 +1,145 @@
+[
+ {
+  "hisse": "ASELS",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "10 T3 Tillson",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": 1.46
+ },
+ {
+  "hisse": "ASTOR",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "01 RSI Karpuzlu + 07 Parabolic SAR",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": 0.05
+ },
+ {
+  "hisse": "BSOKE",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "03 Dip Bulucu-2 (VixFix) + 07 Parabolic SAR",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -5.42
+ },
+ {
+  "hisse": "CWENE",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "07 Parabolic SAR",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -0.83
+ },
+ {
+  "hisse": "ECILC",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "09 ALMA",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -3.32
+ },
+ {
+  "hisse": "EKGYO",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "18 Fisher Dip + 19 CCI Dip",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -0.96
+ },
+ {
+  "hisse": "ENJSA",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "11 Bollinger Orta Bant + 15 WMA 9x15",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": 0.53
+ },
+ {
+  "hisse": "ENKAI",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "03 Dip Bulucu-2 (VixFix)",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -0.56
+ },
+ {
+  "hisse": "EREGL",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "11 Bollinger Orta Bant + 14 EMA 5x22",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -0.91
+ },
+ {
+  "hisse": "EUPWR",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "01 RSI Karpuzlu + 19 CCI Dip",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -6.56
+ },
+ {
+  "hisse": "HALKB",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "25 Ortak Karar",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -0.14
+ },
+ {
+  "hisse": "TKFEN",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "09 ALMA",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -6.6
+ },
+ {
+  "hisse": "GLRMK",
+  "secim_tarihi": "2026-10-13",
+  "olcum_tarihi": "2026-10-13",
+  "aday": "13 EMA 5x13 + 15 WMA 9x15",
+  "tf": "4 Saat",
+  "islem": 0,
+  "kazanan": 0,
+  "getiri": 0.0,
+  "al_tut": -2.58
+ }
+]
