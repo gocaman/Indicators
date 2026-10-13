@@ -470,7 +470,7 @@ else:
     for ad in ("hKaz", "hTop", "hAlTut", "hYil", "hYillik"):
         w(f"var float[] {ad} = array.from(0.0)")
     w('var string[] hBas = array.from("-")')
-w('hazir = hazirKullan and hIdx >= 0 and syminfo.prefix == "BIST"')
+w('hazir = hazirKullan and hIdx >= 0 and syminfo.currency == "TRY"')
 w("hI = math.max(hIdx, 0)")
 w("")
 w("// ════════════════════════════ 4 ZAMAN DİLİMİNDE ÇALIŞTIR ════════════════════════════")
@@ -724,7 +724,7 @@ if barstate.islast
             karar = puan == 3 ? "GÜÇLÜ" : puan == 2 ? "ORTA" : "ZAYIF"
             kararRenk = puan == 3 ? color.new(#22AB94, 0) : puan == 2 ? color.new(#FF9800, 0) : color.new(#F23645, 0)
             simdiPoz = f_poz(secTf, secAday, 0)
-            table.cell(notTablo, 0, 0, "★ " + f_adayAd(secAday) + " • " + array.get(tfAd, secTf) + (hazir ? " • hazır test " + HAZIR_TARIH : ""), text_color = color.white, text_size = notBoyB, text_halign = text.align_left)
+            table.cell(notTablo, 0, 0, "★ " + f_adayAd(secAday) + " • " + array.get(tfAd, secTf) + (hazir ? " • hazır test " + HAZIR_TARIH : " • canlı test (" + syminfo.prefix + ":" + syminfo.ticker + " " + syminfo.currency + (hazirKullan ? "" : ", hazır kapalı") + ")"), text_color = color.white, text_size = notBoyB, text_halign = text.align_left)
             table.cell(notTablo, 0, 1, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazanç • Toplam " + f_yuzde(topG) + " (Al-Tut " + f_yuzde(alTut) + ")", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, 2, "Karar: " + karar + " (" + str.tostring(puan) + "/3) • Son 1 yıl " + f_yuzde(yil) + " • Şu an: " + (simdiPoz ? "AL'da" : "beklemede"), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
             r = 3
