@@ -98,7 +98,15 @@ def tara(sonuclar, gun_ici):
         if df is None or len(df) < 60:
             print(f"{kod}: veri yok", flush=True)
             continue
-        poz = sc.stratejiler(df) if gun_ici else bt.stratejiler(df)
+        if gun_ici:
+            # Seans sürerken verinin son mumu günün son mumu değildir: gün sonu sanılıp pozisyon
+            # kapatılmasın diye aynı güne geçici bir mum eklenir, hesaptan sonra atılır.
+            adim = df.index[-1] - df.index[-2]
+            gecici = df.index[-1] + adim < df.index[-1].normalize() + pd.Timedelta(hours=18)
+            df2 = pd.concat([df, df.iloc[[-1]].set_axis([df.index[-1] + pd.Timedelta(minutes=1)])]) if gecici else df
+            poz = sc.stratejiler(df2)[:, :len(df)]
+        else:
+            poz = bt.stratejiler(df)
         a, b = e["aday_ab"]
         d = poz[a] if b < 0 else (poz[a] & poz[b])
         sonuc = acik_islem(d, df, tuple(e.get("mod", (0, 0, 0))))
