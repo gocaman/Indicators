@@ -9,7 +9,6 @@ on:
   push:
     paths:
       - "araclar/backtest.py"
-      - "araclar/pine_uret.py"
       - "araclar/bist100.txt"
       - ".github/workflows/bist100-test.yml"
 
@@ -41,14 +40,28 @@ jobs:
         run: python araclar/pine_uret.py
 
       - name: Sonuçları kaydet
+        # Diğer görev aynı dala yazmış olabilir: en güncel hali alıp sonuçları üstüne koy,
+        # indikatörü güncel üreticiyle yeniden üret, sonra gönder (çakışma olursa tekrar dene).
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add veri "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt"
-          if git diff --cached --quiet; then
-            echo "Değişiklik yok"
-          else
-            git commit -m "BIST 100 test sonuçları güncellendi ($(date +%Y-%m-%d))"
-            git pull --rebase origin "${GITHUB_REF_NAME}"
-            git push
-          fi
+          mkdir -p /tmp/sonuc
+          cp "veri/bist100_sonuclar.json" "veri/BIST100_SONUCLAR.md" /tmp/sonuc/
+          for deneme in 1 2 3 4; do
+            git fetch -q origin "$GITHUB_REF_NAME"
+            git reset -q --hard "origin/$GITHUB_REF_NAME"
+            cp /tmp/sonuc/* veri/
+            python araclar/pine_uret.py
+            git add veri "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt"
+            if git diff --cached --quiet; then
+              echo "Değişiklik yok"
+              exit 0
+            fi
+            git commit -q -m "BIST 100 test sonuçları güncellendi ($(date +%Y-%m-%d))"
+            if git push -q origin "HEAD:$GITHUB_REF_NAME"; then
+              exit 0
+            fi
+            echo "Gönderim çakıştı, tekrar deneniyor ($deneme)"
+            sleep $((deneme * 10))
+          done
+          exit 1
