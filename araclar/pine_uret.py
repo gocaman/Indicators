@@ -1,22 +1,40 @@
-"""Pine indikatörünü üretir: "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt".
-veri/bist100_sonuclar.json varsa (backtest.py yazar) her hissenin hazır en iyi kombini koda gömülür.
-Kullanım: python araclar/pine_uret.py
+"""Pine indikatörlerini üretir.
+  python araclar/pine_uret.py            -> "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt" (swing: 4S/G/H)
+  python araclar/pine_uret.py --scalper  -> "0. OTOMATİK SCALPER - BIST.txt" (gün içi: 5dk/15dk/1S)
+veri/ altındaki sonuç dosyası varsa (backtest.py / scalper.py yazar) her hissenin hazır en iyi kombini koda gömülür.
 """
 import json
+import sys
 from pathlib import Path
 
+SCALPER = "--scalper" in sys.argv
 KOK = Path(__file__).resolve().parent.parent
-SONUC = KOK / "veri" / "bist100_sonuclar.json"
+SONUC = KOK / "veri" / ("scalper_sonuclar.json" if SCALPER else "bist100_sonuclar.json")
+CIKTI = KOK / ("0. OTOMATİK SCALPER - BIST.txt" if SCALPER else "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt")
 HAZIR = json.loads(SONUC.read_text(encoding="utf-8")) if SONUC.exists() else None
 NAMES = ["01 RSI Karpuzlu", "02 Dip Bulucu (Banker)", "03 Dip Bulucu-2 (VixFix)", "04 AlphaTrend", "05 SuperTrend",
  "06 AlphaTrend+SuperTrend", "07 Parabolic SAR", "08 MACD Dip", "09 ALMA", "10 T3 Tillson",
  "11 Bollinger Orta Bant", "12 Bollinger20 x EMA50", "13 EMA 5x13", "14 EMA 5x22", "15 WMA 9x15",
  "16 SMMA 21x55", "17 Darvas Kutusu", "18 Fisher Dip", "19 CCI Dip", "20 TSI Dip",
- "21 MACD Kesişimi", "22 Erik Kombo", "23 EMA Kombo", "24 Bollinger Kombo", "25 Ortak Karar"]
+ "21 MACD Kesişimi", "22 Erik Kombo", "23 EMA Kombo", "24 Bollinger Kombo"]
+EK_NAMES = ["25 VWAP Kesişimi", "26 İlk Mum Kırılımı", "27 RSI(2) Dip", "28 Stokastik RSI",
+            "29 EMA 9x21 + VWAP", "30 Hızlı SuperTrend", "31 Bollinger Sıkışma"]
+NS = 31 if SCALPER else 24                 # ortak karar hariç strateji sayısı
+NAMES = NAMES + (EK_NAMES if SCALPER else []) + [f"{NS + 1} Ortak Karar"]
+NC = (NS + 1) + NS * (NS - 1) // 2        # aday sayısı (tekler + ikili kombinler)
 # strateji no (1 tabanlı) -> grafiğe çizilecek çizgiler
 LINES = {4:[1],5:[2],6:[1,2],7:[3],9:[4],10:[5],11:[6],12:[6,7],13:[8,9],14:[8,10],15:[11,12],16:[13,14],17:[15,16],22:[8,18],23:[8,17],24:[6,19]}
-NL = 19
-TFS = [("60","1 Saat","tf60"),("240","4 Saat","tf240"),("D","Günlük","tfD"),("W","Haftalık","tfW")]
+CIZGI_ADLARI = ["AlphaTrend", "SuperTrend", "PSAR", "ALMA", "T3", "SMA20 (BB orta)", "EMA50", "EMA5", "EMA13", "EMA22", "WMA9", "WMA15", "SMMA21", "SMMA55", "Darvas üst", "Darvas alt", "EMA14", "SMA10", "SMA200"]
+CIZGI_DEGER = ["alpha", "stDeger", "psar", "alma", "t3", "sma20", "ema50", "ema5", "ema13", "ema22", "wma9", "wma15", "smma21", "smma55", "dUst", "dAlt", "ema14", "sma10", "sma200"]
+if SCALPER:
+    LINES.update({25:[20], 26:[21,22], 29:[23,24], 30:[25], 31:[6]})
+    CIZGI_ADLARI += ["VWAP", "İlk mum üst", "İlk mum alt", "EMA9", "EMA21", "Hızlı ST"]
+    CIZGI_DEGER += ["vwap", "orUst", "orAlt", "ema9", "ema21", "st2Deger"]
+NL = len(CIZGI_DEGER)
+# (Pine kodu, ad, giriş değişkeni, saniye)
+TFS = ([("5","5 Dakika","tf5",300),("15","15 Dakika","tf15",900),("60","1 Saat","tf60",3600)] if SCALPER else
+       [("60","1 Saat","tf60",3600),("240","4 Saat","tf240",14400),("D","Günlük","tfD",86400),("W","Haftalık","tfW",604800)])
+NT = len(TFS)
 
 def tuple_names(t):
     return [f"m{t}", f"e{t}", f"n{t}", f"w{t}", f"o{t}", f"t{t}", f"s{t}", f"y{t}", f"at{t}"] + [f"l{t}_{j:02d}" for j in range(1, NL+1)]
@@ -104,11 +122,11 @@ f_durum(bool al, bool sat) =>
 // Aday listesi: 0-24 tek stratejiler, sonra 24 stratejinin tüm ikili kombinleri (276)
 f_adayKur(int[] A, int[] B) =>
     if array.size(A) == 0
-        for i = 0 to 24
+        for i = 0 to @NS@
             array.push(A, i)
             array.push(B, -1)
-        for i = 0 to 22
-            for j = i + 1 to 23
+        for i = 0 to @NSm2@
+            for j = i + 1 to @NSm1@
                 array.push(A, i)
                 array.push(B, j)
 
@@ -117,7 +135,7 @@ f_skor(int n, int w, float t, float e) =>
 
 // i < j olan ikili kombinin aday numarası (f_adayKur sırasıyla aynı)
 f_ciftNo(int i, int j) =>
-    25 + i * 23 - int(i * (i - 1) / 2) + (j - i - 1)
+    @NS1@ + i * @NSm1@ - int(i * (i - 1) / 2) + (j - i - 1)
 
 // Adayın bu mumdaki durum değişimini işler; güncel en iyi aday numarasını döndürür
 f_isle(int c, int[] cA, int[] cB, bool[] poz, bool[] onceki, float[] giris, int[] adet, int[] kaz, float[] top, float[] ser, float[] serY, float[] skor, int enIyi, bool sonYil) =>
@@ -142,7 +160,7 @@ f_isle(int c, int[] cA, int[] cB, bool[] poz, bool[] onceki, float[] giris, int[
         yeni = f_skor(array.get(adet, c), array.get(kaz, c), array.get(top, c), array.get(ser, c))
         array.set(skor, c, yeni)
         if c == enIyi and yeni < eski
-            for d = 0 to 300
+            for d = 0 to @NCm1@
                 if array.get(skor, d) > array.get(skor, yeniEnIyi)
                     yeniEnIyi := d
         else if yeni > array.get(skor, yeniEnIyi)
@@ -303,15 +321,55 @@ f_hepsi(bool aktif) =>
     b24 = ta.crossover(close, sma20) and close >= sma200 and m2L > m2S
     s24 = ta.crossunder(close, sma20)
 ''')
-w("    // 25 Ortak Karar")
-w("    alDizi = array.from(" + ", ".join(f"b{i:02d}" for i in range(1,25)) + ")")
-w("    satDizi = array.from(" + ", ".join(f"s{i:02d}" for i in range(1,25)) + ")")
-w('''    var int[] sonAl = array.new_int(24, -100000)
-    var int[] sonSat = array.new_int(24, -100000)
+if SCALPER:
+    w('''    // 25 VWAP Kesişimi (gün içi VWAP)
+    vwap = ta.vwap(hlc3)
+    b25 = ta.crossover(close, vwap)
+    s25 = ta.crossunder(close, vwap)
+    // 26 İlk Mum Kırılımı: günün ilk mumunun tepesi kırılınca AL, dibi kırılınca SAT
+    var float orUst = na
+    var float orAlt = na
+    if session.isfirstbar
+        orUst := high
+        orAlt := low
+    b26 = ta.crossover(close, orUst) and not session.isfirstbar
+    s26 = ta.crossunder(close, orAlt)
+    // 27 RSI(2) Dip
+    rsi2 = ta.rsi(close, 2)
+    b27 = ta.crossover(rsi2, 10)
+    s27 = ta.crossover(rsi2, 70)
+    // 28 Stokastik RSI
+    srsi = ta.rsi(close, 14)
+    sK = ta.sma(ta.stoch(srsi, srsi, srsi, 14), 3)
+    sD = ta.sma(sK, 3)
+    b28 = ta.crossover(sK, sD) and sK < 20
+    s28 = ta.crossunder(sK, sD) and sK > 80
+    // 29 EMA 9x21 + VWAP
+    ema9 = ta.ema(close, 9)
+    ema21 = ta.ema(close, 21)
+    b29 = ta.crossover(ema9, ema21) and close > vwap
+    s29 = ta.crossunder(ema9, ema21)
+    // 30 Hızlı SuperTrend (7, 2)
+    [st2Deger, st2Yon] = ta.supertrend(2.0, 7)
+    st2Yukari = st2Yon < 0
+    b30 = st2Yukari and not st2Yukari[1]
+    s30 = not st2Yukari and st2Yukari[1]
+    // 31 Bollinger Sıkışma Kırılımı
+    bbSapma = ta.stdev(close, 20)
+    bbGen = 4.0 * bbSapma / sma20
+    sikisma = bbGen <= ta.lowest(bbGen, 50) * 1.1
+    b31 = ta.crossover(close, sma20 + 2.0 * bbSapma) and sikisma[1]
+    s31 = ta.crossunder(close, sma20)
+''')
+w(f"    // {NS + 1} Ortak Karar")
+w("    alDizi = array.from(" + ", ".join(f"b{i:02d}" for i in range(1,NS+1)) + ")")
+w("    satDizi = array.from(" + ", ".join(f"s{i:02d}" for i in range(1,NS+1)) + ")")
+w(f'''    var int[] sonAl = array.new_int({NS}, -100000)
+    var int[] sonSat = array.new_int({NS}, -100000)
     int alSay = 0
     int satSay = 0
-    for i = 0 to 23
-        if array.get(alDizi, i)
+    for i = 0 to {NS - 1}''')
+w('''        if array.get(alDizi, i)
             array.set(sonAl, i, bar_index)
         if array.get(satDizi, i)
             array.set(sonSat, i, bar_index)
@@ -319,51 +377,52 @@ w('''    var int[] sonAl = array.new_int(24, -100000)
             alSay += 1
         if bar_index - array.get(sonSat, i) < ortakBar
             satSay += 1
-    b25 = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
-    s25 = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
+    bOrtak = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
+    sOrtak = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
     // ── pozisyon durumları
 ''')
-for i in range(1,26):
+for i in range(1,NS+1):
     w(f"    p{i:02d} = f_durum(b{i:02d}, s{i:02d})")
-w("    poz = array.from(" + ", ".join(f"p{i:02d}" for i in range(1,26)) + ")")
-w('''    // ── 301 adayın testi: AL'da kapanıştan gir, SAT'ta kapanıştan çık
+w(f"    p{NS+1:02d} = f_durum(bOrtak, sOrtak)")
+w("    poz = array.from(" + ", ".join(f"p{i:02d}" for i in range(1,NS+2)) + ")")
+w('''    // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan çık
     var int[] cA = array.new_int()
     var int[] cB = array.new_int()
     f_adayKur(cA, cB)
-    var bool[] onceki = array.new_bool(25, false)
-    var float[] giris = array.new_float(301, na)
-    var int[] adet = array.new_int(301, 0)
-    var int[] kaz = array.new_int(301, 0)
-    var float[] top = array.new_float(301, 0.0)
-    var float[] ser = array.new_float(301, 1.0)
-    var float[] serY = array.new_float(301, 1.0)
-    var float[] skor = array.new_float(301, -1e10)
+    var bool[] onceki = array.new_bool(@NS1@, false)
+    var float[] giris = array.new_float(@NC@, na)
+    var int[] adet = array.new_int(@NC@, 0)
+    var int[] kaz = array.new_int(@NC@, 0)
+    var float[] top = array.new_float(@NC@, 0.0)
+    var float[] ser = array.new_float(@NC@, 1.0)
+    var float[] serY = array.new_float(@NC@, 1.0)
+    var float[] skor = array.new_float(@NC@, -1e10)
     var int enIyi = 0
-    var int[] islendi = array.new_int(301, -1)
+    var int[] islendi = array.new_int(@NC@, -1)
     var float alTutBas = na
     if aktif and time >= testBas
         if na(alTutBas)
             alTutBas := close
-        sonYil = time >= timenow - 365 * 86400000
+        sonYil = time >= timenow - @SONGUN@ * 86400000
         // Hız: sadece bu mumda durumu DEĞİŞEN stratejilere ve onların kombinlerine bakılır
-        for k = 0 to 24
+        for k = 0 to @NS@
             if array.get(poz, k) != array.get(onceki, k)
-                for m = -1 to (kombinTest and k < 24 ? 23 : -1)
+                for m = -1 to (kombinTest and k < @NS@ ? @NSm1@ : -1)
                     c = m == -1 ? k : m == k ? -1 : f_ciftNo(math.min(k, m), math.max(k, m))
                     if c >= 0 and array.get(islendi, c) != bar_index
                         array.set(islendi, c, bar_index)
                         enIyi := f_isle(c, cA, cB, poz, onceki, giris, adet, kaz, top, ser, serY, skor, enIyi, sonYil)
-    for k = 0 to 24
+    for k = 0 to @NS@
         array.set(onceki, k, array.get(poz, k))
     float maske = 0.0
-    for k = 0 to 24
+    for k = 0 to @NS@
         if array.get(poz, k)
             maske += math.pow(2, k)
     nB = array.get(adet, enIyi)
     ortB = nB > 0 ? array.get(top, enIyi) / nB : 0.0
     alTut = (close / alTutBas - 1) * 100
 ''')
-lines_vals = ["alpha", "stDeger", "psar", "alma", "t3", "sma20", "ema50", "ema5", "ema13", "ema22", "wma9", "wma15", "smma21", "smma55", "dUst", "dAlt", "ema14", "sma10", "sma200"]
+lines_vals = CIZGI_DEGER
 assert len(lines_vals) == NL
 w("    [maske, enIyi, nB, array.get(kaz, enIyi), ortB, (array.get(ser, enIyi) - 1) * 100, array.get(skor, enIyi), (array.get(serY, enIyi) - 1) * 100, alTut, " + ", ".join(lines_vals) + "]")
 w("")
@@ -381,8 +440,15 @@ if HAZIR:
     w(f"var int[] hAday = array.from({fmt(x['aday'] for x in e)})")
     w(f"var int[] hTf = array.from({fmt(x['tf'] for x in e)})")
     w(f"var int[] hN = array.from({fmt(x['islem'] for x in e)})")
-    for ad, alan in (("hKaz", "kazanma"), ("hTop", "toplam"), ("hAlTut", "al_tut"), ("hYil", "son_yil"), ("hYillik", "yillik")):
-        w(f"var float[] {ad} = array.from({fmt(float(x[alan]) for x in e)})")
+    # scalper'da: hAlTut = kâr faktörü, hYil = kontrol dönemi getirisi, hYillik = günlük işlem sayısı
+    if SCALPER:
+        alanlar = {"hKaz": lambda x: x["kazanma"], "hTop": lambda x: x["toplam"], "hAlTut": lambda x: x["kar_faktoru"],
+                   "hYil": lambda x: x["kontrol"]["toplam"], "hYillik": lambda x: x["gunluk_islem"]}
+    else:
+        alanlar = {"hKaz": lambda x: x["kazanma"], "hTop": lambda x: x["toplam"], "hAlTut": lambda x: x["al_tut"],
+                   "hYil": lambda x: x["son_yil"], "hYillik": lambda x: x["yillik"]}
+    for ad, al in alanlar.items():
+        w(f"var float[] {ad} = array.from({fmt(float(al(x)) for x in e)})")
     w("var string[] hBas = array.from(" + ", ".join('"' + x["baslangic"] + '"' for x in e) + ")")
 else:
     w('HAZIR_TARIH = "-"')
@@ -397,13 +463,13 @@ w('hazir = hazirKullan and hIdx >= 0 and syminfo.prefix == "BIST"')
 w("hI = math.max(hIdx, 0)")
 w("")
 w("// ════════════════════════════ 4 ZAMAN DİLİMİNDE ÇALIŞTIR ════════════════════════════")
-for t,(tf,ad,flag) in enumerate(TFS):
+for t,(tf,ad,flag,_) in enumerate(TFS):
     w(f"[{', '.join(tuple_names(t))}] = request.security(syminfo.tickerid, \"{tf}\", f_hepsi({flag} and not hazir))")
 w(f'''
 var string[] adlar = array.from({names_lit})
-var string[] tfKod = array.from("60", "240", "D", "W")
-var string[] tfAd = array.from("1 Saat", "4 Saat", "Günlük", "Haftalık")
-var int[] tfSaniye = array.from(3600, 14400, 86400, 604800)
+var string[] tfKod = array.from({", ".join(chr(34) + x[0] + chr(34) for x in TFS)})
+var string[] tfAd = array.from({", ".join(chr(34) + x[1] + chr(34) for x in TFS)})
+var int[] tfSaniye = array.from({", ".join(str(x[3]) for x in TFS)})
 var int[] cA = array.new_int()
 var int[] cB = array.new_int()
 f_adayKur(cA, cB)
@@ -414,7 +480,7 @@ f_adayAd(int c) =>
     b < 0 ? array.get(adlar, a) : array.get(adlar, a) + " + " + array.get(adlar, b)
 
 // En iyi zaman dilimi: en yüksek skoru veren
-skorlarTf = array.from(tf60 ? nz(s0, -1e10) : -1e10, tf240 ? nz(s1, -1e10) : -1e10, tfD ? nz(s2, -1e10) : -1e10, tfW ? nz(s3, -1e10) : -1e10)
+skorlarTf = array.from({", ".join(f"{x[2]} ? nz(s{i}, -1e10) : -1e10" for i, x in enumerate(TFS))})
 gecerli = hazir or array.max(skorlarTf) > -1e9
 secTf = hazir ? array.get(hTf, hI) : array.indexof(skorlarTf, array.max(skorlarTf))
 ''')
@@ -428,14 +494,14 @@ def sw(name, rettype, arms, default):
 for fld, idx, default in [("aday",1,"0"),("adet",2,"0.0"),("kaz",3,"0.0"),("ort",4,"0.0"),("top",5,"0.0"),("yil",6+1,"0.0"),("altut",8,"0.0")]:
     w(f"f_{fld}(int t) =>")
     w("    switch t")
-    for t in range(4):
+    for t in range(NT):
         w(f"        {t} => {tuple_names(t)[idx]}")
     w(f"        => {default}")
 w("")
 w("// t zaman diliminin i bar önceki pozisyon maskesi")
 w("f_maske(int t, int i) =>")
 w("    switch t")
-for t in range(4):
+for t in range(NT):
     w(f"        {t} => m{t}[i]")
 w("        => 0.0")
 w("")
@@ -452,7 +518,7 @@ w('''f_poz(int t, int c, int i) =>
 w("// çizgi değerleri: t zaman dilimi, çizgi no (1-19), i bar önce")
 w("f_cizgi(int t, int lid, int i) =>")
 w("    switch t * 100 + lid")
-for t in range(4):
+for t in range(NT):
     for j in range(1, NL+1):
         w(f"        {t*100+j} => l{t}_{j:02d}[i]")
 w("        => float(na)")
@@ -466,7 +532,7 @@ for slot in (0,1):
             w(f"        {k-1} => {v[slot]}")
     w("        => 0")
 w('''
-var string[] cizgiAd = array.from("AlphaTrend", "SuperTrend", "PSAR", "ALMA", "T3", "SMA20 (BB orta)", "EMA50", "EMA5", "EMA13", "EMA22", "WMA9", "WMA15", "SMMA21", "SMMA55", "Darvas üst", "Darvas alt", "EMA14", "SMA10", "SMA200")
+var string[] cizgiAd = array.from(@CIZGIAD@)
 var color[] renkler = array.from(color.new(#2962FF, 0), color.new(#FF9800, 0), color.new(#9C27B0, 0), color.new(#00BCD4, 0))
 
 f_yuzde(float x) =>
@@ -572,5 +638,13 @@ alertcondition(not pozSimdi and pozOnce, "Otomatik seçim - SAT", "{{ticker}}: O
 if barstate.isconfirmed and gecerli and pozSimdi != pozOnce
     alert(syminfo.ticker + (pozSimdi ? " AL • " : " SAT • ") + f_adayAd(secAday) + " • " + array.get(tfAd, secTf), alert.freq_once_per_bar_close)
 ''')
-(KOK / "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt").write_text("\n".join(L) + "\n", encoding="utf-8")
+metin = "\n".join(L) + "\n"
+for a, b in {"@NS1@": NS + 1, "@NSm1@": NS - 1, "@NSm2@": NS - 2, "@NS@": NS, "@NCm1@": NC - 1, "@NC@": NC,
+             "@SONGUN@": 30 if SCALPER else 365,
+             "@CIZGIAD@": ", ".join(chr(34) + x + chr(34) for x in CIZGI_ADLARI)}.items():
+    metin = metin.replace(a, str(b))
+if SCALPER:
+    import scalper_metin
+    metin = scalper_metin.uyarla(metin)
+CIKTI.write_text(metin, encoding="utf-8")
 print("Pine dosyası yazıldı" + (f" ({len(HAZIR['hisseler'])} hazır hisse)" if HAZIR else " (hazır sonuç yok)"))

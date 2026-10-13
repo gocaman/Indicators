@@ -315,7 +315,8 @@ def durum(al, sat):
 
 
 # ───────────────────────────── 24 strateji ─────────────────────────────
-def stratejiler(df):
+def sinyaller(df):
+    """24 stratejinin AL (b) ve SAT (s) sinyalleri: {1..24: bool dizisi}."""
     o, h, l, c, v = (df[k].to_numpy(dtype=float) for k in ("Open", "High", "Low", "Close", "Volume"))
     hl2 = (h + l) / 2
     hlc3 = (h + l + c) / 3
@@ -455,24 +456,32 @@ def stratejiler(df):
     s[23] = asagi_kes(ema5, ema14)
     b[24] = yukari_kes(c, sma20) & buyuk_esit(c, sma200) & buyuk(m2L, m2S)
     s[24] = asagi_kes(c, sma20)
+    return b, s
 
-    # 25 Ortak Karar
-    n = len(c)
-    son_al = np.full(24, -100000); son_sat = np.full(24, -100000)
+
+def ortak_karar(b, s, adet):
+    """Son ORTAK_BAR bar içinde en az ORTAK_ESIK strateji aynı yönde sinyal verdiyse AL/SAT."""
+    n = len(b[1])
+    son_al = np.full(adet, -100000); son_sat = np.full(adet, -100000)
     al_say = np.zeros(n, int); sat_say = np.zeros(n, int)
     for i in range(n):
-        for k in range(24):
+        for k in range(adet):
             if b[k + 1][i]:
                 son_al[k] = i
             if s[k + 1][i]:
                 son_sat[k] = i
         al_say[i] = int(np.sum(i - son_al < ORTAK_BAR))
         sat_say[i] = int(np.sum(i - son_sat < ORTAK_BAR))
-    a1, s1 = gecikme(al_say.astype(float)), gecikme(sat_say.astype(float))
-    a1, s1 = np.nan_to_num(a1), np.nan_to_num(s1)
-    b[25] = (al_say >= ORTAK_ESIK) & (a1 < ORTAK_ESIK) & (al_say > sat_say)
-    s[25] = (sat_say >= ORTAK_ESIK) & (s1 < ORTAK_ESIK) & (sat_say > al_say)
+    a1 = np.nan_to_num(gecikme(al_say.astype(float)))
+    s1 = np.nan_to_num(gecikme(sat_say.astype(float)))
+    return ((al_say >= ORTAK_ESIK) & (a1 < ORTAK_ESIK) & (al_say > sat_say),
+            (sat_say >= ORTAK_ESIK) & (s1 < ORTAK_ESIK) & (sat_say > al_say))
 
+
+def stratejiler(df):
+    """25 adayın (24 strateji + ortak karar) pozisyon durumları."""
+    b, s = sinyaller(df)
+    b[25], s[25] = ortak_karar(b, s, 24)
     return np.array([durum(b[k], s[k]) for k in range(1, 26)])
 
 

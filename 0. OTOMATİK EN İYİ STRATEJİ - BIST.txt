@@ -292,8 +292,8 @@ f_hepsi(bool aktif) =>
             alSay += 1
         if bar_index - array.get(sonSat, i) < ortakBar
             satSay += 1
-    b25 = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
-    s25 = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
+    bOrtak = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
+    sOrtak = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
     // ── pozisyon durumları
 
     p01 = f_durum(b01, s01)
@@ -320,9 +320,9 @@ f_hepsi(bool aktif) =>
     p22 = f_durum(b22, s22)
     p23 = f_durum(b23, s23)
     p24 = f_durum(b24, s24)
-    p25 = f_durum(b25, s25)
+    p25 = f_durum(bOrtak, sOrtak)
     poz = array.from(p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25)
-    // ── 301 adayın testi: AL'da kapanıştan gir, SAT'ta kapanıştan çık
+    // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan çık
     var int[] cA = array.new_int()
     var int[] cB = array.new_int()
     f_adayKur(cA, cB)

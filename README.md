@@ -66,6 +66,30 @@ Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 ### Alarm
 **Alarm oluştur** ekranında koşul olarak bu indikatörü seç ve **"Herhangi bir alert() fonksiyon çağrısı"**nı seç. Otomatik seçilen strateji AL/SAT verdiğinde, stratejinin adı ve zaman dilimiyle birlikte bildirim gelir.
 
+## ⚡ OTOMATİK SCALPER - BIST (gün içi işlem)
+
+Dosya: **`0. OTOMATİK SCALPER - BIST.txt`**
+
+Bu ayrı bir indikatördür. Kurulumu ana indikatörle aynıdır, TradingView'e ayrı bir indikatör olarak eklenir. **5 dakika, 15 dakika ve 1 saatlik** grafiklerde gün içi işlem için çalışır.
+
+**Ana indikatörden farkları:**
+- **Gece taşıma yok:** Pozisyon her günün son mumunda kapanır, son mumda yeni işlem açılmaz.
+- **Gün içine özel 7 strateji daha:** VWAP kesişimi, ilk mum kırılımı, RSI(2) dip, Stokastik RSI, EMA 9x21 + VWAP, hızlı SuperTrend (7,2), Bollinger sıkışma kırılımı. Toplam 31 strateji, 465 ikili kombin ve ortak karar.
+- **Daha sıkı test (eğitim / kontrol):**
+  - Her hissede seçim, dönemin ilk %70'inde yapılır. Kalan %30, stratejinin hiç görmediği **kontrol dönemi** olarak tekrar ölçülür.
+  - Sadece kontrol döneminde de kâr eden ve kâr faktörü 1'in üstünde olan adaylar öncelikli seçilir. Böylece "geçmişe fazla uyan" stratejiler elenir.
+  - Kâr faktörü, en büyük düşüş, günlük işlem sayısı ve ortalama bekleme süresi de ölçülür.
+- **Komisyon + kayma:** Varsayılan %0,15 (al+sat toplam). Gün içinde işlem sayısı yüksek olduğu için bu değer sonucu çok etkiler. Kendi komisyonunu ayarlardan gir.
+- **Karar (3 şart):**
+  - ✓ Kontrol döneminde de kârda
+  - ✓ Kâr faktörü 1,3 veya üstü
+  - ✓ Kazanma oranı %50 veya üstü
+
+  3/3 GÜÇLÜ, 2/3 ORTA, 0-1/3 ZAYIF.
+- **Güncelleme:** Yahoo 5 ve 15 dakikalık veriyi sadece son 60 gün verdiği için sonuçlar **her cumartesi** yenilenir (`.github/workflows/scalper-test.yml`). Özet tablo `veri/SCALPER_SONUCLAR.md` dosyasındadır.
+
+> ⚠️ Gün içi işlemde kısa geçmişle yapılan testler daha belirsizdir. Kontrol dönemi sonucuna ve "Karar" satırına mutlaka bak. Yatırım tavsiyesi değildir.
+
 ### Stratejiler ve geldikleri eski dosyalar
 | # | Yeni ad | Kural | Eski dosya(lar) |
 |---|---|---|---|

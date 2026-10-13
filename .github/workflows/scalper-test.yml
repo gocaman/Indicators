@@ -1,0 +1,57 @@
+# BIST 100 hisselerinde gün içi (5 dk / 15 dk / 1 saat) strateji testi yapar ve her hisse için
+# en iyisini "0. OTOMATİK SCALPER - BIST.txt" indikatörüne gömer. Yahoo 5/15 dakikalık veriyi
+# sadece son 60 gün verdiği için haftada bir yenilenir.
+name: BIST100 scalper testi
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "43 4 * * 6"      # her cumartesi 07:43 (TSİ)
+  push:
+    paths:
+      - "araclar/scalper.py"
+      - "araclar/scalper_metin.py"
+      - "araclar/backtest.py"
+      - "araclar/pine_uret.py"
+      - "araclar/bist100.txt"
+      - ".github/workflows/scalper-test.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scalper-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Paketleri kur
+        run: pip install yfinance pandas numpy
+
+      - name: Gün içi testi çalıştır
+        run: python araclar/scalper.py
+
+      - name: Scalper indikatörünü sonuçlarla yeniden üret
+        run: python araclar/pine_uret.py --scalper
+
+      - name: Sonuçları kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add veri "0. OTOMATİK SCALPER - BIST.txt"
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok"
+          else
+            git commit -m "BIST 100 scalper sonuçları güncellendi ($(date +%Y-%m-%d))"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
