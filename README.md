@@ -1,50 +1,60 @@
 # İndikatörler
 
-## ⭐ HEPSİ BİR ARADA - BIST (tek indikatör)
+## ⭐ OTOMATİK EN İYİ STRATEJİ - BIST (tek indikatör)
 
-Dosya: **`0. HEPSİ BİR ARADA - BIST.txt`**
+Dosya: **`0. OTOMATİK EN İYİ STRATEJİ - BIST.txt`**
 
-Bu repodaki indikatörlerin AL/SAT kuralları tek bir indikatörde toplandı (24 strateji ve bunların ortak kararı).
-Ücretsiz TradingView hesabında bile tek indikatör hakkıyla hepsini kullanabilirsin.
+BIST 100'de **herhangi bir hisseyi açtığında** indikatör kendiliğinden şunları yapar:
+1. Bu repodaki **24 stratejiyi** ve bunların **276 ikili kombinini** (ör. "EMA 5x13 + SuperTrend") o hissenin geçmişinde test eder.
+2. Testi **4 Saat, Günlük ve Haftalık** zaman dilimlerinin her birinde ayrı ayrı yapar. 1 Saat isteğe bağlıdır.
+3. En iyi sonucu veren strateji/kombin ve zaman dilimini **otomatik seçer** ve grafiğe yerleştirir:
+   - AL / SAT etiketleri (SAT etiketinde o işlemin getirisi yazar),
+   - seçilen indikatörlerin çizgileri (SuperTrend, AlphaTrend, EMA'lar vb.).
+4. Sağ altta **küçük bir not** gösterir:
+   ```
+   ★ EMA 5x13 + SuperTrend • Günlük
+   18 işlem • %61 kazanç • Toplam +84% (Al-Tut +40%)
+   Karar: GÜÇLÜ (3/3) • Son 1 yıl +12% • Şu an: AL'da
+   ```
+   Ayarlardan **Not kutusu = Detaylı** seçersen seçimin nasıl yapıldığını ve nasıl karar verileceğini de yazar. **Kapalı** seçersen tamamen gizlenir.
 
-### Kurulum (telefon veya bilgisayar)
-1. Dosyayı aç ve içeriğin tamamını kopyala.
-2. TradingView'de **Pine Editor**'ü aç, yeni bir indikatör oluştur ve içindekileri silip kodu yapıştır.
-3. **Kaydet** ve ardından **Grafiğe ekle**'ye bas.
-   (Pine Editor telefon uygulamasında yoksa bu adımı bir kez bilgisayardan ya da telefon tarayıcısının masaüstü modundan yap. İndikatör hesabına kaydolur ve sonra telefon uygulamasında "Göstergeler → Benim komut dosyalarım" altında görünür.)
+Ücretsiz TradingView hesabında tek indikatör hakkıyla çalışır. Ücretsiz hesap tek grafik açtırdığı için indikatör grafiğin zaman dilimini kendisi değiştiremez. En iyi sonuç başka bir zaman diliminde çıkarsa not kutusu bunu söyler (ör. "⚠ Sinyalleri görmek için grafiği Günlük yap").
 
-### Ne görürsün?
-- **Sağ üstte performans tablosu:** 24 strateji açık olan grafikte geriye dönük test edilir ve en iyiden en kötüye sıralanır.
-  | Sütun | Anlamı |
-  |---|---|
-  | Şimdi | Strateji şu an AL konumunda mı? |
-  | İşlem | Test süresince yapılan işlem sayısı |
-  | Kazanma | Kârla kapanan işlemlerin oranı |
-  | Ort. | İşlem başına ortalama net getiri |
-  | Toplam | Tüm işlemlerin birleşik getirisi |
-  | Al-Tut | Hiç işlem yapmadan elde tutsaydın elde edeceğin getiri (karşılaştırma için) |
-- **Grafikte AL / SAT etiketleri:** Varsayılan olarak tablodaki 1. stratejinin işlemleri gösterilir. SAT etiketinde o işlemin net getirisi yazar.
+### Değerlendirme: nasıl karar verilir?
+Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 
-### BIST 100 için sıralamayı görmek
-- **Genel endeks sıralaması:** Grafiği **XU100** yap ve tablo endeks üzerindeki sıralamayı gösterir.
-- **Tek tek hisseler:** BIST 100 hisseleri arasında gezin (THYAO, ASELS, KCHOL…). Tablo her hissede o hisse için yeniden hesaplanır, çünkü bir hissede en iyi çalışan strateji başka bir hissede en iyisi olmayabilir.
-- **Zaman dilimi:** Günlük, 4 saatlik veya haftalık grafikte sonuçlar farklıdır. Hangi zaman diliminde işlem yapıyorsan onu seç.
+| Şart | Neden önemli |
+|---|---|
+| ✓ Toplam getiri **Al-Tut**'tan yüksek | Strateji, hisseyi alıp hiç dokunmadan beklemekten daha iyi olmalı. TL enflasyonu yüzünden BIST'te bu çok önemli. |
+| ✓ Kazanma oranı **%50 veya üstü** | İşlemlerin çoğu kârla kapanmalı. |
+| ✓ **Son 1 yılda da** kârda | Eskiden işe yarayıp artık çalışmayan stratejiyi eler. |
+
+- **3/3 GÜÇLÜ:** Sinyale güvenilebilir.
+- **2/3 ORTA:** Dikkatli ol, başka bir onay ara.
+- **0–1/3 ZAYIF:** Bu hissede sinyallere güvenme.
+
+> Önemli: 300'den fazla aday arasından en iyisini seçmek, "geçmişe fazla uyan" (şans eseri iyi görünen) bir sonuç doğurabilir. "Son 1 yıl" ve "Al-Tut" şartları bu riski azaltmak için var. Ayrıca işlem sayısı az olan (varsayılan 6'dan az) adaylar hiç seçilmez.
+
+### Kurulum
+1. Dosyanın tüm içeriğini kopyala.
+2. TradingView'de **Pine Editor**'ü aç, yeni indikatör oluştur, içini silip kodu yapıştır.
+3. **Kaydet** ve **Grafiğe ekle**'ye bas.
+   (Pine Editor telefon uygulamasında yoksa bu adımı bir kez bilgisayardan ya da telefon tarayıcısının masaüstü modundan yap. Sonra telefonda "Göstergeler → Benim komut dosyalarım" altında çıkar.)
+4. Artık hangi hisseyi açarsan aç indikatör kendini o hisseye göre ayarlar.
 
 ### Ayarlar (dişli simgesi)
 | Ayar | Ne işe yarar |
 |---|---|
-| Gösterim | **En iyi strateji (otomatik)** / **Ortak karar** (birçok strateji aynı anda AL verince) / **Tek strateji seç** |
-| Test başlangıç tarihi | Varsayılan 2020. Daha yakın bir tarih seçersen güncel piyasaya göre sıralar. |
-| En fazla bekleme | SAT gelmese bile işlem bu kadar bar sonra kapatılır (varsayılan 40). |
+| Test başlangıç tarihi | Varsayılan 2020 |
+| En iyiyi seçme ölçütü | Toplam getiri / Ortalama getiri / Kazanma oranı |
+| Seçilmek için en az işlem | Varsayılan 6. Az işlemle şans eseri iyi görünen sonuçları eler. |
+| En fazla bekleme | SAT gelmese bile işlem bu kadar bar sonra kapanır (varsayılan 40). |
 | Komisyon + kayma | Her işlemden düşülür (varsayılan %0,2). |
-| Sıralama ölçütü | Toplam getiri / Ortalama getiri / Kazanma oranı |
-| Ortak karar | Son kaç barda, en az kaç stratejinin aynı yönde sinyal vermesi gerektiği |
+| Zaman dilimleri | 1 Saat / 4 Saat / Günlük / Haftalık açma-kapama. 1 Saat yavaşlatabileceği için varsayılan olarak kapalı. |
+| Not kutusu | Kısa / Detaylı / Kapalı ve konumu |
 
-### Alarm kurmak
-TradingView'de **Alarm oluştur** ekranında koşul olarak bu indikatörü seç. Seçenekler:
-- **ORTAK KARAR - AL / SAT**
-- **Grafikteki strateji - AL / SAT**
-- **Herhangi bir alert() fonksiyon çağrısı:** O an en iyi olan stratejinin AL/SAT'ını, stratejinin adıyla birlikte bildirir.
+### Alarm
+**Alarm oluştur** ekranında koşul olarak bu indikatörü seç ve **"Herhangi bir alert() fonksiyon çağrısı"**nı seç. Otomatik seçilen strateji AL/SAT verdiğinde, stratejinin adı ve zaman dilimiyle birlikte bildirim gelir.
 
 ### Stratejiler ve geldikleri eski dosyalar
 | # | Yeni ad | Kural | Eski dosya(lar) |
@@ -69,8 +79,8 @@ TradingView'de **Alarm oluştur** ekranında koşul olarak bu indikatörü seç.
 | 18 | Fisher Dip | Fisher -1,5 altında yukarı döner | FISHER TARAMA |
 | 19 | CCI Dip | CCI -100'ü yukarı keser | CCI TARAMA |
 | 20 | TSI Dip | TSI -0,8 altına iner | TSI LINEER TARAMA |
-| 21 | Haftalık MACD | Haftalık MACD kesişimi (tamamlanmış mumla) | MUSLUCAV2, SOKEOVASI, NYSA TREND |
-| 22 | Erik Kombo | 7 koşul birlikte (Ichimoku, EMA5xSMA10, MACD, RSI, MFI, HMA, haftalık kijun) | ERIK TARAMA |
+| 21 | MACD Kesişimi | MACD kesişimi (Haftalık'ta test edilince eski "Haftalık MACD") | MUSLUCAV2, SOKEOVASI, NYSA TREND |
+| 22 | Erik Kombo | 7 koşul birlikte (Ichimoku, EMA5xSMA10, MACD, RSI, MFI, HMA, kijun 26) | ERIK TARAMA |
 | 23 | EMA Kombo | EMA5xEMA14 + EMA34 üstü + MACD + RSI>50 | KOMP-EMA TARAMA |
 | 24 | Bollinger Kombo | Orta bant kırılımı + SMA200 üstü + MACD | BOLL-ORT TARAMA |
 | 25 | ORTAK KARAR | Yukarıdakilerden en az N tanesi son birkaç barda AL verirse | — |
@@ -78,6 +88,7 @@ TradingView'de **Alarm oluştur** ekranında koşul olarak bu indikatörü seç.
 **Birleştirmede yapılan küçük uyarlamalar:**
 - Eski tarama kodlarındaki çoklu hisse tarama tabloları, ücretsiz hesapta sınır yarattığı için çıkarıldı.
 - Kombo stratejilerde (22, 23, 24) "her şey aynı mumda kesişsin" şartı neredeyse hiç sinyal üretmiyordu. Bu yüzden ana kesişim aranıyor, diğer koşulların ise o an "olumlu" olması yeterli sayılıyor.
+- "Haftalık MACD" ve Erik'teki haftalık kijun için ayrı haftalık veri çekilmiyor. Strateji her zaman diliminde (Haftalık dahil) zaten ayrıca test ediliyor.
 - MACD TARAMA'daki uyumsuzluk (divergence) kısmı ve sinyal üretmeyen yardımcı çizimler alınmadı: hareketli ortalama çizgileri, fibo, trend kanalları, OVAKÖY, trendstop+boll, ema14 haftalık-aylık.
 
-> ⚠️ Tablodaki sonuçlar geçmiş veriye dayanır ve geleceği garanti etmez. Yatırım tavsiyesi değildir.
+> ⚠️ Sonuçlar geçmiş veriye dayanır ve geleceği garanti etmez. Yatırım tavsiyesi değildir.
