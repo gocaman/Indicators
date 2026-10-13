@@ -66,6 +66,19 @@ Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 ### Alarm
 **Alarm oluştur** ekranında koşul olarak bu indikatörü seç ve **"Herhangi bir alert() fonksiyon çağrısı"**nı seç. Otomatik seçilen strateji AL/SAT verdiğinde, stratejinin adı ve zaman dilimiyle birlikte bildirim gelir.
 
+### Risk yönetimi ve seviyeler (her iki indikatörde)
+Ayarlarda **5) RİSK YÖNETİMİ VE SEVİYELER** bölümünde değiştirilebilir.
+- **Stop:** Giriş fiyatından ATR(14)'ün 1,5 katı aşağısı. ATR, hissenin ortalama mum boyudur. Oynak hissede stop otomatik olarak uzaklaşır.
+- **Hedef 1 / Hedef 2:** Göze alınan riskin 1,5 ve 3 katı kazanç (R:R 1:1,5 ve 1:3).
+- **İz süren stop (Chandelier):** Girişten beri görülen en yüksek fiyatın 3 ATR altı. Fiyat yükseldikçe yukarı çekilir, aşağı inmez. Kazancı korumak için kullanılır.
+- **Lot:** "İşlem başına göze alınan zarar (TL)" ayarına göre, stop olursa en fazla o kadar kaybedeceğin lot sayısı.
+- **Açık işlem yoksa:** Seviyeler "AL gelirse" diye, şu anki fiyattan giriş varsayılarak gösterilir.
+- **Destek / direnç:** Son tepe ve diplerden, fiyata en yakın 3'er seviye.
+- **Piyasa durumu:** ADX ≥ 25 ise trend vardır. Fiyat EMA200'ün üstündeyse TREND YUKARI, altındaysa TREND AŞAĞI, ADX 25'in altındaysa YATAY yazar. Trend stratejileri trendde, dip stratejileri yatay piyasada daha iyi çalışır.
+- **Grafiğin üstündeki başlık:** Seçilen stratejinin geçmiş işlem sayısını, kazanma oranını ve toplam getirisini de gösterir.
+
+> Not: Tablodaki geçmiş test sonuçları, strateji kendi SAT sinyalinde çıkılarak hesaplanır. Stop ve hedefler şu an sadece yol gösterici seviyelerdir; teste dahil değildir.
+
 ## ⚡ OTOMATİK SCALPER - BIST (gün içi işlem)
 
 Dosya: **`0. OTOMATİK SCALPER - BIST.txt`**
