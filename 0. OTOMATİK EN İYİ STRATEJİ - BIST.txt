@@ -18,6 +18,7 @@ minIslem = input.int(6, "Seçilmek için en az işlem", minval = 1, group = G1)
 maxBar = input.int(40, "Bir işlemde en fazla bekleme (bar)", minval = 1, maxval = 500, group = G1, tooltip = "Strateji SAT vermese bile bu kadar bar sonra işlem kapatılır.")
 komisyon = input.float(0.2, "Komisyon + kayma (al+sat toplam, %)", minval = 0, step = 0.05, group = G1)
 hacimYok = input.bool(false, "Hacim verisi yok (AlphaTrend RSI kullansın)", group = G1)
+kombinTest = input.bool(true, "İkili kombinleri de test et", group = G1, tooltip = "Kapatırsan sadece 25 tek strateji test edilir; indikatör daha hızlı açılır.")
 
 G2 = "2) TEST EDİLECEK ZAMAN DİLİMLERİ"
 tf60 = input.bool(false, "1 Saat", group = G2, inline = "tf", tooltip = "1 saatlik test işlemciyi en çok yoran testtir. İndikatör yavaşlarsa kapalı tut.")
@@ -85,6 +86,40 @@ f_adayKur(int[] A, int[] B) =>
 
 f_skor(int n, int w, float t, float e) =>
     n < minIslem ? -1e10 : olcut == "Toplam getiri" ? (e - 1) * 100 : olcut == "Ortalama getiri" ? t / n : w * 100.0 / n
+
+// i < j olan ikili kombinin aday numarası (f_adayKur sırasıyla aynı)
+f_ciftNo(int i, int j) =>
+    25 + i * 23 - int(i * (i - 1) / 2) + (j - i - 1)
+
+// Adayın bu mumdaki durum değişimini işler; güncel en iyi aday numarasını döndürür
+f_isle(int c, int[] cA, int[] cB, bool[] poz, bool[] onceki, float[] giris, int[] adet, int[] kaz, float[] top, float[] ser, float[] serY, float[] skor, int enIyi, bool sonYil) =>
+    a = array.get(cA, c)
+    b = array.get(cB, c)
+    simdi = array.get(poz, a) ? (b < 0 ? true : array.get(poz, math.max(b, 0))) : false
+    once = array.get(onceki, a) ? (b < 0 ? true : array.get(onceki, math.max(b, 0))) : false
+    yeniEnIyi = enIyi
+    if simdi and not once
+        array.set(giris, c, close)
+    else if not simdi and once and not na(array.get(giris, c))
+        r = (close / array.get(giris, c) - 1) * 100 - komisyon
+        array.set(giris, c, na)
+        array.set(adet, c, array.get(adet, c) + 1)
+        if r > 0
+            array.set(kaz, c, array.get(kaz, c) + 1)
+        array.set(top, c, array.get(top, c) + r)
+        array.set(ser, c, array.get(ser, c) * (1 + r / 100))
+        if sonYil
+            array.set(serY, c, array.get(serY, c) * (1 + r / 100))
+        eski = array.get(skor, c)
+        yeni = f_skor(array.get(adet, c), array.get(kaz, c), array.get(top, c), array.get(ser, c))
+        array.set(skor, c, yeni)
+        if c == enIyi and yeni < eski
+            for d = 0 to 300
+                if array.get(skor, d) > array.get(skor, yeniEnIyi)
+                    yeniEnIyi := d
+        else if yeni > array.get(skor, yeniEnIyi)
+            yeniEnIyi := c
+    yeniEnIyi
 
 // ════════════════════════════ TÜM STRATEJİLER + TEST (her zaman diliminde ayrı çalışır) ════════════════════════════
 f_hepsi(bool aktif) =>
@@ -299,37 +334,20 @@ f_hepsi(bool aktif) =>
     var float[] serY = array.new_float(301, 1.0)
     var float[] skor = array.new_float(301, -1e10)
     var int enIyi = 0
+    var int[] islendi = array.new_int(301, -1)
     var float alTutBas = na
     if aktif and time >= testBas
         if na(alTutBas)
             alTutBas := close
         sonYil = time >= timenow - 365 * 86400000
-        for c = 0 to 300
-            a = array.get(cA, c)
-            b = array.get(cB, c)
-            simdi = array.get(poz, a) ? (b < 0 ? true : array.get(poz, math.max(b, 0))) : false
-            once = array.get(onceki, a) ? (b < 0 ? true : array.get(onceki, math.max(b, 0))) : false
-            if simdi and not once
-                array.set(giris, c, close)
-            else if not simdi and once and not na(array.get(giris, c))
-                r = (close / array.get(giris, c) - 1) * 100 - komisyon
-                array.set(giris, c, na)
-                array.set(adet, c, array.get(adet, c) + 1)
-                if r > 0
-                    array.set(kaz, c, array.get(kaz, c) + 1)
-                array.set(top, c, array.get(top, c) + r)
-                array.set(ser, c, array.get(ser, c) * (1 + r / 100))
-                if sonYil
-                    array.set(serY, c, array.get(serY, c) * (1 + r / 100))
-                eski = array.get(skor, c)
-                yeni = f_skor(array.get(adet, c), array.get(kaz, c), array.get(top, c), array.get(ser, c))
-                array.set(skor, c, yeni)
-                if c == enIyi and yeni < eski
-                    for d = 0 to 300
-                        if array.get(skor, d) > array.get(skor, enIyi)
-                            enIyi := d
-                else if yeni > array.get(skor, enIyi)
-                    enIyi := c
+        // Hız: sadece bu mumda durumu DEĞİŞEN stratejilere ve onların kombinlerine bakılır
+        for k = 0 to 24
+            if array.get(poz, k) != array.get(onceki, k)
+                for m = -1 to (kombinTest and k < 24 ? 23 : -1)
+                    c = m == -1 ? k : m == k ? -1 : f_ciftNo(math.min(k, m), math.max(k, m))
+                    if c >= 0 and array.get(islendi, c) != bar_index
+                        array.set(islendi, c, bar_index)
+                        enIyi := f_isle(c, cA, cB, poz, onceki, giris, adet, kaz, top, ser, serY, skor, enIyi, sonYil)
     for k = 0 to 24
         array.set(onceki, k, array.get(poz, k))
     float maske = 0.0
@@ -564,7 +582,7 @@ var label[] etiketler = array.new<label>()
 var polyline[] cizgiler = array.new<polyline>()
 var table notTablo = na
 
-if barstate.islast
+if barstate.islast and (not barstate.isrealtime or barstate.isnew)
     while array.size(etiketler) > 0
         label.delete(array.pop(etiketler))
     while array.size(cizgiler) > 0
