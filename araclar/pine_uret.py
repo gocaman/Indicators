@@ -1,39 +1,39 @@
-"""Pine indikatörlerini üretir.
-  python araclar/pine_uret.py            -> "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt" (swing: 4S/G/H)
-  python araclar/pine_uret.py --scalper  -> "0. OTOMATİK SCALPER - BIST.txt" (gün içi: 5dk/15dk/1S)
-veri/ altındaki sonuç dosyası varsa (backtest.py / scalper.py yazar) her hissenin hazır en iyi kombini koda gömülür.
+"""Tek Pine indikatörünü üretir: "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt".
+
+İndikatör grafiğin zaman dilimine göre kendi modunu seçer:
+  - 1 saat ve altı  -> GÜN İÇİ modu: 5 dk / 15 dk / 1 saat, 31 strateji, gece taşıma yok
+  - 4 saat ve üstü  -> NORMAL mod:   4 saat / günlük / haftalık, 24 strateji
+veri/bist100_sonuclar.json (backtest.py) ve veri/scalper_sonuclar.json (scalper.py) varsa
+her iki modun hazır en iyi sonuçları koda gömülür.
+Kullanım: python araclar/pine_uret.py
 """
 import json
-import sys
 from pathlib import Path
 
-SCALPER = "--scalper" in sys.argv
 KOK = Path(__file__).resolve().parent.parent
-SONUC = KOK / "veri" / ("scalper_sonuclar.json" if SCALPER else "bist100_sonuclar.json")
-CIKTI = KOK / ("0. OTOMATİK SCALPER - BIST.txt" if SCALPER else "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt")
-HAZIR = json.loads(SONUC.read_text(encoding="utf-8")) if SONUC.exists() else None
+CIKTI = KOK / "0. OTOMATİK EN İYİ STRATEJİ - BIST.txt"
+_oku = lambda ad: json.loads((KOK / "veri" / ad).read_text(encoding="utf-8")) if (KOK / "veri" / ad).exists() else None
+HAZIR_S = _oku("bist100_sonuclar.json")   # normal mod
+HAZIR_G = _oku("scalper_sonuclar.json")   # gün içi mod
 NAMES = ["01 RSI Karpuzlu", "02 Dip Bulucu (Banker)", "03 Dip Bulucu-2 (VixFix)", "04 AlphaTrend", "05 SuperTrend",
  "06 AlphaTrend+SuperTrend", "07 Parabolic SAR", "08 MACD Dip", "09 ALMA", "10 T3 Tillson",
  "11 Bollinger Orta Bant", "12 Bollinger20 x EMA50", "13 EMA 5x13", "14 EMA 5x22", "15 WMA 9x15",
  "16 SMMA 21x55", "17 Darvas Kutusu", "18 Fisher Dip", "19 CCI Dip", "20 TSI Dip",
- "21 MACD Kesişimi", "22 Erik Kombo", "23 EMA Kombo", "24 Bollinger Kombo"]
-EK_NAMES = ["25 VWAP Kesişimi", "26 İlk Mum Kırılımı", "27 RSI(2) Dip", "28 Stokastik RSI",
-            "29 EMA 9x21 + VWAP", "30 Hızlı SuperTrend", "31 Bollinger Sıkışma"]
-NS = 31 if SCALPER else 24                 # ortak karar hariç strateji sayısı
-NAMES = NAMES + (EK_NAMES if SCALPER else []) + [f"{NS + 1} Ortak Karar"]
-NC = (NS + 1) + NS * (NS - 1) // 2        # aday sayısı (tekler + ikili kombinler)
+ "21 MACD Kesişimi", "22 Erik Kombo", "23 EMA Kombo", "24 Bollinger Kombo",
+ "25 VWAP Kesişimi", "26 İlk Mum Kırılımı", "27 RSI(2) Dip", "28 Stokastik RSI",
+ "29 EMA 9x21 + VWAP", "30 Hızlı SuperTrend", "31 Bollinger Sıkışma", "Ortak Karar"]
+NS = 31                                   # ortak karar hariç strateji sayısı
+NC = (NS + 1) + NS * (NS - 1) // 2        # aday sayısı (tekler + ikili kombinler) = 497
 # strateji no (1 tabanlı) -> grafiğe çizilecek çizgiler
-LINES = {4:[1],5:[2],6:[1,2],7:[3],9:[4],10:[5],11:[6],12:[6,7],13:[8,9],14:[8,10],15:[11,12],16:[13,14],17:[15,16],22:[8,18],23:[8,17],24:[6,19]}
-CIZGI_ADLARI = ["AlphaTrend", "SuperTrend", "PSAR", "ALMA", "T3", "SMA20 (BB orta)", "EMA50", "EMA5", "EMA13", "EMA22", "WMA9", "WMA15", "SMMA21", "SMMA55", "Darvas üst", "Darvas alt", "EMA14", "SMA10", "SMA200"]
-CIZGI_DEGER = ["alpha", "stDeger", "psar", "alma", "t3", "sma20", "ema50", "ema5", "ema13", "ema22", "wma9", "wma15", "smma21", "smma55", "dUst", "dAlt", "ema14", "sma10", "sma200"]
-if SCALPER:
-    LINES.update({25:[20], 26:[21,22], 29:[23,24], 30:[25], 31:[6]})
-    CIZGI_ADLARI += ["VWAP", "İlk mum üst", "İlk mum alt", "EMA9", "EMA21", "Hızlı ST"]
-    CIZGI_DEGER += ["vwap", "orUst", "orAlt", "ema9", "ema21", "st2Deger"]
+LINES = {4:[1],5:[2],6:[1,2],7:[3],9:[4],10:[5],11:[6],12:[6,7],13:[8,9],14:[8,10],15:[11,12],16:[13,14],17:[15,16],22:[8,18],23:[8,17],24:[6,19],
+         25:[20], 26:[21,22], 29:[23,24], 30:[25], 31:[6]}
+CIZGI_ADLARI = ["AlphaTrend", "SuperTrend", "PSAR", "ALMA", "T3", "SMA20 (BB orta)", "EMA50", "EMA5", "EMA13", "EMA22", "WMA9", "WMA15", "SMMA21", "SMMA55", "Darvas üst", "Darvas alt", "EMA14", "SMA10", "SMA200",
+                "VWAP", "İlk mum üst", "İlk mum alt", "EMA9", "EMA21", "Hızlı ST"]
+CIZGI_DEGER = ["alpha", "stDeger", "psar", "alma", "t3", "sma20", "ema50", "ema5", "ema13", "ema22", "wma9", "wma15", "smma21", "smma55", "dUst", "dAlt", "ema14", "sma10", "sma200",
+               "vwap", "orUst", "orAlt", "ema9", "ema21", "st2Deger"]
 NL = len(CIZGI_DEGER)
-# (Pine kodu, ad, giriş değişkeni, saniye)
-TFS = ([("5","5 Dakika","tf5",300),("15","15 Dakika","tf15",900),("60","1 Saat","tf60",3600)] if SCALPER else
-       [("60","1 Saat","tf60",3600),("240","4 Saat","tf240",14400),("D","Günlük","tfD",86400),("W","Haftalık","tfW",604800)])
+# 3 hesap bağlamı; zaman dilimi moda göre değişir (Pine değişkeni, giriş değişkeni)
+TFS = [("tfK0", "tfX1"), ("tfK1", "tfX2"), ("tfK2", "tfX3")]
 NT = len(TFS)
 
 def tuple_names(t):
@@ -45,9 +45,10 @@ w = L.append
 
 w('''//@version=5
 // ══════════════════════════════════════════════════════════════════════════════
-//  OTOMATİK EN İYİ STRATEJİ - BIST
-//  Hangi hisseyi açarsan aç, bu repodaki 24 strateji + aralarındaki 276 ikili kombin,
-//  4 zaman diliminde (1S / 4S / Günlük / Haftalık) o hissenin geçmişinde test edilir.
+//  OTOMATİK EN İYİ STRATEJİ - BIST  (tek indikatör, iki mod)
+//  Grafik 1 saat ve altındaysa GÜN İÇİ modu (5 dk / 15 dk / 1 saat, 31 strateji, gece taşıma yok),
+//  4 saat ve üstündeyse NORMAL mod (4 saat / günlük / haftalık, 24 strateji) kendiliğinden çalışır.
+//  Stratejiler ve ikili kombinleri o hissenin geçmişinde test edilir (BIST 100 için hazır sonuçlar gömülü).
 //  En iyi sonucu veren strateji/kombin ve zaman dilimi OTOMATİK seçilir:
 //  AL/SAT etiketleri ve stratejinin çizgileri grafiğe kendiliğinden yerleşir.
 //  Sağ altta küçük bir not kutusu sonucu ve nasıl değerlendirileceğini yazar.
@@ -55,22 +56,33 @@ w('''//@version=5
 // ══════════════════════════════════════════════════════════════════════════════
 indicator("OTOMATİK EN İYİ STRATEJİ - BIST", shorttitle = "OTO-BIST", overlay = true, max_labels_count = 500, max_polylines_count = 20, max_lines_count = 100, max_bars_back = 1000)
 
+// Mod: grafik 4 saatten küçükse gün içi
+gunIci = timeframe.in_seconds() < 14400
+
 // ════════════════════════════ AYARLAR ════════════════════════════
 G1 = "1) TEST"
-hazirKullan = input.bool(true, "BIST 100 için hazır test sonuçlarını kullan (hızlı)", group = G1, tooltip = "Açıkken listedeki hisselerde test yapılmaz, GitHub'da her ay hesaplanan en iyi kombin anında çizilir. Kapatırsan indikatör testi grafikte kendisi yapar.")
-testBas = input.time(timestamp("01 Jan 2020 00:00 +0300"), "Test başlangıç tarihi", group = G1)
+hazirKullan = input.bool(true, "BIST 100 için hazır test sonuçlarını kullan (hızlı)", group = G1, tooltip = "Açıkken listedeki hisselerde test yapılmaz, GitHub'da hesaplanan (normal mod: her ay, gün içi: her hafta) en iyi kombin anında çizilir. Kapatırsan indikatör testi grafikte kendisi yapar.")
+testBas = input.time(timestamp("01 Jan 2020 00:00 +0300"), "Test başlangıç tarihi (normal mod)", group = G1)
 olcut = input.string("Toplam getiri", "En iyiyi seçme ölçütü", options = ["Toplam getiri", "Ortalama getiri", "Kazanma oranı"], group = G1)
-minIslem = input.int(6, "Seçilmek için en az işlem", minval = 1, group = G1)
-maxBar = input.int(40, "Bir işlemde en fazla bekleme (bar)", minval = 1, maxval = 500, group = G1, tooltip = "Strateji SAT vermese bile bu kadar bar sonra işlem kapatılır.")
-komisyon = input.float(0.2, "Komisyon + kayma (al+sat toplam, %)", minval = 0, step = 0.05, group = G1)
+minIslemS = input.int(6, "Seçilmek için en az işlem (normal / gün içi)", minval = 1, group = G1, inline = "mi")
+minIslemG = input.int(10, "", minval = 1, group = G1, inline = "mi")
+maxBarS = input.int(40, "En fazla bekleme, bar (normal / gün içi)", minval = 1, maxval = 500, group = G1, inline = "mb", tooltip = "Strateji SAT vermese bile bu kadar bar sonra işlem kapatılır. Gün içi modda pozisyon her durumda gün sonunda kapanır.")
+maxBarG = input.int(30, "", minval = 1, maxval = 500, group = G1, inline = "mb")
+komisyonS = input.float(0.2, "Komisyon + kayma, % (normal / gün içi)", minval = 0, step = 0.05, group = G1, inline = "km", tooltip = "Al+sat toplamı. Gün içinde işlem çok olduğu için gerçek komisyonunu girmen önemli.")
+komisyonG = input.float(0.15, "", minval = 0, step = 0.05, group = G1, inline = "km")
 hacimYok = input.bool(false, "Hacim verisi yok (AlphaTrend RSI kullansın)", group = G1)
-kombinTest = input.bool(true, "İkili kombinleri de test et", group = G1, tooltip = "Kapatırsan sadece 25 tek strateji test edilir; indikatör daha hızlı açılır.")
+kombinTest = input.bool(true, "İkili kombinleri de test et", group = G1, tooltip = "Kapatırsan sadece tek stratejiler test edilir; indikatör daha hızlı açılır.")
+minIslem = gunIci ? minIslemG : minIslemS
+maxBar = gunIci ? maxBarG : maxBarS
+komisyon = gunIci ? komisyonG : komisyonS
 
-G2 = "2) TEST EDİLECEK ZAMAN DİLİMLERİ"
-tf60 = input.bool(false, "1 Saat", group = G2, inline = "tf", tooltip = "1 saatlik test işlemciyi en çok yoran testtir. İndikatör yavaşlarsa kapalı tut.")
-tf240 = input.bool(true, "4 Saat", group = G2, inline = "tf")
-tfD = input.bool(true, "Günlük", group = G2, inline = "tf")
-tfW = input.bool(true, "Haftalık", group = G2, inline = "tf")
+G2 = "2) CANLI TESTTE ZAMAN DİLİMLERİ (listede olmayan hisse)"
+tfX1 = input.bool(true, "1. (5 dk / 4 saat)", group = G2, inline = "tf", tooltip = "Gün içi modda 5 dk / 15 dk / 1 saat, normal modda 4 saat / günlük / haftalık. İndikatör yavaşlarsa birini kapat.")
+tfX2 = input.bool(true, "2. (15 dk / günlük)", group = G2, inline = "tf")
+tfX3 = input.bool(true, "3. (1 saat / haftalık)", group = G2, inline = "tf")
+tfK0 = gunIci ? "5" : "240"
+tfK1 = gunIci ? "15" : "D"
+tfK2 = gunIci ? "60" : "W"
 
 G3 = "3) GÖRÜNÜM"
 notMod = input.string("Kısa", "Not kutusu", options = ["Kısa", "Detaylı", "Kapalı"], group = G3, tooltip = "Detaylı: seçimin nasıl yapıldığını ve sonucun nasıl değerlendirileceğini de yazar.")
@@ -80,7 +92,7 @@ baslikYer = input.string("Gizle", "Ayrı başlık (indikatör adı)", options = 
 notYazi = input.string("Orta", "Not kutusu yazı boyutu", options = ["Küçük", "Orta", "Büyük"], group = G3)
 etiketBar = input.int(300, "Etiketler son kaç barda gösterilsin", minval = 50, maxval = 900, group = G3)
 
-G4 = "4) ORTAK KARAR (25. strateji)"
+G4 = "4) ORTAK KARAR"
 ortakBar = input.int(3, "Son kaç bardaki sinyaller sayılsın", minval = 1, maxval = 20, group = G4)
 ortakEsik = input.int(4, "En az kaç strateji aynı yönde", minval = 2, maxval = 24, group = G4)
 
@@ -123,11 +135,12 @@ f_orta(int len) =>
 
 // AL'da pozisyona gir, SAT'ta ya da maxBar dolunca çık. Pozisyon durumunu döndürür.
 // (if bloğu yerine üçlü ifade: TradingView'in 550 "yerel kapsam" sınırına takılmamak için)
-f_durum(bool al, bool sat) =>
+f_durum(bool al, bool sat, bool gi) =>
     var bool poz = false
     var int girisBar = 0
-    cik = poz and (sat or bar_index - girisBar >= maxBar)
-    gir = al and not poz
+    gunSonu = gi and session.islastbar
+    cik = poz and (sat or bar_index - girisBar >= maxBar or gunSonu)
+    gir = al and not poz and not gunSonu
     girisBar := gir ? bar_index : girisBar
     poz := cik ? false : gir ? true : poz
     poz
@@ -181,7 +194,7 @@ f_isle(int c, int[] cA, int[] cB, bool[] poz, bool[] onceki, float[] giris, int[
     yeniEnIyi
 
 // ════════════════════════════ TÜM STRATEJİLER + TEST (her zaman diliminde ayrı çalışır) ════════════════════════════
-f_hepsi(bool aktif) =>
+f_hepsi(bool aktif, bool gi) =>
     ema5 = ta.ema(close, 5)
     ema13 = ta.ema(close, 13)
     ema14 = ta.ema(close, 14)
@@ -331,8 +344,7 @@ f_hepsi(bool aktif) =>
     b24 = ta.crossover(close, sma20) and close >= sma200 and m2L > m2S
     s24 = ta.crossunder(close, sma20)
 ''')
-if SCALPER:
-    w('''    // 25 VWAP Kesişimi (gün içi VWAP)
+w('''    // 25 VWAP Kesişimi (gün içi VWAP)
     vwap = ta.vwap(hlc3)
     b25 = ta.crossover(close, vwap)
     s25 = ta.crossunder(close, vwap)
@@ -369,7 +381,11 @@ if SCALPER:
     sikisma = bbGen <= ta.lowest(bbGen, 50) * 1.1
     b31 = ta.crossover(close, sma20 + 2.0 * bbSapma) and sikisma[1]
     s31 = ta.crossunder(close, sma20)
+    // 25-31 yalnız gün içi modda çalışır (normal modda hep kapalı)
 ''')
+for i in range(25, 32):
+    w(f"    b{i} := gi and b{i}")
+    w(f"    s{i} := gi and s{i}")
 w(f"    // {NS + 1} Ortak Karar")
 w("    alDizi = array.from(" + ", ".join(f"b{i:02d}" for i in range(1,NS+1)) + ")")
 w("    satDizi = array.from(" + ", ".join(f"s{i:02d}" for i in range(1,NS+1)) + ")")
@@ -387,8 +403,8 @@ w('''        array.set(sonAl, i, array.get(alDizi, i) ? bar_index : array.get(so
     // ── pozisyon durumları
 ''')
 for i in range(1,NS+1):
-    w(f"    p{i:02d} = f_durum(b{i:02d}, s{i:02d})")
-w(f"    p{NS+1:02d} = f_durum(bOrtak, sOrtak)")
+    w(f"    p{i:02d} = f_durum(b{i:02d}, s{i:02d}, gi)")
+w(f"    p{NS+1:02d} = f_durum(bOrtak, sOrtak, gi)")
 w("    poz = array.from(" + ", ".join(f"p{i:02d}" for i in range(1,NS+2)) + ")")
 w('''    // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan çık
     var int[] cA = array.new_int()
@@ -405,7 +421,7 @@ w('''    // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan
     var int enIyi = 0
     var int[] islendi = array.new_int(@NC@, -1)
     var float alTutBas = na
-    if aktif and time >= testBas
+    if aktif and time >= (gi ? 0 : testBas)
         if na(alTutBas)
             alTutBas := close
         sonYil = time >= timenow - @SONGUN@ * 86400000
@@ -432,60 +448,71 @@ lines_vals = CIZGI_DEGER
 assert len(lines_vals) == NL
 w("    [maske, enIyi, nB, array.get(kaz, enIyi), ortB, (array.get(ser, enIyi) - 1) * 100, array.get(skor, enIyi), (array.get(serY, enIyi) - 1) * 100, alTut, " + ", ".join(lines_vals) + "]")
 w("")
-w("// ════════════════════════════ HAZIR SONUÇLAR (araclar/backtest.py her ay yazar) ════════════════════════════")
-if HAZIR:
-    hs = HAZIR["hisseler"]
+w("// ════════════════════════════ HAZIR SONUÇLAR (normal: backtest.py her ay, gün içi: scalper.py her hafta) ════════════════════════════")
+def _cift(i, j):
+    return (NS + 1) + i * (NS - 1) - i * (i - 1) // 2 + (j - i - 1)
+
+def hazir_set(H, gun_ici):
+    """Bir modun hazır sonuçlarını Pine sabitlerine çevirir: {ad: (tip, değer listesi)}."""
+    if not H:
+        return None
+    hs = H["hisseler"]
     kodlar = list(hs.keys())
     e = [hs[k]["en_iyi"] for k in kodlar]
-    w(f'HAZIR_TARIH = "{HAZIR["tarih"]}"')
-    # Hisse arama: switch her kolu ayrı "yerel kapsam" sayıldığı için (550 sınırı) sabit genişlikli metin içinde aranır.
-    # Her kod 6 karaktere tamamlanır; konum / 6 = hissenin sırası. Sonuçlar "simple" kalır (request.security için gerekli).
-    w('HAZIR_KODLAR = "' + "".join(k.ljust(6) for k in kodlar) + '"')
-    w('HAZIR_TFLER = "' + "".join(str(x["tf"]) for x in e) + '"')
-    w('hAra = syminfo.ticker + str.substring("      ", 0, math.max(0, 6 - str.length(syminfo.ticker)))')
-    w('hPos = str.length(syminfo.ticker) <= 6 ? str.pos(HAZIR_KODLAR, hAra) : na')
-    w('hIdx = na(hPos) ? -1 : hPos % 6 == 0 ? int(hPos / 6) : -1')
-    w('hTfS = hIdx >= 0 ? int(str.tonumber(str.substring(HAZIR_TFLER, hIdx, hIdx + 1))) : -1')
-    fmt = lambda xs: ", ".join(str(x) for x in xs)
-    w(f"var int[] hAday = array.from({fmt(x['aday'] for x in e)})")
-    w(f"var int[] hTf = array.from({fmt(x['tf'] for x in e)})")
-    w(f"var int[] hN = array.from({fmt(x['islem'] for x in e)})")
-    # scalper'da: hAlTut = kâr faktörü, hYil = kontrol dönemi getirisi, hYillik = günlük işlem sayısı
-    if SCALPER:
+    if gun_ici:
+        aday = [x["aday"] for x in e]
+        tf = [x["tf"] for x in e]
         alanlar = {"hKaz": lambda x: x["kazanma"], "hTop": lambda x: x["toplam"], "hAlTut": lambda x: x["kar_faktoru"],
                    "hYil": lambda x: x["kontrol"]["toplam"], "hYillik": lambda x: x["gunluk_islem"]}
     else:
-        # swing'de hYil = kontrol dönemi (seçimde kullanılmayan son %30) getirisi; eski sonuç dosyasında yoksa son 1 yıl
+        # normal mod sonuçları 24 stratejiyle numaralanır: 31 stratejilik numaralamaya çevrilir
+        aday = []
+        for x in e:
+            i, j = x["aday_ab"]
+            aday.append(NS if (j < 0 and i == 24) else i if j < 0 else _cift(i, j))
+        tf = [x["tf"] - 1 for x in e]     # 1=4S, 2=G, 3=H  ->  0, 1, 2
         alanlar = {"hKaz": lambda x: x["kazanma"], "hTop": lambda x: x["toplam"], "hAlTut": lambda x: x["al_tut"],
                    "hYil": lambda x: x["kontrol"]["toplam"] if "kontrol" in x else x["son_yil"], "hYillik": lambda x: x["yillik"]}
     for ad, i in (("hMSl", 0), ("hMTp", 1), ("hMIzs", 2)):
         alanlar[ad] = (lambda i: (lambda x: x.get("mod", [0, 0, 0])[i]))(i)
+    d = {"tarih": H["tarih"], "kodlar": "".join(k.ljust(6) for k in kodlar), "tfler": "".join(str(t) for t in tf),
+         "hAday": ("int", [str(x) for x in aday]), "hTf": ("int", [str(x) for x in tf]),
+         "hN": ("int", [str(x["islem"]) for x in e]),
+         "hBas": ("string", ['"' + x["baslangic"] + '"' for x in e])}
     for ad, al in alanlar.items():
-        w(f"var float[] {ad} = array.from({fmt(float(al(x)) for x in e)})")
-    w("var string[] hBas = array.from(" + ", ".join('"' + x["baslangic"] + '"' for x in e) + ")")
-else:
-    w('HAZIR_TARIH = "-"')
-    w("hIdx = -1")
-    w("hTfS = -1")
-    w("var int[] hAday = array.from(0)")
-    w("var int[] hTf = array.from(2)")
-    w("var int[] hN = array.from(0)")
-    for ad in ("hKaz", "hTop", "hAlTut", "hYil", "hYillik"):
-        w(f"var float[] {ad} = array.from(0.0)")
-    w('var string[] hBas = array.from("-")')
-    for ad in ("hMSl", "hMTp", "hMIzs"):
-        w(f"var float[] {ad} = array.from(0.0)")
+        d[ad] = ("float", [str(float(al(x))) for x in e])
+    return d
+
+BOS = {"tarih": "-", "kodlar": "", "tfler": "", "hAday": ("int", ["0"]), "hTf": ("int", ["1"]), "hN": ("int", ["0"]),
+       "hBas": ("string", ['"-"'])}
+for ad in ("hKaz", "hTop", "hAlTut", "hYil", "hYillik", "hMSl", "hMTp", "hMIzs"):
+    BOS[ad] = ("float", ["0.0"])
+HG = hazir_set(HAZIR_G, True) or BOS
+HS = hazir_set(HAZIR_S, False) or BOS
+w(f'HAZIR_TARIH = gunIci ? "{HG["tarih"]}" : "{HS["tarih"]}"')
+# Hisse arama: switch her kolu ayrı "yerel kapsam" sayıldığı için (550 sınırı) sabit genişlikli metin içinde aranır.
+# Her kod 6 karaktere tamamlanır; konum / 6 = hissenin sırası. Sonuçlar "simple" kalır (request.security için gerekli).
+w(f'HAZIR_KODLAR = gunIci ? "{HG["kodlar"]}" : "{HS["kodlar"]}"')
+w(f'HAZIR_TFLER = gunIci ? "{HG["tfler"]}" : "{HS["tfler"]}"')
+w('hAra = syminfo.ticker + str.substring("      ", 0, math.max(0, 6 - str.length(syminfo.ticker)))')
+w('hPos = str.length(syminfo.ticker) <= 6 and str.length(HAZIR_KODLAR) > 0 ? str.pos(HAZIR_KODLAR, hAra) : na')
+w('hIdx = na(hPos) ? -1 : hPos % 6 == 0 ? int(hPos / 6) : -1')
+w('hTfS = hIdx >= 0 ? int(str.tonumber(str.substring(HAZIR_TFLER, hIdx, hIdx + 1))) : -1')
+w("// gün içi modda: hAlTut = kâr faktörü, hYillik = günlük işlem sayısı; normal modda: Al-Tut ve yıllık getiri")
+for ad in ("hAday", "hTf", "hN", "hKaz", "hTop", "hAlTut", "hYil", "hYillik", "hMSl", "hMTp", "hMIzs", "hBas"):
+    tip = HG[ad][0]
+    w(f"var {tip}[] {ad} = gunIci ? array.from({', '.join(HG[ad][1])}) : array.from({', '.join(HS[ad][1])})")
 w('hazir = hazirKullan and hIdx >= 0 and syminfo.currency == "TRY"')
 w("hI = math.max(hIdx, 0)")
 w("")
-w("// ════════════════════════════ 4 ZAMAN DİLİMİNDE ÇALIŞTIR ════════════════════════════")
-for t,(tf,ad,flag,_) in enumerate(TFS):
-    w(f"[{', '.join(tuple_names(t))}] = request.security(syminfo.tickerid, \"{tf}\", f_hepsi({flag} and not hazir), calc_bars_count = (hazir ? hTfS == {t} : {flag}) ? (hazir ? 1500 : 5000) : 50)")
+w("// ════════════════════════════ 3 ZAMAN DİLİMİNDE ÇALIŞTIR (moda göre) ════════════════════════════")
+for t,(tf,flag) in enumerate(TFS):
+    w(f"[{', '.join(tuple_names(t))}] = request.security(syminfo.tickerid, {tf}, f_hepsi({flag} and not hazir, gunIci), calc_bars_count = (hazir ? hTfS == {t} : {flag}) ? (hazir ? 1500 : 5000) : 50)")
 w(f'''
 var string[] adlar = array.from({names_lit})
-var string[] tfKod = array.from({", ".join(chr(34) + x[0] + chr(34) for x in TFS)})
-var string[] tfAd = array.from({", ".join(chr(34) + x[1] + chr(34) for x in TFS)})
-var int[] tfSaniye = array.from({", ".join(str(x[3]) for x in TFS)})
+var string[] tfKod = array.from(tfK0, tfK1, tfK2)
+var string[] tfAd = gunIci ? array.from("5 Dakika", "15 Dakika", "1 Saat") : array.from("4 Saat", "Günlük", "Haftalık")
+var int[] tfSaniye = gunIci ? array.from(300, 900, 3600) : array.from(14400, 86400, 604800)
 var int[] cA = array.new_int()
 var int[] cB = array.new_int()
 f_adayKur(cA, cB)
@@ -496,7 +523,7 @@ f_adayAd(int c) =>
     b < 0 ? array.get(adlar, a) : array.get(adlar, a) + " + " + array.get(adlar, math.max(b, 0))
 
 // En iyi zaman dilimi: en yüksek skoru veren
-skorlarTf = array.from({", ".join(f"{x[2]} ? nz(s{i}, -1e10) : -1e10" for i, x in enumerate(TFS))})
+skorlarTf = array.from({", ".join(f"{x[1]} ? nz(s{i}, -1e10) : -1e10" for i, x in enumerate(TFS))})
 gecerli = hazir or array.max(skorlarTf) > -1e9
 secTf = hazir ? array.get(hTf, hI) : array.indexof(skorlarTf, array.max(skorlarTf))
 ''')
@@ -735,7 +762,11 @@ if barstate.islast
         bN = hazir ? array.get(hN, hI) : f_adet(secTf)
         bKaz = hazir ? array.get(hKaz, hI) : bN > 0 ? f_kaz(secTf) * 100.0 / bN : 0.0
         bTop = hazir ? array.get(hTop, hI) : f_top(secTf)
-        table.cell(baslikTablo, 0, 0, "★ " + f_adayAd(secAday) + "  •  " + array.get(tfAd, secTf) + "\\nGeçmiş: " + str.tostring(bN, "#") + " işlem • kazanma %" + str.tostring(bKaz, "0") + " • toplam " + f_yuzde(bTop) + (cizgiVar ? "" : "\\n(osilatör: çizgisi yok, AL/SAT etiketlerine bak)"), text_color = color.white, bgcolor = color.new(#2962FF, 25), text_size = size.normal)
+        // Hangi modda olduğunu ve doğru zaman dilimini her zaman söyler: kullanıcının aklında tutması gerekmez
+        enIyiTf = array.get(tfAd, secTf)
+        dogruTf = array.get(tfSaniye, secTf) == timeframe.in_seconds()
+        modSatir = (gunIci ? "GÜN İÇİ MOD (5dk/15dk/1S)" : "NORMAL MOD (4S/Günlük/Haftalık)") + " • " + (dogruTf ? "✓ Grafik doğru: " + enIyiTf : "👉 Grafiği " + enIyiTf + " yap")
+        table.cell(baslikTablo, 0, 0, "★ " + f_adayAd(secAday) + "  •  " + array.get(tfAd, secTf) + "\\nGeçmiş: " + str.tostring(bN, "#") + " işlem • kazanma %" + str.tostring(bKaz, "0") + " • toplam " + f_yuzde(bTop) + (cizgiVar ? "" : "\\n(osilatör: çizgisi yok, AL/SAT etiketlerine bak)") + "\\n" + modSatir, text_color = color.white, bgcolor = color.new(#2962FF, 25), text_size = size.normal)
 
     // ── Not kutusu (küçük, köşede)
     table.clear(notTablo, 0, 0, 0, 11)
@@ -750,16 +781,16 @@ if barstate.islast
             topG = hazir ? array.get(hTop, hI) : f_top(secTf)
             alTut = hazir ? array.get(hAlTut, hI) : f_altut(secTf)
             yil = hazir ? array.get(hYil, hI) : f_yil(secTf)
-            k1 = topG > alTut
+            k1 = gunIci ? (hazir ? yil > 0 : topG > 0) : topG > alTut
             k2 = kazOran >= 50
-            k3 = yil > 0
+            k3 = gunIci and hazir ? alTut >= 1.3 : yil > 0
             puan = (k1 ? 1 : 0) + (k2 ? 1 : 0) + (k3 ? 1 : 0)
             karar = puan == 3 ? "GÜÇLÜ" : puan == 2 ? "ORTA" : "ZAYIF"
             kararRenk = puan == 3 ? color.new(#22AB94, 0) : puan == 2 ? color.new(#FF9800, 0) : color.new(#F23645, 0)
             simdiPoz = f_poz(secTf, secAday, 0)
-            table.cell(notTablo, 0, 0, "★ " + f_adayAd(secAday) + " • " + array.get(tfAd, secTf) + (hazir ? " • hazır test " + HAZIR_TARIH : " • canlı test (" + syminfo.prefix + ":" + syminfo.ticker + " " + syminfo.currency + (hazirKullan ? "" : ", hazır kapalı") + ")"), text_color = color.white, text_size = notBoyB, text_halign = text.align_left)
-            table.cell(notTablo, 0, 1, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazanç • Toplam " + f_yuzde(topG) + " (Al-Tut " + f_yuzde(alTut) + ")", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
-            table.cell(notTablo, 0, 2, "Karar: " + karar + " (" + str.tostring(puan) + "/3) • Son 1 yıl " + f_yuzde(yil) + " • Şu an: " + (simdiPoz ? "AL'da" : "beklemede"), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 0, "★ " + f_adayAd(secAday) + " • " + array.get(tfAd, secTf) + (gunIci ? " • GÜN İÇİ" : "") + (hazir ? " • hazır test " + HAZIR_TARIH : " • canlı test (" + syminfo.prefix + ":" + syminfo.ticker + " " + syminfo.currency + (hazirKullan ? "" : ", hazır kapalı") + ")"), text_color = color.white, text_size = notBoyB, text_halign = text.align_left)
+            table.cell(notTablo, 0, 1, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazanç • Toplam " + f_yuzde(topG) + (not gunIci ? " (Al-Tut " + f_yuzde(alTut) + ")" : hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") + " işlem" : ""), text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 2, "Karar: " + karar + " (" + str.tostring(puan) + "/3)" + (hazir ? " • Kontrol " : gunIci ? " • Son 30 gün " : " • Son 1 yıl ") + f_yuzde(yil) + " • Şu an: " + (simdiPoz ? "AL'da" : "beklemede"), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
             r = 3
             rejim = adxG >= 25 ? (close > ema200G ? "TREND YUKARI" : "TREND AŞAĞI") : "YATAY"
             table.cell(notTablo, 0, r, (acik ? "Açık işlem: stop " : "AL sinyali yok. Gelirse: stop ") + f_fiyat(rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + " • " + str.tostring(rLot, "#") + " lot" + (hazirMod ? "\\nÇıkış (en iyi bulunan): " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
@@ -769,10 +800,12 @@ if barstate.islast
                 table.cell(notTablo, 0, r, "⚠ Sinyalleri görmek için grafiği " + array.get(tfAd, secTf) + " yap", text_color = color.new(#FF9800, 0), text_size = notBoyK, text_halign = text.align_left)
                 r += 1
             if notMod == "Detaylı"
-                nasil = hazir ? "NASIL SEÇİLDİ: BIST 100 hisseleri her ay GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). Bu hissede 24 strateji + 276 kombin, 4S/G/H\\nzaman dilimlerinde " + array.get(hBas, hI) + "'den beri denendi. Sadece ilk %70'e\\nbakılarak seçildi; en iyi 10 aday için 11 stop/hedef ayarı denendi.\\nKontrol = seçimde hiç kullanılmayan son %30. Yıllık: " + f_yuzde(array.get(hYillik, hI)) : "NASIL SEÇİLDİ: 24 strateji + 276 ikili kombin, seçili zaman\\ndilimlerinde " + str.tostring(year(testBas)) + "'den beri test edildi. " + olcut + " en\\nyüksek olan seçildi (en az " + str.tostring(minIslem) + " işlem şartıyla)."
+                nasilS = hazir ? "NASIL SEÇİLDİ: BIST 100 hisseleri her ay GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). Bu hissede 24 strateji + 276 kombin, 4S/G/H\\nzaman dilimlerinde " + array.get(hBas, hI) + "'den beri denendi. Sadece ilk %70'e\\nbakılarak seçildi; en iyi 10 aday için 11 stop/hedef ayarı denendi.\\nKontrol = seçimde hiç kullanılmayan son %30. Yıllık: " + f_yuzde(array.get(hYillik, hI)) : "NASIL SEÇİLDİ: 24 strateji + 276 ikili kombin, 4S/G/H zaman\\ndilimlerinde " + str.tostring(year(testBas)) + "'den beri test edildi. " + olcut + " en\\nyüksek olan seçildi (en az " + str.tostring(minIslem) + " işlem şartıyla)."
+                nasilG = hazir ? "NASIL SEÇİLDİ: BIST 100 hisseleri her hafta GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). 31 strateji + 465 kombin 5dk/15dk/1S'te\\n" + array.get(hBas, hI) + "'den beri denendi. Sadece dönemin ilk %70'ine bakılarak\\nseçildi (günde en az 0,5 işlem); en iyi 10 aday için 11 stop/hedef ayarı\\ndenendi. Son %30 KONTROL dönemi: seçimde hiç kullanılmadı." : "NASIL SEÇİLDİ: 31 strateji + 465 ikili kombin, 5dk/15dk/1S\\ngrafikte (yüklenebilen kadar geçmişte) test edildi. " + olcut + " en\\nyüksek olan seçildi (en az " + str.tostring(minIslem) + " işlem şartıyla)."
+                nasil = gunIci ? nasilG : nasilS
                 table.cell(notTablo, 0, r, nasil, text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
-                table.cell(notTablo, 0, r + 1, "KURAL: AL'da kapanıştan girilir, SAT'ta (ya da en fazla\\n" + str.tostring(maxBar) + " bar sonra) çıkılır. Her işlemden %" + str.tostring(komisyon) + " komisyon düşülür.", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
-                table.cell(notTablo, 0, r + 2, "NASIL KARAR VERİLİR (3 şart):\\n" + (k1 ? "✓" : "✗") + " Toplam getiri Al-Tut'tan yüksek\\n" + (k2 ? "✓" : "✗") + " Kazanma oranı %50 veya üstü\\n" + (k3 ? "✓" : "✗") + " Son 1 yılda da kârda\\n3/3 GÜÇLÜ: sinyale güvenilebilir • 2/3 ORTA: dikkatli ol\\n0-1/3 ZAYIF: bu hissede sinyale güvenme", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
+                table.cell(notTablo, 0, r + 1, "KURAL: AL'da kapanıştan girilir, SAT'ta (ya da en fazla\\n" + str.tostring(maxBar) + " bar sonra) çıkılır." + (gunIci ? " Gün sonunda pozisyon kapatılır,\\ngece taşınmaz." : "") + " Her işlemden %" + str.tostring(komisyon) + " komisyon düşülür.", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
+                table.cell(notTablo, 0, r + 2, "NASIL KARAR VERİLİR (3 şart):\\n" + (k1 ? "✓" : "✗") + (not gunIci ? " Toplam getiri Al-Tut'tan yüksek" : hazir ? " Kontrol döneminde de kârda" : " Toplam kârda") + "\\n" + (k2 ? "✓" : "✗") + " Kazanma oranı %50 veya üstü\\n" + (k3 ? "✓" : "✗") + (gunIci and hazir ? " Kâr faktörü 1,3 veya üstü" : hazir ? " Kontrol döneminde de kârda" : gunIci ? " Son 30 günde de kârda" : " Son 1 yılda da kârda") + "\\n3/3 GÜÇLÜ: sinyale güvenilebilir • 2/3 ORTA: dikkatli ol\\n0-1/3 ZAYIF: bu hissede sinyale güvenme", text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
                 table.cell(notTablo, 0, r + 3, "Geçmiş sonuç geleceği garanti etmez. Yatırım tavsiyesi değildir.", text_color = color.new(#787B86, 0), text_size = notBoyK, text_halign = text.align_left)
 
 // ════════════════════════════ ALARMLAR ════════════════════════════
@@ -786,21 +819,12 @@ if barstate.isconfirmed and gecerli and pozSimdi != pozOnce
 ''')
 metin = "\n".join(L) + "\n"
 for a, b in {"@NS1@": NS + 1, "@NSm1@": NS - 1, "@NSm2@": NS - 2, "@NS@": NS, "@NCm1@": NC - 1, "@NC@": NC,
-             "@SONGUN@": 30 if SCALPER else 365,
+             "@SONGUN@": "(gi ? 30 : 365)",
              "@CIZGIAD@": ", ".join(chr(34) + x + chr(34) for x in CIZGI_ADLARI)}.items():
     metin = metin.replace(a, str(b))
-if SCALPER:
-    import scalper_metin
-    metin = scalper_metin.uyarla(metin)
-else:
-    # swing: hazır sonuçta 3. şart "kontrol döneminde (seçimde kullanılmayan son %30) kârda"
-    for eski_, yeni_ in (('"/3) • Son 1 yıl " + f_yuzde(yil)', '"/3)" + (hazir ? " • Kontrol " : " • Son 1 yıl ") + f_yuzde(yil)'),
-                         ('(k3 ? "✓" : "✗") + " Son 1 yılda da kârda\\n', '(k3 ? "✓" : "✗") + (hazir ? " Kontrol döneminde de kârda" : " Son 1 yılda da kârda") + "\\n')):
-        assert eski_ in metin, eski_
-        metin = metin.replace(eski_, yeni_)
 # Ayar değerleri grafikteki gösterge adının yanında yer kaplamasın (telefonda okunurluk)
 metin = "\n".join((x[:-1] + ", display = display.none)") if (" = input." in x and x.endswith(")") and not x.startswith(" ")) else x for x in metin.split("\n"))
 
 
 CIKTI.write_text(metin, encoding="utf-8")
-print("Pine dosyası yazıldı" + (f" ({len(HAZIR['hisseler'])} hazır hisse)" if HAZIR else " (hazır sonuç yok)"))
+print(f"Pine dosyası yazıldı (hazır: normal {len(HAZIR_S['hisseler']) if HAZIR_S else 0}, gün içi {len(HAZIR_G['hisseler']) if HAZIR_G else 0} hisse)")

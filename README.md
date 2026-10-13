@@ -4,9 +4,17 @@
 
 Dosya: **`0. OTOMATİK EN İYİ STRATEJİ - BIST.txt`**
 
+**İki mod, tek indikatör:** Grafiğin zaman dilimine göre mod kendiliğinden değişir.
+| Grafik | Mod | Test edilen zaman dilimleri |
+|---|---|---|
+| 1 saat ve altı (1dk, 5dk, 15dk, 30dk, 1S, 2S) | **GÜN İÇİ** (scalper) | 5 dk / 15 dk / 1 saat, 31 strateji, gece taşıma yok |
+| 4 saat ve üstü (4S, Günlük, Haftalık) | **NORMAL** | 4 saat / Günlük / Haftalık, 24 strateji |
+
+Hangi modda olduğunu ve o hisse için en iyi zaman dilimini aklında tutman gerekmez. Grafiğin üstündeki mavi başlığın son satırı bunu her zaman yazar, ör. `GÜN İÇİ MOD (5dk/15dk/1S) • 👉 Grafiği 15 Dakika yap`. Doğru zaman dilimindeysen `✓ Grafik doğru: 15 Dakika` yazar.
+
 BIST 100'de **herhangi bir hisseyi açtığında** indikatör kendiliğinden şunları yapar:
 1. Bu repodaki **24 stratejiyi** ve bunların **276 ikili kombinini** (ör. "EMA 5x13 + SuperTrend") o hissenin geçmişinde test eder.
-2. Testi **4 Saat, Günlük ve Haftalık** zaman dilimlerinin her birinde ayrı ayrı yapar. 1 Saat isteğe bağlıdır.
+2. Testi moduna göre 3 zaman diliminin her birinde ayrı ayrı yapar (normal: 4 Saat / Günlük / Haftalık).
 3. En iyi sonucu veren strateji/kombin ve zaman dilimini **otomatik seçer** ve grafiğe yerleştirir:
    - AL / SAT etiketleri (SAT etiketinde o işlemin getirisi yazar),
    - seçilen indikatörlerin çizgileri (SuperTrend, AlphaTrend, EMA'lar vb.).
@@ -57,16 +65,16 @@ Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 |---|---|
 | Test başlangıç tarihi | Varsayılan 2020 |
 | En iyiyi seçme ölçütü | Toplam getiri / Ortalama getiri / Kazanma oranı |
-| Seçilmek için en az işlem | Varsayılan 6. Az işlemle şans eseri iyi görünen sonuçları eler. |
-| En fazla bekleme | SAT gelmese bile işlem bu kadar bar sonra kapanır (varsayılan 40). |
-| Komisyon + kayma | Her işlemden düşülür (varsayılan %0,2). |
-| Zaman dilimleri | 1 Saat / 4 Saat / Günlük / Haftalık açma-kapama. 1 Saat yavaşlatabileceği için varsayılan olarak kapalı. |
+| Seçilmek için en az işlem | Normal / gün içi için ayrı: 6 / 10. Az işlemle şans eseri iyi görünen sonuçları eler. |
+| En fazla bekleme | SAT gelmese bile işlem bu kadar bar sonra kapanır (normal 40, gün içi 30). |
+| Komisyon + kayma | Her işlemden düşülür (normal %0,2, gün içi %0,15). |
+| Canlı testte zaman dilimleri | Listede olmayan hissede 3 zaman diliminden birini kapatmak için (yavaşlarsa). |
 | Not kutusu | Kısa / Detaylı / Kapalı ve konumu |
 
 ### Alarm
 **Alarm oluştur** ekranında koşul olarak bu indikatörü seç ve **"Herhangi bir alert() fonksiyon çağrısı"**nı seç. Otomatik seçilen strateji AL/SAT verdiğinde, stratejinin adı ve zaman dilimiyle birlikte bildirim gelir.
 
-### Risk yönetimi ve seviyeler (her iki indikatörde)
+### Risk yönetimi ve seviyeler (her iki modda)
 Ayarlarda **5) RİSK YÖNETİMİ VE SEVİYELER** bölümünde değiştirilebilir.
 - **Stop:** Giriş fiyatından ATR(14)'ün 1,5 katı aşağısı. ATR, hissenin ortalama mum boyudur. Oynak hissede stop otomatik olarak uzaklaşır.
 - **Hedef 1 / Hedef 2:** Göze alınan riskin 1,5 ve 3 katı kazanç (R:R 1:1,5 ve 1:3).
@@ -80,7 +88,7 @@ Ayarlarda **5) RİSK YÖNETİMİ VE SEVİYELER** bölümünde değiştirilebilir
 > Not: Tablodaki geçmiş test sonuçları, strateji kendi SAT sinyalinde çıkılarak hesaplanır. Stop ve hedefler şu an sadece yol gösterici seviyelerdir; teste dahil değildir.
 
 ### Kendini geliştirme: eğitim / kontrol, stop-hedef iyileştirme ve canlı karne
-Her iki indikatörün GitHub'daki testleri şu şekilde çalışır:
+Her iki modun GitHub'daki testleri şu şekilde çalışır:
 1. **Eğitim / kontrol ayrımı:** Seçim sadece dönemin ilk %70'ine bakılarak yapılır. Son %30 **kontrol dönemidir**: seçimde hiç kullanılmaz, seçilen stratejinin gerçek sınavıdır. Not kutusunda "Kontrol" olarak görünür.
 2. **Stop / hedef iyileştirme:** Eğitimde en iyi 10 aday için 11 farklı çıkış ayarı denenir: stop 1,5 veya 2,5 ATR; hedef yok, 2R veya 3R; iz süren stop açık veya kapalı. En iyisi o hissenin ayarı olur. Grafikte işlemler bu ayarla çizilir; stopla kapanan işlemde **STOP**, hedefle kapananda **HEDEF** etiketi çıkar. Not kutusunda "Çıkış (en iyi bulunan)" satırı yazar.
 3. **Canlı karne:** Her çalışmada, bir önceki çalışmada seçilen stratejinin o tarihten sonra gerçekte ne yaptığı ölçülür. Sonuçlar `veri/KARNE_SWING.md` ve `veri/KARNE_SCALPER.md` dosyalarına yazılır. Geçmiş test her zaman iyi görünür; karne ise indikatörün gerçek doğruluğunu gösterir. Zamanla doldukça hangi yaklaşımın gerçekten işe yaradığı ortaya çıkar.
@@ -90,19 +98,17 @@ Her iki indikatörün GitHub'daki testleri şu şekilde çalışır:
 ### Güncellemeler TradingView'e nasıl gelir?
 TradingView kodu kendisi güncelleyemez. Yeni sürümü sen yapıştırırsın, 1 dakikalık iş:
 1. Kopyalama sayfasını aç ve **Kodu kopyala**'ya bas.
-2. TradingView'i bilgisayarda (ya da telefonda masaüstü görünümünde) aç, **Pine Editor**'de ilgili indikatörü aç.
+2. TradingView'i bilgisayarda (ya da telefonda masaüstü görünümünde) aç, **Pine Editor**'de OTO-BIST indikatörünü aç.
 3. İçindekileri tamamen sil, yapıştır ve **Save**'e bas. **Add to chart**'a basma; grafikteki indikatör kendiliğinden güncellenir.
 4. Telefon uygulaması güncel sürümü kendisi alır. Almazsa grafiği kapatıp yeniden aç.
 
-Ne zaman yapıştırmalı: sonuçlar her ayın 1'inde (genel) ve her cumartesi (scalper) yenilenir. Yapıştırmazsan indikatör eski sonuçlarla çalışmaya devam eder, bozulmaz.
+Ne zaman yapıştırmalı: sonuçlar her ayın 1'inde (normal mod) ve her cumartesi (gün içi mod) yenilenir. Yapıştırmazsan indikatör eski sonuçlarla çalışmaya devam eder, bozulmaz.
 
-## ⚡ OTOMATİK SCALPER - BIST (gün içi işlem)
+## ⚡ GÜN İÇİ MOD (scalper)
 
-Dosya: **`0. OTOMATİK SCALPER - BIST.txt`**
+Eskiden ayrı bir indikatördü (OTO-SCALP). Artık OTO-BIST'in içindedir: grafiği 1 saat veya altına aldığında kendiliğinden açılır. Eski OTO-SCALP indikatörünü grafikten kaldırabilirsin.
 
-Bu ayrı bir indikatördür. Kurulumu ana indikatörle aynıdır, TradingView'e ayrı bir indikatör olarak eklenir. **5 dakika, 15 dakika ve 1 saatlik** grafiklerde gün içi işlem için çalışır.
-
-**Ana indikatörden farkları:**
+**Normal moddan farkları:**
 - **Gece taşıma yok:** Pozisyon her günün son mumunda kapanır, son mumda yeni işlem açılmaz.
 - **Gün içine özel 7 strateji daha:** VWAP kesişimi, ilk mum kırılımı, RSI(2) dip, Stokastik RSI, EMA 9x21 + VWAP, hızlı SuperTrend (7,2), Bollinger sıkışma kırılımı. Toplam 31 strateji, 465 ikili kombin ve ortak karar.
 - **Daha sıkı test (eğitim / kontrol):**
