@@ -408,10 +408,12 @@ w('''    // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan
         for k = 0 to @NS@
             if array.get(poz, k) != array.get(onceki, k)
                 for m = -1 to (kombinTest and k < @NS@ ? @NSm1@ : -1)
+                    // Pine v5'te "and" iki tarafı da hesaplar: c = -1 iken dizi okunmasın diye iç içe if
                     c = m == -1 ? k : m == k ? -1 : f_ciftNo(math.min(k, m), math.max(k, m))
-                    if c >= 0 and array.get(islendi, c) != bar_index
-                        array.set(islendi, c, bar_index)
-                        enIyi := f_isle(c, cA, cB, poz, onceki, giris, adet, kaz, top, ser, serY, skor, enIyi, sonYil)
+                    if c >= 0
+                        if array.get(islendi, c) != bar_index
+                            array.set(islendi, c, bar_index)
+                            enIyi := f_isle(c, cA, cB, poz, onceki, giris, adet, kaz, top, ser, serY, skor, enIyi, sonYil)
     for k = 0 to @NS@
         array.set(onceki, k, array.get(poz, k))
     float maske = 0.0
@@ -477,7 +479,7 @@ f_adayKur(cA, cB)
 f_adayAd(int c) =>
     a = array.get(cA, c)
     b = array.get(cB, c)
-    b < 0 ? array.get(adlar, a) : array.get(adlar, a) + " + " + array.get(adlar, b)
+    b < 0 ? array.get(adlar, a) : array.get(adlar, a) + " + " + array.get(adlar, math.max(b, 0))
 
 // En iyi zaman dilimi: en yüksek skoru veren
 skorlarTf = array.from({", ".join(f"{x[2]} ? nz(s{i}, -1e10) : -1e10" for i, x in enumerate(TFS))})
