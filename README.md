@@ -72,7 +72,7 @@ Ayarlarda **5) RİSK YÖNETİMİ VE SEVİYELER** bölümünde değiştirilebilir
 - **Hedef 1 / Hedef 2:** Göze alınan riskin 1,5 ve 3 katı kazanç (R:R 1:1,5 ve 1:3).
 - **İz süren stop (Chandelier):** Girişten beri görülen en yüksek fiyatın 3 ATR altı. Fiyat yükseldikçe yukarı çekilir, aşağı inmez. Kazancı korumak için kullanılır.
 - **Lot:** "İşlem başına göze alınan zarar (TL)" ayarına göre, stop olursa en fazla o kadar kaybedeceğin lot sayısı.
-- **Açık işlem yoksa:** Seviyeler "AL gelirse" diye, şu anki fiyattan giriş varsayılarak gösterilir.
+- **Açık işlem yoksa:** Çizgiler bir plandır: "OLASI GİRİŞ (AL bekleniyor)", "OLASI STOP", "OLASI HEDEF". Yani şimdi AL sinyali gelse, şu anki fiyattan girilirse stop ve hedef nerede olurdu. Soluk ve noktalı çizilir. Gerçek AL gelince "GİRİŞ / STOP / HEDEF" olarak düz çizilir.
 - **Destek / direnç:** Son tepe ve diplerden, fiyata en yakın 3'er seviye.
 - **Piyasa durumu:** ADX ≥ 25 ise trend vardır. Fiyat EMA200'ün üstündeyse TREND YUKARI, altındaysa TREND AŞAĞI, ADX 25'in altındaysa YATAY yazar. Trend stratejileri trendde, dip stratejileri yatay piyasada daha iyi çalışır.
 - **Grafiğin üstündeki başlık:** Seçilen stratejinin geçmiş işlem sayısını, kazanma oranını ve toplam getirisini de gösterir.
