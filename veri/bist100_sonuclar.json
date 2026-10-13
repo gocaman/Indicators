@@ -21,7 +21,7 @@
     "toplam": 3578.5,
     "yillik": 70.2,
     "son_yil": 6.8,
-    "al_tut": 63.3,
+    "al_tut": 63.2,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -36,7 +36,7 @@
      "toplam": 3578.5,
      "yillik": 70.2,
      "son_yil": 6.8,
-     "al_tut": 63.3,
+     "al_tut": 63.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -50,7 +50,7 @@
      "toplam": 2222.1,
      "yillik": 59.0,
      "son_yil": -6.1,
-     "al_tut": 63.3,
+     "al_tut": 63.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -64,7 +64,21 @@
      "toplam": 2167.1,
      "yillik": 58.5,
      "son_yil": -6.6,
-     "al_tut": 63.3,
+     "al_tut": 63.2,
+     "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 24,
+     "ad": "25 Ortak Karar",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 60,
+     "kazanma": 55.0,
+     "ortalama": 6.8,
+     "toplam": 1953.3,
+     "yillik": 56.2,
+     "son_yil": 36.5,
+     "al_tut": 63.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -74,25 +88,11 @@
      "tf_ad": "Günlük",
      "islem": 67,
      "kazanma": 47.8,
-     "ortalama": 6.43,
-     "toplam": 1875.9,
-     "yillik": 55.3,
+     "ortalama": 6.47,
+     "toplam": 1922.2,
+     "yillik": 55.8,
      "son_yil": -9.8,
-     "al_tut": 63.3,
-     "baslangic": "2020-01-02"
-    },
-    {
-     "aday": 181,
-     "ad": "09 ALMA + 10 T3 Tillson",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 82,
-     "kazanma": 41.5,
-     "ortalama": 4.92,
-     "toplam": 1841.2,
-     "yillik": 54.9,
-     "son_yil": -7.0,
-     "al_tut": 63.3,
+     "al_tut": 63.2,
      "baslangic": "2020-01-02"
     }
    ]
@@ -109,7 +109,7 @@
     "toplam": 964.8,
     "yillik": 41.8,
     "son_yil": 1.8,
-    "al_tut": 980.8,
+    "al_tut": 979.1,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -124,7 +124,7 @@
      "toplam": 964.8,
      "yillik": 41.8,
      "son_yil": 1.8,
-     "al_tut": 980.8,
+     "al_tut": 979.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -138,7 +138,7 @@
      "toplam": 925.2,
      "yillik": 41.0,
      "son_yil": 12.4,
-     "al_tut": 980.8,
+     "al_tut": 979.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -152,7 +152,7 @@
      "toplam": 851.6,
      "yillik": 39.4,
      "son_yil": 29.4,
-     "al_tut": 980.8,
+     "al_tut": 979.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -166,7 +166,7 @@
      "toplam": 841.3,
      "yillik": 39.2,
      "son_yil": 19.1,
-     "al_tut": 980.8,
+     "al_tut": 979.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -180,7 +180,7 @@
      "toplam": 523.2,
      "yillik": 39.1,
      "son_yil": 7.9,
-     "al_tut": 958.8,
+     "al_tut": 957.1,
      "baslangic": "2021-03-29"
     }
    ]
@@ -197,7 +197,7 @@
     "toplam": 2890.7,
     "yillik": 65.1,
     "son_yil": 3.9,
-    "al_tut": 1927.8,
+    "al_tut": 1924.1,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -212,7 +212,7 @@
      "toplam": 2890.7,
      "yillik": 65.1,
      "son_yil": 3.9,
-     "al_tut": 1927.8,
+     "al_tut": 1924.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -226,7 +226,7 @@
      "toplam": 2128.2,
      "yillik": 58.1,
      "son_yil": 2.6,
-     "al_tut": 1927.8,
+     "al_tut": 1924.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -240,7 +240,7 @@
      "toplam": 1924.9,
      "yillik": 55.9,
      "son_yil": 9.5,
-     "al_tut": 1927.8,
+     "al_tut": 1924.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -254,7 +254,7 @@
      "toplam": 1881.7,
      "yillik": 55.4,
      "son_yil": 8.9,
-     "al_tut": 1927.8,
+     "al_tut": 1924.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -268,7 +268,7 @@
      "toplam": 1856.6,
      "yillik": 55.1,
      "son_yil": 18.7,
-     "al_tut": 1927.8,
+     "al_tut": 1924.1,
      "baslangic": "2020-01-02"
     }
    ]
@@ -363,46 +363,32 @@
   },
   "AKBNK": {
    "en_iyi": {
-    "aday": 6,
-    "ad": "07 Parabolic SAR",
+    "aday": 149,
+    "ad": "07 Parabolic SAR + 09 ALMA",
     "tf": 2,
     "tf_ad": "Günlük",
-    "islem": 68,
-    "kazanma": 50.0,
-    "ortalama": 4.47,
-    "toplam": 1195.0,
-    "yillik": 45.9,
-    "son_yil": 46.5,
-    "al_tut": 983.3,
+    "islem": 86,
+    "kazanma": 46.5,
+    "ortalama": 3.46,
+    "toplam": 1159.9,
+    "yillik": 45.3,
+    "son_yil": 43.9,
+    "al_tut": 982.5,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
-    {
-     "aday": 6,
-     "ad": "07 Parabolic SAR",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 68,
-     "kazanma": 50.0,
-     "ortalama": 4.47,
-     "toplam": 1195.0,
-     "yillik": 45.9,
-     "son_yil": 46.5,
-     "al_tut": 983.3,
-     "baslangic": "2020-01-02"
-    },
     {
      "aday": 149,
      "ad": "07 Parabolic SAR + 09 ALMA",
      "tf": 2,
      "tf_ad": "Günlük",
      "islem": 86,
-     "kazanma": 47.7,
-     "ortalama": 3.49,
-     "toplam": 1187.8,
-     "yillik": 45.8,
+     "kazanma": 46.5,
+     "ortalama": 3.46,
+     "toplam": 1159.9,
+     "yillik": 45.3,
      "son_yil": 43.9,
-     "al_tut": 983.3,
+     "al_tut": 982.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -413,10 +399,24 @@
      "islem": 103,
      "kazanma": 43.7,
      "ortalama": 2.94,
-     "toplam": 1089.3,
+     "toplam": 1089.4,
      "yillik": 44.1,
      "son_yil": 42.5,
-     "al_tut": 983.3,
+     "al_tut": 982.5,
+     "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 6,
+     "ad": "07 Parabolic SAR",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 68,
+     "kazanma": 50.0,
+     "ortalama": 4.26,
+     "toplam": 1022.2,
+     "yillik": 42.9,
+     "son_yil": 46.5,
+     "al_tut": 982.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -426,11 +426,11 @@
      "tf_ad": "Günlük",
      "islem": 65,
      "kazanma": 49.2,
-     "ortalama": 4.27,
-     "toplam": 962.4,
-     "yillik": 41.7,
+     "ortalama": 4.22,
+     "toplam": 939.4,
+     "yillik": 41.3,
      "son_yil": 54.6,
-     "al_tut": 983.3,
+     "al_tut": 982.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -444,7 +444,7 @@
      "toplam": 926.6,
      "yillik": 41.0,
      "son_yil": 58.2,
-     "al_tut": 983.3,
+     "al_tut": 982.5,
      "baslangic": "2020-01-02"
     }
    ]
@@ -568,6 +568,20 @@
      "baslangic": "2024-04-08"
     },
     {
+     "aday": 216,
+     "ad": "11 Bollinger Orta Bant + 18 Fisher Dip",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 44,
+     "kazanma": 45.5,
+     "ortalama": 1.37,
+     "toplam": 75.2,
+     "yillik": 25.0,
+     "son_yil": 35.1,
+     "al_tut": 1.7,
+     "baslangic": "2024-04-08"
+    },
+    {
      "aday": 4,
      "ad": "05 SuperTrend",
      "tf": 2,
@@ -582,46 +596,32 @@
      "baslangic": "2024-01-02"
     },
     {
-     "aday": 72,
-     "ad": "03 Dip Bulucu-2 (VixFix) + 06 AlphaTrend+SuperTrend",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 20,
-     "kazanma": 40.0,
-     "ortalama": 2.71,
-     "toplam": 61.9,
-     "yillik": 21.1,
-     "son_yil": 42.6,
-     "al_tut": 1.7,
-     "baslangic": "2024-04-08"
+     "aday": 135,
+     "ad": "06 AlphaTrend+SuperTrend + 12 Bollinger20 x EMA50",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 7,
+     "kazanma": 71.4,
+     "ortalama": 8.36,
+     "toplam": 62.0,
+     "yillik": 18.9,
+     "son_yil": 10.7,
+     "al_tut": 51.9,
+     "baslangic": "2024-01-02"
     },
     {
-     "aday": 71,
-     "ad": "03 Dip Bulucu-2 (VixFix) + 05 SuperTrend",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 20,
-     "kazanma": 40.0,
-     "ortalama": 2.53,
-     "toplam": 56.4,
-     "yillik": 19.5,
-     "son_yil": 39.6,
-     "al_tut": 1.7,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 216,
-     "ad": "11 Bollinger Orta Bant + 18 Fisher Dip",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 43,
-     "kazanma": 44.2,
-     "ortalama": 1.11,
-     "toplam": 55.7,
-     "yillik": 19.3,
-     "son_yil": 20.1,
-     "al_tut": 1.7,
-     "baslangic": "2024-04-08"
+     "aday": 117,
+     "ad": "05 SuperTrend + 12 Bollinger20 x EMA50",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 7,
+     "kazanma": 71.4,
+     "ortalama": 8.02,
+     "toplam": 61.0,
+     "yillik": 18.7,
+     "son_yil": 12.7,
+     "al_tut": 51.9,
+     "baslangic": "2024-01-02"
     }
    ]
   },
@@ -684,20 +684,6 @@
      "baslangic": "2020-01-02"
     },
     {
-     "aday": 16,
-     "ad": "17 Darvas Kutusu",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 29,
-     "kazanma": 55.2,
-     "ortalama": 8.58,
-     "toplam": 691.3,
-     "yillik": 35.7,
-     "son_yil": -4.3,
-     "al_tut": 2249.6,
-     "baslangic": "2020-01-02"
-    },
-    {
      "aday": 12,
      "ad": "13 EMA 5x13",
      "tf": 2,
@@ -710,6 +696,20 @@
      "son_yil": -7.1,
      "al_tut": 2249.6,
      "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 9,
+     "ad": "10 T3 Tillson",
+     "tf": 3,
+     "tf_ad": "Haftalık",
+     "islem": 10,
+     "kazanma": 80.0,
+     "ortalama": 21.94,
+     "toplam": 421.3,
+     "yillik": 34.7,
+     "son_yil": 3.9,
+     "al_tut": 888.3,
+     "baslangic": "2021-03-29"
     }
    ]
   },
@@ -989,7 +989,7 @@
     "toplam": 29.5,
     "yillik": 17.4,
     "son_yil": 4.1,
-    "al_tut": -25.5,
+    "al_tut": -25.6,
     "baslangic": "2025-03-03"
    },
    "ilk5": [
@@ -1004,7 +1004,7 @@
      "toplam": 29.5,
      "yillik": 17.4,
      "son_yil": 4.1,
-     "al_tut": -25.5,
+     "al_tut": -25.6,
      "baslangic": "2025-03-03"
     },
     {
@@ -1018,7 +1018,7 @@
      "toplam": 27.2,
      "yillik": 16.1,
      "son_yil": 5.8,
-     "al_tut": -25.5,
+     "al_tut": -25.6,
      "baslangic": "2025-03-03"
     },
     {
@@ -1032,7 +1032,7 @@
      "toplam": 25.3,
      "yillik": 15.0,
      "son_yil": 4.1,
-     "al_tut": -25.5,
+     "al_tut": -25.6,
      "baslangic": "2025-03-03"
     },
     {
@@ -1046,7 +1046,7 @@
      "toplam": 21.9,
      "yillik": 13.1,
      "son_yil": 5.8,
-     "al_tut": -25.5,
+     "al_tut": -25.6,
      "baslangic": "2025-03-03"
     },
     {
@@ -1060,7 +1060,7 @@
      "toplam": 21.2,
      "yillik": 12.6,
      "son_yil": -1.8,
-     "al_tut": -25.5,
+     "al_tut": -25.6,
      "baslangic": "2025-03-03"
     }
    ]
@@ -1253,7 +1253,7 @@
     "toplam": 2718.5,
     "yillik": 82.7,
     "son_yil": 64.2,
-    "al_tut": 4513.4,
+    "al_tut": 4493.7,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -1268,7 +1268,7 @@
      "toplam": 2718.5,
      "yillik": 82.7,
      "son_yil": 64.2,
-     "al_tut": 4513.4,
+     "al_tut": 4493.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -1282,7 +1282,7 @@
      "toplam": 2623.5,
      "yillik": 81.6,
      "son_yil": 54.6,
-     "al_tut": 4513.4,
+     "al_tut": 4493.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -1296,7 +1296,7 @@
      "toplam": 2559.3,
      "yillik": 80.8,
      "son_yil": 59.3,
-     "al_tut": 4513.4,
+     "al_tut": 4493.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -1310,7 +1310,7 @@
      "toplam": 2486.1,
      "yillik": 79.9,
      "son_yil": 54.6,
-     "al_tut": 4513.4,
+     "al_tut": 4493.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -1324,7 +1324,7 @@
      "toplam": 2478.0,
      "yillik": 79.8,
      "son_yil": 58.7,
-     "al_tut": 4513.4,
+     "al_tut": 4493.7,
      "baslangic": "2021-03-29"
     }
    ]
@@ -1341,7 +1341,7 @@
     "toplam": 245.2,
     "yillik": 52.7,
     "son_yil": 175.8,
-    "al_tut": 73.1,
+    "al_tut": 72.3,
     "baslangic": "2023-11-09"
    },
    "ilk5": [
@@ -1356,7 +1356,7 @@
      "toplam": 245.2,
      "yillik": 52.7,
      "son_yil": 175.8,
-     "al_tut": 73.1,
+     "al_tut": 72.3,
      "baslangic": "2023-11-09"
     },
     {
@@ -1364,13 +1364,13 @@
      "ad": "03 Dip Bulucu-2 (VixFix) + 06 AlphaTrend+SuperTrend",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 16,
-     "kazanma": 68.8,
-     "ortalama": 7.05,
-     "toplam": 162.3,
-     "yillik": 46.8,
-     "son_yil": 104.1,
-     "al_tut": 106.3,
+     "islem": 17,
+     "kazanma": 64.7,
+     "ortalama": 6.63,
+     "toplam": 162.0,
+     "yillik": 46.7,
+     "son_yil": 103.8,
+     "al_tut": 105.3,
      "baslangic": "2024-04-08"
     },
     {
@@ -1378,13 +1378,13 @@
      "ad": "03 Dip Bulucu-2 (VixFix) + 14 EMA 5x22",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 29,
-     "kazanma": 44.8,
-     "ortalama": 3.97,
-     "toplam": 153.5,
-     "yillik": 44.8,
-     "son_yil": 108.1,
-     "al_tut": 106.3,
+     "islem": 30,
+     "kazanma": 43.3,
+     "ortalama": 3.83,
+     "toplam": 153.2,
+     "yillik": 44.7,
+     "son_yil": 107.8,
+     "al_tut": 105.3,
      "baslangic": "2024-04-08"
     },
     {
@@ -1398,7 +1398,7 @@
      "toplam": 193.9,
      "yillik": 44.5,
      "son_yil": 116.5,
-     "al_tut": 73.1,
+     "al_tut": 72.3,
      "baslangic": "2023-11-09"
     },
     {
@@ -1412,7 +1412,7 @@
      "toplam": 192.0,
      "yillik": 44.2,
      "son_yil": 121.8,
-     "al_tut": 73.1,
+     "al_tut": 72.3,
      "baslangic": "2023-11-09"
     }
    ]
@@ -1429,7 +1429,7 @@
     "toplam": 851.2,
     "yillik": 39.4,
     "son_yil": -42.7,
-    "al_tut": 497.7,
+    "al_tut": 496.1,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -1444,7 +1444,7 @@
      "toplam": 851.2,
      "yillik": 39.4,
      "son_yil": -42.7,
-     "al_tut": 497.7,
+     "al_tut": 496.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -1458,7 +1458,7 @@
      "toplam": 768.7,
      "yillik": 37.6,
      "son_yil": -38.2,
-     "al_tut": 497.7,
+     "al_tut": 496.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -1472,7 +1472,7 @@
      "toplam": 542.7,
      "yillik": 31.6,
      "son_yil": -43.3,
-     "al_tut": 497.7,
+     "al_tut": 496.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -1486,7 +1486,7 @@
      "toplam": 500.5,
      "yillik": 30.3,
      "son_yil": -31.8,
-     "al_tut": 497.7,
+     "al_tut": 496.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -1500,7 +1500,7 @@
      "toplam": 492.9,
      "yillik": 30.0,
      "son_yil": -29.9,
-     "al_tut": 497.7,
+     "al_tut": 496.1,
      "baslangic": "2020-01-02"
     }
    ]
@@ -1517,7 +1517,7 @@
     "toplam": 121.9,
     "yillik": 37.3,
     "son_yil": 39.1,
-    "al_tut": 103.5,
+    "al_tut": 103.1,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
@@ -1532,7 +1532,7 @@
      "toplam": 121.9,
      "yillik": 37.3,
      "son_yil": 39.1,
-     "al_tut": 103.5,
+     "al_tut": 103.1,
      "baslangic": "2024-04-08"
     },
     {
@@ -1542,11 +1542,11 @@
      "tf_ad": "4 Saat",
      "islem": 26,
      "kazanma": 73.1,
-     "ortalama": 3.07,
-     "toplam": 114.9,
-     "yillik": 35.6,
-     "son_yil": 27.1,
-     "al_tut": 103.5,
+     "ortalama": 3.06,
+     "toplam": 114.6,
+     "yillik": 35.5,
+     "son_yil": 26.9,
+     "al_tut": 103.1,
      "baslangic": "2024-04-08"
     },
     {
@@ -1560,7 +1560,7 @@
      "toplam": 430.4,
      "yillik": 35.2,
      "son_yil": 37.9,
-     "al_tut": 1261.5,
+     "al_tut": 1259.0,
      "baslangic": "2021-03-29"
     },
     {
@@ -1574,7 +1574,7 @@
      "toplam": 337.6,
      "yillik": 30.5,
      "son_yil": 56.7,
-     "al_tut": 1261.5,
+     "al_tut": 1259.0,
      "baslangic": "2021-03-29"
     },
     {
@@ -1584,11 +1584,11 @@
      "tf_ad": "4 Saat",
      "islem": 26,
      "kazanma": 76.9,
-     "ortalama": 2.73,
-     "toplam": 93.8,
-     "yillik": 30.1,
-     "son_yil": 37.6,
-     "al_tut": 103.5,
+     "ortalama": 2.72,
+     "toplam": 93.5,
+     "yillik": 30.0,
+     "son_yil": 37.4,
+     "al_tut": 103.1,
      "baslangic": "2024-04-08"
     }
    ]
@@ -1693,7 +1693,7 @@
     "toplam": 1385.2,
     "yillik": 48.9,
     "son_yil": -38.7,
-    "al_tut": -40.4,
+    "al_tut": -40.8,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -1708,7 +1708,7 @@
      "toplam": 1385.2,
      "yillik": 48.9,
      "son_yil": -38.7,
-     "al_tut": -40.4,
+     "al_tut": -40.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -1722,7 +1722,7 @@
      "toplam": 1229.9,
      "yillik": 46.5,
      "son_yil": -22.8,
-     "al_tut": -40.4,
+     "al_tut": -40.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -1736,7 +1736,7 @@
      "toplam": 697.4,
      "yillik": 45.5,
      "son_yil": -11.2,
-     "al_tut": -83.5,
+     "al_tut": -83.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -1750,7 +1750,7 @@
      "toplam": 1090.1,
      "yillik": 44.1,
      "son_yil": -17.7,
-     "al_tut": -40.4,
+     "al_tut": -40.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -1764,7 +1764,7 @@
      "toplam": 628.6,
      "yillik": 43.1,
      "son_yil": -0.5,
-     "al_tut": -83.5,
+     "al_tut": -83.6,
      "baslangic": "2021-03-29"
     }
    ]
@@ -1781,7 +1781,7 @@
     "toplam": 9083.0,
     "yillik": 94.8,
     "son_yil": 41.1,
-    "al_tut": 5600.9,
+    "al_tut": 5596.6,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -1796,7 +1796,7 @@
      "toplam": 9083.0,
      "yillik": 94.8,
      "son_yil": 41.1,
-     "al_tut": 5600.9,
+     "al_tut": 5596.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -1810,7 +1810,7 @@
      "toplam": 6199.8,
      "yillik": 84.3,
      "son_yil": 67.7,
-     "al_tut": 5600.9,
+     "al_tut": 5596.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -1824,7 +1824,7 @@
      "toplam": 5004.4,
      "yillik": 78.6,
      "son_yil": 64.7,
-     "al_tut": 5600.9,
+     "al_tut": 5596.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -1838,7 +1838,7 @@
      "toplam": 4484.0,
      "yillik": 75.8,
      "son_yil": 62.4,
-     "al_tut": 5600.9,
+     "al_tut": 5596.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -1852,7 +1852,7 @@
      "toplam": 3848.2,
      "yillik": 72.0,
      "son_yil": 31.1,
-     "al_tut": 5600.9,
+     "al_tut": 5596.6,
      "baslangic": "2020-01-02"
     }
    ]
@@ -1869,7 +1869,7 @@
     "toplam": 3106.7,
     "yillik": 66.8,
     "son_yil": -24.9,
-    "al_tut": 2666.9,
+    "al_tut": 2668.9,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -1884,7 +1884,7 @@
      "toplam": 3106.7,
      "yillik": 66.8,
      "son_yil": -24.9,
-     "al_tut": 2666.9,
+     "al_tut": 2668.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -1895,10 +1895,10 @@
      "islem": 79,
      "kazanma": 32.9,
      "ortalama": 5.96,
-     "toplam": 2174.0,
+     "toplam": 2173.9,
      "yillik": 58.5,
      "son_yil": -35.1,
-     "al_tut": 2666.9,
+     "al_tut": 2668.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -1912,7 +1912,7 @@
      "toplam": 2133.2,
      "yillik": 58.1,
      "son_yil": -17.0,
-     "al_tut": 2666.9,
+     "al_tut": 2668.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -1926,7 +1926,7 @@
      "toplam": 2009.2,
      "yillik": 56.8,
      "son_yil": -15.0,
-     "al_tut": 2666.9,
+     "al_tut": 2668.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -1940,7 +1940,7 @@
      "toplam": 1800.4,
      "yillik": 54.4,
      "son_yil": -42.4,
-     "al_tut": 2666.9,
+     "al_tut": 2668.9,
      "baslangic": "2020-01-02"
     }
    ]
@@ -1957,7 +1957,7 @@
     "toplam": 4629.8,
     "yillik": 100.6,
     "son_yil": 81.4,
-    "al_tut": 59.5,
+    "al_tut": 60.3,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -1972,7 +1972,7 @@
      "toplam": 4629.8,
      "yillik": 100.6,
      "son_yil": 81.4,
-     "al_tut": 59.5,
+     "al_tut": 60.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -1986,7 +1986,7 @@
      "toplam": 3951.3,
      "yillik": 95.1,
      "son_yil": 117.2,
-     "al_tut": 59.5,
+     "al_tut": 60.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -2000,7 +2000,7 @@
      "toplam": 3902.5,
      "yillik": 94.7,
      "son_yil": 96.6,
-     "al_tut": 59.5,
+     "al_tut": 60.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -2014,7 +2014,7 @@
      "toplam": 3688.4,
      "yillik": 92.7,
      "son_yil": 74.9,
-     "al_tut": 59.5,
+     "al_tut": 60.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -2028,7 +2028,7 @@
      "toplam": 3473.1,
      "yillik": 90.7,
      "son_yil": 107.5,
-     "al_tut": 59.5,
+     "al_tut": 60.3,
      "baslangic": "2021-03-29"
     }
    ]
@@ -2133,7 +2133,7 @@
     "toplam": 365.6,
     "yillik": 39.2,
     "son_yil": 2.7,
-    "al_tut": 11.6,
+    "al_tut": 10.6,
     "baslangic": "2022-02-18"
    },
    "ilk5": [
@@ -2148,7 +2148,7 @@
      "toplam": 365.6,
      "yillik": 39.2,
      "son_yil": 2.7,
-     "al_tut": 11.6,
+     "al_tut": 10.6,
      "baslangic": "2022-02-18"
     },
     {
@@ -2162,7 +2162,7 @@
      "toplam": 359.4,
      "yillik": 38.8,
      "son_yil": -13.2,
-     "al_tut": 11.6,
+     "al_tut": 10.6,
      "baslangic": "2022-02-18"
     },
     {
@@ -2176,7 +2176,7 @@
      "toplam": 314.8,
      "yillik": 35.8,
      "son_yil": -0.5,
-     "al_tut": 11.6,
+     "al_tut": 10.6,
      "baslangic": "2022-02-18"
     },
     {
@@ -2190,7 +2190,7 @@
      "toplam": 277.6,
      "yillik": 33.1,
      "son_yil": -3.7,
-     "al_tut": 11.6,
+     "al_tut": 10.6,
      "baslangic": "2022-02-18"
     },
     {
@@ -2204,7 +2204,7 @@
      "toplam": 258.1,
      "yillik": 31.6,
      "son_yil": -38.8,
-     "al_tut": 11.6,
+     "al_tut": 10.6,
      "baslangic": "2022-02-18"
     }
    ]
@@ -2221,7 +2221,7 @@
     "toplam": 700.3,
     "yillik": 35.9,
     "son_yil": 47.1,
-    "al_tut": 126.8,
+    "al_tut": 126.9,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -2236,7 +2236,7 @@
      "toplam": 700.3,
      "yillik": 35.9,
      "son_yil": 47.1,
-     "al_tut": 126.8,
+     "al_tut": 126.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -2250,7 +2250,7 @@
      "toplam": 638.0,
      "yillik": 34.3,
      "son_yil": 32.2,
-     "al_tut": 126.8,
+     "al_tut": 126.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -2264,7 +2264,7 @@
      "toplam": 598.3,
      "yillik": 33.2,
      "son_yil": 36.3,
-     "al_tut": 126.8,
+     "al_tut": 126.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -2278,7 +2278,7 @@
      "toplam": 595.3,
      "yillik": 33.1,
      "son_yil": 36.3,
-     "al_tut": 126.8,
+     "al_tut": 126.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -2309,7 +2309,7 @@
     "toplam": 2447.5,
     "yillik": 61.2,
     "son_yil": -11.2,
-    "al_tut": 3341.9,
+    "al_tut": 3340.2,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -2324,7 +2324,7 @@
      "toplam": 2447.5,
      "yillik": 61.2,
      "son_yil": -11.2,
-     "al_tut": 3341.9,
+     "al_tut": 3340.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -2338,7 +2338,7 @@
      "toplam": 2256.1,
      "yillik": 59.4,
      "son_yil": -5.0,
-     "al_tut": 3341.9,
+     "al_tut": 3340.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -2352,7 +2352,7 @@
      "toplam": 1926.9,
      "yillik": 55.9,
      "son_yil": -6.0,
-     "al_tut": 3341.9,
+     "al_tut": 3340.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -2366,7 +2366,7 @@
      "toplam": 1918.5,
      "yillik": 55.8,
      "son_yil": 4.8,
-     "al_tut": 3341.9,
+     "al_tut": 3340.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -2380,7 +2380,7 @@
      "toplam": 1885.0,
      "yillik": 55.4,
      "son_yil": -10.9,
-     "al_tut": 3341.9,
+     "al_tut": 3340.2,
      "baslangic": "2020-01-02"
     }
    ]
@@ -2397,7 +2397,7 @@
     "toplam": 2440.4,
     "yillik": 61.2,
     "son_yil": -3.5,
-    "al_tut": 1589.9,
+    "al_tut": 1587.4,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -2412,7 +2412,7 @@
      "toplam": 2440.4,
      "yillik": 61.2,
      "son_yil": -3.5,
-     "al_tut": 1589.9,
+     "al_tut": 1587.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -2426,7 +2426,7 @@
      "toplam": 2304.0,
      "yillik": 59.8,
      "son_yil": -9.8,
-     "al_tut": 1589.9,
+     "al_tut": 1587.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -2437,10 +2437,10 @@
      "islem": 50,
      "kazanma": 58.0,
      "ortalama": 7.2,
-     "toplam": 2042.1,
+     "toplam": 2042.2,
      "yillik": 57.2,
      "son_yil": -6.4,
-     "al_tut": 1589.9,
+     "al_tut": 1587.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -2454,7 +2454,7 @@
      "toplam": 2023.4,
      "yillik": 56.9,
      "son_yil": -4.2,
-     "al_tut": 1589.9,
+     "al_tut": 1587.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -2468,7 +2468,7 @@
      "toplam": 1815.7,
      "yillik": 54.6,
      "son_yil": -3.5,
-     "al_tut": 1589.9,
+     "al_tut": 1587.4,
      "baslangic": "2020-01-02"
     }
    ]
@@ -2479,13 +2479,13 @@
     "ad": "07 Parabolic SAR + 18 Fisher Dip",
     "tf": 1,
     "tf_ad": "4 Saat",
-    "islem": 34,
-    "kazanma": 52.9,
-    "ortalama": 1.83,
-    "toplam": 69.8,
-    "yillik": 23.4,
-    "son_yil": 15.1,
-    "al_tut": -44.1,
+    "islem": 35,
+    "kazanma": 54.3,
+    "ortalama": 1.73,
+    "toplam": 67.4,
+    "yillik": 22.7,
+    "son_yil": 13.5,
+    "al_tut": -44.2,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
@@ -2494,13 +2494,13 @@
      "ad": "07 Parabolic SAR + 18 Fisher Dip",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 34,
-     "kazanma": 52.9,
-     "ortalama": 1.83,
-     "toplam": 69.8,
-     "yillik": 23.4,
-     "son_yil": 15.1,
-     "al_tut": -44.1,
+     "islem": 35,
+     "kazanma": 54.3,
+     "ortalama": 1.73,
+     "toplam": 67.4,
+     "yillik": 22.7,
+     "son_yil": 13.5,
+     "al_tut": -44.2,
      "baslangic": "2024-04-08"
     },
     {
@@ -2508,13 +2508,41 @@
      "ad": "09 ALMA + 19 CCI Dip",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 45,
-     "kazanma": 42.2,
-     "ortalama": 1.26,
-     "toplam": 62.6,
-     "yillik": 21.3,
-     "son_yil": 20.9,
-     "al_tut": -44.1,
+     "islem": 46,
+     "kazanma": 43.5,
+     "ortalama": 1.27,
+     "toplam": 65.5,
+     "yillik": 22.2,
+     "son_yil": 23.1,
+     "al_tut": -44.2,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 189,
+     "ad": "09 ALMA + 18 Fisher Dip",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 48,
+     "kazanma": 39.6,
+     "ortalama": 1.16,
+     "toplam": 60.5,
+     "yillik": 20.7,
+     "son_yil": 10.0,
+     "al_tut": -44.2,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 216,
+     "ad": "11 Bollinger Orta Bant + 18 Fisher Dip",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 32,
+     "kazanma": 53.1,
+     "ortalama": 1.62,
+     "toplam": 59.1,
+     "yillik": 20.3,
+     "son_yil": 10.2,
+     "al_tut": -44.2,
      "baslangic": "2024-04-08"
     },
     {
@@ -2528,35 +2556,7 @@
      "toplam": 58.3,
      "yillik": 20.0,
      "son_yil": -2.9,
-     "al_tut": -44.1,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 216,
-     "ad": "11 Bollinger Orta Bant + 18 Fisher Dip",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 31,
-     "kazanma": 51.6,
-     "ortalama": 1.65,
-     "toplam": 58.2,
-     "yillik": 20.0,
-     "son_yil": 9.6,
-     "al_tut": -44.1,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 189,
-     "ad": "09 ALMA + 18 Fisher Dip",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 47,
-     "kazanma": 38.3,
-     "ortalama": 1.13,
-     "toplam": 56.1,
-     "yillik": 19.4,
-     "son_yil": 6.9,
-     "al_tut": -44.1,
+     "al_tut": -44.2,
      "baslangic": "2024-04-08"
     }
    ]
@@ -2573,7 +2573,7 @@
     "toplam": 1794.2,
     "yillik": 54.3,
     "son_yil": 3.6,
-    "al_tut": 3147.9,
+    "al_tut": 3145.6,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -2588,7 +2588,7 @@
      "toplam": 1794.2,
      "yillik": 54.3,
      "son_yil": 3.6,
-     "al_tut": 3147.9,
+     "al_tut": 3145.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -2602,7 +2602,7 @@
      "toplam": 948.7,
      "yillik": 52.9,
      "son_yil": 1.9,
-     "al_tut": 937.1,
+     "al_tut": 936.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -2616,7 +2616,7 @@
      "toplam": 1611.8,
      "yillik": 52.0,
      "son_yil": 3.4,
-     "al_tut": 3147.9,
+     "al_tut": 3145.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -2630,7 +2630,7 @@
      "toplam": 1408.1,
      "yillik": 49.2,
      "son_yil": 10.8,
-     "al_tut": 3147.9,
+     "al_tut": 3145.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -2644,7 +2644,7 @@
      "toplam": 751.7,
      "yillik": 47.2,
      "son_yil": -4.3,
-     "al_tut": 937.1,
+     "al_tut": 936.3,
      "baslangic": "2021-03-29"
     }
    ]
@@ -2743,13 +2743,13 @@
     "ad": "09 ALMA",
     "tf": 1,
     "tf_ad": "4 Saat",
-    "islem": 69,
-    "kazanma": 43.5,
-    "ortalama": 1.87,
-    "toplam": 178.9,
-    "yillik": 50.4,
-    "son_yil": 2.9,
-    "al_tut": 14.1,
+    "islem": 70,
+    "kazanma": 42.9,
+    "ortalama": 1.79,
+    "toplam": 169.2,
+    "yillik": 48.3,
+    "son_yil": -0.6,
+    "al_tut": 14.2,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
@@ -2758,13 +2758,13 @@
      "ad": "09 ALMA",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 69,
-     "kazanma": 43.5,
-     "ortalama": 1.87,
-     "toplam": 178.9,
-     "yillik": 50.4,
-     "son_yil": 2.9,
-     "al_tut": 14.1,
+     "islem": 70,
+     "kazanma": 42.9,
+     "ortalama": 1.79,
+     "toplam": 169.2,
+     "yillik": 48.3,
+     "son_yil": -0.6,
+     "al_tut": 14.2,
      "baslangic": "2024-04-08"
     },
     {
@@ -2775,24 +2775,10 @@
      "islem": 57,
      "kazanma": 42.1,
      "ortalama": 2.16,
-     "toplam": 168.9,
-     "yillik": 48.2,
-     "son_yil": 13.9,
-     "al_tut": 14.1,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 182,
-     "ad": "09 ALMA + 11 Bollinger Orta Bant",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 56,
-     "kazanma": 48.2,
-     "ortalama": 2.09,
-     "toplam": 166.0,
-     "yillik": 47.6,
-     "son_yil": 26.8,
-     "al_tut": 14.1,
+     "toplam": 168.3,
+     "yillik": 48.1,
+     "son_yil": 13.6,
+     "al_tut": 14.2,
      "baslangic": "2024-04-08"
     },
     {
@@ -2806,7 +2792,21 @@
      "toplam": 159.0,
      "yillik": 46.0,
      "son_yil": 89.2,
-     "al_tut": 14.1,
+     "al_tut": 14.2,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 182,
+     "ad": "09 ALMA + 11 Bollinger Orta Bant",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 58,
+     "kazanma": 46.6,
+     "ortalama": 1.94,
+     "toplam": 153.3,
+     "yillik": 44.8,
+     "son_yil": 20.7,
+     "al_tut": 14.2,
      "baslangic": "2024-04-08"
     },
     {
@@ -2814,13 +2814,13 @@
      "ad": "02 Dip Bulucu (Banker) + 09 ALMA",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 34,
-     "kazanma": 50.0,
-     "ortalama": 3.19,
-     "toplam": 150.9,
-     "yillik": 44.2,
-     "son_yil": 44.1,
-     "al_tut": 14.1,
+     "islem": 35,
+     "kazanma": 48.6,
+     "ortalama": 3.03,
+     "toplam": 144.2,
+     "yillik": 42.7,
+     "son_yil": 40.2,
+     "al_tut": 14.2,
      "baslangic": "2024-04-08"
     }
    ]
@@ -2837,7 +2837,7 @@
     "toplam": 727.8,
     "yillik": 46.5,
     "son_yil": -6.1,
-    "al_tut": 234.6,
+    "al_tut": 233.6,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -2852,7 +2852,7 @@
      "toplam": 727.8,
      "yillik": 46.5,
      "son_yil": -6.1,
-     "al_tut": 234.6,
+     "al_tut": 233.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -2866,7 +2866,7 @@
      "toplam": 1207.8,
      "yillik": 46.1,
      "son_yil": 1.2,
-     "al_tut": 926.3,
+     "al_tut": 923.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -2880,7 +2880,7 @@
      "toplam": 689.3,
      "yillik": 45.2,
      "son_yil": -6.1,
-     "al_tut": 234.6,
+     "al_tut": 233.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -2894,7 +2894,7 @@
      "toplam": 1048.9,
      "yillik": 43.4,
      "son_yil": -8.8,
-     "al_tut": 926.3,
+     "al_tut": 923.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -2908,27 +2908,41 @@
      "toplam": 996.9,
      "yillik": 42.4,
      "son_yil": -6.8,
-     "al_tut": 926.3,
+     "al_tut": 923.2,
      "baslangic": "2020-01-02"
     }
    ]
   },
   "EKGYO": {
    "en_iyi": {
-    "aday": 8,
-    "ad": "09 ALMA",
-    "tf": 2,
-    "tf_ad": "Günlük",
-    "islem": 103,
-    "kazanma": 43.7,
-    "ortalama": 3.72,
-    "toplam": 1883.4,
-    "yillik": 55.4,
-    "son_yil": -5.0,
-    "al_tut": 1431.0,
-    "baslangic": "2020-01-02"
+    "aday": 18,
+    "ad": "19 CCI Dip",
+    "tf": 1,
+    "tf_ad": "4 Saat",
+    "islem": 32,
+    "kazanma": 84.4,
+    "ortalama": 3.85,
+    "toplam": 205.9,
+    "yillik": 56.0,
+    "son_yil": 5.1,
+    "al_tut": 90.9,
+    "baslangic": "2024-04-08"
    },
    "ilk5": [
+    {
+     "aday": 18,
+     "ad": "19 CCI Dip",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 32,
+     "kazanma": 84.4,
+     "ortalama": 3.85,
+     "toplam": 205.9,
+     "yillik": 56.0,
+     "son_yil": 5.1,
+     "al_tut": 90.9,
+     "baslangic": "2024-04-08"
+    },
     {
      "aday": 8,
      "ad": "09 ALMA",
@@ -2940,22 +2954,8 @@
      "toplam": 1883.4,
      "yillik": 55.4,
      "son_yil": -5.0,
-     "al_tut": 1431.0,
+     "al_tut": 1429.4,
      "baslangic": "2020-01-02"
-    },
-    {
-     "aday": 18,
-     "ad": "19 CCI Dip",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 32,
-     "kazanma": 84.4,
-     "ortalama": 3.78,
-     "toplam": 197.4,
-     "yillik": 54.3,
-     "son_yil": 2.2,
-     "al_tut": 91.1,
-     "baslangic": "2024-04-08"
     },
     {
      "aday": 280,
@@ -2964,11 +2964,11 @@
      "tf_ad": "4 Saat",
      "islem": 31,
      "kazanma": 77.4,
-     "ortalama": 3.76,
-     "toplam": 193.7,
-     "yillik": 53.5,
-     "son_yil": -5.4,
-     "al_tut": 91.1,
+     "ortalama": 3.84,
+     "toplam": 202.3,
+     "yillik": 55.3,
+     "son_yil": -2.7,
+     "al_tut": 90.9,
      "baslangic": "2024-04-08"
     },
     {
@@ -2978,26 +2978,26 @@
      "tf_ad": "Günlük",
      "islem": 63,
      "kazanma": 52.4,
-     "ortalama": 5.24,
-     "toplam": 1405.8,
-     "yillik": 49.2,
+     "ortalama": 5.29,
+     "toplam": 1441.9,
+     "yillik": 49.7,
      "son_yil": -13.5,
-     "al_tut": 1431.0,
+     "al_tut": 1429.4,
      "baslangic": "2020-01-02"
     },
     {
-     "aday": 3,
-     "ad": "04 AlphaTrend",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 22,
-     "kazanma": 54.5,
-     "ortalama": 14.76,
-     "toplam": 1091.6,
-     "yillik": 44.1,
-     "son_yil": -5.3,
-     "al_tut": 1431.0,
-     "baslangic": "2020-01-02"
+     "aday": 17,
+     "ad": "18 Fisher Dip",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 26,
+     "kazanma": 69.2,
+     "ortalama": 3.87,
+     "toplam": 151.7,
+     "yillik": 44.4,
+     "son_yil": -8.4,
+     "al_tut": 90.9,
+     "baslangic": "2024-04-08"
     }
    ]
   },
@@ -3013,7 +3013,7 @@
     "toplam": 240.4,
     "yillik": 68.5,
     "son_yil": 30.2,
-    "al_tut": 442.3,
+    "al_tut": 441.9,
     "baslangic": "2024-06-07"
    },
    "ilk5": [
@@ -3028,7 +3028,7 @@
      "toplam": 240.4,
      "yillik": 68.5,
      "son_yil": 30.2,
-     "al_tut": 442.3,
+     "al_tut": 441.9,
      "baslangic": "2024-06-07"
     },
     {
@@ -3036,13 +3036,13 @@
      "ad": "07 Parabolic SAR",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 47,
-     "kazanma": 51.1,
-     "ortalama": 3.1,
-     "toplam": 262.2,
-     "yillik": 66.9,
-     "son_yil": 23.6,
-     "al_tut": 435.9,
+     "islem": 48,
+     "kazanma": 50.0,
+     "ortalama": 2.92,
+     "toplam": 241.9,
+     "yillik": 63.1,
+     "son_yil": 16.7,
+     "al_tut": 435.5,
      "baslangic": "2024-04-08"
     },
     {
@@ -3056,7 +3056,7 @@
      "toplam": 235.4,
      "yillik": 61.9,
      "son_yil": 27.1,
-     "al_tut": 435.9,
+     "al_tut": 435.5,
      "baslangic": "2024-04-08"
     },
     {
@@ -3070,22 +3070,22 @@
      "toplam": 171.0,
      "yillik": 52.9,
      "son_yil": 11.4,
-     "al_tut": 442.3,
+     "al_tut": 441.9,
      "baslangic": "2024-06-07"
     },
     {
-     "aday": 155,
-     "ad": "07 Parabolic SAR + 15 WMA 9x15",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 43,
-     "kazanma": 51.2,
-     "ortalama": 2.86,
-     "toplam": 189.2,
-     "yillik": 52.6,
-     "son_yil": 18.1,
-     "al_tut": 435.9,
-     "baslangic": "2024-04-08"
+     "aday": 81,
+     "ad": "03 Dip Bulucu-2 (VixFix) + 15 WMA 9x15",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 18,
+     "kazanma": 50.0,
+     "ortalama": 7.0,
+     "toplam": 166.3,
+     "yillik": 51.7,
+     "son_yil": 6.1,
+     "al_tut": 441.9,
+     "baslangic": "2024-06-07"
     }
    ]
   },
@@ -3101,7 +3101,7 @@
     "toplam": 443.8,
     "yillik": 41.8,
     "son_yil": 99.2,
-    "al_tut": 950.6,
+    "al_tut": 949.6,
     "baslangic": "2021-12-06"
    },
    "ilk5": [
@@ -3116,7 +3116,7 @@
      "toplam": 443.8,
      "yillik": 41.8,
      "son_yil": 99.2,
-     "al_tut": 950.6,
+     "al_tut": 949.6,
      "baslangic": "2021-12-06"
     },
     {
@@ -3130,7 +3130,7 @@
      "toplam": 434.2,
      "yillik": 41.3,
      "son_yil": 99.2,
-     "al_tut": 950.6,
+     "al_tut": 949.6,
      "baslangic": "2021-12-06"
     },
     {
@@ -3144,7 +3144,7 @@
      "toplam": 434.2,
      "yillik": 41.3,
      "son_yil": 99.2,
-     "al_tut": 950.6,
+     "al_tut": 949.6,
      "baslangic": "2021-12-06"
     },
     {
@@ -3158,7 +3158,7 @@
      "toplam": 414.8,
      "yillik": 40.2,
      "son_yil": 99.2,
-     "al_tut": 950.6,
+     "al_tut": 949.6,
      "baslangic": "2021-12-06"
     },
     {
@@ -3172,7 +3172,7 @@
      "toplam": 414.8,
      "yillik": 40.2,
      "son_yil": 99.2,
-     "al_tut": 950.6,
+     "al_tut": 949.6,
      "baslangic": "2021-12-06"
     }
    ]
@@ -3185,11 +3185,11 @@
     "tf_ad": "4 Saat",
     "islem": 21,
     "kazanma": 66.7,
-    "ortalama": 4.89,
-    "toplam": 149.7,
-    "yillik": 43.9,
-    "son_yil": 12.2,
-    "al_tut": 120.2,
+    "ortalama": 4.97,
+    "toplam": 153.9,
+    "yillik": 44.9,
+    "son_yil": 14.1,
+    "al_tut": 119.8,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
@@ -3200,11 +3200,11 @@
      "tf_ad": "4 Saat",
      "islem": 21,
      "kazanma": 66.7,
-     "ortalama": 4.89,
-     "toplam": 149.7,
-     "yillik": 43.9,
-     "son_yil": 12.2,
-     "al_tut": 120.2,
+     "ortalama": 4.97,
+     "toplam": 153.9,
+     "yillik": 44.9,
+     "son_yil": 14.1,
+     "al_tut": 119.8,
      "baslangic": "2024-04-08"
     },
     {
@@ -3214,12 +3214,26 @@
      "tf_ad": "Günlük",
      "islem": 29,
      "kazanma": 79.3,
-     "ortalama": 9.41,
-     "toplam": 1038.8,
-     "yillik": 43.2,
-     "son_yil": 41.8,
-     "al_tut": 1856.3,
+     "ortalama": 9.4,
+     "toplam": 1036.7,
+     "yillik": 43.1,
+     "son_yil": 41.5,
+     "al_tut": 1852.7,
      "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 17,
+     "ad": "18 Fisher Dip",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 27,
+     "kazanma": 70.4,
+     "ortalama": 3.14,
+     "toplam": 119.5,
+     "yillik": 36.7,
+     "son_yil": 34.3,
+     "al_tut": 119.8,
+     "baslangic": "2024-04-08"
     },
     {
      "aday": 213,
@@ -3232,22 +3246,8 @@
      "toplam": 442.8,
      "yillik": 35.7,
      "son_yil": 53.7,
-     "al_tut": 1246.9,
+     "al_tut": 1244.5,
      "baslangic": "2021-03-29"
-    },
-    {
-     "aday": 17,
-     "ad": "18 Fisher Dip",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 27,
-     "kazanma": 70.4,
-     "ortalama": 3.06,
-     "toplam": 114.6,
-     "yillik": 35.5,
-     "son_yil": 31.2,
-     "al_tut": 120.2,
-     "baslangic": "2024-04-08"
     },
     {
      "aday": 236,
@@ -3260,7 +3260,7 @@
      "toplam": 415.8,
      "yillik": 34.5,
      "son_yil": 53.7,
-     "al_tut": 1246.9,
+     "al_tut": 1244.5,
      "baslangic": "2021-03-29"
     }
    ]
@@ -3277,7 +3277,7 @@
     "toplam": 608.2,
     "yillik": 33.5,
     "son_yil": 19.1,
-    "al_tut": 1035.5,
+    "al_tut": 1033.6,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -3292,7 +3292,7 @@
      "toplam": 608.2,
      "yillik": 33.5,
      "son_yil": 19.1,
-     "al_tut": 1035.5,
+     "al_tut": 1033.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -3306,7 +3306,21 @@
      "toplam": 516.3,
      "yillik": 30.8,
      "son_yil": 25.6,
-     "al_tut": 1035.5,
+     "al_tut": 1033.6,
+     "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 24,
+     "ad": "25 Ortak Karar",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 61,
+     "kazanma": 50.8,
+     "ortalama": 3.48,
+     "toplam": 503.9,
+     "yillik": 30.4,
+     "son_yil": 29.7,
+     "al_tut": 1033.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -3320,21 +3334,7 @@
      "toplam": 496.3,
      "yillik": 30.1,
      "son_yil": 40.4,
-     "al_tut": 1035.5,
-     "baslangic": "2020-01-02"
-    },
-    {
-     "aday": 24,
-     "ad": "25 Ortak Karar",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 61,
-     "kazanma": 50.8,
-     "ortalama": 3.45,
-     "toplam": 492.2,
-     "yillik": 30.0,
-     "son_yil": 29.7,
-     "al_tut": 1035.5,
+     "al_tut": 1033.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -3348,7 +3348,7 @@
      "toplam": 490.8,
      "yillik": 30.0,
      "son_yil": 17.0,
-     "al_tut": 1035.5,
+     "al_tut": 1033.6,
      "baslangic": "2020-01-02"
     }
    ]
@@ -3359,13 +3359,13 @@
     "ad": "01 RSI Karpuzlu + 03 Dip Bulucu-2 (VixFix)",
     "tf": 1,
     "tf_ad": "4 Saat",
-    "islem": 42,
-    "kazanma": 38.1,
-    "ortalama": 2.53,
-    "toplam": 148.4,
-    "yillik": 43.6,
-    "son_yil": 111.3,
-    "al_tut": -4.2,
+    "islem": 43,
+    "kazanma": 37.2,
+    "ortalama": 2.43,
+    "toplam": 145.0,
+    "yillik": 42.8,
+    "son_yil": 108.4,
+    "al_tut": -4.6,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
@@ -3374,13 +3374,13 @@
      "ad": "01 RSI Karpuzlu + 03 Dip Bulucu-2 (VixFix)",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 42,
-     "kazanma": 38.1,
-     "ortalama": 2.53,
-     "toplam": 148.4,
-     "yillik": 43.6,
-     "son_yil": 111.3,
-     "al_tut": -4.2,
+     "islem": 43,
+     "kazanma": 37.2,
+     "ortalama": 2.43,
+     "toplam": 145.0,
+     "yillik": 42.8,
+     "son_yil": 108.4,
+     "al_tut": -4.6,
      "baslangic": "2024-04-08"
     },
     {
@@ -3394,7 +3394,7 @@
      "toplam": 160.2,
      "yillik": 42.8,
      "son_yil": 218.4,
-     "al_tut": -17.2,
+     "al_tut": -17.5,
      "baslangic": "2024-02-06"
     },
     {
@@ -3402,27 +3402,13 @@
      "ad": "01 RSI Karpuzlu + 15 WMA 9x15",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 48,
-     "kazanma": 35.4,
-     "ortalama": 2.18,
-     "toplam": 139.8,
-     "yillik": 41.6,
-     "son_yil": 81.9,
-     "al_tut": -4.2,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 263,
-     "ad": "15 WMA 9x15 + 23 EMA Kombo",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 27,
-     "kazanma": 44.4,
-     "ortalama": 3.8,
-     "toplam": 138.3,
-     "yillik": 41.3,
-     "son_yil": 116.2,
-     "al_tut": -4.2,
+     "islem": 49,
+     "kazanma": 34.7,
+     "ortalama": 2.11,
+     "toplam": 137.4,
+     "yillik": 41.1,
+     "son_yil": 80.0,
+     "al_tut": -4.6,
      "baslangic": "2024-04-08"
     },
     {
@@ -3436,8 +3422,22 @@
      "toplam": 127.7,
      "yillik": 38.7,
      "son_yil": 48.7,
-     "al_tut": -4.2,
+     "al_tut": -4.6,
      "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 183,
+     "ad": "09 ALMA + 12 Bollinger20 x EMA50",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 19,
+     "kazanma": 36.8,
+     "ortalama": 6.61,
+     "toplam": 126.9,
+     "yillik": 35.7,
+     "son_yil": 161.9,
+     "al_tut": -17.5,
+     "baslangic": "2024-02-06"
     }
    ]
   },
@@ -3506,26 +3506,26 @@
      "tf_ad": "4 Saat",
      "islem": 18,
      "kazanma": 55.6,
-     "ortalama": 4.22,
-     "toplam": 88.4,
-     "yillik": 28.7,
-     "son_yil": 49.3,
+     "ortalama": 4.27,
+     "toplam": 90.3,
+     "yillik": 29.2,
+     "son_yil": 50.7,
      "al_tut": -97.3,
      "baslangic": "2024-04-08"
     },
     {
-     "aday": 185,
-     "ad": "09 ALMA + 14 EMA 5x22",
-     "tf": 3,
-     "tf_ad": "Haftalık",
-     "islem": 7,
-     "kazanma": 71.4,
-     "ortalama": 27.23,
-     "toplam": 292.2,
-     "yillik": 28.0,
-     "son_yil": 0.0,
-     "al_tut": -93.1,
-     "baslangic": "2021-03-29"
+     "aday": 44,
+     "ad": "01 RSI Karpuzlu + 21 MACD Kesişimi",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 43,
+     "kazanma": 32.6,
+     "ortalama": 1.8,
+     "toplam": 88.1,
+     "yillik": 28.6,
+     "son_yil": 24.6,
+     "al_tut": -97.3,
+     "baslangic": "2024-04-08"
     }
    ]
   },
@@ -3541,7 +3541,7 @@
     "toplam": 624.1,
     "yillik": 33.9,
     "son_yil": 1.3,
-    "al_tut": 1446.1,
+    "al_tut": 1444.0,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -3556,7 +3556,7 @@
      "toplam": 624.1,
      "yillik": 33.9,
      "son_yil": 1.3,
-     "al_tut": 1446.1,
+     "al_tut": 1444.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3570,7 +3570,7 @@
      "toplam": 597.4,
      "yillik": 33.2,
      "son_yil": 7.0,
-     "al_tut": 1446.1,
+     "al_tut": 1444.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3584,7 +3584,7 @@
      "toplam": 539.1,
      "yillik": 31.5,
      "son_yil": -15.9,
-     "al_tut": 1446.1,
+     "al_tut": 1444.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3598,7 +3598,7 @@
      "toplam": 482.3,
      "yillik": 29.7,
      "son_yil": 1.4,
-     "al_tut": 1446.1,
+     "al_tut": 1444.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3612,7 +3612,7 @@
      "toplam": 476.6,
      "yillik": 29.5,
      "son_yil": -5.1,
-     "al_tut": 1446.1,
+     "al_tut": 1444.0,
      "baslangic": "2020-01-02"
     }
    ]
@@ -3629,7 +3629,7 @@
     "toplam": 1908.5,
     "yillik": 55.7,
     "son_yil": 2.5,
-    "al_tut": 1376.8,
+    "al_tut": 1378.0,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -3644,7 +3644,7 @@
      "toplam": 1908.5,
      "yillik": 55.7,
      "son_yil": 2.5,
-     "al_tut": 1376.8,
+     "al_tut": 1378.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3652,13 +3652,13 @@
      "ad": "11 Bollinger Orta Bant",
      "tf": 2,
      "tf_ad": "Günlük",
-     "islem": 88,
-     "kazanma": 36.4,
-     "ortalama": 3.8,
-     "toplam": 1234.2,
-     "yillik": 46.6,
+     "islem": 89,
+     "kazanma": 34.8,
+     "ortalama": 3.74,
+     "toplam": 1220.0,
+     "yillik": 46.3,
      "son_yil": -17.0,
-     "al_tut": 1376.8,
+     "al_tut": 1378.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3672,7 +3672,7 @@
      "toplam": 1061.6,
      "yillik": 43.6,
      "son_yil": -0.9,
-     "al_tut": 1376.8,
+     "al_tut": 1378.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3680,13 +3680,13 @@
      "ad": "03 Dip Bulucu-2 (VixFix) + 11 Bollinger Orta Bant",
      "tf": 2,
      "tf_ad": "Günlük",
-     "islem": 75,
-     "kazanma": 41.3,
-     "ortalama": 3.89,
-     "toplam": 1061.7,
-     "yillik": 43.6,
+     "islem": 76,
+     "kazanma": 39.5,
+     "ortalama": 3.83,
+     "toplam": 1049.2,
+     "yillik": 43.4,
      "son_yil": -16.6,
-     "al_tut": 1376.8,
+     "al_tut": 1378.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -3700,7 +3700,7 @@
      "toplam": 1003.3,
      "yillik": 42.5,
      "son_yil": -11.6,
-     "al_tut": 1376.8,
+     "al_tut": 1378.0,
      "baslangic": "2020-01-02"
     }
    ]
@@ -3717,7 +3717,7 @@
     "toplam": 811.9,
     "yillik": 66.0,
     "son_yil": 44.1,
-    "al_tut": 425.4,
+    "al_tut": 423.9,
     "baslangic": "2022-06-03"
    },
    "ilk5": [
@@ -3732,7 +3732,7 @@
      "toplam": 811.9,
      "yillik": 66.0,
      "son_yil": 44.1,
-     "al_tut": 425.4,
+     "al_tut": 423.9,
      "baslangic": "2022-06-03"
     },
     {
@@ -3746,7 +3746,7 @@
      "toplam": 776.6,
      "yillik": 64.5,
      "son_yil": 56.0,
-     "al_tut": 425.4,
+     "al_tut": 423.9,
      "baslangic": "2022-06-03"
     },
     {
@@ -3760,7 +3760,7 @@
      "toplam": 749.7,
      "yillik": 63.3,
      "son_yil": 79.7,
-     "al_tut": 425.4,
+     "al_tut": 423.9,
      "baslangic": "2022-06-03"
     },
     {
@@ -3774,7 +3774,7 @@
      "toplam": 720.8,
      "yillik": 62.0,
      "son_yil": 59.8,
-     "al_tut": 425.4,
+     "al_tut": 423.9,
      "baslangic": "2022-06-03"
     },
     {
@@ -3788,7 +3788,7 @@
      "toplam": 705.3,
      "yillik": 61.3,
      "son_yil": 18.6,
-     "al_tut": 425.4,
+     "al_tut": 423.9,
      "baslangic": "2022-06-03"
     }
    ]
@@ -3805,7 +3805,7 @@
     "toplam": 3562.6,
     "yillik": 70.1,
     "son_yil": -16.8,
-    "al_tut": 1400.9,
+    "al_tut": 1399.7,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -3820,7 +3820,7 @@
      "toplam": 3562.6,
      "yillik": 70.1,
      "son_yil": -16.8,
-     "al_tut": 1400.9,
+     "al_tut": 1399.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -3834,7 +3834,7 @@
      "toplam": 2476.1,
      "yillik": 61.5,
      "son_yil": 0.9,
-     "al_tut": 1400.9,
+     "al_tut": 1399.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -3848,7 +3848,7 @@
      "toplam": 1489.7,
      "yillik": 50.4,
      "son_yil": -13.6,
-     "al_tut": 1400.9,
+     "al_tut": 1399.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -3862,7 +3862,7 @@
      "toplam": 794.4,
      "yillik": 48.5,
      "son_yil": 2.6,
-     "al_tut": 349.8,
+     "al_tut": 349.4,
      "baslangic": "2021-03-29"
     },
     {
@@ -3876,7 +3876,7 @@
      "toplam": 1334.6,
      "yillik": 48.1,
      "son_yil": -9.7,
-     "al_tut": 1400.9,
+     "al_tut": 1399.7,
      "baslangic": "2020-01-02"
     }
    ]
@@ -3893,7 +3893,7 @@
     "toplam": 1542.4,
     "yillik": 109.0,
     "son_yil": 3.9,
-    "al_tut": 1448.9,
+    "al_tut": 1447.6,
     "baslangic": "2022-12-26"
    },
    "ilk5": [
@@ -3908,7 +3908,7 @@
      "toplam": 1542.4,
      "yillik": 109.0,
      "son_yil": 3.9,
-     "al_tut": 1448.9,
+     "al_tut": 1447.6,
      "baslangic": "2022-12-26"
     },
     {
@@ -3922,7 +3922,7 @@
      "toplam": 832.4,
      "yillik": 80.0,
      "son_yil": -25.8,
-     "al_tut": 1448.9,
+     "al_tut": 1447.6,
      "baslangic": "2022-12-26"
     },
     {
@@ -3933,10 +3933,10 @@
      "islem": 36,
      "kazanma": 50.0,
      "ortalama": 7.8,
-     "toplam": 748.1,
-     "yillik": 75.6,
+     "toplam": 749.6,
+     "yillik": 75.7,
      "son_yil": -8.6,
-     "al_tut": 1448.9,
+     "al_tut": 1447.6,
      "baslangic": "2022-12-26"
     },
     {
@@ -3950,7 +3950,7 @@
      "toplam": 615.9,
      "yillik": 67.9,
      "son_yil": -21.9,
-     "al_tut": 1448.9,
+     "al_tut": 1447.6,
      "baslangic": "2022-12-26"
     },
     {
@@ -3964,7 +3964,7 @@
      "toplam": 611.4,
      "yillik": 67.6,
      "son_yil": -25.7,
-     "al_tut": 1448.9,
+     "al_tut": 1447.6,
      "baslangic": "2022-12-26"
     }
    ]
@@ -3981,7 +3981,7 @@
     "toplam": 5118.4,
     "yillik": 79.2,
     "son_yil": 76.0,
-    "al_tut": 4330.0,
+    "al_tut": 4335.4,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -3996,7 +3996,7 @@
      "toplam": 5118.4,
      "yillik": 79.2,
      "son_yil": 76.0,
-     "al_tut": 4330.0,
+     "al_tut": 4335.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4010,7 +4010,7 @@
      "toplam": 4701.9,
      "yillik": 77.0,
      "son_yil": 43.3,
-     "al_tut": 4330.0,
+     "al_tut": 4335.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4024,7 +4024,7 @@
      "toplam": 3365.4,
      "yillik": 68.7,
      "son_yil": 50.7,
-     "al_tut": 4330.0,
+     "al_tut": 4335.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4038,7 +4038,7 @@
      "toplam": 3219.3,
      "yillik": 67.6,
      "son_yil": 78.6,
-     "al_tut": 4330.0,
+     "al_tut": 4335.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4052,7 +4052,7 @@
      "toplam": 3170.7,
      "yillik": 67.3,
      "son_yil": 46.4,
-     "al_tut": 4330.0,
+     "al_tut": 4335.4,
      "baslangic": "2020-01-02"
     }
    ]
@@ -4066,9 +4066,9 @@
     "islem": 48,
     "kazanma": 50.0,
     "ortalama": 2.77,
-    "toplam": 217.2,
-    "yillik": 58.3,
-    "son_yil": 85.0,
+    "toplam": 217.5,
+    "yillik": 58.4,
+    "son_yil": 85.2,
     "al_tut": 166.1,
     "baslangic": "2024-04-08"
    },
@@ -4081,9 +4081,9 @@
      "islem": 48,
      "kazanma": 50.0,
      "ortalama": 2.77,
-     "toplam": 217.2,
-     "yillik": 58.3,
-     "son_yil": 85.0,
+     "toplam": 217.5,
+     "yillik": 58.4,
+     "son_yil": 85.2,
      "al_tut": 166.1,
      "baslangic": "2024-04-08"
     },
@@ -4130,16 +4130,16 @@
      "baslangic": "2020-01-02"
     },
     {
-     "aday": 0,
-     "ad": "01 RSI Karpuzlu",
+     "aday": 36,
+     "ad": "01 RSI Karpuzlu + 13 EMA 5x13",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 72,
-     "kazanma": 29.2,
-     "ortalama": 1.3,
-     "toplam": 113.3,
-     "yillik": 35.2,
-     "son_yil": 58.3,
+     "islem": 62,
+     "kazanma": 32.3,
+     "ortalama": 1.47,
+     "toplam": 109.7,
+     "yillik": 34.3,
+     "son_yil": 53.1,
      "al_tut": 166.1,
      "baslangic": "2024-04-08"
     }
@@ -4157,7 +4157,7 @@
     "toplam": 2437.2,
     "yillik": 61.1,
     "son_yil": 11.7,
-    "al_tut": 388.1,
+    "al_tut": 390.4,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -4172,7 +4172,7 @@
      "toplam": 2437.2,
      "yillik": 61.1,
      "son_yil": 11.7,
-     "al_tut": 388.1,
+     "al_tut": 390.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4186,7 +4186,7 @@
      "toplam": 1314.2,
      "yillik": 47.8,
      "son_yil": -22.3,
-     "al_tut": 388.1,
+     "al_tut": 390.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4200,7 +4200,7 @@
      "toplam": 767.1,
      "yillik": 47.7,
      "son_yil": -9.7,
-     "al_tut": 30.6,
+     "al_tut": 31.2,
      "baslangic": "2021-03-29"
     },
     {
@@ -4214,7 +4214,7 @@
      "toplam": 767.5,
      "yillik": 47.7,
      "son_yil": -16.6,
-     "al_tut": 30.6,
+     "al_tut": 31.2,
      "baslangic": "2021-03-29"
     },
     {
@@ -4228,7 +4228,7 @@
      "toplam": 747.2,
      "yillik": 47.1,
      "son_yil": -11.5,
-     "al_tut": 30.6,
+     "al_tut": 31.2,
      "baslangic": "2021-03-29"
     }
    ]
@@ -4245,7 +4245,7 @@
     "toplam": 2172.5,
     "yillik": 58.5,
     "son_yil": 1.5,
-    "al_tut": 1272.1,
+    "al_tut": 1273.1,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -4260,7 +4260,7 @@
      "toplam": 2172.5,
      "yillik": 58.5,
      "son_yil": 1.5,
-     "al_tut": 1272.1,
+     "al_tut": 1273.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -4274,7 +4274,7 @@
      "toplam": 2001.8,
      "yillik": 56.7,
      "son_yil": 4.4,
-     "al_tut": 1272.1,
+     "al_tut": 1273.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -4288,7 +4288,7 @@
      "toplam": 1841.4,
      "yillik": 54.9,
      "son_yil": 3.0,
-     "al_tut": 1272.1,
+     "al_tut": 1273.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -4302,7 +4302,7 @@
      "toplam": 1797.2,
      "yillik": 54.4,
      "son_yil": 4.4,
-     "al_tut": 1272.1,
+     "al_tut": 1273.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -4316,7 +4316,7 @@
      "toplam": 1760.4,
      "yillik": 53.9,
      "son_yil": 20.5,
-     "al_tut": 1272.1,
+     "al_tut": 1273.1,
      "baslangic": "2020-01-02"
     }
    ]
@@ -4333,7 +4333,7 @@
     "toplam": 3930.6,
     "yillik": 72.5,
     "son_yil": 0.4,
-    "al_tut": 4334.4,
+    "al_tut": 4331.4,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -4348,7 +4348,7 @@
      "toplam": 3930.6,
      "yillik": 72.5,
      "son_yil": 0.4,
-     "al_tut": 4334.4,
+     "al_tut": 4331.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4362,7 +4362,21 @@
      "toplam": 3257.8,
      "yillik": 67.9,
      "son_yil": -4.1,
-     "al_tut": 4334.4,
+     "al_tut": 4331.4,
+     "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 16,
+     "ad": "17 Darvas Kutusu",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 27,
+     "kazanma": 63.0,
+     "ortalama": 18.04,
+     "toplam": 3098.9,
+     "yillik": 66.7,
+     "son_yil": 9.7,
+     "al_tut": 4331.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4376,21 +4390,7 @@
      "toplam": 3012.5,
      "yillik": 66.1,
      "son_yil": 9.4,
-     "al_tut": 4334.4,
-     "baslangic": "2020-01-02"
-    },
-    {
-     "aday": 16,
-     "ad": "17 Darvas Kutusu",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 27,
-     "kazanma": 59.3,
-     "ortalama": 17.82,
-     "toplam": 2879.2,
-     "yillik": 65.0,
-     "son_yil": 9.7,
-     "al_tut": 4334.4,
+     "al_tut": 4331.4,
      "baslangic": "2020-01-02"
     },
     {
@@ -4404,7 +4404,7 @@
      "toplam": 2870.8,
      "yillik": 64.9,
      "son_yil": -12.1,
-     "al_tut": 4334.4,
+     "al_tut": 4331.4,
      "baslangic": "2020-01-02"
     }
    ]
@@ -4421,7 +4421,7 @@
     "toplam": 246.6,
     "yillik": 42.8,
     "son_yil": 53.7,
-    "al_tut": 75.9,
+    "al_tut": 75.5,
     "baslangic": "2023-04-18"
    },
    "ilk5": [
@@ -4436,7 +4436,7 @@
      "toplam": 246.6,
      "yillik": 42.8,
      "son_yil": 53.7,
-     "al_tut": 75.9,
+     "al_tut": 75.5,
      "baslangic": "2023-04-18"
     },
     {
@@ -4450,7 +4450,7 @@
      "toplam": 204.2,
      "yillik": 37.6,
      "son_yil": -4.4,
-     "al_tut": 75.9,
+     "al_tut": 75.5,
      "baslangic": "2023-04-18"
     },
     {
@@ -4464,7 +4464,7 @@
      "toplam": 201.4,
      "yillik": 37.2,
      "son_yil": 21.5,
-     "al_tut": 75.9,
+     "al_tut": 75.5,
      "baslangic": "2023-04-18"
     },
     {
@@ -4478,7 +4478,7 @@
      "toplam": 201.0,
      "yillik": 37.1,
      "son_yil": 26.3,
-     "al_tut": 75.9,
+     "al_tut": 75.5,
      "baslangic": "2023-04-18"
     },
     {
@@ -4492,7 +4492,7 @@
      "toplam": 198.0,
      "yillik": 36.8,
      "son_yil": 5.2,
-     "al_tut": 75.9,
+     "al_tut": 75.5,
      "baslangic": "2023-04-18"
     }
    ]
@@ -4509,7 +4509,7 @@
     "toplam": 630.3,
     "yillik": 43.2,
     "son_yil": 0.6,
-    "al_tut": 1181.3,
+    "al_tut": 1182.5,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -4524,7 +4524,7 @@
      "toplam": 630.3,
      "yillik": 43.2,
      "son_yil": 0.6,
-     "al_tut": 1181.3,
+     "al_tut": 1182.5,
      "baslangic": "2021-03-29"
     },
     {
@@ -4538,7 +4538,7 @@
      "toplam": 848.8,
      "yillik": 39.4,
      "son_yil": -7.6,
-     "al_tut": 1185.2,
+     "al_tut": 1185.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -4552,7 +4552,7 @@
      "toplam": 816.7,
      "yillik": 38.7,
      "son_yil": -7.6,
-     "al_tut": 1185.2,
+     "al_tut": 1185.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -4566,7 +4566,7 @@
      "toplam": 772.2,
      "yillik": 37.6,
      "son_yil": 5.5,
-     "al_tut": 1185.2,
+     "al_tut": 1185.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -4580,7 +4580,7 @@
      "toplam": 746.1,
      "yillik": 37.0,
      "son_yil": 10.2,
-     "al_tut": 1185.2,
+     "al_tut": 1185.8,
      "baslangic": "2020-01-02"
     }
    ]
@@ -4591,12 +4591,12 @@
     "ad": "06 AlphaTrend+SuperTrend + 18 Fisher Dip",
     "tf": 1,
     "tf_ad": "4 Saat",
-    "islem": 16,
-    "kazanma": 75.0,
-    "ortalama": 7.69,
-    "toplam": 177.1,
-    "yillik": 50.0,
-    "son_yil": 79.7,
+    "islem": 17,
+    "kazanma": 70.6,
+    "ortalama": 6.9,
+    "toplam": 157.3,
+    "yillik": 45.7,
+    "son_yil": 66.8,
     "al_tut": -98.2,
     "baslangic": "2024-04-08"
    },
@@ -4606,26 +4606,12 @@
      "ad": "06 AlphaTrend+SuperTrend + 18 Fisher Dip",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 16,
-     "kazanma": 75.0,
-     "ortalama": 7.69,
-     "toplam": 177.1,
-     "yillik": 50.0,
-     "son_yil": 79.7,
-     "al_tut": -98.2,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 104,
-     "ad": "04 AlphaTrend + 18 Fisher Dip",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 16,
-     "kazanma": 75.0,
-     "ortalama": 7.48,
-     "toplam": 168.2,
-     "yillik": 48.1,
-     "son_yil": 87.5,
+     "islem": 17,
+     "kazanma": 70.6,
+     "ortalama": 6.9,
+     "toplam": 157.3,
+     "yillik": 45.7,
+     "son_yil": 66.8,
      "al_tut": -98.2,
      "baslangic": "2024-04-08"
     },
@@ -4644,20 +4630,6 @@
      "baslangic": "2021-08-10"
     },
     {
-     "aday": 216,
-     "ad": "11 Bollinger Orta Bant + 18 Fisher Dip",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 39,
-     "kazanma": 38.5,
-     "ortalama": 2.93,
-     "toplam": 137.3,
-     "yillik": 41.0,
-     "son_yil": 65.2,
-     "al_tut": -98.2,
-     "baslangic": "2024-04-08"
-    },
-    {
      "aday": 192,
      "ad": "09 ALMA + 21 MACD Kesişimi",
      "tf": 2,
@@ -4668,6 +4640,34 @@
      "toplam": 469.9,
      "yillik": 40.0,
      "son_yil": -44.2,
+     "al_tut": -39.9,
+     "baslangic": "2021-08-10"
+    },
+    {
+     "aday": 250,
+     "ad": "14 EMA 5x22 + 19 CCI Dip",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 18,
+     "kazanma": 38.9,
+     "ortalama": 5.49,
+     "toplam": 121.7,
+     "yillik": 37.3,
+     "son_yil": 96.7,
+     "al_tut": -98.2,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 33,
+     "ad": "01 RSI Karpuzlu + 10 T3 Tillson",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 44,
+     "kazanma": 31.8,
+     "ortalama": 6.29,
+     "toplam": 401.3,
+     "yillik": 36.6,
+     "son_yil": -55.4,
      "al_tut": -39.9,
      "baslangic": "2021-08-10"
     }
@@ -4685,7 +4685,7 @@
     "toplam": 3193.7,
     "yillik": 67.4,
     "son_yil": -15.1,
-    "al_tut": 1189.6,
+    "al_tut": 1190.5,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -4700,7 +4700,7 @@
      "toplam": 3193.7,
      "yillik": 67.4,
      "son_yil": -15.1,
-     "al_tut": 1189.6,
+     "al_tut": 1190.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -4714,7 +4714,7 @@
      "toplam": 2830.0,
      "yillik": 64.6,
      "son_yil": -9.3,
-     "al_tut": 1189.6,
+     "al_tut": 1190.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -4728,7 +4728,7 @@
      "toplam": 2572.3,
      "yillik": 62.4,
      "son_yil": -17.9,
-     "al_tut": 1189.6,
+     "al_tut": 1190.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -4742,7 +4742,7 @@
      "toplam": 2051.0,
      "yillik": 57.2,
      "son_yil": -8.6,
-     "al_tut": 1189.6,
+     "al_tut": 1190.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -4756,7 +4756,7 @@
      "toplam": 1553.0,
      "yillik": 51.3,
      "son_yil": -6.3,
-     "al_tut": 1189.6,
+     "al_tut": 1190.5,
      "baslangic": "2020-01-02"
     }
    ]
@@ -4773,7 +4773,7 @@
     "toplam": 1543.4,
     "yillik": 51.1,
     "son_yil": 22.0,
-    "al_tut": 1634.6,
+    "al_tut": 1629.0,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -4788,7 +4788,7 @@
      "toplam": 1543.4,
      "yillik": 51.1,
      "son_yil": 22.0,
-     "al_tut": 1634.6,
+     "al_tut": 1629.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -4796,13 +4796,13 @@
      "ad": "25 Ortak Karar",
      "tf": 2,
      "tf_ad": "Günlük",
-     "islem": 62,
-     "kazanma": 51.6,
-     "ortalama": 5.16,
-     "toplam": 1391.8,
-     "yillik": 49.0,
+     "islem": 63,
+     "kazanma": 50.8,
+     "ortalama": 5.12,
+     "toplam": 1425.8,
+     "yillik": 49.5,
      "son_yil": 35.5,
-     "al_tut": 1634.6,
+     "al_tut": 1629.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -4816,7 +4816,7 @@
      "toplam": 1047.8,
      "yillik": 43.3,
      "son_yil": -0.9,
-     "al_tut": 1634.6,
+     "al_tut": 1629.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -4830,7 +4830,7 @@
      "toplam": 1047.3,
      "yillik": 43.3,
      "son_yil": 19.8,
-     "al_tut": 1634.6,
+     "al_tut": 1629.0,
      "baslangic": "2020-01-02"
     },
     {
@@ -4844,7 +4844,7 @@
      "toplam": 980.3,
      "yillik": 42.1,
      "son_yil": 15.5,
-     "al_tut": 1634.6,
+     "al_tut": 1629.0,
      "baslangic": "2020-01-02"
     }
    ]
@@ -5037,7 +5037,7 @@
     "toplam": 1215.6,
     "yillik": 59.8,
     "son_yil": -5.3,
-    "al_tut": 1540.4,
+    "al_tut": 1536.0,
     "baslangic": "2021-04-12"
    },
    "ilk5": [
@@ -5052,7 +5052,7 @@
      "toplam": 1215.6,
      "yillik": 59.8,
      "son_yil": -5.3,
-     "al_tut": 1540.4,
+     "al_tut": 1536.0,
      "baslangic": "2021-04-12"
     },
     {
@@ -5066,7 +5066,7 @@
      "toplam": 1163.8,
      "yillik": 58.6,
      "son_yil": -9.4,
-     "al_tut": 1540.4,
+     "al_tut": 1536.0,
      "baslangic": "2021-04-12"
     },
     {
@@ -5080,7 +5080,7 @@
      "toplam": 1154.5,
      "yillik": 58.4,
      "son_yil": -9.4,
-     "al_tut": 1540.4,
+     "al_tut": 1536.0,
      "baslangic": "2021-04-12"
     },
     {
@@ -5094,7 +5094,7 @@
      "toplam": 1069.1,
      "yillik": 56.4,
      "son_yil": -3.3,
-     "al_tut": 1540.4,
+     "al_tut": 1536.0,
      "baslangic": "2021-04-12"
     },
     {
@@ -5108,7 +5108,7 @@
      "toplam": 1063.3,
      "yillik": 56.2,
      "son_yil": -3.3,
-     "al_tut": 1540.4,
+     "al_tut": 1536.0,
      "baslangic": "2021-04-12"
     }
    ]
@@ -5125,7 +5125,7 @@
     "toplam": 854.0,
     "yillik": 50.3,
     "son_yil": 20.7,
-    "al_tut": 1302.7,
+    "al_tut": 1304.1,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -5140,7 +5140,7 @@
      "toplam": 854.0,
      "yillik": 50.3,
      "son_yil": 20.7,
-     "al_tut": 1302.7,
+     "al_tut": 1304.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -5154,7 +5154,7 @@
      "toplam": 1372.0,
      "yillik": 48.7,
      "son_yil": 14.9,
-     "al_tut": 2072.1,
+     "al_tut": 2074.3,
      "baslangic": "2020-01-02"
     },
     {
@@ -5168,7 +5168,7 @@
      "toplam": 791.9,
      "yillik": 48.4,
      "son_yil": 8.6,
-     "al_tut": 1302.7,
+     "al_tut": 1304.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -5182,7 +5182,7 @@
      "toplam": 765.2,
      "yillik": 47.6,
      "son_yil": 11.5,
-     "al_tut": 1302.7,
+     "al_tut": 1304.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -5196,7 +5196,7 @@
      "toplam": 1240.1,
      "yillik": 46.6,
      "son_yil": 8.3,
-     "al_tut": 2072.1,
+     "al_tut": 2074.3,
      "baslangic": "2020-01-02"
     }
    ]
@@ -5209,11 +5209,11 @@
     "tf_ad": "Günlük",
     "islem": 46,
     "kazanma": 30.4,
-    "ortalama": 8.56,
-    "toplam": 1064.3,
-    "yillik": 82.1,
-    "son_yil": -40.1,
-    "al_tut": 570.9,
+    "ortalama": 8.55,
+    "toplam": 1058.9,
+    "yillik": 81.9,
+    "son_yil": -40.3,
+    "al_tut": 567.8,
     "baslangic": "2022-09-08"
    },
    "ilk5": [
@@ -5224,11 +5224,11 @@
      "tf_ad": "Günlük",
      "islem": 46,
      "kazanma": 30.4,
-     "ortalama": 8.56,
-     "toplam": 1064.3,
-     "yillik": 82.1,
-     "son_yil": -40.1,
-     "al_tut": 570.9,
+     "ortalama": 8.55,
+     "toplam": 1058.9,
+     "yillik": 81.9,
+     "son_yil": -40.3,
+     "al_tut": 567.8,
      "baslangic": "2022-09-08"
     },
     {
@@ -5238,11 +5238,11 @@
      "tf_ad": "Günlük",
      "islem": 46,
      "kazanma": 43.5,
-     "ortalama": 8.03,
-     "toplam": 1018.4,
-     "yillik": 80.3,
-     "son_yil": -45.7,
-     "al_tut": 570.9,
+     "ortalama": 8.02,
+     "toplam": 1013.2,
+     "yillik": 80.1,
+     "son_yil": -46.0,
+     "al_tut": 567.8,
      "baslangic": "2022-09-08"
     },
     {
@@ -5252,11 +5252,11 @@
      "tf_ad": "Günlük",
      "islem": 61,
      "kazanma": 36.1,
-     "ortalama": 6.36,
-     "toplam": 893.0,
-     "yillik": 75.1,
-     "son_yil": -53.8,
-     "al_tut": 570.9,
+     "ortalama": 6.35,
+     "toplam": 888.4,
+     "yillik": 74.9,
+     "son_yil": -54.0,
+     "al_tut": 567.8,
      "baslangic": "2022-09-08"
     },
     {
@@ -5270,7 +5270,7 @@
      "toplam": 877.3,
      "yillik": 74.5,
      "son_yil": -50.8,
-     "al_tut": 570.9,
+     "al_tut": 567.8,
      "baslangic": "2022-09-08"
     },
     {
@@ -5280,11 +5280,11 @@
      "tf_ad": "Günlük",
      "islem": 46,
      "kazanma": 32.6,
-     "ortalama": 7.61,
-     "toplam": 706.5,
-     "yillik": 66.5,
-     "son_yil": -53.4,
-     "al_tut": 570.9,
+     "ortalama": 7.6,
+     "toplam": 702.7,
+     "yillik": 66.3,
+     "son_yil": -53.6,
+     "al_tut": 567.8,
      "baslangic": "2022-09-08"
     }
    ]
@@ -5389,7 +5389,7 @@
     "toplam": 198.6,
     "yillik": 83.4,
     "son_yil": 24.8,
-    "al_tut": -50.6,
+    "al_tut": -50.7,
     "baslangic": "2024-12-23"
    },
    "ilk5": [
@@ -5404,7 +5404,7 @@
      "toplam": 198.6,
      "yillik": 83.4,
      "son_yil": 24.8,
-     "al_tut": -50.6,
+     "al_tut": -50.7,
      "baslangic": "2024-12-23"
     },
     {
@@ -5418,7 +5418,7 @@
      "toplam": 148.8,
      "yillik": 65.7,
      "son_yil": 10.3,
-     "al_tut": -50.6,
+     "al_tut": -50.7,
      "baslangic": "2024-12-23"
     },
     {
@@ -5432,7 +5432,7 @@
      "toplam": 132.9,
      "yillik": 59.8,
      "son_yil": 7.7,
-     "al_tut": -50.6,
+     "al_tut": -50.7,
      "baslangic": "2024-12-23"
     },
     {
@@ -5446,7 +5446,7 @@
      "toplam": 128.4,
      "yillik": 58.1,
      "son_yil": 22.8,
-     "al_tut": -50.6,
+     "al_tut": -50.7,
      "baslangic": "2024-12-23"
     },
     {
@@ -5460,7 +5460,7 @@
      "toplam": 125.2,
      "yillik": 56.8,
      "son_yil": -3.7,
-     "al_tut": -50.6,
+     "al_tut": -50.7,
      "baslangic": "2024-12-23"
     }
    ]
@@ -5477,7 +5477,7 @@
     "toplam": 1087.1,
     "yillik": 56.3,
     "son_yil": 31.6,
-    "al_tut": 125.0,
+    "al_tut": 124.2,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -5492,7 +5492,7 @@
      "toplam": 1087.1,
      "yillik": 56.3,
      "son_yil": 31.6,
-     "al_tut": 125.0,
+     "al_tut": 124.2,
      "baslangic": "2021-03-29"
     },
     {
@@ -5506,7 +5506,7 @@
      "toplam": 1044.9,
      "yillik": 55.3,
      "son_yil": 31.6,
-     "al_tut": 125.0,
+     "al_tut": 124.2,
      "baslangic": "2021-03-29"
     },
     {
@@ -5520,7 +5520,7 @@
      "toplam": 991.6,
      "yillik": 54.0,
      "son_yil": 8.0,
-     "al_tut": 125.0,
+     "al_tut": 124.2,
      "baslangic": "2021-03-29"
     },
     {
@@ -5534,7 +5534,7 @@
      "toplam": 988.2,
      "yillik": 53.9,
      "son_yil": 24.3,
-     "al_tut": 125.0,
+     "al_tut": 124.2,
      "baslangic": "2021-03-29"
     },
     {
@@ -5548,7 +5548,7 @@
      "toplam": 953.9,
      "yillik": 53.0,
      "son_yil": 30.7,
-     "al_tut": 125.0,
+     "al_tut": 124.2,
      "baslangic": "2021-03-29"
     }
    ]
@@ -5565,7 +5565,7 @@
     "toplam": 1648.0,
     "yillik": 52.5,
     "son_yil": -16.1,
-    "al_tut": 1155.5,
+    "al_tut": 1153.7,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -5580,7 +5580,7 @@
      "toplam": 1648.0,
      "yillik": 52.5,
      "son_yil": -16.1,
-     "al_tut": 1155.5,
+     "al_tut": 1153.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -5594,7 +5594,7 @@
      "toplam": 1592.4,
      "yillik": 51.8,
      "son_yil": -13.5,
-     "al_tut": 1155.5,
+     "al_tut": 1153.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -5608,7 +5608,7 @@
      "toplam": 1415.2,
      "yillik": 49.3,
      "son_yil": -9.2,
-     "al_tut": 1155.5,
+     "al_tut": 1153.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -5622,7 +5622,7 @@
      "toplam": 1127.9,
      "yillik": 44.8,
      "son_yil": -33.0,
-     "al_tut": 1155.5,
+     "al_tut": 1153.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -5636,7 +5636,7 @@
      "toplam": 1061.3,
      "yillik": 43.6,
      "son_yil": -35.1,
-     "al_tut": 1155.5,
+     "al_tut": 1153.7,
      "baslangic": "2020-01-02"
     }
    ]
@@ -5737,11 +5737,11 @@
     "tf_ad": "Günlük",
     "islem": 8,
     "kazanma": 87.5,
-    "ortalama": 17.3,
-    "toplam": 202.5,
-    "yillik": 88.5,
-    "son_yil": 196.3,
-    "al_tut": 33.4,
+    "ortalama": 17.4,
+    "toplam": 204.5,
+    "yillik": 89.2,
+    "son_yil": 198.3,
+    "al_tut": 34.3,
     "baslangic": "2025-01-13"
    },
    "ilk5": [
@@ -5752,11 +5752,11 @@
      "tf_ad": "Günlük",
      "islem": 8,
      "kazanma": 87.5,
-     "ortalama": 17.3,
-     "toplam": 202.5,
-     "yillik": 88.5,
-     "son_yil": 196.3,
-     "al_tut": 33.4,
+     "ortalama": 17.4,
+     "toplam": 204.5,
+     "yillik": 89.2,
+     "son_yil": 198.3,
+     "al_tut": 34.3,
      "baslangic": "2025-01-13"
     },
     {
@@ -5770,7 +5770,7 @@
      "toplam": 182.1,
      "yillik": 81.1,
      "son_yil": 21.7,
-     "al_tut": 33.4,
+     "al_tut": 34.3,
      "baslangic": "2025-01-13"
     },
     {
@@ -5784,7 +5784,7 @@
      "toplam": 171.9,
      "yillik": 77.3,
      "son_yil": 29.8,
-     "al_tut": 33.4,
+     "al_tut": 34.3,
      "baslangic": "2025-01-13"
     },
     {
@@ -5798,7 +5798,7 @@
      "toplam": 166.8,
      "yillik": 75.4,
      "son_yil": 12.9,
-     "al_tut": 33.4,
+     "al_tut": 34.3,
      "baslangic": "2025-01-13"
     },
     {
@@ -5812,7 +5812,7 @@
      "toplam": 164.2,
      "yillik": 74.4,
      "son_yil": 10.9,
-     "al_tut": 33.4,
+     "al_tut": 34.3,
      "baslangic": "2025-01-13"
     }
    ]
@@ -5829,7 +5829,7 @@
     "toplam": 680.8,
     "yillik": 35.4,
     "son_yil": 15.8,
-    "al_tut": 534.5,
+    "al_tut": 535.1,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -5844,7 +5844,7 @@
      "toplam": 680.8,
      "yillik": 35.4,
      "son_yil": 15.8,
-     "al_tut": 534.5,
+     "al_tut": 535.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -5858,7 +5858,7 @@
      "toplam": 669.2,
      "yillik": 35.1,
      "son_yil": 35.4,
-     "al_tut": 534.5,
+     "al_tut": 535.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -5872,7 +5872,7 @@
      "toplam": 585.3,
      "yillik": 32.8,
      "son_yil": 33.8,
-     "al_tut": 534.5,
+     "al_tut": 535.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -5886,7 +5886,7 @@
      "toplam": 575.4,
      "yillik": 32.5,
      "son_yil": 29.1,
-     "al_tut": 534.5,
+     "al_tut": 535.1,
      "baslangic": "2020-01-02"
     },
     {
@@ -5900,7 +5900,7 @@
      "toplam": 453.4,
      "yillik": 28.7,
      "son_yil": 21.7,
-     "al_tut": 534.5,
+     "al_tut": 535.1,
      "baslangic": "2020-01-02"
     }
    ]
@@ -5917,7 +5917,7 @@
     "toplam": 1365.7,
     "yillik": 48.6,
     "son_yil": -20.7,
-    "al_tut": 656.2,
+    "al_tut": 655.6,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -5932,7 +5932,7 @@
      "toplam": 1365.7,
      "yillik": 48.6,
      "son_yil": -20.7,
-     "al_tut": 656.2,
+     "al_tut": 655.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -5946,7 +5946,7 @@
      "toplam": 641.8,
      "yillik": 43.6,
      "son_yil": -5.6,
-     "al_tut": 780.8,
+     "al_tut": 780.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -5960,7 +5960,7 @@
      "toplam": 637.5,
      "yillik": 43.4,
      "son_yil": -26.7,
-     "al_tut": 780.8,
+     "al_tut": 780.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -5974,7 +5974,7 @@
      "toplam": 628.0,
      "yillik": 43.1,
      "son_yil": 0.0,
-     "al_tut": 780.8,
+     "al_tut": 780.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -5988,7 +5988,7 @@
      "toplam": 628.0,
      "yillik": 43.1,
      "son_yil": 0.0,
-     "al_tut": 780.8,
+     "al_tut": 780.1,
      "baslangic": "2021-03-29"
     }
    ]
@@ -6093,7 +6093,7 @@
     "toplam": 1178.1,
     "yillik": 45.6,
     "son_yil": 41.4,
-    "al_tut": 1015.2,
+    "al_tut": 1014.5,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -6108,7 +6108,7 @@
      "toplam": 1178.1,
      "yillik": 45.6,
      "son_yil": 41.4,
-     "al_tut": 1015.2,
+     "al_tut": 1014.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6122,7 +6122,7 @@
      "toplam": 626.4,
      "yillik": 34.0,
      "son_yil": 15.4,
-     "al_tut": 1015.2,
+     "al_tut": 1014.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6136,7 +6136,7 @@
      "toplam": 598.4,
      "yillik": 33.2,
      "son_yil": 13.2,
-     "al_tut": 1015.2,
+     "al_tut": 1014.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6150,7 +6150,7 @@
      "toplam": 583.0,
      "yillik": 32.8,
      "son_yil": 18.8,
-     "al_tut": 1015.2,
+     "al_tut": 1014.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6164,7 +6164,7 @@
      "toplam": 579.0,
      "yillik": 32.7,
      "son_yil": 8.2,
-     "al_tut": 1015.2,
+     "al_tut": 1014.5,
      "baslangic": "2020-01-02"
     }
    ]
@@ -6181,7 +6181,7 @@
     "toplam": 1711.6,
     "yillik": 53.3,
     "son_yil": -9.3,
-    "al_tut": 1079.1,
+    "al_tut": 1085.5,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -6196,7 +6196,7 @@
      "toplam": 1711.6,
      "yillik": 53.3,
      "son_yil": -9.3,
-     "al_tut": 1079.1,
+     "al_tut": 1085.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6210,7 +6210,7 @@
      "toplam": 1629.7,
      "yillik": 52.3,
      "son_yil": -9.3,
-     "al_tut": 1079.1,
+     "al_tut": 1085.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6224,7 +6224,7 @@
      "toplam": 1202.3,
      "yillik": 46.0,
      "son_yil": 9.4,
-     "al_tut": 1079.1,
+     "al_tut": 1085.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6238,7 +6238,7 @@
      "toplam": 1179.0,
      "yillik": 45.6,
      "son_yil": 3.7,
-     "al_tut": 1079.1,
+     "al_tut": 1085.5,
      "baslangic": "2020-01-02"
     },
     {
@@ -6252,27 +6252,41 @@
      "toplam": 1154.8,
      "yillik": 45.2,
      "son_yil": -9.3,
-     "al_tut": 1079.1,
+     "al_tut": 1085.5,
      "baslangic": "2020-01-02"
     }
    ]
   },
   "SELEC": {
    "en_iyi": {
-    "aday": 0,
-    "ad": "01 RSI Karpuzlu",
+    "aday": 12,
+    "ad": "13 EMA 5x13",
     "tf": 1,
     "tf_ad": "4 Saat",
-    "islem": 55,
-    "kazanma": 32.7,
-    "ortalama": 4.53,
-    "toplam": 582.5,
-    "yillik": 114.7,
-    "son_yil": 283.8,
-    "al_tut": 44.8,
+    "islem": 31,
+    "kazanma": 35.5,
+    "ortalama": 8.34,
+    "toplam": 609.4,
+    "yillik": 118.0,
+    "son_yil": 291.5,
+    "al_tut": 44.7,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
+    {
+     "aday": 12,
+     "ad": "13 EMA 5x13",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 31,
+     "kazanma": 35.5,
+     "ortalama": 8.34,
+     "toplam": 609.4,
+     "yillik": 118.0,
+     "son_yil": 291.5,
+     "al_tut": 44.7,
+     "baslangic": "2024-04-08"
+    },
     {
      "aday": 0,
      "ad": "01 RSI Karpuzlu",
@@ -6280,39 +6294,39 @@
      "tf_ad": "4 Saat",
      "islem": 55,
      "kazanma": 32.7,
-     "ortalama": 4.53,
-     "toplam": 582.5,
-     "yillik": 114.7,
-     "son_yil": 283.8,
-     "al_tut": 44.8,
+     "ortalama": 4.54,
+     "toplam": 586.6,
+     "yillik": 115.2,
+     "son_yil": 286.1,
+     "al_tut": 44.7,
      "baslangic": "2024-04-08"
     },
     {
-     "aday": 12,
-     "ad": "13 EMA 5x13",
+     "aday": 211,
+     "ad": "11 Bollinger Orta Bant + 13 EMA 5x13",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 31,
-     "kazanma": 32.3,
-     "ortalama": 8.05,
-     "toplam": 548.3,
-     "yillik": 110.4,
-     "son_yil": 257.8,
-     "al_tut": 44.8,
+     "islem": 42,
+     "kazanma": 33.3,
+     "ortalama": 6.01,
+     "toplam": 549.7,
+     "yillik": 110.6,
+     "son_yil": 271.7,
+     "al_tut": 44.7,
      "baslangic": "2024-04-08"
     },
     {
-     "aday": 28,
-     "ad": "01 RSI Karpuzlu + 05 SuperTrend",
+     "aday": 36,
+     "ad": "01 RSI Karpuzlu + 13 EMA 5x13",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 24,
-     "kazanma": 41.7,
-     "ortalama": 9.79,
-     "toplam": 525.7,
-     "yillik": 107.4,
-     "son_yil": 259.7,
-     "al_tut": 44.8,
+     "islem": 37,
+     "kazanma": 35.1,
+     "ortalama": 6.44,
+     "toplam": 530.6,
+     "yillik": 108.1,
+     "son_yil": 218.5,
+     "al_tut": 44.7,
      "baslangic": "2024-04-08"
     },
     {
@@ -6326,21 +6340,7 @@
      "toplam": 521.5,
      "yillik": 106.9,
      "son_yil": 256.1,
-     "al_tut": 44.8,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 36,
-     "ad": "01 RSI Karpuzlu + 13 EMA 5x13",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 37,
-     "kazanma": 35.1,
-     "ortalama": 6.35,
-     "toplam": 517.9,
-     "yillik": 106.4,
-     "son_yil": 212.1,
-     "al_tut": 44.8,
+     "al_tut": 44.7,
      "baslangic": "2024-04-08"
     }
    ]
@@ -6357,7 +6357,7 @@
     "toplam": 343.2,
     "yillik": 30.8,
     "son_yil": 18.8,
-    "al_tut": 466.1,
+    "al_tut": 465.8,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -6372,7 +6372,7 @@
      "toplam": 343.2,
      "yillik": 30.8,
      "son_yil": 18.8,
-     "al_tut": 466.1,
+     "al_tut": 465.8,
      "baslangic": "2021-03-29"
     },
     {
@@ -6386,7 +6386,7 @@
      "toplam": 502.9,
      "yillik": 30.3,
      "son_yil": -30.0,
-     "al_tut": 707.6,
+     "al_tut": 707.2,
      "baslangic": "2020-01-02"
     },
     {
@@ -6400,7 +6400,7 @@
      "toplam": 319.7,
      "yillik": 29.6,
      "son_yil": 18.8,
-     "al_tut": 466.1,
+     "al_tut": 465.8,
      "baslangic": "2021-03-29"
     },
     {
@@ -6414,7 +6414,7 @@
      "toplam": 302.0,
      "yillik": 28.6,
      "son_yil": 1.6,
-     "al_tut": 466.1,
+     "al_tut": 465.8,
      "baslangic": "2021-03-29"
     },
     {
@@ -6428,7 +6428,7 @@
      "toplam": 301.7,
      "yillik": 28.5,
      "son_yil": 24.0,
-     "al_tut": 466.1,
+     "al_tut": 465.8,
      "baslangic": "2021-03-29"
     }
    ]
@@ -6441,11 +6441,11 @@
     "tf_ad": "4 Saat",
     "islem": 73,
     "kazanma": 38.4,
-    "ortalama": 2.82,
-    "toplam": 465.3,
-    "yillik": 99.2,
-    "son_yil": 140.0,
-    "al_tut": 7.5,
+    "ortalama": 2.84,
+    "toplam": 474.3,
+    "yillik": 100.5,
+    "son_yil": 143.8,
+    "al_tut": 7.7,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
@@ -6456,39 +6456,11 @@
      "tf_ad": "4 Saat",
      "islem": 73,
      "kazanma": 38.4,
-     "ortalama": 2.82,
-     "toplam": 465.3,
-     "yillik": 99.2,
-     "son_yil": 140.0,
-     "al_tut": 7.5,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 24,
-     "ad": "25 Ortak Karar",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 43,
-     "kazanma": 48.8,
-     "ortalama": 4.47,
-     "toplam": 416.7,
-     "yillik": 92.2,
-     "son_yil": 89.7,
-     "al_tut": 7.5,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 161,
-     "ad": "07 Parabolic SAR + 21 MACD Kesişimi",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 42,
-     "kazanma": 50.0,
-     "ortalama": 4.51,
-     "toplam": 397.5,
-     "yillik": 89.3,
-     "son_yil": 127.1,
-     "al_tut": 7.5,
+     "ortalama": 2.84,
+     "toplam": 474.3,
+     "yillik": 100.5,
+     "son_yil": 143.8,
+     "al_tut": 7.7,
      "baslangic": "2024-04-08"
     },
     {
@@ -6499,24 +6471,52 @@
      "islem": 51,
      "kazanma": 33.3,
      "ortalama": 3.8,
-     "toplam": 396.9,
-     "yillik": 89.2,
-     "son_yil": 129.7,
-     "al_tut": 7.5,
+     "toplam": 397.7,
+     "yillik": 89.4,
+     "son_yil": 130.0,
+     "al_tut": 7.7,
      "baslangic": "2024-04-08"
     },
     {
-     "aday": 11,
-     "ad": "12 Bollinger20 x EMA50",
+     "aday": 161,
+     "ad": "07 Parabolic SAR + 21 MACD Kesişimi",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 12,
-     "kazanma": 75.0,
-     "ortalama": 14.63,
-     "toplam": 375.0,
-     "yillik": 85.9,
-     "son_yil": 123.1,
-     "al_tut": 7.5,
+     "islem": 42,
+     "kazanma": 50.0,
+     "ortalama": 4.49,
+     "toplam": 394.1,
+     "yillik": 88.8,
+     "son_yil": 125.5,
+     "al_tut": 7.7,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 24,
+     "ad": "25 Ortak Karar",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 44,
+     "kazanma": 47.7,
+     "ortalama": 4.2,
+     "toplam": 376.3,
+     "yillik": 86.1,
+     "son_yil": 74.8,
+     "al_tut": 7.7,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 151,
+     "ad": "07 Parabolic SAR + 11 Bollinger Orta Bant",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 53,
+     "kazanma": 43.4,
+     "ortalama": 3.5,
+     "toplam": 373.8,
+     "yillik": 85.7,
+     "son_yil": 106.2,
+     "al_tut": 7.7,
      "baslangic": "2024-04-08"
     }
    ]
@@ -6709,7 +6709,7 @@
     "toplam": 51.7,
     "yillik": 21.3,
     "son_yil": 10.3,
-    "al_tut": 31.5,
+    "al_tut": 31.4,
     "baslangic": "2024-08-16"
    },
    "ilk5": [
@@ -6724,7 +6724,7 @@
      "toplam": 51.7,
      "yillik": 21.3,
      "son_yil": 10.3,
-     "al_tut": 31.5,
+     "al_tut": 31.4,
      "baslangic": "2024-08-16"
     },
     {
@@ -6738,7 +6738,7 @@
      "toplam": 51.4,
      "yillik": 21.2,
      "son_yil": 10.1,
-     "al_tut": 31.5,
+     "al_tut": 31.4,
      "baslangic": "2024-08-16"
     },
     {
@@ -6748,11 +6748,11 @@
      "tf_ad": "4 Saat",
      "islem": 30,
      "kazanma": 43.3,
-     "ortalama": 1.71,
-     "toplam": 60.4,
-     "yillik": 20.7,
-     "son_yil": 8.9,
-     "al_tut": 52.4,
+     "ortalama": 1.73,
+     "toplam": 61.2,
+     "yillik": 20.9,
+     "son_yil": 9.4,
+     "al_tut": 52.3,
      "baslangic": "2024-04-08"
     },
     {
@@ -6762,11 +6762,11 @@
      "tf_ad": "4 Saat",
      "islem": 22,
      "kazanma": 50.0,
-     "ortalama": 2.36,
-     "toplam": 60.4,
-     "yillik": 20.7,
-     "son_yil": 5.6,
-     "al_tut": 52.4,
+     "ortalama": 2.33,
+     "toplam": 59.3,
+     "yillik": 20.4,
+     "son_yil": 4.9,
+     "al_tut": 52.3,
      "baslangic": "2024-04-08"
     },
     {
@@ -6780,7 +6780,7 @@
      "toplam": 45.4,
      "yillik": 18.9,
      "son_yil": 12.9,
-     "al_tut": 31.5,
+     "al_tut": 31.4,
      "baslangic": "2024-08-16"
     }
    ]
@@ -6797,7 +6797,7 @@
     "toplam": 1215.6,
     "yillik": 46.2,
     "son_yil": 31.5,
-    "al_tut": 891.8,
+    "al_tut": 894.6,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -6812,7 +6812,7 @@
      "toplam": 1215.6,
      "yillik": 46.2,
      "son_yil": 31.5,
-     "al_tut": 891.8,
+     "al_tut": 894.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -6826,21 +6826,7 @@
      "toplam": 1154.1,
      "yillik": 45.2,
      "son_yil": 9.6,
-     "al_tut": 891.8,
-     "baslangic": "2020-01-02"
-    },
-    {
-     "aday": 24,
-     "ad": "25 Ortak Karar",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 63,
-     "kazanma": 49.2,
-     "ortalama": 4.66,
-     "toplam": 1102.6,
-     "yillik": 44.3,
-     "son_yil": 24.9,
-     "al_tut": 891.8,
+     "al_tut": 894.6,
      "baslangic": "2020-01-02"
     },
     {
@@ -6850,12 +6836,26 @@
      "tf_ad": "Haftalık",
      "islem": 16,
      "kazanma": 43.8,
-     "ortalama": 19.4,
-     "toplam": 647.6,
-     "yillik": 43.8,
-     "son_yil": -3.2,
-     "al_tut": 1184.6,
+     "ortalama": 19.42,
+     "toplam": 649.7,
+     "yillik": 43.9,
+     "son_yil": -2.9,
+     "al_tut": 1188.2,
      "baslangic": "2021-03-29"
+    },
+    {
+     "aday": 24,
+     "ad": "25 Ortak Karar",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 62,
+     "kazanma": 50.0,
+     "ortalama": 4.69,
+     "toplam": 1068.3,
+     "yillik": 43.7,
+     "son_yil": 25.3,
+     "al_tut": 894.6,
+     "baslangic": "2020-01-02"
     },
     {
      "aday": 8,
@@ -6864,11 +6864,11 @@
      "tf_ad": "Günlük",
      "islem": 104,
      "kazanma": 42.3,
-     "ortalama": 2.85,
-     "toplam": 1052.9,
-     "yillik": 43.4,
-     "son_yil": -5.9,
-     "al_tut": 891.8,
+     "ortalama": 2.86,
+     "toplam": 1056.2,
+     "yillik": 43.5,
+     "son_yil": -5.7,
+     "al_tut": 894.6,
      "baslangic": "2020-01-02"
     }
    ]
@@ -6885,7 +6885,7 @@
     "toplam": 330.0,
     "yillik": 30.1,
     "son_yil": -10.5,
-    "al_tut": 696.1,
+    "al_tut": 695.7,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -6900,21 +6900,7 @@
      "toplam": 330.0,
      "yillik": 30.1,
      "son_yil": -10.5,
-     "al_tut": 696.1,
-     "baslangic": "2021-03-29"
-    },
-    {
-     "aday": 24,
-     "ad": "25 Ortak Karar",
-     "tf": 3,
-     "tf_ad": "Haftalık",
-     "islem": 13,
-     "kazanma": 53.8,
-     "ortalama": 14.07,
-     "toplam": 318.4,
-     "yillik": 29.5,
-     "son_yil": 0.0,
-     "al_tut": 696.1,
+     "al_tut": 695.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -6928,7 +6914,7 @@
      "toplam": 434.4,
      "yillik": 28.0,
      "son_yil": -4.5,
-     "al_tut": 778.6,
+     "al_tut": 777.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -6942,7 +6928,7 @@
      "toplam": 270.6,
      "yillik": 26.7,
      "son_yil": -0.8,
-     "al_tut": 696.1,
+     "al_tut": 695.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -6956,8 +6942,22 @@
      "toplam": 391.4,
      "yillik": 26.5,
      "son_yil": 30.8,
-     "al_tut": 778.6,
+     "al_tut": 777.7,
      "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 10,
+     "ad": "11 Bollinger Orta Bant",
+     "tf": 3,
+     "tf_ad": "Haftalık",
+     "islem": 16,
+     "kazanma": 31.2,
+     "ortalama": 11.59,
+     "toplam": 265.0,
+     "yillik": 26.3,
+     "son_yil": -0.8,
+     "al_tut": 695.7,
+     "baslangic": "2021-03-29"
     }
    ]
   },
@@ -6973,7 +6973,7 @@
     "toplam": 2206.8,
     "yillik": 58.9,
     "son_yil": -16.7,
-    "al_tut": 1881.1,
+    "al_tut": 1879.3,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -6988,7 +6988,7 @@
      "toplam": 2206.8,
      "yillik": 58.9,
      "son_yil": -16.7,
-     "al_tut": 1881.1,
+     "al_tut": 1879.3,
      "baslangic": "2020-01-02"
     },
     {
@@ -7002,7 +7002,7 @@
      "toplam": 1009.8,
      "yillik": 54.4,
      "son_yil": -15.9,
-     "al_tut": 2175.7,
+     "al_tut": 2173.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -7016,7 +7016,7 @@
      "toplam": 698.3,
      "yillik": 45.5,
      "son_yil": -17.9,
-     "al_tut": 2175.7,
+     "al_tut": 2173.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -7030,7 +7030,7 @@
      "toplam": 690.1,
      "yillik": 45.2,
      "son_yil": -12.3,
-     "al_tut": 2175.7,
+     "al_tut": 2173.7,
      "baslangic": "2021-03-29"
     },
     {
@@ -7044,7 +7044,7 @@
      "toplam": 628.3,
      "yillik": 43.1,
      "son_yil": -16.0,
-     "al_tut": 2175.7,
+     "al_tut": 2173.7,
      "baslangic": "2021-03-29"
     }
    ]
@@ -7057,11 +7057,11 @@
     "tf_ad": "4 Saat",
     "islem": 71,
     "kazanma": 40.8,
-    "ortalama": 3.93,
-    "toplam": 824.1,
-    "yillik": 142.2,
-    "son_yil": 236.3,
-    "al_tut": 474.9,
+    "ortalama": 3.94,
+    "toplam": 831.5,
+    "yillik": 143.0,
+    "son_yil": 239.0,
+    "al_tut": 475.3,
     "baslangic": "2024-04-08"
    },
    "ilk5": [
@@ -7072,11 +7072,39 @@
      "tf_ad": "4 Saat",
      "islem": 71,
      "kazanma": 40.8,
-     "ortalama": 3.93,
-     "toplam": 824.1,
-     "yillik": 142.2,
-     "son_yil": 236.3,
-     "al_tut": 474.9,
+     "ortalama": 3.94,
+     "toplam": 831.5,
+     "yillik": 143.0,
+     "son_yil": 239.0,
+     "al_tut": 475.3,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 20,
+     "ad": "21 MACD Kesişimi",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 46,
+     "kazanma": 45.7,
+     "ortalama": 4.92,
+     "toplam": 468.3,
+     "yillik": 99.6,
+     "son_yil": 125.9,
+     "al_tut": 475.3,
+     "baslangic": "2024-04-08"
+    },
+    {
+     "aday": 192,
+     "ad": "09 ALMA + 21 MACD Kesişimi",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 62,
+     "kazanma": 45.2,
+     "ortalama": 3.59,
+     "toplam": 453.4,
+     "yillik": 97.5,
+     "son_yil": 151.6,
+     "al_tut": 475.3,
      "baslangic": "2024-04-08"
     },
     {
@@ -7084,13 +7112,13 @@
      "ad": "10 T3 Tillson + 21 MACD Kesişimi",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 48,
-     "kazanma": 39.6,
-     "ortalama": 5.02,
-     "toplam": 479.1,
-     "yillik": 101.1,
-     "son_yil": 113.9,
-     "al_tut": 474.9,
+     "islem": 49,
+     "kazanma": 40.8,
+     "ortalama": 4.62,
+     "toplam": 436.1,
+     "yillik": 95.0,
+     "son_yil": 98.0,
+     "al_tut": 475.3,
      "baslangic": "2024-04-08"
     },
     {
@@ -7100,39 +7128,11 @@
      "tf_ad": "4 Saat",
      "islem": 72,
      "kazanma": 34.7,
-     "ortalama": 3.3,
-     "toplam": 478.4,
-     "yillik": 101.0,
-     "son_yil": 197.1,
-     "al_tut": 474.9,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 20,
-     "ad": "21 MACD Kesişimi",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 45,
-     "kazanma": 44.4,
-     "ortalama": 5.15,
-     "toplam": 475.7,
-     "yillik": 100.7,
-     "son_yil": 128.8,
-     "al_tut": 474.9,
-     "baslangic": "2024-04-08"
-    },
-    {
-     "aday": 10,
-     "ad": "11 Bollinger Orta Bant",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 63,
-     "kazanma": 27.0,
-     "ortalama": 3.95,
-     "toplam": 470.9,
-     "yillik": 100.0,
-     "son_yil": 187.9,
-     "al_tut": 474.9,
+     "ortalama": 3.11,
+     "toplam": 432.4,
+     "yillik": 94.5,
+     "son_yil": 173.5,
+     "al_tut": 475.3,
      "baslangic": "2024-04-08"
     }
    ]
@@ -7149,7 +7149,7 @@
     "toplam": 752.7,
     "yillik": 47.2,
     "son_yil": 30.0,
-    "al_tut": 966.1,
+    "al_tut": 964.1,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -7164,7 +7164,7 @@
      "toplam": 752.7,
      "yillik": 47.2,
      "son_yil": 30.0,
-     "al_tut": 966.1,
+     "al_tut": 964.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -7178,7 +7178,7 @@
      "toplam": 679.0,
      "yillik": 44.9,
      "son_yil": 32.8,
-     "al_tut": 966.1,
+     "al_tut": 964.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -7188,11 +7188,11 @@
      "tf_ad": "Günlük",
      "islem": 114,
      "kazanma": 43.9,
-     "ortalama": 2.56,
-     "toplam": 1018.6,
-     "yillik": 42.8,
-     "son_yil": 4.7,
-     "al_tut": 1606.0,
+     "ortalama": 2.55,
+     "toplam": 1016.5,
+     "yillik": 42.7,
+     "son_yil": 4.5,
+     "al_tut": 1602.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -7206,7 +7206,7 @@
      "toplam": 605.8,
      "yillik": 42.3,
      "son_yil": 3.7,
-     "al_tut": 966.1,
+     "al_tut": 964.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -7220,7 +7220,7 @@
      "toplam": 569.9,
      "yillik": 41.0,
      "son_yil": 20.6,
-     "al_tut": 966.1,
+     "al_tut": 964.1,
      "baslangic": "2021-03-29"
     }
    ]
@@ -7260,11 +7260,11 @@
      "ad": "11 Bollinger Orta Bant",
      "tf": 2,
      "tf_ad": "Günlük",
-     "islem": 87,
-     "kazanma": 31.0,
-     "ortalama": 5.45,
-     "toplam": 1971.8,
-     "yillik": 56.4,
+     "islem": 88,
+     "kazanma": 30.7,
+     "ortalama": 5.36,
+     "toplam": 1930.3,
+     "yillik": 55.9,
      "son_yil": -39.0,
      "al_tut": 772.1,
      "baslangic": "2020-01-02"
@@ -7325,7 +7325,7 @@
     "toplam": 825.5,
     "yillik": 38.9,
     "son_yil": -23.4,
-    "al_tut": 775.2,
+    "al_tut": 774.3,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -7340,7 +7340,7 @@
      "toplam": 825.5,
      "yillik": 38.9,
      "son_yil": -23.4,
-     "al_tut": 775.2,
+     "al_tut": 774.3,
      "baslangic": "2020-01-02"
     },
     {
@@ -7354,7 +7354,7 @@
      "toplam": 490.5,
      "yillik": 37.8,
      "son_yil": -5.1,
-     "al_tut": 805.1,
+     "al_tut": 804.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -7368,7 +7368,7 @@
      "toplam": 441.1,
      "yillik": 35.6,
      "son_yil": 4.2,
-     "al_tut": 805.1,
+     "al_tut": 804.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -7382,7 +7382,7 @@
      "toplam": 405.9,
      "yillik": 34.0,
      "son_yil": -6.1,
-     "al_tut": 805.1,
+     "al_tut": 804.3,
      "baslangic": "2021-03-29"
     },
     {
@@ -7396,7 +7396,7 @@
      "toplam": 404.2,
      "yillik": 33.9,
      "son_yil": -1.5,
-     "al_tut": 805.1,
+     "al_tut": 804.3,
      "baslangic": "2021-03-29"
     }
    ]
@@ -7413,7 +7413,7 @@
     "toplam": 625.3,
     "yillik": 43.0,
     "son_yil": -13.2,
-    "al_tut": 370.3,
+    "al_tut": 369.4,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -7428,7 +7428,7 @@
      "toplam": 625.3,
      "yillik": 43.0,
      "son_yil": -13.2,
-     "al_tut": 370.3,
+     "al_tut": 369.4,
      "baslangic": "2021-03-29"
     },
     {
@@ -7442,7 +7442,7 @@
      "toplam": 584.3,
      "yillik": 41.5,
      "son_yil": -5.0,
-     "al_tut": 370.3,
+     "al_tut": 369.4,
      "baslangic": "2021-03-29"
     },
     {
@@ -7456,7 +7456,7 @@
      "toplam": 577.8,
      "yillik": 41.3,
      "son_yil": -10.3,
-     "al_tut": 370.3,
+     "al_tut": 369.4,
      "baslangic": "2021-03-29"
     },
     {
@@ -7470,7 +7470,7 @@
      "toplam": 862.4,
      "yillik": 39.7,
      "son_yil": -26.9,
-     "al_tut": 1896.6,
+     "al_tut": 1892.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -7484,7 +7484,7 @@
      "toplam": 518.1,
      "yillik": 38.9,
      "son_yil": -4.4,
-     "al_tut": 370.3,
+     "al_tut": 369.4,
      "baslangic": "2021-03-29"
     }
    ]
@@ -7501,7 +7501,7 @@
     "toplam": 1303.2,
     "yillik": 47.6,
     "son_yil": 2.6,
-    "al_tut": -13.0,
+    "al_tut": -13.9,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -7516,7 +7516,7 @@
      "toplam": 1303.2,
      "yillik": 47.6,
      "son_yil": 2.6,
-     "al_tut": -13.0,
+     "al_tut": -13.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -7530,7 +7530,7 @@
      "toplam": 709.7,
      "yillik": 45.9,
      "son_yil": 0.0,
-     "al_tut": 32.2,
+     "al_tut": 30.8,
      "baslangic": "2021-03-29"
     },
     {
@@ -7544,7 +7544,7 @@
      "toplam": 1166.0,
      "yillik": 45.4,
      "son_yil": -18.4,
-     "al_tut": -13.0,
+     "al_tut": -13.9,
      "baslangic": "2020-01-02"
     },
     {
@@ -7554,11 +7554,11 @@
      "tf_ad": "Haftalık",
      "islem": 11,
      "kazanma": 45.5,
-     "ortalama": 46.14,
-     "toplam": 694.9,
-     "yillik": 45.4,
-     "son_yil": -16.1,
-     "al_tut": 32.2,
+     "ortalama": 46.05,
+     "toplam": 686.9,
+     "yillik": 45.1,
+     "son_yil": -16.9,
+     "al_tut": 30.8,
      "baslangic": "2021-03-29"
     },
     {
@@ -7572,7 +7572,7 @@
      "toplam": 654.7,
      "yillik": 44.0,
      "son_yil": 0.0,
-     "al_tut": 32.2,
+     "al_tut": 30.8,
      "baslangic": "2021-03-29"
     }
    ]
@@ -7589,7 +7589,7 @@
     "toplam": 1735.3,
     "yillik": 69.1,
     "son_yil": 109.3,
-    "al_tut": 4554.6,
+    "al_tut": 4551.6,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -7604,7 +7604,7 @@
      "toplam": 1735.3,
      "yillik": 69.1,
      "son_yil": 109.3,
-     "al_tut": 4554.6,
+     "al_tut": 4551.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -7618,7 +7618,7 @@
      "toplam": 1474.7,
      "yillik": 64.5,
      "son_yil": 74.9,
-     "al_tut": 4554.6,
+     "al_tut": 4551.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -7632,21 +7632,7 @@
      "toplam": 1336.4,
      "yillik": 61.8,
      "son_yil": 63.2,
-     "al_tut": 4554.6,
-     "baslangic": "2021-03-29"
-    },
-    {
-     "aday": 202,
-     "ad": "10 T3 Tillson + 17 Darvas Kutusu",
-     "tf": 3,
-     "tf_ad": "Haftalık",
-     "islem": 6,
-     "kazanma": 100.0,
-     "ortalama": 61.0,
-     "toplam": 1316.3,
-     "yillik": 61.4,
-     "son_yil": 56.8,
-     "al_tut": 4554.6,
+     "al_tut": 4551.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -7660,7 +7646,21 @@
      "toplam": 1277.9,
      "yillik": 60.6,
      "son_yil": 58.8,
-     "al_tut": 4554.6,
+     "al_tut": 4551.6,
+     "baslangic": "2021-03-29"
+    },
+    {
+     "aday": 202,
+     "ad": "10 T3 Tillson + 17 Darvas Kutusu",
+     "tf": 3,
+     "tf_ad": "Haftalık",
+     "islem": 6,
+     "kazanma": 100.0,
+     "ortalama": 60.3,
+     "toplam": 1262.4,
+     "yillik": 60.2,
+     "son_yil": 50.8,
+     "al_tut": 4551.6,
      "baslangic": "2021-03-29"
     }
    ]
@@ -7677,7 +7677,7 @@
     "toplam": 2852.3,
     "yillik": 64.8,
     "son_yil": 0.8,
-    "al_tut": 5391.7,
+    "al_tut": 5381.7,
     "baslangic": "2020-01-02"
    },
    "ilk5": [
@@ -7692,7 +7692,7 @@
      "toplam": 2852.3,
      "yillik": 64.8,
      "son_yil": 0.8,
-     "al_tut": 5391.7,
+     "al_tut": 5381.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -7706,7 +7706,7 @@
      "toplam": 2436.5,
      "yillik": 61.1,
      "son_yil": -4.7,
-     "al_tut": 5391.7,
+     "al_tut": 5381.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -7720,7 +7720,7 @@
      "toplam": 2433.0,
      "yillik": 61.1,
      "son_yil": -2.7,
-     "al_tut": 5391.7,
+     "al_tut": 5381.7,
      "baslangic": "2020-01-02"
     },
     {
@@ -7734,7 +7734,7 @@
      "toplam": 1292.3,
      "yillik": 60.9,
      "son_yil": 53.0,
-     "al_tut": 1664.3,
+     "al_tut": 1661.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -7748,7 +7748,7 @@
      "toplam": 1250.5,
      "yillik": 60.0,
      "son_yil": 0.0,
-     "al_tut": 1664.3,
+     "al_tut": 1661.1,
      "baslangic": "2021-03-29"
     }
    ]
@@ -7941,7 +7941,7 @@
     "toplam": 448.3,
     "yillik": 36.0,
     "son_yil": 0.0,
-    "al_tut": -40.0,
+    "al_tut": -40.1,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -7956,7 +7956,7 @@
      "toplam": 448.3,
      "yillik": 36.0,
      "son_yil": 0.0,
-     "al_tut": -40.0,
+     "al_tut": -40.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -7970,7 +7970,7 @@
      "toplam": 250.9,
      "yillik": 25.4,
      "son_yil": -24.6,
-     "al_tut": -40.0,
+     "al_tut": -40.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -7984,7 +7984,7 @@
      "toplam": 349.6,
      "yillik": 24.8,
      "son_yil": -28.9,
-     "al_tut": 71.1,
+     "al_tut": 70.8,
      "baslangic": "2020-01-02"
     },
     {
@@ -7998,7 +7998,7 @@
      "toplam": 237.8,
      "yillik": 24.6,
      "son_yil": -22.7,
-     "al_tut": -40.0,
+     "al_tut": -40.1,
      "baslangic": "2021-03-29"
     },
     {
@@ -8012,7 +8012,7 @@
      "toplam": 227.0,
      "yillik": 23.8,
      "son_yil": 0.0,
-     "al_tut": -40.0,
+     "al_tut": -40.1,
      "baslangic": "2021-03-29"
     }
    ]
@@ -8029,7 +8029,7 @@
     "toplam": 2308.6,
     "yillik": 108.8,
     "son_yil": 96.2,
-    "al_tut": 1514.6,
+    "al_tut": 1508.6,
     "baslangic": "2022-06-17"
    },
    "ilk5": [
@@ -8044,7 +8044,7 @@
      "toplam": 2308.6,
      "yillik": 108.8,
      "son_yil": 96.2,
-     "al_tut": 1514.6,
+     "al_tut": 1508.6,
      "baslangic": "2022-06-17"
     },
     {
@@ -8058,7 +8058,7 @@
      "toplam": 2017.6,
      "yillik": 102.6,
      "son_yil": 131.9,
-     "al_tut": 1514.6,
+     "al_tut": 1508.6,
      "baslangic": "2022-06-17"
     },
     {
@@ -8072,7 +8072,7 @@
      "toplam": 1716.8,
      "yillik": 95.6,
      "son_yil": 96.5,
-     "al_tut": 1514.6,
+     "al_tut": 1508.6,
      "baslangic": "2022-06-17"
     },
     {
@@ -8086,7 +8086,7 @@
      "toplam": 1637.6,
      "yillik": 93.6,
      "son_yil": 155.2,
-     "al_tut": 1514.6,
+     "al_tut": 1508.6,
      "baslangic": "2022-06-17"
     },
     {
@@ -8100,7 +8100,7 @@
      "toplam": 1639.7,
      "yillik": 93.6,
      "son_yil": 128.0,
-     "al_tut": 1514.6,
+     "al_tut": 1508.6,
      "baslangic": "2022-06-17"
     }
    ]
@@ -8164,20 +8164,6 @@
      "baslangic": "2020-01-02"
     },
     {
-     "aday": 24,
-     "ad": "25 Ortak Karar",
-     "tf": 2,
-     "tf_ad": "Günlük",
-     "islem": 66,
-     "kazanma": 56.1,
-     "ortalama": 4.96,
-     "toplam": 1400.3,
-     "yillik": 49.1,
-     "son_yil": 26.8,
-     "al_tut": 1620.4,
-     "baslangic": "2020-01-02"
-    },
-    {
      "aday": 13,
      "ad": "14 EMA 5x22",
      "tf": 2,
@@ -8188,6 +8174,20 @@
      "toplam": 1378.2,
      "yillik": 48.8,
      "son_yil": -16.2,
+     "al_tut": 1620.4,
+     "baslangic": "2020-01-02"
+    },
+    {
+     "aday": 185,
+     "ad": "09 ALMA + 14 EMA 5x22",
+     "tf": 2,
+     "tf_ad": "Günlük",
+     "islem": 77,
+     "kazanma": 50.6,
+     "ortalama": 4.26,
+     "toplam": 1356.8,
+     "yillik": 48.5,
+     "son_yil": -15.4,
      "al_tut": 1620.4,
      "baslangic": "2020-01-02"
     }
@@ -8205,7 +8205,7 @@
     "toplam": 445.1,
     "yillik": 35.8,
     "son_yil": -10.8,
-    "al_tut": 40.8,
+    "al_tut": 41.6,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -8220,7 +8220,7 @@
      "toplam": 445.1,
      "yillik": 35.8,
      "son_yil": -10.8,
-     "al_tut": 40.8,
+     "al_tut": 41.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -8234,7 +8234,7 @@
      "toplam": 558.9,
      "yillik": 32.1,
      "son_yil": 11.4,
-     "al_tut": 96.2,
+     "al_tut": 97.3,
      "baslangic": "2020-01-02"
     },
     {
@@ -8248,7 +8248,7 @@
      "toplam": 366.8,
      "yillik": 32.1,
      "son_yil": -19.1,
-     "al_tut": 40.8,
+     "al_tut": 41.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -8262,7 +8262,7 @@
      "toplam": 343.5,
      "yillik": 30.9,
      "son_yil": -11.9,
-     "al_tut": 40.8,
+     "al_tut": 41.6,
      "baslangic": "2021-03-29"
     },
     {
@@ -8276,7 +8276,7 @@
      "toplam": 507.6,
      "yillik": 30.5,
      "son_yil": 19.7,
-     "al_tut": 96.2,
+     "al_tut": 97.3,
      "baslangic": "2020-01-02"
     }
    ]
@@ -8293,7 +8293,7 @@
     "toplam": 763.2,
     "yillik": 47.6,
     "son_yil": -5.0,
-    "al_tut": 1112.6,
+    "al_tut": 1111.5,
     "baslangic": "2021-03-29"
    },
    "ilk5": [
@@ -8308,7 +8308,7 @@
      "toplam": 763.2,
      "yillik": 47.6,
      "son_yil": -5.0,
-     "al_tut": 1112.6,
+     "al_tut": 1111.5,
      "baslangic": "2021-03-29"
     },
     {
@@ -8322,7 +8322,7 @@
      "toplam": 709.1,
      "yillik": 45.9,
      "son_yil": 10.8,
-     "al_tut": 1112.6,
+     "al_tut": 1111.5,
      "baslangic": "2021-03-29"
     },
     {
@@ -8336,7 +8336,7 @@
      "toplam": 697.2,
      "yillik": 45.5,
      "son_yil": 25.4,
-     "al_tut": 1112.6,
+     "al_tut": 1111.5,
      "baslangic": "2021-03-29"
     },
     {
@@ -8350,7 +8350,7 @@
      "toplam": 688.8,
      "yillik": 45.2,
      "son_yil": 10.8,
-     "al_tut": 1112.6,
+     "al_tut": 1111.5,
      "baslangic": "2021-03-29"
     },
     {
@@ -8364,7 +8364,7 @@
      "toplam": 681.3,
      "yillik": 44.9,
      "son_yil": 4.7,
-     "al_tut": 1112.6,
+     "al_tut": 1111.5,
      "baslangic": "2021-03-29"
     }
    ]
@@ -8377,10 +8377,10 @@
     "tf_ad": "4 Saat",
     "islem": 22,
     "kazanma": 59.1,
-    "ortalama": 17.24,
-    "toplam": 1815.5,
-    "yillik": 932.2,
-    "son_yil": 739.2,
+    "ortalama": 18.0,
+    "toplam": 2264.4,
+    "yillik": 1119.1,
+    "son_yil": 935.9,
     "al_tut": -9.7,
     "baslangic": "2025-07-07"
    },
@@ -8392,10 +8392,10 @@
      "tf_ad": "4 Saat",
      "islem": 22,
      "kazanma": 59.1,
-     "ortalama": 17.24,
-     "toplam": 1815.5,
-     "yillik": 932.2,
-     "son_yil": 739.2,
+     "ortalama": 18.0,
+     "toplam": 2264.4,
+     "yillik": 1119.1,
+     "son_yil": 935.9,
      "al_tut": -9.7,
      "baslangic": "2025-07-07"
     },
@@ -8434,10 +8434,10 @@
      "tf_ad": "4 Saat",
      "islem": 18,
      "kazanma": 83.3,
-     "ortalama": 17.77,
-     "toplam": 1262.5,
-     "yillik": 688.5,
-     "son_yil": 798.2,
+     "ortalama": 18.3,
+     "toplam": 1369.6,
+     "yillik": 737.1,
+     "son_yil": 868.8,
      "al_tut": -9.7,
      "baslangic": "2025-07-07"
     },
@@ -8459,20 +8459,34 @@
   },
   "GLRMK": {
    "en_iyi": {
-    "aday": 236,
-    "ad": "13 EMA 5x13 + 15 WMA 9x15",
+    "aday": 213,
+    "ad": "11 Bollinger Orta Bant + 15 WMA 9x15",
     "tf": 1,
     "tf_ad": "4 Saat",
-    "islem": 21,
-    "kazanma": 33.3,
-    "ortalama": 2.8,
-    "toplam": 57.5,
-    "yillik": 41.1,
-    "son_yil": 19.4,
-    "al_tut": 1.4,
+    "islem": 26,
+    "kazanma": 30.8,
+    "ortalama": 2.29,
+    "toplam": 58.5,
+    "yillik": 41.8,
+    "son_yil": 28.1,
+    "al_tut": 1.3,
     "baslangic": "2025-06-17"
    },
    "ilk5": [
+    {
+     "aday": 213,
+     "ad": "11 Bollinger Orta Bant + 15 WMA 9x15",
+     "tf": 1,
+     "tf_ad": "4 Saat",
+     "islem": 26,
+     "kazanma": 30.8,
+     "ortalama": 2.29,
+     "toplam": 58.5,
+     "yillik": 41.8,
+     "son_yil": 28.1,
+     "al_tut": 1.3,
+     "baslangic": "2025-06-17"
+    },
     {
      "aday": 236,
      "ad": "13 EMA 5x13 + 15 WMA 9x15",
@@ -8484,21 +8498,21 @@
      "toplam": 57.5,
      "yillik": 41.1,
      "son_yil": 19.4,
-     "al_tut": 1.4,
+     "al_tut": 1.3,
      "baslangic": "2025-06-17"
     },
     {
-     "aday": 213,
-     "ad": "11 Bollinger Orta Bant + 15 WMA 9x15",
+     "aday": 211,
+     "ad": "11 Bollinger Orta Bant + 13 EMA 5x13",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 26,
-     "kazanma": 30.8,
-     "ortalama": 2.24,
-     "toplam": 56.3,
-     "yillik": 40.2,
-     "son_yil": 26.3,
-     "al_tut": 1.4,
+     "islem": 25,
+     "kazanma": 32.0,
+     "ortalama": 2.27,
+     "toplam": 54.2,
+     "yillik": 38.9,
+     "son_yil": 19.8,
+     "al_tut": 1.3,
      "baslangic": "2025-06-17"
     },
     {
@@ -8508,39 +8522,25 @@
      "tf_ad": "4 Saat",
      "islem": 11,
      "kazanma": 45.5,
-     "ortalama": 4.51,
-     "toplam": 54.1,
-     "yillik": 38.8,
-     "son_yil": 17.0,
-     "al_tut": 1.4,
+     "ortalama": 4.5,
+     "toplam": 53.9,
+     "yillik": 38.7,
+     "son_yil": 16.9,
+     "al_tut": 1.3,
      "baslangic": "2025-06-17"
     },
     {
-     "aday": 212,
-     "ad": "11 Bollinger Orta Bant + 14 EMA 5x22",
+     "aday": 100,
+     "ad": "04 AlphaTrend + 14 EMA 5x22",
      "tf": 1,
      "tf_ad": "4 Saat",
-     "islem": 23,
-     "kazanma": 39.1,
-     "ortalama": 2.39,
-     "toplam": 53.4,
-     "yillik": 38.3,
-     "son_yil": 21.7,
-     "al_tut": 1.4,
-     "baslangic": "2025-06-17"
-    },
-    {
-     "aday": 246,
-     "ad": "14 EMA 5x22 + 15 WMA 9x15",
-     "tf": 1,
-     "tf_ad": "4 Saat",
-     "islem": 18,
-     "kazanma": 33.3,
-     "ortalama": 3.05,
-     "toplam": 53.3,
-     "yillik": 38.2,
-     "son_yil": 18.7,
-     "al_tut": 1.4,
+     "islem": 12,
+     "kazanma": 41.7,
+     "ortalama": 4.18,
+     "toplam": 52.6,
+     "yillik": 37.8,
+     "son_yil": 15.9,
+     "al_tut": 1.3,
      "baslangic": "2025-06-17"
     }
    ]
