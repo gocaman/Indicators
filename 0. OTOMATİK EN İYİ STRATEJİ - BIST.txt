@@ -123,245 +123,302 @@ f_isle(int c, int[] cA, int[] cB, bool[] poz, bool[] onceki, float[] giris, int[
     yeniEnIyi
 
 // ════════════════════════════ TÜM STRATEJİLER + TEST (her zaman diliminde ayrı çalışır) ════════════════════════════
-f_hepsi(bool aktif) =>
-    ema5 = ta.ema(close, 5)
-    ema13 = ta.ema(close, 13)
-    ema14 = ta.ema(close, 14)
-    ema22 = ta.ema(close, 22)
-    ema34 = ta.ema(close, 34)
-    ema50 = ta.ema(close, 50)
-    sma10 = ta.sma(close, 10)
-    sma20 = ta.sma(close, 20)
-    sma200 = ta.sma(close, 200)
-    rsi14 = ta.rsi(close, 14)
-    mfi14 = ta.mfi(hlc3, 14)
-    [mL, mS, mH] = ta.macd(close, 12, 26, 9)
-    [m2L, m2S, m2H] = ta.macd(close, 10, 20, 9)
-    // 01 RSI Karpuzlu
-    rsiK = ta.rsi(close, 22)
-    rsiKema = ta.ema(rsiK, 66)
-    b01 = ta.crossover(rsiK, rsiKema)
-    s01 = ta.crossunder(rsiK, rsiKema)
-    // 02 Dip Bulucu (Banker)
-    stoch27 = (close - ta.lowest(low, 27)) / (ta.highest(high, 27) - ta.lowest(low, 27)) * 100
-    fx1 = f_xsa(stoch27, 5, 1)
-    fx2 = f_xsa(fx1, 3, 1)
-    fonTrend = (3 * fx1 - 2 * fx2 - 50) * 1.032 + 50
-    typ = (2 * close + high + low + open) / 5
-    lol34 = ta.lowest(low, 34)
-    hoh34 = ta.highest(high, 34)
-    bogaAyi = ta.ema((typ - lol34) / (hoh34 - lol34) * 100, 13)
-    b02 = ta.crossover(fonTrend, bogaAyi) and bogaAyi < 25
-    s02 = ta.crossunder(fonTrend, bogaAyi)
-    // 03 Dip Bulucu-2 (VixFix)
-    wvfTepe = ta.highest(close, 22)
-    wvf = (wvfTepe - low) / wvfTepe * 100
-    wvfUst = ta.sma(wvf, 20) + 2.0 * ta.stdev(wvf, 20)
-    wvfYuksek = ta.highest(wvf, 50) * 0.85
-    wvfDip = wvf >= wvfUst or wvf >= wvfYuksek
-    b03 = wvfDip and not wvfDip[1]
-    s03 = false
-    // 04 AlphaTrend
-    atAtr = ta.sma(ta.tr, 14)
-    atKosul = hacimYok ? rsi14 >= 50 : mfi14 >= 50
-    float alpha = 0.0
-    alpha := atKosul ? (low - atAtr < nz(alpha[1]) ? nz(alpha[1]) : low - atAtr) : (high + atAtr > nz(alpha[1]) ? nz(alpha[1]) : high + atAtr)
-    atAlHam = ta.crossover(alpha, alpha[2])
-    atSatHam = ta.crossunder(alpha, alpha[2])
-    atK1 = ta.barssince(atAlHam)
-    atK2 = ta.barssince(atSatHam)
-    atO1 = ta.barssince(atAlHam[1])
-    atO2 = ta.barssince(atSatHam[1])
-    b04 = atAlHam and atO1 > atK2
-    s04 = atSatHam and atO2 > atK1
-    var bool atYukari = false
-    if b04
-        atYukari := true
-    if s04
-        atYukari := false
-    // 05 SuperTrend (10, 3)
-    [stDeger, stYon] = ta.supertrend(3.0, 10)
-    stYukari = stYon < 0
-    b05 = stYukari and not stYukari[1]
-    s05 = not stYukari and stYukari[1]
-    // 06 AlphaTrend + SuperTrend
-    ikisi = atYukari and stYukari
-    b06 = ikisi and not ikisi[1]
-    s06 = not ikisi and ikisi[1]
-    // 07 Parabolic SAR
-    psar = ta.sar(0.02, 0.02, 0.2)
-    psarYon = psar < close ? 1 : -1
-    b07 = psarYon == 1 and psarYon[1] == -1
-    s07 = psarYon == -1 and psarYon[1] == 1
-    // 08 MACD Dip
-    b08 = ta.crossover(mL, mS) and mL <= 0
-    s08 = ta.crossunder(mL, mS)
-    // 09 ALMA
-    alma = ta.alma(close, 14, 0.85, 6)
-    almaYukari = alma >= alma[1]
-    b09 = almaYukari and not almaYukari[1]
-    s09 = not almaYukari and almaYukari[1]
-    // 10 T3 Tillson
-    t3 = f_t3((high + low + 2 * close) / 4, 8, 0.7)
-    t3Yukari = t3 > t3[1]
-    b10 = t3Yukari and not t3Yukari[1]
-    s10 = not t3Yukari and t3Yukari[1]
-    // 11 Bollinger Orta Bant
-    b11 = ta.crossover(close, sma20)
-    s11 = ta.crossunder(close, sma20)
-    // 12 Bollinger20 x EMA50
-    b12 = ta.crossover(sma20, ema50)
-    s12 = ta.crossunder(sma20, ema50)
-    // 13 EMA 5x13
-    b13 = ta.crossover(ema5, ema13)
-    s13 = ta.crossunder(ema5, ema13)
-    // 14 EMA 5x22
-    b14 = ta.crossover(ema5, ema22)
-    s14 = ta.crossunder(ema5, ema22)
-    // 15 WMA 9x15
-    wma9 = ta.wma(close, 9)
-    wma15 = ta.wma(close, 15)
-    b15 = ta.crossover(wma9, wma15)
-    s15 = ta.crossunder(wma9, wma15)
-    // 16 SMMA 21x55
-    smma21 = ta.rma(close, 21)
-    smma55 = ta.rma(close, 55)
-    b16 = ta.crossover(smma21, smma55)
-    s16 = ta.crossunder(smma21, smma55)
-    // 17 Darvas Kutusu (7)
-    dLL = ta.lowest(low, 7)
-    dK1 = ta.highest(high, 7)
-    dK2 = ta.highest(high, 6)
-    dK3 = ta.highest(high, 5)
-    dNH = ta.valuewhen(high > dK1[1], high, 0)
-    dKutu = ta.barssince(high > dK1[1]) == 5 and dK3 < dK2
-    dUst = ta.valuewhen(dKutu, dNH, 0)
-    dAlt = ta.valuewhen(dKutu, dLL, 0)
-    b17 = ta.crossover(close, dUst)
-    s17 = ta.crossunder(close, dAlt)
-    // 18 Fisher Dip
-    fH = ta.highest(hl2, 7)
-    fL = ta.lowest(hl2, 7)
-    float fDeger = 0.0
-    fDeger := f_sinir(0.66 * ((hl2 - fL) / (fH - fL) - 0.5) + 0.67 * nz(fDeger[1]))
-    float fish = 0.0
-    fish := 0.5 * math.log((1 + fDeger) / (1 - fDeger)) + 0.5 * nz(fish[1])
-    fTet = fish[1]
-    b18 = ta.crossover(fish, fTet) and fTet <= -1.5
-    s18 = ta.crossunder(fish, fTet) and fTet >= 1.5
-    // 19 CCI Dip
-    cci = ta.cci(hlc3, 20)
-    b19 = ta.crossover(cci, -100)
-    s19 = ta.crossunder(cci, 100)
-    // 20 TSI Dip
-    tsi = ta.tsi(close, 3, 9)
-    b20 = tsi <= -0.8 and tsi[1] > -0.8
-    s20 = tsi >= 0.8 and tsi[1] < 0.8
-    // 21 MACD Kesişimi (haftalık grafikte = eski "Haftalık MACD")
-    b21 = ta.crossover(mL, mS)
-    s21 = ta.crossunder(mL, mS)
-    // 22 Erik Kombo
-    erikKesisim = ta.crossover(ema5, sma10)
-    rsi5 = ta.rsi(close, 5)
-    rsi9 = ta.rsi(close, 9)
-    hma9 = ta.hma(close, 9)
-    donusum9 = f_orta(9)
-    kijun26 = f_orta(26)
-    b22 = erikKesisim and close > donusum9 and mL > mS and rsi5 > rsi9 and mfi14 > 50 and hma9 < close and close > kijun26
-    s22 = ta.crossunder(ema5, sma10)
-    // 23 EMA Kombo
-    b23 = ta.crossover(ema5, ema14) and close > ema34 and m2L > m2S and rsi14 > 50
-    s23 = ta.crossunder(ema5, ema14)
-    // 24 Bollinger Kombo
-    b24 = ta.crossover(close, sma20) and close >= sma200 and m2L > m2S
-    s24 = ta.crossunder(close, sma20)
+f_hepsi(bool aktif, bool gerekli) =>
+    float r00 = na
+    int r01 = 0
+    int r02 = 0
+    int r03 = 0
+    float r04 = na
+    float r05 = na
+    float r06 = na
+    float r07 = na
+    float r08 = na
+    float r09 = na
+    float r10 = na
+    float r11 = na
+    float r12 = na
+    float r13 = na
+    float r14 = na
+    float r15 = na
+    float r16 = na
+    float r17 = na
+    float r18 = na
+    float r19 = na
+    float r20 = na
+    float r21 = na
+    float r22 = na
+    float r23 = na
+    float r24 = na
+    float r25 = na
+    float r26 = na
+    float r27 = na
+    if gerekli
+        ema5 = ta.ema(close, 5)
+        ema13 = ta.ema(close, 13)
+        ema14 = ta.ema(close, 14)
+        ema22 = ta.ema(close, 22)
+        ema34 = ta.ema(close, 34)
+        ema50 = ta.ema(close, 50)
+        sma10 = ta.sma(close, 10)
+        sma20 = ta.sma(close, 20)
+        sma200 = ta.sma(close, 200)
+        rsi14 = ta.rsi(close, 14)
+        mfi14 = ta.mfi(hlc3, 14)
+        [mL, mS, mH] = ta.macd(close, 12, 26, 9)
+        [m2L, m2S, m2H] = ta.macd(close, 10, 20, 9)
+        // 01 RSI Karpuzlu
+        rsiK = ta.rsi(close, 22)
+        rsiKema = ta.ema(rsiK, 66)
+        b01 = ta.crossover(rsiK, rsiKema)
+        s01 = ta.crossunder(rsiK, rsiKema)
+        // 02 Dip Bulucu (Banker)
+        stoch27 = (close - ta.lowest(low, 27)) / (ta.highest(high, 27) - ta.lowest(low, 27)) * 100
+        fx1 = f_xsa(stoch27, 5, 1)
+        fx2 = f_xsa(fx1, 3, 1)
+        fonTrend = (3 * fx1 - 2 * fx2 - 50) * 1.032 + 50
+        typ = (2 * close + high + low + open) / 5
+        lol34 = ta.lowest(low, 34)
+        hoh34 = ta.highest(high, 34)
+        bogaAyi = ta.ema((typ - lol34) / (hoh34 - lol34) * 100, 13)
+        b02 = ta.crossover(fonTrend, bogaAyi) and bogaAyi < 25
+        s02 = ta.crossunder(fonTrend, bogaAyi)
+        // 03 Dip Bulucu-2 (VixFix)
+        wvfTepe = ta.highest(close, 22)
+        wvf = (wvfTepe - low) / wvfTepe * 100
+        wvfUst = ta.sma(wvf, 20) + 2.0 * ta.stdev(wvf, 20)
+        wvfYuksek = ta.highest(wvf, 50) * 0.85
+        wvfDip = wvf >= wvfUst or wvf >= wvfYuksek
+        b03 = wvfDip and not wvfDip[1]
+        s03 = false
+        // 04 AlphaTrend
+        atAtr = ta.sma(ta.tr, 14)
+        atKosul = hacimYok ? rsi14 >= 50 : mfi14 >= 50
+        float alpha = 0.0
+        alpha := atKosul ? (low - atAtr < nz(alpha[1]) ? nz(alpha[1]) : low - atAtr) : (high + atAtr > nz(alpha[1]) ? nz(alpha[1]) : high + atAtr)
+        atAlHam = ta.crossover(alpha, alpha[2])
+        atSatHam = ta.crossunder(alpha, alpha[2])
+        atK1 = ta.barssince(atAlHam)
+        atK2 = ta.barssince(atSatHam)
+        atO1 = ta.barssince(atAlHam[1])
+        atO2 = ta.barssince(atSatHam[1])
+        b04 = atAlHam and atO1 > atK2
+        s04 = atSatHam and atO2 > atK1
+        var bool atYukari = false
+        if b04
+            atYukari := true
+        if s04
+            atYukari := false
+        // 05 SuperTrend (10, 3)
+        [stDeger, stYon] = ta.supertrend(3.0, 10)
+        stYukari = stYon < 0
+        b05 = stYukari and not stYukari[1]
+        s05 = not stYukari and stYukari[1]
+        // 06 AlphaTrend + SuperTrend
+        ikisi = atYukari and stYukari
+        b06 = ikisi and not ikisi[1]
+        s06 = not ikisi and ikisi[1]
+        // 07 Parabolic SAR
+        psar = ta.sar(0.02, 0.02, 0.2)
+        psarYon = psar < close ? 1 : -1
+        b07 = psarYon == 1 and psarYon[1] == -1
+        s07 = psarYon == -1 and psarYon[1] == 1
+        // 08 MACD Dip
+        b08 = ta.crossover(mL, mS) and mL <= 0
+        s08 = ta.crossunder(mL, mS)
+        // 09 ALMA
+        alma = ta.alma(close, 14, 0.85, 6)
+        almaYukari = alma >= alma[1]
+        b09 = almaYukari and not almaYukari[1]
+        s09 = not almaYukari and almaYukari[1]
+        // 10 T3 Tillson
+        t3 = f_t3((high + low + 2 * close) / 4, 8, 0.7)
+        t3Yukari = t3 > t3[1]
+        b10 = t3Yukari and not t3Yukari[1]
+        s10 = not t3Yukari and t3Yukari[1]
+        // 11 Bollinger Orta Bant
+        b11 = ta.crossover(close, sma20)
+        s11 = ta.crossunder(close, sma20)
+        // 12 Bollinger20 x EMA50
+        b12 = ta.crossover(sma20, ema50)
+        s12 = ta.crossunder(sma20, ema50)
+        // 13 EMA 5x13
+        b13 = ta.crossover(ema5, ema13)
+        s13 = ta.crossunder(ema5, ema13)
+        // 14 EMA 5x22
+        b14 = ta.crossover(ema5, ema22)
+        s14 = ta.crossunder(ema5, ema22)
+        // 15 WMA 9x15
+        wma9 = ta.wma(close, 9)
+        wma15 = ta.wma(close, 15)
+        b15 = ta.crossover(wma9, wma15)
+        s15 = ta.crossunder(wma9, wma15)
+        // 16 SMMA 21x55
+        smma21 = ta.rma(close, 21)
+        smma55 = ta.rma(close, 55)
+        b16 = ta.crossover(smma21, smma55)
+        s16 = ta.crossunder(smma21, smma55)
+        // 17 Darvas Kutusu (7)
+        dLL = ta.lowest(low, 7)
+        dK1 = ta.highest(high, 7)
+        dK2 = ta.highest(high, 6)
+        dK3 = ta.highest(high, 5)
+        dNH = ta.valuewhen(high > dK1[1], high, 0)
+        dKutu = ta.barssince(high > dK1[1]) == 5 and dK3 < dK2
+        dUst = ta.valuewhen(dKutu, dNH, 0)
+        dAlt = ta.valuewhen(dKutu, dLL, 0)
+        b17 = ta.crossover(close, dUst)
+        s17 = ta.crossunder(close, dAlt)
+        // 18 Fisher Dip
+        fH = ta.highest(hl2, 7)
+        fL = ta.lowest(hl2, 7)
+        float fDeger = 0.0
+        fDeger := f_sinir(0.66 * ((hl2 - fL) / (fH - fL) - 0.5) + 0.67 * nz(fDeger[1]))
+        float fish = 0.0
+        fish := 0.5 * math.log((1 + fDeger) / (1 - fDeger)) + 0.5 * nz(fish[1])
+        fTet = fish[1]
+        b18 = ta.crossover(fish, fTet) and fTet <= -1.5
+        s18 = ta.crossunder(fish, fTet) and fTet >= 1.5
+        // 19 CCI Dip
+        cci = ta.cci(hlc3, 20)
+        b19 = ta.crossover(cci, -100)
+        s19 = ta.crossunder(cci, 100)
+        // 20 TSI Dip
+        tsi = ta.tsi(close, 3, 9)
+        b20 = tsi <= -0.8 and tsi[1] > -0.8
+        s20 = tsi >= 0.8 and tsi[1] < 0.8
+        // 21 MACD Kesişimi (haftalık grafikte = eski "Haftalık MACD")
+        b21 = ta.crossover(mL, mS)
+        s21 = ta.crossunder(mL, mS)
+        // 22 Erik Kombo
+        erikKesisim = ta.crossover(ema5, sma10)
+        rsi5 = ta.rsi(close, 5)
+        rsi9 = ta.rsi(close, 9)
+        hma9 = ta.hma(close, 9)
+        donusum9 = f_orta(9)
+        kijun26 = f_orta(26)
+        b22 = erikKesisim and close > donusum9 and mL > mS and rsi5 > rsi9 and mfi14 > 50 and hma9 < close and close > kijun26
+        s22 = ta.crossunder(ema5, sma10)
+        // 23 EMA Kombo
+        b23 = ta.crossover(ema5, ema14) and close > ema34 and m2L > m2S and rsi14 > 50
+        s23 = ta.crossunder(ema5, ema14)
+        // 24 Bollinger Kombo
+        b24 = ta.crossover(close, sma20) and close >= sma200 and m2L > m2S
+        s24 = ta.crossunder(close, sma20)
 
-    // 25 Ortak Karar
-    alDizi = array.from(b01, b02, b03, b04, b05, b06, b07, b08, b09, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24)
-    satDizi = array.from(s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24)
-    var int[] sonAl = array.new_int(24, -100000)
-    var int[] sonSat = array.new_int(24, -100000)
-    int alSay = 0
-    int satSay = 0
-    for i = 0 to 23
-        if array.get(alDizi, i)
-            array.set(sonAl, i, bar_index)
-        if array.get(satDizi, i)
-            array.set(sonSat, i, bar_index)
-        if bar_index - array.get(sonAl, i) < ortakBar
-            alSay += 1
-        if bar_index - array.get(sonSat, i) < ortakBar
-            satSay += 1
-    bOrtak = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
-    sOrtak = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
-    // ── pozisyon durumları
+        // 25 Ortak Karar
+        alDizi = array.from(b01, b02, b03, b04, b05, b06, b07, b08, b09, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24)
+        satDizi = array.from(s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24)
+        var int[] sonAl = array.new_int(24, -100000)
+        var int[] sonSat = array.new_int(24, -100000)
+        int alSay = 0
+        int satSay = 0
+        for i = 0 to 23
+            if array.get(alDizi, i)
+                array.set(sonAl, i, bar_index)
+            if array.get(satDizi, i)
+                array.set(sonSat, i, bar_index)
+            if bar_index - array.get(sonAl, i) < ortakBar
+                alSay += 1
+            if bar_index - array.get(sonSat, i) < ortakBar
+                satSay += 1
+        bOrtak = alSay >= ortakEsik and nz(alSay[1]) < ortakEsik and alSay > satSay
+        sOrtak = satSay >= ortakEsik and nz(satSay[1]) < ortakEsik and satSay > alSay
+        // ── pozisyon durumları
 
-    p01 = f_durum(b01, s01)
-    p02 = f_durum(b02, s02)
-    p03 = f_durum(b03, s03)
-    p04 = f_durum(b04, s04)
-    p05 = f_durum(b05, s05)
-    p06 = f_durum(b06, s06)
-    p07 = f_durum(b07, s07)
-    p08 = f_durum(b08, s08)
-    p09 = f_durum(b09, s09)
-    p10 = f_durum(b10, s10)
-    p11 = f_durum(b11, s11)
-    p12 = f_durum(b12, s12)
-    p13 = f_durum(b13, s13)
-    p14 = f_durum(b14, s14)
-    p15 = f_durum(b15, s15)
-    p16 = f_durum(b16, s16)
-    p17 = f_durum(b17, s17)
-    p18 = f_durum(b18, s18)
-    p19 = f_durum(b19, s19)
-    p20 = f_durum(b20, s20)
-    p21 = f_durum(b21, s21)
-    p22 = f_durum(b22, s22)
-    p23 = f_durum(b23, s23)
-    p24 = f_durum(b24, s24)
-    p25 = f_durum(bOrtak, sOrtak)
-    poz = array.from(p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25)
-    // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan çık
-    var int[] cA = array.new_int()
-    var int[] cB = array.new_int()
-    f_adayKur(cA, cB)
-    var bool[] onceki = array.new_bool(25, false)
-    var float[] giris = array.new_float(301, na)
-    var int[] adet = array.new_int(301, 0)
-    var int[] kaz = array.new_int(301, 0)
-    var float[] top = array.new_float(301, 0.0)
-    var float[] ser = array.new_float(301, 1.0)
-    var float[] serY = array.new_float(301, 1.0)
-    var float[] skor = array.new_float(301, -1e10)
-    var int enIyi = 0
-    var int[] islendi = array.new_int(301, -1)
-    var float alTutBas = na
-    if aktif and time >= testBas
-        if na(alTutBas)
-            alTutBas := close
-        sonYil = time >= timenow - 365 * 86400000
-        // Hız: sadece bu mumda durumu DEĞİŞEN stratejilere ve onların kombinlerine bakılır
+        p01 = f_durum(b01, s01)
+        p02 = f_durum(b02, s02)
+        p03 = f_durum(b03, s03)
+        p04 = f_durum(b04, s04)
+        p05 = f_durum(b05, s05)
+        p06 = f_durum(b06, s06)
+        p07 = f_durum(b07, s07)
+        p08 = f_durum(b08, s08)
+        p09 = f_durum(b09, s09)
+        p10 = f_durum(b10, s10)
+        p11 = f_durum(b11, s11)
+        p12 = f_durum(b12, s12)
+        p13 = f_durum(b13, s13)
+        p14 = f_durum(b14, s14)
+        p15 = f_durum(b15, s15)
+        p16 = f_durum(b16, s16)
+        p17 = f_durum(b17, s17)
+        p18 = f_durum(b18, s18)
+        p19 = f_durum(b19, s19)
+        p20 = f_durum(b20, s20)
+        p21 = f_durum(b21, s21)
+        p22 = f_durum(b22, s22)
+        p23 = f_durum(b23, s23)
+        p24 = f_durum(b24, s24)
+        p25 = f_durum(bOrtak, sOrtak)
+        poz = array.from(p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25)
+        // ── adayların testi: AL'da kapanıştan gir, SAT'ta kapanıştan çık
+        var int[] cA = array.new_int()
+        var int[] cB = array.new_int()
+        f_adayKur(cA, cB)
+        var bool[] onceki = array.new_bool(25, false)
+        var float[] giris = array.new_float(301, na)
+        var int[] adet = array.new_int(301, 0)
+        var int[] kaz = array.new_int(301, 0)
+        var float[] top = array.new_float(301, 0.0)
+        var float[] ser = array.new_float(301, 1.0)
+        var float[] serY = array.new_float(301, 1.0)
+        var float[] skor = array.new_float(301, -1e10)
+        var int enIyi = 0
+        var int[] islendi = array.new_int(301, -1)
+        var float alTutBas = na
+        if aktif and time >= testBas
+            if na(alTutBas)
+                alTutBas := close
+            sonYil = time >= timenow - 365 * 86400000
+            // Hız: sadece bu mumda durumu DEĞİŞEN stratejilere ve onların kombinlerine bakılır
+            for k = 0 to 24
+                if array.get(poz, k) != array.get(onceki, k)
+                    for m = -1 to (kombinTest and k < 24 ? 23 : -1)
+                        // Pine v5'te "and" iki tarafı da hesaplar: c = -1 iken dizi okunmasın diye iç içe if
+                        c = m == -1 ? k : m == k ? -1 : f_ciftNo(math.min(k, m), math.max(k, m))
+                        if c >= 0
+                            if array.get(islendi, c) != bar_index
+                                array.set(islendi, c, bar_index)
+                                enIyi := f_isle(c, cA, cB, poz, onceki, giris, adet, kaz, top, ser, serY, skor, enIyi, sonYil)
         for k = 0 to 24
-            if array.get(poz, k) != array.get(onceki, k)
-                for m = -1 to (kombinTest and k < 24 ? 23 : -1)
-                    // Pine v5'te "and" iki tarafı da hesaplar: c = -1 iken dizi okunmasın diye iç içe if
-                    c = m == -1 ? k : m == k ? -1 : f_ciftNo(math.min(k, m), math.max(k, m))
-                    if c >= 0
-                        if array.get(islendi, c) != bar_index
-                            array.set(islendi, c, bar_index)
-                            enIyi := f_isle(c, cA, cB, poz, onceki, giris, adet, kaz, top, ser, serY, skor, enIyi, sonYil)
-    for k = 0 to 24
-        array.set(onceki, k, array.get(poz, k))
-    float maske = 0.0
-    for k = 0 to 24
-        if array.get(poz, k)
-            maske += math.pow(2, k)
-    nB = array.get(adet, enIyi)
-    ortB = nB > 0 ? array.get(top, enIyi) / nB : 0.0
-    alTut = (close / alTutBas - 1) * 100
+            array.set(onceki, k, array.get(poz, k))
+        float maske = 0.0
+        for k = 0 to 24
+            if array.get(poz, k)
+                maske += math.pow(2, k)
+        nB = array.get(adet, enIyi)
+        ortB = nB > 0 ? array.get(top, enIyi) / nB : 0.0
+        alTut = (close / alTutBas - 1) * 100
 
-    [maske, enIyi, nB, array.get(kaz, enIyi), ortB, (array.get(ser, enIyi) - 1) * 100, array.get(skor, enIyi), (array.get(serY, enIyi) - 1) * 100, alTut, alpha, stDeger, psar, alma, t3, sma20, ema50, ema5, ema13, ema22, wma9, wma15, smma21, smma55, dUst, dAlt, ema14, sma10, sma200]
+        r00 := maske
+        r01 := enIyi
+        r02 := nB
+        r03 := array.get(kaz, enIyi)
+        r04 := ortB
+        r05 := (array.get(ser, enIyi) - 1) * 100
+        r06 := array.get(skor, enIyi)
+        r07 := (array.get(serY, enIyi) - 1) * 100
+        r08 := alTut
+        r09 := alpha
+        r10 := stDeger
+        r11 := psar
+        r12 := alma
+        r13 := t3
+        r14 := sma20
+        r15 := ema50
+        r16 := ema5
+        r17 := ema13
+        r18 := ema22
+        r19 := wma9
+        r20 := wma15
+        r21 := smma21
+        r22 := smma55
+        r23 := dUst
+        r24 := dAlt
+        r25 := ema14
+        r26 := sma10
+        r27 := sma200
+    [r00, r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22, r23, r24, r25, r26, r27]
 
 // ════════════════════════════ HAZIR SONUÇLAR (araclar/backtest.py her ay yazar) ════════════════════════════
 HAZIR_TARIH = "2026-10-13"
@@ -464,6 +521,106 @@ hIdx = switch syminfo.ticker
     "DSTKF" => 95
     "GLRMK" => 96
     => -1
+// hazır sonucun zaman dilimi: request.security'ye verildiği için basit (simple) değer olmalı
+hTfS = switch syminfo.ticker
+    "ADEL" => 2
+    "AEFES" => 2
+    "AGHOL" => 2
+    "AGROT" => 2
+    "AKBNK" => 2
+    "AKFGY" => 2
+    "AKFYE" => 1
+    "AKSA" => 2
+    "AKSEN" => 3
+    "ALARK" => 2
+    "ALFAS" => 2
+    "ALTNY" => 2
+    "ANSGR" => 3
+    "ARCLK" => 2
+    "ASELS" => 3
+    "ASTOR" => 2
+    "BERA" => 2
+    "BIMAS" => 1
+    "BINHO" => 2
+    "BJKAS" => 2
+    "BRSAN" => 2
+    "BRYAT" => 2
+    "BSOKE" => 3
+    "BTCIM" => 2
+    "CANTE" => 2
+    "CCOLA" => 2
+    "CIMSA" => 2
+    "CLEBI" => 2
+    "CWENE" => 1
+    "DOAS" => 2
+    "DOHOL" => 2
+    "ECILC" => 1
+    "EGEEN" => 3
+    "EKGYO" => 1
+    "ENERY" => 2
+    "ENJSA" => 3
+    "ENKAI" => 1
+    "EREGL" => 2
+    "EUPWR" => 1
+    "FENER" => 3
+    "FROTO" => 2
+    "GARAN" => 2
+    "GESAN" => 2
+    "GOLTS" => 2
+    "GRSEL" => 2
+    "GUBRF" => 2
+    "HALKB" => 1
+    "HEKTS" => 2
+    "ISCTR" => 2
+    "ISMEN" => 2
+    "KCAER" => 2
+    "KCHOL" => 3
+    "KONTR" => 1
+    "KONYA" => 2
+    "KRDMD" => 2
+    "KTLEV" => 2
+    "LMKDC" => 2
+    "MAVI" => 3
+    "MGROS" => 3
+    "MIATK" => 2
+    "MPARK" => 3
+    "OBAMS" => 2
+    "ODAS" => 3
+    "OTKAR" => 2
+    "OYAKC" => 2
+    "PASEU" => 2
+    "PETKM" => 2
+    "PGSUS" => 2
+    "REEDR" => 2
+    "SAHOL" => 2
+    "SASA" => 2
+    "SELEC" => 1
+    "SISE" => 3
+    "SKBNK" => 1
+    "SMRTG" => 2
+    "SOKM" => 2
+    "TABGD" => 2
+    "TAVHL" => 2
+    "TCELL" => 3
+    "THYAO" => 2
+    "TKFEN" => 1
+    "TOASO" => 3
+    "TSKB" => 2
+    "TTKOM" => 2
+    "TTRAK" => 3
+    "TUKAS" => 2
+    "TUPRS" => 3
+    "TURSG" => 2
+    "ULKER" => 3
+    "VAKBN" => 2
+    "VESTL" => 3
+    "YEOTK" => 2
+    "YKBNK" => 2
+    "ZOREN" => 3
+    "AKCNS" => 3
+    "DSTKF" => 1
+    "GLRMK" => 1
+    => -1
 var int[] hAday = array.from(8, 5, 0, 84, 149, 37, 217, 2, 8, 12, 246, 55, 22, 29, 8, 10, 8, 18, 165, 0, 10, 10, 6, 8, 81, 4, 8, 75, 158, 10, 13, 8, 211, 18, 2, 9, 2, 4, 26, 194, 36, 2, 6, 2, 2, 10, 24, 2, 211, 8, 11, 14, 141, 10, 0, 8, 42, 14, 8, 32, 73, 75, 213, 8, 8, 17, 24, 2, 48, 2, 257, 12, 79, 8, 231, 8, 254, 2, 8, 2, 8, 235, 12, 2, 8, 10, 10, 9, 150, 1, 85, 9, 211, 24, 184, 8, 213)
 var int[] hTf = array.from(2, 2, 2, 2, 2, 2, 1, 2, 3, 2, 2, 2, 3, 2, 3, 2, 2, 1, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 1, 2, 2, 1, 3, 1, 2, 3, 1, 2, 1, 3, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 3, 1, 2, 2, 2, 2, 3, 3, 2, 3, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 3, 1, 2, 2, 2, 2, 3, 2, 1, 3, 2, 2, 3, 2, 3, 2, 3, 2, 3, 2, 2, 3, 3, 1, 1)
 var int[] hN = array.from(101, 21, 69, 14, 86, 69, 41, 29, 15, 46, 14, 9, 7, 39, 17, 35, 103, 28, 16, 78, 75, 87, 11, 101, 30, 18, 103, 83, 35, 86, 42, 70, 6, 32, 9, 6, 21, 24, 43, 6, 70, 30, 43, 29, 16, 86, 48, 29, 69, 95, 7, 10, 17, 71, 74, 17, 13, 8, 17, 46, 6, 18, 9, 102, 108, 8, 63, 30, 11, 30, 30, 31, 9, 73, 12, 103, 7, 30, 17, 30, 71, 6, 55, 31, 16, 79, 14, 58, 11, 23, 7, 39, 65, 8, 11, 22, 26)
@@ -477,10 +634,10 @@ hazir = hazirKullan and hIdx >= 0 and syminfo.prefix == "BIST"
 hI = math.max(hIdx, 0)
 
 // ════════════════════════════ 4 ZAMAN DİLİMİNDE ÇALIŞTIR ════════════════════════════
-[m0, e0, n0, w0, o0, t0, s0, y0, at0, l0_01, l0_02, l0_03, l0_04, l0_05, l0_06, l0_07, l0_08, l0_09, l0_10, l0_11, l0_12, l0_13, l0_14, l0_15, l0_16, l0_17, l0_18, l0_19] = request.security(syminfo.tickerid, "60", f_hepsi(tf60 and not hazir))
-[m1, e1, n1, w1, o1, t1, s1, y1, at1, l1_01, l1_02, l1_03, l1_04, l1_05, l1_06, l1_07, l1_08, l1_09, l1_10, l1_11, l1_12, l1_13, l1_14, l1_15, l1_16, l1_17, l1_18, l1_19] = request.security(syminfo.tickerid, "240", f_hepsi(tf240 and not hazir))
-[m2, e2, n2, w2, o2, t2, s2, y2, at2, l2_01, l2_02, l2_03, l2_04, l2_05, l2_06, l2_07, l2_08, l2_09, l2_10, l2_11, l2_12, l2_13, l2_14, l2_15, l2_16, l2_17, l2_18, l2_19] = request.security(syminfo.tickerid, "D", f_hepsi(tfD and not hazir))
-[m3, e3, n3, w3, o3, t3, s3, y3, at3, l3_01, l3_02, l3_03, l3_04, l3_05, l3_06, l3_07, l3_08, l3_09, l3_10, l3_11, l3_12, l3_13, l3_14, l3_15, l3_16, l3_17, l3_18, l3_19] = request.security(syminfo.tickerid, "W", f_hepsi(tfW and not hazir))
+[m0, e0, n0, w0, o0, t0, s0, y0, at0, l0_01, l0_02, l0_03, l0_04, l0_05, l0_06, l0_07, l0_08, l0_09, l0_10, l0_11, l0_12, l0_13, l0_14, l0_15, l0_16, l0_17, l0_18, l0_19] = request.security(syminfo.tickerid, "60", f_hepsi(tf60 and not hazir, hazir ? hTfS == 0 : tf60))
+[m1, e1, n1, w1, o1, t1, s1, y1, at1, l1_01, l1_02, l1_03, l1_04, l1_05, l1_06, l1_07, l1_08, l1_09, l1_10, l1_11, l1_12, l1_13, l1_14, l1_15, l1_16, l1_17, l1_18, l1_19] = request.security(syminfo.tickerid, "240", f_hepsi(tf240 and not hazir, hazir ? hTfS == 1 : tf240))
+[m2, e2, n2, w2, o2, t2, s2, y2, at2, l2_01, l2_02, l2_03, l2_04, l2_05, l2_06, l2_07, l2_08, l2_09, l2_10, l2_11, l2_12, l2_13, l2_14, l2_15, l2_16, l2_17, l2_18, l2_19] = request.security(syminfo.tickerid, "D", f_hepsi(tfD and not hazir, hazir ? hTfS == 2 : tfD))
+[m3, e3, n3, w3, o3, t3, s3, y3, at3, l3_01, l3_02, l3_03, l3_04, l3_05, l3_06, l3_07, l3_08, l3_09, l3_10, l3_11, l3_12, l3_13, l3_14, l3_15, l3_16, l3_17, l3_18, l3_19] = request.security(syminfo.tickerid, "W", f_hepsi(tfW and not hazir, hazir ? hTfS == 3 : tfW))
 
 var string[] adlar = array.from("01 RSI Karpuzlu", "02 Dip Bulucu (Banker)", "03 Dip Bulucu-2 (VixFix)", "04 AlphaTrend", "05 SuperTrend", "06 AlphaTrend+SuperTrend", "07 Parabolic SAR", "08 MACD Dip", "09 ALMA", "10 T3 Tillson", "11 Bollinger Orta Bant", "12 Bollinger20 x EMA50", "13 EMA 5x13", "14 EMA 5x22", "15 WMA 9x15", "16 SMMA 21x55", "17 Darvas Kutusu", "18 Fisher Dip", "19 CCI Dip", "20 TSI Dip", "21 MACD Kesişimi", "22 Erik Kombo", "23 EMA Kombo", "24 Bollinger Kombo", "25 Ortak Karar")
 var string[] tfKod = array.from("60", "240", "D", "W")

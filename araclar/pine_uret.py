@@ -438,6 +438,11 @@ if HAZIR:
     for i, k in enumerate(kodlar):
         w(f'    "{k}" => {i}')
     w("    => -1")
+    w("// hazır sonucun zaman dilimi: request.security'ye verildiği için basit (simple) değer olmalı")
+    w("hTfS = switch syminfo.ticker")
+    for i, k in enumerate(kodlar):
+        w(f'    "{k}" => {e[i]["tf"]}')
+    w("    => -1")
     fmt = lambda xs: ", ".join(str(x) for x in xs)
     w(f"var int[] hAday = array.from({fmt(x['aday'] for x in e)})")
     w(f"var int[] hTf = array.from({fmt(x['tf'] for x in e)})")
@@ -455,6 +460,7 @@ if HAZIR:
 else:
     w('HAZIR_TARIH = "-"')
     w("hIdx = -1")
+    w("hTfS = -1")
     w("var int[] hAday = array.from(0)")
     w("var int[] hTf = array.from(2)")
     w("var int[] hN = array.from(0)")
@@ -466,7 +472,7 @@ w("hI = math.max(hIdx, 0)")
 w("")
 w("// ════════════════════════════ 4 ZAMAN DİLİMİNDE ÇALIŞTIR ════════════════════════════")
 for t,(tf,ad,flag,_) in enumerate(TFS):
-    w(f"[{', '.join(tuple_names(t))}] = request.security(syminfo.tickerid, \"{tf}\", f_hepsi({flag} and not hazir))")
+    w(f"[{', '.join(tuple_names(t))}] = request.security(syminfo.tickerid, \"{tf}\", f_hepsi({flag} and not hazir, hazir ? hTfS == {t} : {flag}))")
 w(f'''
 var string[] adlar = array.from({names_lit})
 var string[] tfKod = array.from({", ".join(chr(34) + x[0] + chr(34) for x in TFS)})
@@ -648,5 +654,38 @@ for a, b in {"@NS1@": NS + 1, "@NSm1@": NS - 1, "@NSm2@": NS - 2, "@NS@": NS, "@
 if SCALPER:
     import scalper_metin
     metin = scalper_metin.uyarla(metin)
+
+
+def _ust_duzey_bol(metin_):
+    """'a, f(b, c), d' -> ['a', 'f(b, c)', 'd'] (parantez içindeki virgüllere dokunmaz)."""
+    parca, derinlik, bas = [], 0, 0
+    for i, ch in enumerate(metin_):
+        if ch in "([":
+            derinlik += 1
+        elif ch in ")]":
+            derinlik -= 1
+        elif ch == "," and derinlik == 0:
+            parca.append(metin_[bas:i].strip()); bas = i + 1
+    parca.append(metin_[bas:].strip())
+    return parca
+
+
+def gerekli_sar(m):
+    """f_hepsi gövdesini 'if gerekli' içine alır: gerekmeyen zaman diliminde hiçbir hesap yapılmaz."""
+    sat = m.split("\n")
+    bas = sat.index("f_hepsi(bool aktif) =>")
+    son = next(i for i in range(bas, len(sat)) if sat[i].startswith("    [maske, enIyi"))
+    ifadeler = _ust_duzey_bol(sat[son].strip()[1:-1])
+    tipler = ["float", "int", "int", "int"] + ["float"] * (len(ifadeler) - 4)
+    yeni = ["f_hepsi(bool aktif, bool gerekli) =>"]
+    yeni += [f"    {t} r{i:02d} = {'0' if t == 'int' else 'na'}" for i, t in enumerate(tipler)]
+    yeni += ["    if gerekli"]
+    yeni += [("    " + x) if x.strip() else x for x in sat[bas + 1:son]]
+    yeni += [f"        r{i:02d} := {x}" for i, x in enumerate(ifadeler)]
+    yeni += ["    [" + ", ".join(f"r{i:02d}" for i in range(len(ifadeler))) + "]"]
+    return "\n".join(sat[:bas] + yeni + sat[son + 1:])
+
+
+metin = gerekli_sar(metin)
 CIKTI.write_text(metin, encoding="utf-8")
 print("Pine dosyası yazıldı" + (f" ({len(HAZIR['hisseler'])} hazır hisse)" if HAZIR else " (hazır sonuç yok)"))
