@@ -1,0 +1,50 @@
+# Borsa açıkken saatte bir, BIST 100'de şu an AL'da olan hisseleri bulur (araclar/al_tarama.py).
+# Sonuç her seferinde "tarama" dalına tek commit olarak yazılır (ana dalın geçmişini doldurmaz):
+#   veri/al_verenler.json  ve  veri/AL_VERENLER.md
+name: BIST100 AL taraması
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 7-14 * * 1-5"   # hafta içi 10:15 - 17:15 (TSİ), saatte bir
+    - cron: "25 15 * * 1-5"     # kapanıştan sonra 18:25 (TSİ)
+  push:
+    paths:
+      - "araclar/al_tarama.py"
+      - ".github/workflows/al-tarama.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: al-tarama
+  cancel-in-progress: true
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Paketleri kur
+        run: pip install yfinance pandas numpy
+
+      - name: Tara
+        run: python araclar/al_tarama.py
+
+      - name: Sonucu "tarama" dalına yaz
+        run: |
+          mkdir -p /tmp/t/veri
+          cp veri/al_verenler.json veri/AL_VERENLER.md /tmp/t/veri/
+          cd /tmp/t
+          git init -q -b tarama
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add veri
+          git commit -q -m "AL taraması ($(TZ=Europe/Istanbul date '+%Y-%m-%d %H:%M'))"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" tarama

@@ -54,7 +54,7 @@ w('''//@version=5
 //  Sağ altta küçük bir not kutusu sonucu ve nasıl değerlendirileceğini yazar.
 //  Geçmiş performans geleceği garanti etmez. Yatırım tavsiyesi değildir.
 // ══════════════════════════════════════════════════════════════════════════════
-indicator("OTOMATİK EN İYİ STRATEJİ - BIST", shorttitle = "OTO-BIST", overlay = true, max_labels_count = 500, max_polylines_count = 20, max_lines_count = 100, max_bars_back = 1000)
+indicator("OTOMATİK EN İYİ STRATEJİ - BIST", shorttitle = "OTO-BIST", overlay = true, max_labels_count = 500, max_lines_count = 100, max_bars_back = 1000)
 
 // Mod: grafik 4 saatten küçükse gün içi
 gunIci = timeframe.in_seconds() < 14400
@@ -558,14 +558,6 @@ w('''f_poz(int t, int c, int i) =>
     b = array.get(cB, c)
     f_bit(m, a) ? (b < 0 ? true : f_bit(m, b)) : false
 ''')
-w("// çizgi değerleri: t zaman dilimi, çizgi no (1-19), i bar önce")
-w("f_cizgi(int t, int lid, int i) =>")
-w("    switch t * 100 + lid")
-for t in range(NT):
-    for j in range(1, NL+1):
-        w(f"        {t*100+j} => l{t}_{j:02d}[i]")
-w("        => float(na)")
-w("")
 w("// strateji (0 tabanlı) -> çizgi numaraları")
 for slot in (0,1):
     w(f"f_strCizgi{slot+1}(int s) =>")
@@ -584,7 +576,7 @@ f_fiyat(float x) =>
 // Yatay seviye çizgisi + sağında okunaklı etiket
 f_seviye(line[] cizgiDizi, label[] etiketDizi, int x1, float y, string metin, color renk, string stil) =>
     array.push(cizgiDizi, line.new(x1, y, bar_index + 8, y, color = renk, width = 2, style = stil))
-    array.push(etiketDizi, label.new(bar_index, y, metin, style = label.style_label_lower_right, color = color.new(renk, 25), textcolor = color.white, size = size.small))
+    array.push(etiketDizi, label.new(bar_index, y, metin, style = label.style_label_lower_right, color = color.new(renk, 0), textcolor = color.white, size = size.small))
 
 // ════════════════════════════ RİSK VE SEVİYE HESAPLARI (grafik zaman diliminde) ════════════════════════════
 atrG = ta.atr(14)
@@ -613,6 +605,27 @@ f_yuzde(float x) =>
 // ════════════════════════════ GRAFİĞE OTOMATİK YERLEŞTİRME ════════════════════════════
 secAday = hazir ? array.get(hAday, hI) : gecerli ? int(f_aday(secTf)) : 0
 tfUygun = gecerli and array.get(tfSaniye, secTf) >= timeframe.in_seconds()
+
+// Seçilen stratejinin çizgileri: plot ile her mumda çizilir (çizim nesnesi sınırlarına takılmaz)
+czA = array.get(cA, secAday)
+czB = array.get(cB, secAday)
+czNo1 = f_strCizgi1(czA)
+czNo2 = f_strCizgi2(czA)
+czNo3B = czB < 0 ? 0 : f_strCizgi1(math.max(czB, 0))
+czNo4B = czB < 0 ? 0 : f_strCizgi2(math.max(czB, 0))
+czNo3 = czNo3B == czNo1 or czNo3B == czNo2 ? 0 : czNo3B
+czNo4 = czNo4B == czNo1 or czNo4B == czNo2 or czNo4B == czNo3 ? 0 : czNo4B
+cizgiDegerleri = array.from(@CIZGILER@)
+f_cz(int no) =>
+    cizgiGoster and tfUygun and no > 0 ? array.get(cizgiDegerleri, secTf * @NL@ + no - 1) : na
+cz1 = f_cz(czNo1)
+cz2 = f_cz(czNo2)
+cz3 = f_cz(czNo3)
+cz4 = f_cz(czNo4)
+plot(cz1, "Çizgi 1", color = color.new(#2962FF, 0), linewidth = 2, display = display.pane)
+plot(cz2, "Çizgi 2", color = color.new(#FF9800, 0), linewidth = 2, display = display.pane)
+plot(cz3, "Çizgi 3", color = color.new(#9C27B0, 0), linewidth = 2, display = display.pane)
+plot(cz4, "Çizgi 4", color = color.new(#00BCD4, 0), linewidth = 2, display = display.pane)
 mSl = hazir ? array.get(hMSl, hI) : 0.0
 mTp = hazir ? array.get(hMTp, hI) : 0.0
 mIzs = hazir ? array.get(hMIzs, hI) : 0.0
@@ -621,14 +634,13 @@ hazirMod = mSl > 0
 riskAktif = hazirMod and array.get(tfSaniye, secTf) == timeframe.in_seconds()
 
 var label[] etiketler = array.new<label>()
-var polyline[] cizgiler = array.new<polyline>()
 // Tablolar bir kez oluşturulur, her güncellemede sadece içleri yazılır
 nYer = switch notYer
     "Sağ üst" => position.top_right
     "Sol alt" => position.bottom_left
     "Sol üst" => position.top_left
     => position.bottom_right
-var table notTablo = table.new(nYer, 1, 12, bgcolor = color.new(#131722, 15), border_width = 0, frame_color = color.new(#363A45, 0), frame_width = 1)
+var table notTablo = table.new(nYer, 1, 14, bgcolor = color.new(#131722, 15), border_width = 0, frame_color = color.new(#363A45, 0), frame_width = 1)
 bYer = switch baslikYer
     "Alt orta" => position.bottom_center
     "Sol alt" => position.bottom_left
@@ -642,8 +654,6 @@ notBoyB = notYazi == "Küçük" ? size.small : notYazi == "Büyük" ? size.large
 if barstate.islast
     while array.size(etiketler) > 0
         label.delete(array.pop(etiketler))
-    while array.size(cizgiler) > 0
-        polyline.delete(array.pop(cizgiler))
     lim = math.min(etiketBar, bar_index - 1)
     float girisFiyat = na
     float girisAtr = na
@@ -675,26 +685,12 @@ if barstate.islast
                 array.push(etiketler, label.new(bar_index - i, high[i], "SAT" + sonuc, yloc = yloc.abovebar, style = label.style_label_down, color = color.new(#F23645, 0), textcolor = color.white, size = size.small))
                 girisFiyat := na
             tepeH := na(girisFiyat) ? na : math.max(nz(tepeH, high[i]), high[i])
-        // Seçilen stratejinin çizgileri
-        if cizgiGoster
-            a = array.get(cA, secAday)
-            b = array.get(cB, secAday)
-            cizNo = array.from(f_strCizgi1(a), f_strCizgi2(a), b < 0 ? 0 : f_strCizgi1(b), b < 0 ? 0 : f_strCizgi2(b))
-            cizilen = array.new_int()
-            for j = 0 to 3
-                lid = array.get(cizNo, j)
-                if lid > 0 and not array.includes(cizilen, lid)
-                    array.push(cizilen, lid)
-                    noktalar = array.new<chart.point>()
-                    for i = lim to 0
-                        v = f_cizgi(secTf, lid, i)
-                        if not na(v)
-                            array.push(noktalar, chart.point.from_index(bar_index - i, v))
-                    if array.size(noktalar) > 1
-                        array.push(cizgiler, polyline.new(noktalar, line_color = array.get(renkler, array.size(cizilen) - 1), line_width = 2))
-                    sonDeger = f_cizgi(secTf, lid, 0)
-                    if not na(sonDeger)
-                        array.push(etiketler, label.new(bar_index + 1, sonDeger, array.get(cizgiAd, lid - 1), style = label.style_label_left, color = color.new(color.black, 100), textcolor = array.get(renkler, array.size(cizilen) - 1), size = size.normal))
+        // Çizgilerin adları (çizginin sağ ucunda)
+        czNolar = array.from(czNo1, czNo2, czNo3, czNo4)
+        czDeger = array.from(cz1, cz2, cz3, cz4)
+        for j = 0 to 3
+            if not na(array.get(czDeger, j))
+                array.push(etiketler, label.new(bar_index + 1, array.get(czDeger, j), array.get(cizgiAd, array.get(czNolar, j) - 1), style = label.style_label_left, color = color.new(color.black, 100), textcolor = array.get(renkler, j), size = size.normal))
 
     // ── Risk yönetimi: açık işlem varsa onun, yoksa "şimdi AL gelirse" seviyeleri
     while array.size(seviyeCizgi) > 0
@@ -717,7 +713,7 @@ if barstate.islast
         on = acik ? "" : "OLASI "
         sSt = acik ? line.style_solid : line.style_dotted
         sSaydam = acik ? 0 : 45
-        f_seviye(seviyeCizgi, etiketler, rX, rGiris, (acik ? "GİRİŞ " : "OLASI GİRİŞ (AL bekleniyor) ") + f_fiyat(rGiris), color.new(#787B86, sSaydam), sSt)
+        f_seviye(seviyeCizgi, etiketler, rX, rGiris, (acik ? "GİRİŞ " : "OLASI GİRİŞ ") + f_fiyat(rGiris), color.new(#787B86, sSaydam), sSt)
         f_seviye(seviyeCizgi, etiketler, rX, rStop, on + "STOP " + f_fiyat(rStop) + " " + f_yuzde((rStop / rGiris - 1) * 100), color.new(#F23645, sSaydam), sSt)
         if not na(rTp1)
             f_seviye(seviyeCizgi, etiketler, rX, rTp1, on + (hazirMod ? "HEDEF " : "HEDEF 1 ") + f_fiyat(rTp1) + " " + f_yuzde((rTp1 / rGiris - 1) * 100), color.new(#089981, sSaydam), acik ? line.style_dashed : line.style_dotted)
@@ -758,7 +754,7 @@ if barstate.islast
     if baslikYer != "Gizle" and gecerli
         bA = array.get(cA, secAday)
         bB = array.get(cB, secAday)
-        cizgiVar = f_strCizgi1(bA) > 0 or (bB >= 0 and f_strCizgi1(math.max(bB, 0)) > 0)
+        cizgiVar = czNo1 > 0 or czNo3 > 0
         bN = hazir ? array.get(hN, hI) : f_adet(secTf)
         bKaz = hazir ? array.get(hKaz, hI) : bN > 0 ? f_kaz(secTf) * 100.0 / bN : 0.0
         bTop = hazir ? array.get(hTop, hI) : f_top(secTf)
@@ -769,7 +765,7 @@ if barstate.islast
         table.cell(baslikTablo, 0, 0, "★ " + f_adayAd(secAday) + "  •  " + array.get(tfAd, secTf) + "\\nGeçmiş: " + str.tostring(bN, "#") + " işlem • kazanma %" + str.tostring(bKaz, "0") + " • toplam " + f_yuzde(bTop) + (cizgiVar ? "" : "\\n(osilatör: çizgisi yok, AL/SAT etiketlerine bak)") + "\\n" + modSatir, text_color = color.white, bgcolor = color.new(#2962FF, 25), text_size = size.normal)
 
     // ── Not kutusu (küçük, köşede)
-    table.clear(notTablo, 0, 0, 0, 11)
+    table.clear(notTablo, 0, 0, 0, 13)
     if notMod != "Kapalı"
         soluk = color.new(#9598A1, 0)
         if not gecerli
@@ -788,17 +784,21 @@ if barstate.islast
             karar = puan == 3 ? "GÜÇLÜ" : puan == 2 ? "ORTA" : "ZAYIF"
             kararRenk = puan == 3 ? color.new(#22AB94, 0) : puan == 2 ? color.new(#FF9800, 0) : color.new(#F23645, 0)
             simdiPoz = f_poz(secTf, secAday, 0)
-            table.cell(notTablo, 0, 0, "★ " + f_adayAd(secAday) + " • " + array.get(tfAd, secTf) + (gunIci ? " • GÜN İÇİ" : "") + (hazir ? " • hazır test " + HAZIR_TARIH : " • canlı test (" + syminfo.prefix + ":" + syminfo.ticker + " " + syminfo.currency + (hazirKullan ? "" : ", hazır kapalı") + ")"), text_color = color.white, text_size = notBoyB, text_halign = text.align_left)
-            table.cell(notTablo, 0, 1, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazanç • Toplam " + f_yuzde(topG) + (not gunIci ? " (Al-Tut " + f_yuzde(alTut) + ")" : hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") + " işlem" : ""), text_color = soluk, text_size = notBoyK, text_halign = text.align_left)
-            table.cell(notTablo, 0, 2, "Karar: " + karar + " (" + str.tostring(puan) + "/3)" + (hazir ? " • Kontrol " : gunIci ? " • Son 30 gün " : " • Son 1 yıl ") + f_yuzde(yil) + " • Şu an: " + (simdiPoz ? "AL'da" : "beklemede"), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
-            r = 3
+            // Telefonda okunsun diye satırlar kısa tutulur (uzun satır kutuyu ekranın dışına taşır)
+            nA = array.get(cA, secAday)
+            nB2 = array.get(cB, secAday)
+            enIyiTf = array.get(tfAd, secTf)
+            dogruTf = array.get(tfSaniye, secTf) == timeframe.in_seconds()
+            mavi = color.new(#1E53E5, 0)
+            table.cell(notTablo, 0, 0, "★ " + array.get(adlar, nA) + (nB2 < 0 ? "" : "\\n   + " + array.get(adlar, math.max(nB2, 0))), text_color = color.white, bgcolor = mavi, text_size = notBoyB, text_halign = text.align_left)
+            table.cell(notTablo, 0, 1, (gunIci ? "GÜN İÇİ MOD" : "NORMAL MOD") + " • en iyi: " + enIyiTf + (hazir ? "\\nhazır test " + HAZIR_TARIH : "\\ncanlı test" + (hazirKullan ? "" : " (hazır kapalı)")), text_color = color.white, bgcolor = mavi, text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 2, dogruTf ? "✓ Grafik doğru zaman diliminde" : "👉 Grafiği " + enIyiTf + " yap", text_color = color.white, bgcolor = dogruTf ? color.new(#089981, 0) : color.new(#E65100, 0), text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 3, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazandı\\nToplam " + f_yuzde(topG) + (not gunIci ? " • Al-Tut " + f_yuzde(alTut) : hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 4, "Karar: " + karar + " (" + str.tostring(puan) + "/3)" + (hazir ? " • Kontrol " : gunIci ? " • 30 gün " : " • 1 yıl ") + f_yuzde(yil), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
             rejim = adxG >= 25 ? (close > ema200G ? "TREND YUKARI" : "TREND AŞAĞI") : "YATAY"
-            table.cell(notTablo, 0, r, (acik ? "Açık işlem: stop " : "AL sinyali yok. Gelirse: stop ") + f_fiyat(rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + " • " + str.tostring(rLot, "#") + " lot" + (hazirMod ? "\\nÇıkış (en iyi bulunan): " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
-            table.cell(notTablo, 0, r + 1, "Piyasa: " + rejim + " (ADX " + str.tostring(adxG, "0") + ") • oynaklık %" + str.tostring(atrG / close * 100, "0.0"), text_color = rejim == "YATAY" ? soluk : rejim == "TREND YUKARI" ? color.new(#22AB94, 0) : color.new(#F23645, 0), text_size = notBoyK, text_halign = text.align_left)
-            r += 2
-            if not tfUygun
-                table.cell(notTablo, 0, r, "⚠ Sinyalleri görmek için grafiği " + array.get(tfAd, secTf) + " yap", text_color = color.new(#FF9800, 0), text_size = notBoyK, text_halign = text.align_left)
-                r += 1
+            table.cell(notTablo, 0, 5, (acik ? "Şu an: AÇIK İŞLEM VAR\\nstop " : (simdiPoz ? "Şu an: " + enIyiTf + " grafikte AL'da" : "Şu an: AL bekleniyor") + "\\nAL gelirse stop ") + f_fiyat(rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + "\\n" + str.tostring(rLot, "#") + " lot" + (hazirMod ? " • " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.white, text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 6, "Piyasa: " + rejim + " • ADX " + str.tostring(adxG, "0") + " • oynak %" + str.tostring(atrG / close * 100, "0.0"), text_color = rejim == "YATAY" ? soluk : rejim == "TREND YUKARI" ? color.new(#22AB94, 0) : color.new(#F23645, 0), text_size = notBoyK, text_halign = text.align_left)
+            r = 7
             if notMod == "Detaylı"
                 nasilS = hazir ? "NASIL SEÇİLDİ: BIST 100 hisseleri her ay GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). Bu hissede 24 strateji + 276 kombin, 4S/G/H\\nzaman dilimlerinde " + array.get(hBas, hI) + "'den beri denendi. Sadece ilk %70'e\\nbakılarak seçildi; en iyi 10 aday için 11 stop/hedef ayarı denendi.\\nKontrol = seçimde hiç kullanılmayan son %30. Yıllık: " + f_yuzde(array.get(hYillik, hI)) : "NASIL SEÇİLDİ: 24 strateji + 276 ikili kombin, 4S/G/H zaman\\ndilimlerinde " + str.tostring(year(testBas)) + "'den beri test edildi. " + olcut + " en\\nyüksek olan seçildi (en az " + str.tostring(minIslem) + " işlem şartıyla)."
                 nasilG = hazir ? "NASIL SEÇİLDİ: BIST 100 hisseleri her hafta GitHub'da test edilir\\n(son: " + HAZIR_TARIH + "). 31 strateji + 465 kombin 5dk/15dk/1S'te\\n" + array.get(hBas, hI) + "'den beri denendi. Sadece dönemin ilk %70'ine bakılarak\\nseçildi (günde en az 0,5 işlem); en iyi 10 aday için 11 stop/hedef ayarı\\ndenendi. Son %30 KONTROL dönemi: seçimde hiç kullanılmadı." : "NASIL SEÇİLDİ: 31 strateji + 465 ikili kombin, 5dk/15dk/1S\\ngrafikte (yüklenebilen kadar geçmişte) test edildi. " + olcut + " en\\nyüksek olan seçildi (en az " + str.tostring(minIslem) + " işlem şartıyla)."
@@ -820,6 +820,7 @@ if barstate.isconfirmed and gecerli and pozSimdi != pozOnce
 metin = "\n".join(L) + "\n"
 for a, b in {"@NS1@": NS + 1, "@NSm1@": NS - 1, "@NSm2@": NS - 2, "@NS@": NS, "@NCm1@": NC - 1, "@NC@": NC,
              "@SONGUN@": "(gi ? 30 : 365)",
+             "@CIZGILER@": ", ".join(f"l{t}_{j:02d}" for t in range(NT) for j in range(1, NL + 1)), "@NL@": NL,
              "@CIZGIAD@": ", ".join(chr(34) + x + chr(34) for x in CIZGI_ADLARI)}.items():
     metin = metin.replace(a, str(b))
 # Ayar değerleri grafikteki gösterge adının yanında yer kaplamasın (telefonda okunurluk)

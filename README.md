@@ -71,6 +71,10 @@ Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 | Canlı testte zaman dilimleri | Listede olmayan hissede 3 zaman diliminden birini kapatmak için (yavaşlarsa). |
 | Not kutusu | Kısa / Detaylı / Kapalı ve konumu |
 
+### Şu an AL veren BIST 100 hisseleri (tek tek aramadan)
+Borsa açıkken saatte bir GitHub'da tarama yapılır (`araclar/al_tarama.py`, `.github/workflows/al-tarama.yml`). Her hissede OTO-BIST'in seçtiği en iyi strateji, zaman dilimi ve stop/hedef ayarı kullanılır. Son mumda açık işlemi olan hisseler, karar puanına göre sıralanarak listelenir: giriş fiyatı, son fiyat, getiri, stop ve hedef. Normal mod ve gün içi mod ayrı tablodadır.
+Sonuç `tarama` dalındaki `veri/AL_VERENLER.md` dosyasına yazılır.
+
 ### Alarm
 **Alarm oluştur** ekranında koşul olarak bu indikatörü seç ve **"Herhangi bir alert() fonksiyon çağrısı"**nı seç. Otomatik seçilen strateji AL/SAT verdiğinde, stratejinin adı ve zaman dilimiyle birlikte bildirim gelir.
 
