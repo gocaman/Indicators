@@ -408,8 +408,8 @@
      "kontrol_bas": "2026-09-21",
      "islem": 34,
      "kazanma": 52.9,
-     "ortalama": -0.133,
-     "toplam": -4.6,
+     "ortalama": -0.131,
+     "toplam": -4.5,
      "kar_faktoru": 0.72,
      "max_dusus": -9.6,
      "gunluk_islem": 0.62,
@@ -427,12 +427,12 @@
      "kontrol": {
       "islem": 10,
       "kazanma": 40.0,
-      "ortalama": -0.346,
+      "ortalama": -0.341,
       "toplam": -3.4,
-      "kar_faktoru": 0.36,
+      "kar_faktoru": 0.37,
       "max_dusus": -4.5,
       "gunluk_islem": 0.59,
-      "ort_bekleme": 12.9
+      "ort_bekleme": 13.0
      },
      "kontrol_gecti": false
     },
@@ -978,7 +978,7 @@
      "kar_faktoru": 0.55,
      "max_dusus": -3.2,
      "gunluk_islem": 1.06,
-     "ort_bekleme": 7.3
+     "ort_bekleme": 7.4
     },
     "kontrol_gecti": false
    },
@@ -1017,7 +1017,7 @@
       "kar_faktoru": 0.55,
       "max_dusus": -3.2,
       "gunluk_islem": 1.06,
-      "ort_bekleme": 7.3
+      "ort_bekleme": 7.4
      },
      "kontrol_gecti": false
     },
@@ -1055,7 +1055,7 @@
       "kar_faktoru": 0.48,
       "max_dusus": -4.6,
       "gunluk_islem": 1.18,
-      "ort_bekleme": 6.8
+      "ort_bekleme": 6.9
      },
      "kontrol_gecti": false
     },
@@ -1169,7 +1169,7 @@
       "kar_faktoru": 0.33,
       "max_dusus": -5.3,
       "gunluk_islem": 1.12,
-      "ort_bekleme": 8.3
+      "ort_bekleme": 8.4
      },
      "kontrol_gecti": false
     }
@@ -2119,8 +2119,8 @@
     "kontrol_bas": "2026-09-21",
     "islem": 44,
     "kazanma": 45.5,
-    "ortalama": 0.127,
-    "toplam": 5.2,
+    "ortalama": 0.125,
+    "toplam": 5.1,
     "kar_faktoru": 1.23,
     "max_dusus": -11.7,
     "gunluk_islem": 0.8,
@@ -2138,9 +2138,9 @@
     "kontrol": {
      "islem": 12,
      "kazanma": 41.7,
-     "ortalama": -0.225,
+     "ortalama": -0.233,
      "toplam": -2.8,
-     "kar_faktoru": 0.65,
+     "kar_faktoru": 0.64,
      "max_dusus": -6.2,
      "gunluk_islem": 0.71,
      "ort_bekleme": 23.8
@@ -2158,8 +2158,8 @@
      "kontrol_bas": "2026-09-21",
      "islem": 44,
      "kazanma": 45.5,
-     "ortalama": 0.127,
-     "toplam": 5.2,
+     "ortalama": 0.125,
+     "toplam": 5.1,
      "kar_faktoru": 1.23,
      "max_dusus": -11.7,
      "gunluk_islem": 0.8,
@@ -2177,9 +2177,9 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 41.7,
-      "ortalama": -0.225,
+      "ortalama": -0.233,
       "toplam": -2.8,
-      "kar_faktoru": 0.65,
+      "kar_faktoru": 0.64,
       "max_dusus": -6.2,
       "gunluk_islem": 0.71,
       "ort_bekleme": 23.8
@@ -3366,7 +3366,7 @@
      "kar_faktoru": 1.36,
      "max_dusus": -4.3,
      "gunluk_islem": 0.51,
-     "ort_bekleme": 16.4,
+     "ort_bekleme": 16.5,
      "egitim": {
       "islem": 21,
       "kazanma": 33.3,
@@ -3385,7 +3385,7 @@
       "kar_faktoru": 1.52,
       "max_dusus": -2.5,
       "gunluk_islem": 0.41,
-      "ort_bekleme": 15.0
+      "ort_bekleme": 15.1
      },
      "kontrol_gecti": true
     },
@@ -3423,7 +3423,7 @@
       "kar_faktoru": 0.94,
       "max_dusus": -2.7,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 11.6
+      "ort_bekleme": 11.7
      },
      "kontrol_gecti": false
     },
@@ -3461,7 +3461,7 @@
       "kar_faktoru": 1.04,
       "max_dusus": -2.5,
       "gunluk_islem": 0.59,
-      "ort_bekleme": 10.4
+      "ort_bekleme": 10.5
      },
      "kontrol_gecti": true
     },
@@ -3517,12 +3517,12 @@
     "kontrol_bas": "2026-09-21",
     "islem": 27,
     "kazanma": 55.6,
-    "ortalama": 0.932,
-    "toplam": 26.7,
-    "kar_faktoru": 3.6,
+    "ortalama": 0.954,
+    "toplam": 27.5,
+    "kar_faktoru": 3.66,
     "max_dusus": -2.5,
     "gunluk_islem": 0.49,
-    "ort_bekleme": 10.6,
+    "ort_bekleme": 10.7,
     "egitim": {
      "islem": 19,
      "kazanma": 57.9,
@@ -3536,12 +3536,12 @@
     "kontrol": {
      "islem": 8,
      "kazanma": 50.0,
-     "ortalama": 1.616,
-     "toplam": 12.5,
-     "kar_faktoru": 3.86,
+     "ortalama": 1.691,
+     "toplam": 13.2,
+     "kar_faktoru": 3.99,
      "max_dusus": -2.5,
      "gunluk_islem": 0.47,
-     "ort_bekleme": 8.0
+     "ort_bekleme": 8.1
     },
     "kontrol_gecti": true
    },
@@ -3556,12 +3556,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 27,
      "kazanma": 55.6,
-     "ortalama": 0.932,
-     "toplam": 26.7,
-     "kar_faktoru": 3.6,
+     "ortalama": 0.954,
+     "toplam": 27.5,
+     "kar_faktoru": 3.66,
      "max_dusus": -2.5,
      "gunluk_islem": 0.49,
-     "ort_bekleme": 10.6,
+     "ort_bekleme": 10.7,
      "egitim": {
       "islem": 19,
       "kazanma": 57.9,
@@ -3575,12 +3575,12 @@
      "kontrol": {
       "islem": 8,
       "kazanma": 50.0,
-      "ortalama": 1.616,
-      "toplam": 12.5,
-      "kar_faktoru": 3.86,
+      "ortalama": 1.691,
+      "toplam": 13.2,
+      "kar_faktoru": 3.99,
       "max_dusus": -2.5,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 8.0
+      "ort_bekleme": 8.1
      },
      "kontrol_gecti": true
     },
@@ -3594,9 +3594,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 27,
      "kazanma": 44.4,
-     "ortalama": 0.409,
-     "toplam": 10.9,
-     "kar_faktoru": 1.82,
+     "ortalama": 0.431,
+     "toplam": 11.6,
+     "kar_faktoru": 1.86,
      "max_dusus": -6.0,
      "gunluk_islem": 0.49,
      "ort_bekleme": 8.6,
@@ -3613,12 +3613,12 @@
      "kontrol": {
       "islem": 8,
       "kazanma": 50.0,
-      "ortalama": 0.35,
-      "toplam": 2.6,
-      "kar_faktoru": 1.68,
+      "ortalama": 0.425,
+      "toplam": 3.2,
+      "kar_faktoru": 1.82,
       "max_dusus": -2.2,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 5.9
+      "ort_bekleme": 6.0
      },
      "kontrol_gecti": true
     },
@@ -3631,10 +3631,10 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 52,
-     "kazanma": 42.3,
-     "ortalama": 0.313,
-     "toplam": 16.5,
-     "kar_faktoru": 1.75,
+     "kazanma": 44.2,
+     "ortalama": 0.324,
+     "toplam": 17.1,
+     "kar_faktoru": 1.78,
      "max_dusus": -5.7,
      "gunluk_islem": 0.95,
      "ort_bekleme": 9.6,
@@ -3650,13 +3650,13 @@
      },
      "kontrol": {
       "islem": 11,
-      "kazanma": 36.4,
-      "ortalama": 0.794,
-      "toplam": 8.6,
-      "kar_faktoru": 2.9,
+      "kazanma": 45.5,
+      "ortalama": 0.848,
+      "toplam": 9.2,
+      "kar_faktoru": 3.03,
       "max_dusus": -3.5,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 9.8
+      "ort_bekleme": 9.9
      },
      "kontrol_gecti": true
     },
@@ -3669,13 +3669,13 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 29,
-     "kazanma": 41.4,
-     "ortalama": 0.385,
-     "toplam": 11.0,
-     "kar_faktoru": 1.76,
+     "kazanma": 44.8,
+     "ortalama": 0.406,
+     "toplam": 11.6,
+     "kar_faktoru": 1.8,
      "max_dusus": -5.6,
      "gunluk_islem": 0.53,
-     "ort_bekleme": 9.9,
+     "ort_bekleme": 10.0,
      "egitim": {
       "islem": 21,
       "kazanma": 52.4,
@@ -3688,13 +3688,13 @@
      },
      "kontrol": {
       "islem": 8,
-      "kazanma": 12.5,
-      "ortalama": 0.468,
-      "toplam": 3.5,
-      "kar_faktoru": 1.91,
+      "kazanma": 25.0,
+      "ortalama": 0.542,
+      "toplam": 4.1,
+      "kar_faktoru": 2.06,
       "max_dusus": -3.2,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 8.6
+      "ort_bekleme": 8.8
      },
      "kontrol_gecti": true
     },
@@ -3707,10 +3707,10 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 30,
-     "kazanma": 40.0,
-     "ortalama": 0.369,
-     "toplam": 10.8,
-     "kar_faktoru": 1.75,
+     "kazanma": 43.3,
+     "ortalama": 0.388,
+     "toplam": 11.5,
+     "kar_faktoru": 1.79,
      "max_dusus": -5.3,
      "gunluk_islem": 0.55,
      "ort_bekleme": 9.7,
@@ -3726,13 +3726,13 @@
      },
      "kontrol": {
       "islem": 8,
-      "kazanma": 12.5,
-      "ortalama": 0.468,
-      "toplam": 3.5,
-      "kar_faktoru": 1.91,
+      "kazanma": 25.0,
+      "ortalama": 0.542,
+      "toplam": 4.1,
+      "kar_faktoru": 2.06,
       "max_dusus": -3.2,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 8.6
+      "ort_bekleme": 8.8
      },
      "kontrol_gecti": true
     }
@@ -3901,14 +3901,14 @@
      "skor": 0.136,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 33,
-     "kazanma": 48.5,
+     "islem": 34,
+     "kazanma": 50.0,
      "ortalama": 0.05,
      "toplam": 1.6,
      "kar_faktoru": 1.19,
      "max_dusus": -3.9,
-     "gunluk_islem": 0.6,
-     "ort_bekleme": 5.6,
+     "gunluk_islem": 0.62,
+     "ort_bekleme": 5.5,
      "egitim": {
       "islem": 25,
       "kazanma": 52.0,
@@ -3920,14 +3920,14 @@
       "ort_bekleme": 5.4
      },
      "kontrol": {
-      "islem": 8,
-      "kazanma": 37.5,
-      "ortalama": -0.447,
+      "islem": 9,
+      "kazanma": 44.4,
+      "ortalama": -0.395,
       "toplam": -3.5,
-      "kar_faktoru": 0.12,
+      "kar_faktoru": 0.13,
       "max_dusus": -3.9,
-      "gunluk_islem": 0.47,
-      "ort_bekleme": 6.4
+      "gunluk_islem": 0.53,
+      "ort_bekleme": 5.8
      },
      "kontrol_gecti": false
     },
@@ -4127,6 +4127,44 @@
      "kontrol_gecti": false
     },
     {
+     "aday": 225,
+     "ad": "08 MACD Dip + 13 EMA 5x13",
+     "tf": 1,
+     "tf_ad": "15 Dakika",
+     "skor": 0.0547,
+     "baslangic": "2026-07-30",
+     "kontrol_bas": "2026-09-21",
+     "islem": 36,
+     "kazanma": 27.8,
+     "ortalama": -0.061,
+     "toplam": -2.3,
+     "kar_faktoru": 0.81,
+     "max_dusus": -4.7,
+     "gunluk_islem": 0.65,
+     "ort_bekleme": 8.3,
+     "egitim": {
+      "islem": 26,
+      "kazanma": 30.8,
+      "ortalama": 0.082,
+      "toplam": 2.1,
+      "kar_faktoru": 1.37,
+      "max_dusus": -3.2,
+      "gunluk_islem": 0.68,
+      "ort_bekleme": 9.0
+     },
+     "kontrol": {
+      "islem": 10,
+      "kazanma": 20.0,
+      "ortalama": -0.432,
+      "toplam": -4.3,
+      "kar_faktoru": 0.24,
+      "max_dusus": -4.7,
+      "gunluk_islem": 0.59,
+      "ort_bekleme": 6.5
+     },
+     "kontrol_gecti": false
+    },
+    {
      "aday": 321,
      "ad": "12 Bollinger20 x EMA50 + 27 RSI(2) Dip",
      "tf": 1,
@@ -4135,13 +4173,13 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 26,
-     "kazanma": 53.8,
-     "ortalama": -0.017,
-     "toplam": -0.5,
-     "kar_faktoru": 0.87,
+     "kazanma": 57.7,
+     "ortalama": -0.012,
+     "toplam": -0.3,
+     "kar_faktoru": 0.91,
      "max_dusus": -1.5,
      "gunluk_islem": 0.47,
-     "ort_bekleme": 2.9,
+     "ort_bekleme": 3.0,
      "egitim": {
       "islem": 19,
       "kazanma": 63.2,
@@ -4154,51 +4192,13 @@
      },
      "kontrol": {
       "islem": 7,
-      "kazanma": 28.6,
-      "ortalama": -0.215,
-      "toplam": -1.5,
-      "kar_faktoru": 0.07,
+      "kazanma": 42.9,
+      "ortalama": -0.197,
+      "toplam": -1.4,
+      "kar_faktoru": 0.14,
       "max_dusus": -1.5,
       "gunluk_islem": 0.41,
-      "ort_bekleme": 5.0
-     },
-     "kontrol_gecti": false
-    },
-    {
-     "aday": 427,
-     "ad": "19 CCI Dip + 28 Stokastik RSI",
-     "tf": 1,
-     "tf_ad": "15 Dakika",
-     "skor": 0.0236,
-     "baslangic": "2026-07-30",
-     "kontrol_bas": "2026-09-21",
-     "islem": 40,
-     "kazanma": 45.0,
-     "ortalama": -0.147,
-     "toplam": -5.8,
-     "kar_faktoru": 0.56,
-     "max_dusus": -7.2,
-     "gunluk_islem": 0.73,
-     "ort_bekleme": 11.2,
-     "egitim": {
-      "islem": 26,
-      "kazanma": 57.7,
-      "ortalama": 0.036,
-      "toplam": 0.9,
-      "kar_faktoru": 1.18,
-      "max_dusus": -3.2,
-      "gunluk_islem": 0.68,
-      "ort_bekleme": 11.2
-     },
-     "kontrol": {
-      "islem": 14,
-      "kazanma": 21.4,
-      "ortalama": -0.487,
-      "toplam": -6.7,
-      "kar_faktoru": 0.17,
-      "max_dusus": -7.1,
-      "gunluk_islem": 0.82,
-      "ort_bekleme": 11.3
+      "ort_bekleme": 5.1
      },
      "kontrol_gecti": false
     }
@@ -4602,10 +4602,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 53,
      "kazanma": 17.0,
-     "ortalama": 0.074,
-     "toplam": 2.5,
-     "kar_faktoru": 1.11,
-     "max_dusus": -17.4,
+     "ortalama": 0.062,
+     "toplam": 1.8,
+     "kar_faktoru": 1.09,
+     "max_dusus": -17.9,
      "gunluk_islem": 0.96,
      "ort_bekleme": 3.9,
      "egitim": {
@@ -4621,10 +4621,10 @@
      "kontrol": {
       "islem": 28,
       "kazanma": 7.1,
-      "ortalama": -0.35,
-      "toplam": -9.9,
-      "kar_faktoru": 0.58,
-      "max_dusus": -17.4,
+      "ortalama": -0.373,
+      "toplam": -10.5,
+      "kar_faktoru": 0.56,
+      "max_dusus": -17.9,
       "gunluk_islem": 1.65,
       "ort_bekleme": 3.6
      },
@@ -4681,10 +4681,10 @@
     "baslangic": "2026-07-30",
     "kontrol_bas": "2026-09-21",
     "islem": 45,
-    "kazanma": 40.0,
-    "ortalama": 0.232,
-    "toplam": 10.5,
-    "kar_faktoru": 1.58,
+    "kazanma": 42.2,
+    "ortalama": 0.238,
+    "toplam": 10.8,
+    "kar_faktoru": 1.6,
     "max_dusus": -4.2,
     "gunluk_islem": 0.82,
     "ort_bekleme": 6.9,
@@ -4700,13 +4700,13 @@
     },
     "kontrol": {
      "islem": 16,
-     "kazanma": 25.0,
-     "ortalama": -0.183,
-     "toplam": -2.9,
-     "kar_faktoru": 0.6,
+     "kazanma": 31.2,
+     "ortalama": -0.164,
+     "toplam": -2.6,
+     "kar_faktoru": 0.63,
      "max_dusus": -4.2,
      "gunluk_islem": 0.94,
-     "ort_bekleme": 6.1
+     "ort_bekleme": 6.2
     },
     "kontrol_gecti": false
    },
@@ -4720,10 +4720,10 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 45,
-     "kazanma": 40.0,
-     "ortalama": 0.232,
-     "toplam": 10.5,
-     "kar_faktoru": 1.58,
+     "kazanma": 42.2,
+     "ortalama": 0.238,
+     "toplam": 10.8,
+     "kar_faktoru": 1.6,
      "max_dusus": -4.2,
      "gunluk_islem": 0.82,
      "ort_bekleme": 6.9,
@@ -4739,13 +4739,13 @@
      },
      "kontrol": {
       "islem": 16,
-      "kazanma": 25.0,
-      "ortalama": -0.183,
-      "toplam": -2.9,
-      "kar_faktoru": 0.6,
+      "kazanma": 31.2,
+      "ortalama": -0.164,
+      "toplam": -2.6,
+      "kar_faktoru": 0.63,
       "max_dusus": -4.2,
       "gunluk_islem": 0.94,
-      "ort_bekleme": 6.1
+      "ort_bekleme": 6.2
      },
      "kontrol_gecti": false
     },
@@ -4758,13 +4758,13 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 38,
-     "kazanma": 42.1,
-     "ortalama": 0.308,
-     "toplam": 11.6,
-     "kar_faktoru": 1.52,
+     "kazanma": 44.7,
+     "ortalama": 0.316,
+     "toplam": 11.9,
+     "kar_faktoru": 1.53,
      "max_dusus": -5.0,
      "gunluk_islem": 0.69,
-     "ort_bekleme": 11.2,
+     "ort_bekleme": 11.3,
      "egitim": {
       "islem": 24,
       "kazanma": 45.8,
@@ -4777,13 +4777,13 @@
      },
      "kontrol": {
       "islem": 14,
-      "kazanma": 35.7,
-      "ortalama": -0.055,
-      "toplam": -1.0,
-      "kar_faktoru": 0.93,
+      "kazanma": 42.9,
+      "ortalama": -0.034,
+      "toplam": -0.7,
+      "kar_faktoru": 0.96,
       "max_dusus": -5.0,
       "gunluk_islem": 0.82,
-      "ort_bekleme": 10.4
+      "ort_bekleme": 10.5
      },
      "kontrol_gecti": false
     },
@@ -4796,13 +4796,13 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 34,
-     "kazanma": 38.2,
-     "ortalama": 0.394,
-     "toplam": 13.8,
-     "kar_faktoru": 1.99,
+     "kazanma": 41.2,
+     "ortalama": 0.403,
+     "toplam": 14.2,
+     "kar_faktoru": 2.03,
      "max_dusus": -3.8,
      "gunluk_islem": 0.62,
-     "ort_bekleme": 9.4,
+     "ort_bekleme": 9.5,
      "egitim": {
       "islem": 22,
       "kazanma": 40.9,
@@ -4815,13 +4815,13 @@
      },
      "kontrol": {
       "islem": 12,
-      "kazanma": 33.3,
-      "ortalama": 0.125,
-      "toplam": 1.4,
-      "kar_faktoru": 1.3,
-      "max_dusus": -2.4,
+      "kazanma": 41.7,
+      "ortalama": 0.15,
+      "toplam": 1.7,
+      "kar_faktoru": 1.37,
+      "max_dusus": -2.2,
       "gunluk_islem": 0.71,
-      "ort_bekleme": 10.0
+      "ort_bekleme": 10.1
      },
      "kontrol_gecti": true
     },
@@ -4834,10 +4834,10 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 35,
-     "kazanma": 51.4,
-     "ortalama": 0.511,
-     "toplam": 18.8,
-     "kar_faktoru": 2.12,
+     "kazanma": 54.3,
+     "ortalama": 0.52,
+     "toplam": 19.2,
+     "kar_faktoru": 2.16,
      "max_dusus": -4.0,
      "gunluk_islem": 0.64,
      "ort_bekleme": 9.7,
@@ -4853,13 +4853,13 @@
      },
      "kontrol": {
       "islem": 11,
-      "kazanma": 45.5,
-      "ortalama": 0.571,
-      "toplam": 6.3,
-      "kar_faktoru": 2.66,
+      "kazanma": 54.5,
+      "ortalama": 0.598,
+      "toplam": 6.6,
+      "kar_faktoru": 2.85,
       "max_dusus": -1.7,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 11.7
+      "ort_bekleme": 11.8
      },
      "kontrol_gecti": true
     },
@@ -4872,10 +4872,10 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 40,
-     "kazanma": 42.5,
-     "ortalama": 0.29,
-     "toplam": 11.7,
-     "kar_faktoru": 1.62,
+     "kazanma": 45.0,
+     "ortalama": 0.298,
+     "toplam": 12.1,
+     "kar_faktoru": 1.65,
      "max_dusus": -3.5,
      "gunluk_islem": 0.73,
      "ort_bekleme": 8.9,
@@ -4891,13 +4891,13 @@
      },
      "kontrol": {
       "islem": 14,
-      "kazanma": 35.7,
-      "ortalama": 0.035,
-      "toplam": 0.3,
-      "kar_faktoru": 1.06,
+      "kazanma": 42.9,
+      "ortalama": 0.057,
+      "toplam": 0.6,
+      "kar_faktoru": 1.1,
       "max_dusus": -3.5,
       "gunluk_islem": 0.82,
-      "ort_bekleme": 7.4
+      "ort_bekleme": 7.5
      },
      "kontrol_gecti": true
     }
@@ -5368,7 +5368,7 @@
      "kontrol_gecti": true
     }
    ],
-   "aday_sayisi": 570
+   "aday_sayisi": 571
   },
   "BTCIM": {
    "en_iyi": {
@@ -5924,9 +5924,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 31,
      "kazanma": 38.7,
-     "ortalama": 0.111,
-     "toplam": 3.3,
-     "kar_faktoru": 1.31,
+     "ortalama": 0.115,
+     "toplam": 3.4,
+     "kar_faktoru": 1.32,
      "max_dusus": -2.6,
      "gunluk_islem": 0.56,
      "ort_bekleme": 11.8,
@@ -5943,12 +5943,12 @@
      "kontrol": {
       "islem": 11,
       "kazanma": 45.5,
-      "ortalama": -0.014,
-      "toplam": -0.2,
-      "kar_faktoru": 0.97,
+      "ortalama": -0.003,
+      "toplam": -0.1,
+      "kar_faktoru": 0.99,
       "max_dusus": -2.5,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 12.0
+      "ort_bekleme": 12.1
      },
      "kontrol_gecti": false
     },
@@ -6000,12 +6000,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 32,
      "kazanma": 31.2,
-     "ortalama": 0.013,
-     "toplam": 0.3,
-     "kar_faktoru": 1.04,
-     "max_dusus": -3.0,
+     "ortalama": 0.017,
+     "toplam": 0.4,
+     "kar_faktoru": 1.05,
+     "max_dusus": -2.9,
      "gunluk_islem": 0.58,
-     "ort_bekleme": 10.2,
+     "ort_bekleme": 10.3,
      "egitim": {
       "islem": 22,
       "kazanma": 27.3,
@@ -6019,12 +6019,12 @@
      "kontrol": {
       "islem": 10,
       "kazanma": 40.0,
-      "ortalama": -0.291,
-      "toplam": -2.9,
-      "kar_faktoru": 0.37,
-      "max_dusus": -2.9,
+      "ortalama": -0.279,
+      "toplam": -2.8,
+      "kar_faktoru": 0.38,
+      "max_dusus": -2.8,
       "gunluk_islem": 0.59,
-      "ort_bekleme": 10.2
+      "ort_bekleme": 10.3
      },
      "kontrol_gecti": false
     },
@@ -6038,12 +6038,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 30,
      "kazanma": 40.0,
-     "ortalama": 0.046,
-     "toplam": 1.3,
-     "kar_faktoru": 1.17,
-     "max_dusus": -2.0,
+     "ortalama": 0.05,
+     "toplam": 1.4,
+     "kar_faktoru": 1.18,
+     "max_dusus": -1.9,
      "gunluk_islem": 0.55,
-     "ort_bekleme": 9.3,
+     "ort_bekleme": 9.4,
      "egitim": {
       "islem": 21,
       "kazanma": 38.1,
@@ -6057,12 +6057,12 @@
      "kontrol": {
       "islem": 9,
       "kazanma": 44.4,
-      "ortalama": -0.193,
-      "toplam": -1.7,
-      "kar_faktoru": 0.48,
-      "max_dusus": -2.0,
+      "ortalama": -0.18,
+      "toplam": -1.6,
+      "kar_faktoru": 0.5,
+      "max_dusus": -1.8,
       "gunluk_islem": 0.53,
-      "ort_bekleme": 10.0
+      "ort_bekleme": 10.1
      },
      "kontrol_gecti": false
     }
@@ -6233,10 +6233,10 @@
      "kontrol_bas": "2026-09-18",
      "islem": 44,
      "kazanma": 27.3,
-     "ortalama": -0.142,
-     "toplam": -6.1,
+     "ortalama": -0.146,
+     "toplam": -6.3,
      "kar_faktoru": 0.45,
-     "max_dusus": -7.9,
+     "max_dusus": -8.0,
      "gunluk_islem": 0.75,
      "ort_bekleme": 11.5,
      "egitim": {
@@ -6252,12 +6252,12 @@
      "kontrol": {
       "islem": 19,
       "kazanma": 5.3,
-      "ortalama": -0.293,
-      "toplam": -5.4,
+      "ortalama": -0.301,
+      "toplam": -5.6,
       "kar_faktoru": 0.15,
-      "max_dusus": -5.4,
+      "max_dusus": -5.6,
       "gunluk_islem": 1.06,
-      "ort_bekleme": 9.7
+      "ort_bekleme": 9.8
      },
      "kontrol_gecti": false
     },
@@ -6304,44 +6304,82 @@
   },
   "CLEBI": {
    "en_iyi": {
-    "aday": 449,
-    "ad": "21 MACD Kesişimi + 29 EMA 9x21 + VWAP",
+    "aday": 225,
+    "ad": "08 MACD Dip + 13 EMA 5x13",
     "tf": 1,
     "tf_ad": "15 Dakika",
-    "skor": 0.0026,
+    "skor": 0.0131,
     "baslangic": "2026-07-30",
     "kontrol_bas": "2026-09-21",
-    "islem": 32,
-    "kazanma": 21.9,
-    "ortalama": -0.09,
-    "toplam": -3.0,
-    "kar_faktoru": 0.76,
-    "max_dusus": -5.6,
-    "gunluk_islem": 0.58,
-    "ort_bekleme": 7.7,
+    "islem": 35,
+    "kazanma": 20.0,
+    "ortalama": -0.045,
+    "toplam": -1.7,
+    "kar_faktoru": 0.86,
+    "max_dusus": -5.5,
+    "gunluk_islem": 0.64,
+    "ort_bekleme": 7.6,
     "egitim": {
-     "islem": 21,
-     "kazanma": 28.6,
-     "ortalama": 0.008,
-     "toplam": 0.1,
-     "kar_faktoru": 1.03,
-     "max_dusus": -3.1,
-     "gunluk_islem": 0.55,
-     "ort_bekleme": 8.4
+     "islem": 30,
+     "kazanma": 23.3,
+     "ortalama": 0.02,
+     "toplam": 0.5,
+     "kar_faktoru": 1.07,
+     "max_dusus": -5.5,
+     "gunluk_islem": 0.79,
+     "ort_bekleme": 7.8
     },
     "kontrol": {
-     "islem": 11,
-     "kazanma": 9.1,
-     "ortalama": -0.278,
-     "toplam": -3.1,
-     "kar_faktoru": 0.47,
-     "max_dusus": -5.6,
-     "gunluk_islem": 0.65,
-     "ort_bekleme": 6.2
+     "islem": 5,
+     "kazanma": 0.0,
+     "ortalama": -0.438,
+     "toplam": -2.2,
+     "kar_faktoru": 0.0,
+     "max_dusus": -2.2,
+     "gunluk_islem": 0.29,
+     "ort_bekleme": 6.4
     },
     "kontrol_gecti": false
    },
    "ilk5": [
+    {
+     "aday": 225,
+     "ad": "08 MACD Dip + 13 EMA 5x13",
+     "tf": 1,
+     "tf_ad": "15 Dakika",
+     "skor": 0.0131,
+     "baslangic": "2026-07-30",
+     "kontrol_bas": "2026-09-21",
+     "islem": 35,
+     "kazanma": 20.0,
+     "ortalama": -0.045,
+     "toplam": -1.7,
+     "kar_faktoru": 0.86,
+     "max_dusus": -5.5,
+     "gunluk_islem": 0.64,
+     "ort_bekleme": 7.6,
+     "egitim": {
+      "islem": 30,
+      "kazanma": 23.3,
+      "ortalama": 0.02,
+      "toplam": 0.5,
+      "kar_faktoru": 1.07,
+      "max_dusus": -5.5,
+      "gunluk_islem": 0.79,
+      "ort_bekleme": 7.8
+     },
+     "kontrol": {
+      "islem": 5,
+      "kazanma": 0.0,
+      "ortalama": -0.438,
+      "toplam": -2.2,
+      "kar_faktoru": 0.0,
+      "max_dusus": -2.2,
+      "gunluk_islem": 0.29,
+      "ort_bekleme": 6.4
+     },
+     "kontrol_gecti": false
+    },
     {
      "aday": 449,
      "ad": "21 MACD Kesişimi + 29 EMA 9x21 + VWAP",
@@ -6419,6 +6457,44 @@
      "kontrol_gecti": false
     },
     {
+     "aday": 333,
+     "ad": "13 EMA 5x13 + 21 MACD Kesişimi",
+     "tf": 1,
+     "tf_ad": "15 Dakika",
+     "skor": -0.0053,
+     "baslangic": "2026-07-30",
+     "kontrol_bas": "2026-09-21",
+     "islem": 53,
+     "kazanma": 17.0,
+     "ortalama": -0.133,
+     "toplam": -7.0,
+     "kar_faktoru": 0.62,
+     "max_dusus": -7.4,
+     "gunluk_islem": 0.96,
+     "ort_bekleme": 6.9,
+     "egitim": {
+      "islem": 38,
+      "kazanma": 23.7,
+      "ortalama": -0.003,
+      "toplam": -0.2,
+      "kar_faktoru": 0.99,
+      "max_dusus": -5.1,
+      "gunluk_islem": 1.0,
+      "ort_bekleme": 7.5
+     },
+     "kontrol": {
+      "islem": 15,
+      "kazanma": 0.0,
+      "ortalama": -0.464,
+      "toplam": -6.7,
+      "kar_faktoru": 0.0,
+      "max_dusus": -6.7,
+      "gunluk_islem": 0.88,
+      "ort_bekleme": 5.2
+     },
+     "kontrol_gecti": false
+    },
+    {
      "aday": 251,
      "ad": "09 ALMA + 17 Darvas Kutusu",
      "tf": 1,
@@ -6453,82 +6529,6 @@
       "max_dusus": -3.3,
       "gunluk_islem": 0.71,
       "ort_bekleme": 5.2
-     },
-     "kontrol_gecti": false
-    },
-    {
-     "aday": 485,
-     "ad": "26 İlk Mum Kırılımı + 30 Hızlı SuperTrend",
-     "tf": 1,
-     "tf_ad": "15 Dakika",
-     "skor": -0.0264,
-     "baslangic": "2026-07-30",
-     "kontrol_bas": "2026-09-21",
-     "islem": 32,
-     "kazanma": 31.2,
-     "ortalama": -0.02,
-     "toplam": -0.8,
-     "kar_faktoru": 0.95,
-     "max_dusus": -5.4,
-     "gunluk_islem": 0.58,
-     "ort_bekleme": 12.1,
-     "egitim": {
-      "islem": 23,
-      "kazanma": 26.1,
-      "ortalama": -0.039,
-      "toplam": -1.0,
-      "kar_faktoru": 0.9,
-      "max_dusus": -5.4,
-      "gunluk_islem": 0.61,
-      "ort_bekleme": 9.6
-     },
-     "kontrol": {
-      "islem": 9,
-      "kazanma": 44.4,
-      "ortalama": 0.027,
-      "toplam": 0.2,
-      "kar_faktoru": 1.07,
-      "max_dusus": -1.8,
-      "gunluk_islem": 0.53,
-      "ort_bekleme": 18.7
-     },
-     "kontrol_gecti": true
-    },
-    {
-     "aday": 2,
-     "ad": "03 Dip Bulucu-2 (VixFix)",
-     "tf": 1,
-     "tf_ad": "15 Dakika",
-     "skor": -0.0291,
-     "baslangic": "2026-07-30",
-     "kontrol_bas": "2026-09-21",
-     "islem": 38,
-     "kazanma": 26.3,
-     "ortalama": -0.196,
-     "toplam": -7.5,
-     "kar_faktoru": 0.64,
-     "max_dusus": -10.6,
-     "gunluk_islem": 0.69,
-     "ort_bekleme": 23.1,
-     "egitim": {
-      "islem": 25,
-      "kazanma": 28.0,
-      "ortalama": -0.038,
-      "toplam": -1.1,
-      "kar_faktoru": 0.91,
-      "max_dusus": -9.6,
-      "gunluk_islem": 0.66,
-      "ort_bekleme": 23.7
-     },
-     "kontrol": {
-      "islem": 13,
-      "kazanma": 23.1,
-      "ortalama": -0.502,
-      "toplam": -6.4,
-      "kar_faktoru": 0.33,
-      "max_dusus": -6.7,
-      "gunluk_islem": 0.76,
-      "ort_bekleme": 22.0
      },
      "kontrol_gecti": false
     }
@@ -6779,12 +6779,12 @@
     "kontrol_bas": "2026-09-18",
     "islem": 38,
     "kazanma": 36.8,
-    "ortalama": -0.113,
+    "ortalama": -0.115,
     "toplam": -4.3,
-    "kar_faktoru": 0.59,
+    "kar_faktoru": 0.58,
     "max_dusus": -6.0,
     "gunluk_islem": 0.64,
-    "ort_bekleme": 16.0,
+    "ort_bekleme": 16.1,
     "egitim": {
      "islem": 24,
      "kazanma": 41.7,
@@ -6798,12 +6798,12 @@
     "kontrol": {
      "islem": 14,
      "kazanma": 28.6,
-     "ortalama": -0.219,
-     "toplam": -3.0,
-     "kar_faktoru": 0.44,
+     "ortalama": -0.224,
+     "toplam": -3.1,
+     "kar_faktoru": 0.43,
      "max_dusus": -4.0,
      "gunluk_islem": 0.78,
-     "ort_bekleme": 14.6
+     "ort_bekleme": 14.9
     },
     "kontrol_gecti": false
    },
@@ -6818,12 +6818,12 @@
      "kontrol_bas": "2026-09-18",
      "islem": 38,
      "kazanma": 36.8,
-     "ortalama": -0.113,
+     "ortalama": -0.115,
      "toplam": -4.3,
-     "kar_faktoru": 0.59,
+     "kar_faktoru": 0.58,
      "max_dusus": -6.0,
      "gunluk_islem": 0.64,
-     "ort_bekleme": 16.0,
+     "ort_bekleme": 16.1,
      "egitim": {
       "islem": 24,
       "kazanma": 41.7,
@@ -6837,12 +6837,12 @@
      "kontrol": {
       "islem": 14,
       "kazanma": 28.6,
-      "ortalama": -0.219,
-      "toplam": -3.0,
-      "kar_faktoru": 0.44,
+      "ortalama": -0.224,
+      "toplam": -3.1,
+      "kar_faktoru": 0.43,
       "max_dusus": -4.0,
       "gunluk_islem": 0.78,
-      "ort_bekleme": 14.6
+      "ort_bekleme": 14.9
      },
      "kontrol_gecti": false
     },
@@ -6856,8 +6856,8 @@
      "kontrol_bas": "2026-09-18",
      "islem": 41,
      "kazanma": 34.1,
-     "ortalama": -0.125,
-     "toplam": -5.0,
+     "ortalama": -0.126,
+     "toplam": -5.1,
      "kar_faktoru": 0.55,
      "max_dusus": -6.2,
      "gunluk_islem": 0.69,
@@ -6875,12 +6875,12 @@
      "kontrol": {
       "islem": 16,
       "kazanma": 25.0,
-      "ortalama": -0.241,
-      "toplam": -3.8,
-      "kar_faktoru": 0.35,
-      "max_dusus": -4.3,
+      "ortalama": -0.246,
+      "toplam": -3.9,
+      "kar_faktoru": 0.34,
+      "max_dusus": -4.4,
       "gunluk_islem": 0.89,
-      "ort_bekleme": 12.9
+      "ort_bekleme": 13.1
      },
      "kontrol_gecti": false
     },
@@ -7478,10 +7478,10 @@
     "kontrol_bas": "2026-09-21",
     "islem": 30,
     "kazanma": 20.0,
-    "ortalama": 0.066,
-    "toplam": 1.2,
+    "ortalama": 0.063,
+    "toplam": 1.1,
     "kar_faktoru": 1.11,
-    "max_dusus": -11.3,
+    "max_dusus": -11.4,
     "gunluk_islem": 0.55,
     "ort_bekleme": 7.6,
     "egitim": {
@@ -7497,12 +7497,12 @@
     "kontrol": {
      "islem": 11,
      "kazanma": 9.1,
-     "ortalama": -1.077,
-     "toplam": -11.3,
+     "ortalama": -1.086,
+     "toplam": -11.4,
      "kar_faktoru": 0.03,
-     "max_dusus": -11.3,
+     "max_dusus": -11.4,
      "gunluk_islem": 0.65,
-     "ort_bekleme": 7.3
+     "ort_bekleme": 7.4
     },
     "kontrol_gecti": false
    },
@@ -7517,10 +7517,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 30,
      "kazanma": 20.0,
-     "ortalama": 0.066,
-     "toplam": 1.2,
+     "ortalama": 0.063,
+     "toplam": 1.1,
      "kar_faktoru": 1.11,
-     "max_dusus": -11.3,
+     "max_dusus": -11.4,
      "gunluk_islem": 0.55,
      "ort_bekleme": 7.6,
      "egitim": {
@@ -7536,12 +7536,12 @@
      "kontrol": {
       "islem": 11,
       "kazanma": 9.1,
-      "ortalama": -1.077,
-      "toplam": -11.3,
+      "ortalama": -1.086,
+      "toplam": -11.4,
       "kar_faktoru": 0.03,
-      "max_dusus": -11.3,
+      "max_dusus": -11.4,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 7.3
+      "ort_bekleme": 7.4
      },
      "kontrol_gecti": false
     },
@@ -7555,12 +7555,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 35,
      "kazanma": 25.7,
-     "ortalama": 0.025,
-     "toplam": 0.1,
+     "ortalama": 0.022,
+     "toplam": -0.0,
      "kar_faktoru": 1.04,
-     "max_dusus": -12.2,
+     "max_dusus": -12.3,
      "gunluk_islem": 0.64,
-     "ort_bekleme": 8.1,
+     "ort_bekleme": 8.2,
      "egitim": {
       "islem": 23,
       "kazanma": 26.1,
@@ -7574,12 +7574,12 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 25.0,
-      "ortalama": -0.909,
-      "toplam": -10.5,
+      "ortalama": -0.917,
+      "toplam": -10.6,
       "kar_faktoru": 0.18,
-      "max_dusus": -12.2,
+      "max_dusus": -12.3,
       "gunluk_islem": 0.71,
-      "ort_bekleme": 9.7
+      "ort_bekleme": 9.8
      },
      "kontrol_gecti": false
     },
@@ -7593,9 +7593,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 31,
      "kazanma": 25.8,
-     "ortalama": 0.204,
-     "toplam": 5.8,
-     "kar_faktoru": 1.41,
+     "ortalama": 0.201,
+     "toplam": 5.7,
+     "kar_faktoru": 1.4,
      "max_dusus": -7.4,
      "gunluk_islem": 0.56,
      "ort_bekleme": 9.4,
@@ -7612,12 +7612,12 @@
      "kontrol": {
       "islem": 8,
       "kazanma": 25.0,
-      "ortalama": -0.594,
-      "toplam": -4.7,
+      "ortalama": -0.606,
+      "toplam": -4.8,
       "kar_faktoru": 0.37,
       "max_dusus": -7.4,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 9.9
+      "ort_bekleme": 10.0
      },
      "kontrol_gecti": false
     },
@@ -7631,10 +7631,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 30,
      "kazanma": 23.3,
-     "ortalama": 0.16,
-     "toplam": 4.2,
-     "kar_faktoru": 1.33,
-     "max_dusus": -7.4,
+     "ortalama": 0.157,
+     "toplam": 4.1,
+     "kar_faktoru": 1.32,
+     "max_dusus": -7.5,
      "gunluk_islem": 0.55,
      "ort_bekleme": 8.1,
      "egitim": {
@@ -7650,12 +7650,12 @@
      "kontrol": {
       "islem": 10,
       "kazanma": 20.0,
-      "ortalama": -0.61,
-      "toplam": -6.0,
-      "kar_faktoru": 0.21,
-      "max_dusus": -7.4,
+      "ortalama": -0.62,
+      "toplam": -6.1,
+      "kar_faktoru": 0.2,
+      "max_dusus": -7.5,
       "gunluk_islem": 0.59,
-      "ort_bekleme": 6.2
+      "ort_bekleme": 6.3
      },
      "kontrol_gecti": false
     },
@@ -7669,9 +7669,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 32,
      "kazanma": 21.9,
-     "ortalama": 0.099,
-     "toplam": 2.5,
-     "kar_faktoru": 1.19,
+     "ortalama": 0.096,
+     "toplam": 2.4,
+     "kar_faktoru": 1.18,
      "max_dusus": -8.4,
      "gunluk_islem": 0.58,
      "ort_bekleme": 9.4,
@@ -7688,17 +7688,17 @@
      "kontrol": {
       "islem": 8,
       "kazanma": 12.5,
-      "ortalama": -0.89,
-      "toplam": -6.9,
+      "ortalama": -0.902,
+      "toplam": -7.0,
       "kar_faktoru": 0.18,
       "max_dusus": -8.4,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 10.5
+      "ort_bekleme": 10.6
      },
      "kontrol_gecti": false
     }
    ],
-   "aday_sayisi": 598
+   "aday_sayisi": 599
   },
   "EKGYO": {
    "en_iyi": {
@@ -7711,10 +7711,10 @@
     "kontrol_bas": "2026-09-21",
     "islem": 55,
     "kazanma": 27.3,
-    "ortalama": 0.135,
-    "toplam": 7.1,
+    "ortalama": 0.134,
+    "toplam": 7.0,
     "kar_faktoru": 1.37,
-    "max_dusus": -7.0,
+    "max_dusus": -7.1,
     "gunluk_islem": 1.0,
     "ort_bekleme": 7.7,
     "egitim": {
@@ -7730,10 +7730,10 @@
     "kontrol": {
      "islem": 19,
      "kazanma": 21.1,
-     "ortalama": -0.296,
+     "ortalama": -0.299,
      "toplam": -5.5,
      "kar_faktoru": 0.27,
-     "max_dusus": -6.8,
+     "max_dusus": -6.9,
      "gunluk_islem": 1.12,
      "ort_bekleme": 4.9
     },
@@ -7750,10 +7750,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 55,
      "kazanma": 27.3,
-     "ortalama": 0.135,
-     "toplam": 7.1,
+     "ortalama": 0.134,
+     "toplam": 7.0,
      "kar_faktoru": 1.37,
-     "max_dusus": -7.0,
+     "max_dusus": -7.1,
      "gunluk_islem": 1.0,
      "ort_bekleme": 7.7,
      "egitim": {
@@ -7769,10 +7769,10 @@
      "kontrol": {
       "islem": 19,
       "kazanma": 21.1,
-      "ortalama": -0.296,
+      "ortalama": -0.299,
       "toplam": -5.5,
       "kar_faktoru": 0.27,
-      "max_dusus": -6.8,
+      "max_dusus": -6.9,
       "gunluk_islem": 1.12,
       "ort_bekleme": 4.9
      },
@@ -7788,10 +7788,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 52,
      "kazanma": 32.7,
-     "ortalama": 0.061,
-     "toplam": 2.9,
+     "ortalama": 0.06,
+     "toplam": 2.8,
      "kar_faktoru": 1.16,
-     "max_dusus": -8.0,
+     "max_dusus": -8.1,
      "gunluk_islem": 0.95,
      "ort_bekleme": 7.4,
      "egitim": {
@@ -7807,10 +7807,10 @@
      "kontrol": {
       "islem": 19,
       "kazanma": 21.1,
-      "ortalama": -0.374,
+      "ortalama": -0.376,
       "toplam": -6.9,
       "kar_faktoru": 0.26,
-      "max_dusus": -8.0,
+      "max_dusus": -8.1,
       "gunluk_islem": 1.12,
       "ort_bekleme": 5.2
      },
@@ -7826,10 +7826,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 59,
      "kazanma": 28.8,
-     "ortalama": 0.001,
-     "toplam": -0.2,
+     "ortalama": 0.0,
+     "toplam": -0.3,
      "kar_faktoru": 1.0,
-     "max_dusus": -9.6,
+     "max_dusus": -9.7,
      "gunluk_islem": 1.07,
      "ort_bekleme": 6.9,
      "egitim": {
@@ -7845,10 +7845,10 @@
      "kontrol": {
       "islem": 17,
       "kazanma": 11.8,
-      "ortalama": -0.539,
+      "ortalama": -0.542,
       "toplam": -8.8,
       "kar_faktoru": 0.06,
-      "max_dusus": -9.1,
+      "max_dusus": -9.2,
       "gunluk_islem": 1.0,
       "ort_bekleme": 4.1
      },
@@ -7864,10 +7864,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 31,
      "kazanma": 41.9,
-     "ortalama": 0.188,
+     "ortalama": 0.186,
      "toplam": 5.7,
      "kar_faktoru": 1.6,
-     "max_dusus": -3.4,
+     "max_dusus": -3.5,
      "gunluk_islem": 0.56,
      "ort_bekleme": 8.6,
      "egitim": {
@@ -7883,10 +7883,10 @@
      "kontrol": {
       "islem": 11,
       "kazanma": 27.3,
-      "ortalama": -0.309,
-      "toplam": -3.3,
+      "ortalama": -0.313,
+      "toplam": -3.4,
       "kar_faktoru": 0.12,
-      "max_dusus": -3.4,
+      "max_dusus": -3.5,
       "gunluk_islem": 0.65,
       "ort_bekleme": 2.7
      },
@@ -7902,10 +7902,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 42,
      "kazanma": 35.7,
-     "ortalama": 0.053,
+     "ortalama": 0.052,
      "toplam": 2.0,
      "kar_faktoru": 1.15,
-     "max_dusus": -6.6,
+     "max_dusus": -6.7,
      "gunluk_islem": 0.76,
      "ort_bekleme": 8.0,
      "egitim": {
@@ -7921,10 +7921,10 @@
      "kontrol": {
       "islem": 16,
       "kazanma": 25.0,
-      "ortalama": -0.364,
+      "ortalama": -0.367,
       "toplam": -5.7,
-      "kar_faktoru": 0.27,
-      "max_dusus": -6.6,
+      "kar_faktoru": 0.26,
+      "max_dusus": -6.7,
       "gunluk_islem": 0.94,
       "ort_bekleme": 4.9
      },
@@ -8177,9 +8177,9 @@
     "kontrol_bas": "2026-09-21",
     "islem": 34,
     "kazanma": 61.8,
-    "ortalama": 0.15,
-    "toplam": 5.0,
-    "kar_faktoru": 1.37,
+    "ortalama": 0.147,
+    "toplam": 4.9,
+    "kar_faktoru": 1.36,
     "max_dusus": -4.1,
     "gunluk_islem": 0.62,
     "ort_bekleme": 15.3,
@@ -8196,12 +8196,12 @@
     "kontrol": {
      "islem": 9,
      "kazanma": 66.7,
-     "ortalama": -0.023,
-     "toplam": -0.3,
-     "kar_faktoru": 0.96,
+     "ortalama": -0.033,
+     "toplam": -0.4,
+     "kar_faktoru": 0.95,
      "max_dusus": -3.4,
      "gunluk_islem": 0.53,
-     "ort_bekleme": 16.4
+     "ort_bekleme": 16.6
     },
     "kontrol_gecti": false
    },
@@ -8216,9 +8216,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 34,
      "kazanma": 61.8,
-     "ortalama": 0.15,
-     "toplam": 5.0,
-     "kar_faktoru": 1.37,
+     "ortalama": 0.147,
+     "toplam": 4.9,
+     "kar_faktoru": 1.36,
      "max_dusus": -4.1,
      "gunluk_islem": 0.62,
      "ort_bekleme": 15.3,
@@ -8235,12 +8235,12 @@
      "kontrol": {
       "islem": 9,
       "kazanma": 66.7,
-      "ortalama": -0.023,
-      "toplam": -0.3,
-      "kar_faktoru": 0.96,
+      "ortalama": -0.033,
+      "toplam": -0.4,
+      "kar_faktoru": 0.95,
       "max_dusus": -3.4,
       "gunluk_islem": 0.53,
-      "ort_bekleme": 16.4
+      "ort_bekleme": 16.6
      },
      "kontrol_gecti": false
     },
@@ -8254,8 +8254,8 @@
      "kontrol_bas": "2026-09-21",
      "islem": 37,
      "kazanma": 64.9,
-     "ortalama": 0.112,
-     "toplam": 4.0,
+     "ortalama": 0.11,
+     "toplam": 3.9,
      "kar_faktoru": 1.28,
      "max_dusus": -5.4,
      "gunluk_islem": 0.67,
@@ -8273,12 +8273,12 @@
      "kontrol": {
       "islem": 13,
       "kazanma": 76.9,
-      "ortalama": 0.072,
-      "toplam": 0.8,
-      "kar_faktoru": 1.18,
+      "ortalama": 0.065,
+      "toplam": 0.7,
+      "kar_faktoru": 1.16,
       "max_dusus": -4.3,
       "gunluk_islem": 0.76,
-      "ort_bekleme": 15.1
+      "ort_bekleme": 15.2
      },
      "kontrol_gecti": true
     },
@@ -8292,10 +8292,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 38,
      "kazanma": 34.2,
-     "ortalama": -0.023,
+     "ortalama": -0.025,
      "toplam": -1.1,
      "kar_faktoru": 0.93,
-     "max_dusus": -4.2,
+     "max_dusus": -4.3,
      "gunluk_islem": 0.69,
      "ort_bekleme": 7.8,
      "egitim": {
@@ -8311,12 +8311,12 @@
      "kontrol": {
       "islem": 14,
       "kazanma": 14.3,
-      "ortalama": -0.251,
-      "toplam": -3.5,
-      "kar_faktoru": 0.37,
-      "max_dusus": -4.2,
+      "ortalama": -0.258,
+      "toplam": -3.6,
+      "kar_faktoru": 0.36,
+      "max_dusus": -4.3,
       "gunluk_islem": 0.82,
-      "ort_bekleme": 5.7
+      "ort_bekleme": 5.8
      },
      "kontrol_gecti": false
     },
@@ -8330,8 +8330,8 @@
      "kontrol_bas": "2026-09-21",
      "islem": 59,
      "kazanma": 40.7,
-     "ortalama": 0.064,
-     "toplam": 3.6,
+     "ortalama": 0.063,
+     "toplam": 3.5,
      "kar_faktoru": 1.19,
      "max_dusus": -5.7,
      "gunluk_islem": 1.07,
@@ -8349,9 +8349,9 @@
      "kontrol": {
       "islem": 18,
       "kazanma": 50.0,
-      "ortalama": 0.076,
-      "toplam": 1.3,
-      "kar_faktoru": 1.33,
+      "ortalama": 0.071,
+      "toplam": 1.2,
+      "kar_faktoru": 1.3,
       "max_dusus": -2.4,
       "gunluk_islem": 1.06,
       "ort_bekleme": 9.6
@@ -8487,12 +8487,12 @@
      "kontrol_bas": "2026-09-18",
      "islem": 28,
      "kazanma": 39.3,
-     "ortalama": 0.047,
-     "toplam": 1.2,
-     "kar_faktoru": 1.18,
+     "ortalama": 0.049,
+     "toplam": 1.3,
+     "kar_faktoru": 1.19,
      "max_dusus": -2.0,
      "gunluk_islem": 0.47,
-     "ort_bekleme": 13.6,
+     "ort_bekleme": 13.7,
      "egitim": {
       "islem": 21,
       "kazanma": 47.6,
@@ -8506,12 +8506,12 @@
      "kontrol": {
       "islem": 7,
       "kazanma": 14.3,
-      "ortalama": -0.154,
-      "toplam": -1.1,
-      "kar_faktoru": 0.37,
+      "ortalama": -0.145,
+      "toplam": -1.0,
+      "kar_faktoru": 0.39,
       "max_dusus": -1.3,
       "gunluk_islem": 0.39,
-      "ort_bekleme": 14.6
+      "ort_bekleme": 15.0
      },
      "kontrol_gecti": false
     },
@@ -8525,12 +8525,12 @@
      "kontrol_bas": "2026-09-18",
      "islem": 52,
      "kazanma": 36.5,
-     "ortalama": -0.024,
-     "toplam": -1.4,
+     "ortalama": -0.022,
+     "toplam": -1.3,
      "kar_faktoru": 0.92,
      "max_dusus": -3.8,
      "gunluk_islem": 0.88,
-     "ort_bekleme": 9.6,
+     "ort_bekleme": 9.7,
      "egitim": {
       "islem": 37,
       "kazanma": 43.2,
@@ -8544,12 +8544,12 @@
      "kontrol": {
       "islem": 15,
       "kazanma": 20.0,
-      "ortalama": -0.198,
-      "toplam": -3.0,
+      "ortalama": -0.194,
+      "toplam": -2.9,
       "kar_faktoru": 0.44,
       "max_dusus": -3.8,
       "gunluk_islem": 0.83,
-      "ort_bekleme": 9.2
+      "ort_bekleme": 9.4
      },
      "kontrol_gecti": false
     },
@@ -8599,14 +8599,14 @@
      "skor": 0.017,
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
-     "islem": 37,
-     "kazanma": 40.5,
-     "ortalama": -0.056,
-     "toplam": -2.2,
+     "islem": 38,
+     "kazanma": 39.5,
+     "ortalama": -0.058,
+     "toplam": -2.3,
      "kar_faktoru": 0.84,
-     "max_dusus": -5.8,
-     "gunluk_islem": 0.63,
-     "ort_bekleme": 12.8,
+     "max_dusus": -6.0,
+     "gunluk_islem": 0.64,
+     "ort_bekleme": 12.6,
      "egitim": {
       "islem": 26,
       "kazanma": 50.0,
@@ -8618,14 +8618,14 @@
       "ort_bekleme": 12.7
      },
      "kontrol": {
-      "islem": 11,
-      "kazanma": 18.2,
-      "ortalama": -0.265,
-      "toplam": -2.9,
-      "kar_faktoru": 0.39,
-      "max_dusus": -3.9,
-      "gunluk_islem": 0.61,
-      "ort_bekleme": 13.2
+      "islem": 12,
+      "kazanma": 16.7,
+      "ortalama": -0.255,
+      "toplam": -3.0,
+      "kar_faktoru": 0.38,
+      "max_dusus": -4.1,
+      "gunluk_islem": 0.67,
+      "ort_bekleme": 12.3
      },
      "kontrol_gecti": false
     }
@@ -8643,12 +8643,12 @@
     "kontrol_bas": "2026-09-21",
     "islem": 39,
     "kazanma": 38.5,
-    "ortalama": -0.087,
+    "ortalama": -0.088,
     "toplam": -3.6,
     "kar_faktoru": 0.82,
     "max_dusus": -8.3,
     "gunluk_islem": 0.71,
-    "ort_bekleme": 9.4,
+    "ort_bekleme": 9.5,
     "egitim": {
      "islem": 22,
      "kazanma": 45.5,
@@ -8662,12 +8662,12 @@
     "kontrol": {
      "islem": 17,
      "kazanma": 29.4,
-     "ortalama": -0.291,
-     "toplam": -4.9,
-     "kar_faktoru": 0.51,
+     "ortalama": -0.294,
+     "toplam": -5.0,
+     "kar_faktoru": 0.5,
      "max_dusus": -8.3,
      "gunluk_islem": 1.0,
-     "ort_bekleme": 7.6
+     "ort_bekleme": 7.7
     },
     "kontrol_gecti": false
    },
@@ -8682,12 +8682,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 39,
      "kazanma": 38.5,
-     "ortalama": -0.087,
+     "ortalama": -0.088,
      "toplam": -3.6,
      "kar_faktoru": 0.82,
      "max_dusus": -8.3,
      "gunluk_islem": 0.71,
-     "ort_bekleme": 9.4,
+     "ort_bekleme": 9.5,
      "egitim": {
       "islem": 22,
       "kazanma": 45.5,
@@ -8701,12 +8701,12 @@
      "kontrol": {
       "islem": 17,
       "kazanma": 29.4,
-      "ortalama": -0.291,
-      "toplam": -4.9,
-      "kar_faktoru": 0.51,
+      "ortalama": -0.294,
+      "toplam": -5.0,
+      "kar_faktoru": 0.5,
       "max_dusus": -8.3,
       "gunluk_islem": 1.0,
-      "ort_bekleme": 7.6
+      "ort_bekleme": 7.7
      },
      "kontrol_gecti": false
     },
@@ -9029,12 +9029,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 42,
      "kazanma": 23.8,
-     "ortalama": 0.301,
-     "toplam": 10.7,
-     "kar_faktoru": 1.38,
-     "max_dusus": -11.6,
+     "ortalama": 0.31,
+     "toplam": 11.1,
+     "kar_faktoru": 1.4,
+     "max_dusus": -11.3,
      "gunluk_islem": 0.76,
-     "ort_bekleme": 9.2,
+     "ort_bekleme": 9.3,
      "egitim": {
       "islem": 25,
       "kazanma": 28.0,
@@ -9048,10 +9048,10 @@
      "kontrol": {
       "islem": 17,
       "kazanma": 17.6,
-      "ortalama": -0.696,
-      "toplam": -11.6,
-      "kar_faktoru": 0.46,
-      "max_dusus": -11.6,
+      "ortalama": -0.673,
+      "toplam": -11.3,
+      "kar_faktoru": 0.47,
+      "max_dusus": -11.3,
       "gunluk_islem": 1.0,
       "ort_bekleme": 7.5
      },
@@ -9133,7 +9133,7 @@
      "kar_faktoru": 0.12,
      "max_dusus": -3.9,
      "gunluk_islem": 0.47,
-     "ort_bekleme": 6.1
+     "ort_bekleme": 6.2
     },
     "kontrol_gecti": false
    },
@@ -9172,7 +9172,7 @@
       "kar_faktoru": 0.12,
       "max_dusus": -3.9,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 6.1
+      "ort_bekleme": 6.2
      },
      "kontrol_gecti": false
     },
@@ -9795,7 +9795,7 @@
      "kontrol_gecti": false
     }
    ],
-   "aday_sayisi": 615
+   "aday_sayisi": 616
   },
   "GESAN": {
    "en_iyi": {
@@ -9885,9 +9885,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 57,
      "kazanma": 42.1,
-     "ortalama": 0.303,
-     "toplam": 17.4,
-     "kar_faktoru": 1.55,
+     "ortalama": 0.307,
+     "toplam": 17.6,
+     "kar_faktoru": 1.56,
      "max_dusus": -7.5,
      "gunluk_islem": 1.04,
      "ort_bekleme": 9.5,
@@ -9904,12 +9904,12 @@
      "kontrol": {
       "islem": 19,
       "kazanma": 36.8,
-      "ortalama": -0.148,
-      "toplam": -3.1,
-      "kar_faktoru": 0.8,
+      "ortalama": -0.138,
+      "toplam": -2.9,
+      "kar_faktoru": 0.82,
       "max_dusus": -7.3,
       "gunluk_islem": 1.12,
-      "ort_bekleme": 10.3
+      "ort_bekleme": 10.4
      },
      "kontrol_gecti": false
     },
@@ -10274,12 +10274,12 @@
     "kontrol_bas": "2026-09-18",
     "islem": 34,
     "kazanma": 35.3,
-    "ortalama": 0.108,
-    "toplam": 3.5,
-    "kar_faktoru": 1.33,
+    "ortalama": 0.105,
+    "toplam": 3.4,
+    "kar_faktoru": 1.32,
     "max_dusus": -5.6,
     "gunluk_islem": 0.58,
-    "ort_bekleme": 13.3,
+    "ort_bekleme": 13.4,
     "egitim": {
      "islem": 28,
      "kazanma": 39.3,
@@ -10293,12 +10293,12 @@
     "kontrol": {
      "islem": 6,
      "kazanma": 16.7,
-     "ortalama": -0.343,
-     "toplam": -2.0,
-     "kar_faktoru": 0.2,
+     "ortalama": -0.358,
+     "toplam": -2.1,
+     "kar_faktoru": 0.19,
      "max_dusus": -2.1,
      "gunluk_islem": 0.33,
-     "ort_bekleme": 14.7
+     "ort_bekleme": 15.0
     },
     "kontrol_gecti": false
    },
@@ -10313,12 +10313,12 @@
      "kontrol_bas": "2026-09-18",
      "islem": 34,
      "kazanma": 35.3,
-     "ortalama": 0.108,
-     "toplam": 3.5,
-     "kar_faktoru": 1.33,
+     "ortalama": 0.105,
+     "toplam": 3.4,
+     "kar_faktoru": 1.32,
      "max_dusus": -5.6,
      "gunluk_islem": 0.58,
-     "ort_bekleme": 13.3,
+     "ort_bekleme": 13.4,
      "egitim": {
       "islem": 28,
       "kazanma": 39.3,
@@ -10332,12 +10332,12 @@
      "kontrol": {
       "islem": 6,
       "kazanma": 16.7,
-      "ortalama": -0.343,
-      "toplam": -2.0,
-      "kar_faktoru": 0.2,
+      "ortalama": -0.358,
+      "toplam": -2.1,
+      "kar_faktoru": 0.19,
       "max_dusus": -2.1,
       "gunluk_islem": 0.33,
-      "ort_bekleme": 14.7
+      "ort_bekleme": 15.0
      },
      "kontrol_gecti": false
     },
@@ -10505,14 +10505,14 @@
     "skor": 0.21,
     "baslangic": "2026-07-30",
     "kontrol_bas": "2026-09-21",
-    "islem": 50,
-    "kazanma": 28.0,
-    "ortalama": 0.046,
-    "toplam": 2.0,
-    "kar_faktoru": 1.12,
+    "islem": 51,
+    "kazanma": 27.5,
+    "ortalama": 0.042,
+    "toplam": 1.8,
+    "kar_faktoru": 1.11,
     "max_dusus": -6.5,
-    "gunluk_islem": 0.91,
-    "ort_bekleme": 6.2,
+    "gunluk_islem": 0.93,
+    "ort_bekleme": 6.1,
     "egitim": {
      "islem": 34,
      "kazanma": 35.3,
@@ -10524,14 +10524,14 @@
      "ort_bekleme": 6.5
     },
     "kontrol": {
-     "islem": 16,
-     "kazanma": 12.5,
-     "ortalama": -0.373,
-     "toplam": -5.8,
+     "islem": 17,
+     "kazanma": 11.8,
+     "ortalama": -0.36,
+     "toplam": -6.0,
      "kar_faktoru": 0.2,
      "max_dusus": -6.5,
-     "gunluk_islem": 0.94,
-     "ort_bekleme": 5.8
+     "gunluk_islem": 1.0,
+     "ort_bekleme": 5.5
     },
     "kontrol_gecti": false
    },
@@ -10544,14 +10544,14 @@
      "skor": 0.21,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 50,
-     "kazanma": 28.0,
-     "ortalama": 0.046,
-     "toplam": 2.0,
-     "kar_faktoru": 1.12,
+     "islem": 51,
+     "kazanma": 27.5,
+     "ortalama": 0.042,
+     "toplam": 1.8,
+     "kar_faktoru": 1.11,
      "max_dusus": -6.5,
-     "gunluk_islem": 0.91,
-     "ort_bekleme": 6.2,
+     "gunluk_islem": 0.93,
+     "ort_bekleme": 6.1,
      "egitim": {
       "islem": 34,
       "kazanma": 35.3,
@@ -10563,14 +10563,14 @@
       "ort_bekleme": 6.5
      },
      "kontrol": {
-      "islem": 16,
-      "kazanma": 12.5,
-      "ortalama": -0.373,
-      "toplam": -5.8,
+      "islem": 17,
+      "kazanma": 11.8,
+      "ortalama": -0.36,
+      "toplam": -6.0,
       "kar_faktoru": 0.2,
       "max_dusus": -6.5,
-      "gunluk_islem": 0.94,
-      "ort_bekleme": 5.8
+      "gunluk_islem": 1.0,
+      "ort_bekleme": 5.5
      },
      "kontrol_gecti": false
     },
@@ -10582,14 +10582,14 @@
      "skor": 0.2059,
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
-     "islem": 87,
-     "kazanma": 40.2,
-     "ortalama": 0.03,
-     "toplam": 2.2,
-     "kar_faktoru": 1.09,
-     "max_dusus": -6.1,
-     "gunluk_islem": 1.47,
-     "ort_bekleme": 10.2,
+     "islem": 88,
+     "kazanma": 39.8,
+     "ortalama": 0.028,
+     "toplam": 2.0,
+     "kar_faktoru": 1.08,
+     "max_dusus": -6.3,
+     "gunluk_islem": 1.49,
+     "ort_bekleme": 10.1,
      "egitim": {
       "islem": 62,
       "kazanma": 46.8,
@@ -10601,14 +10601,14 @@
       "ort_bekleme": 10.2
      },
      "kontrol": {
-      "islem": 25,
-      "kazanma": 24.0,
-      "ortalama": -0.246,
-      "toplam": -6.1,
-      "kar_faktoru": 0.49,
-      "max_dusus": -6.1,
-      "gunluk_islem": 1.39,
-      "ort_bekleme": 10.2
+      "islem": 26,
+      "kazanma": 23.1,
+      "ortalama": -0.245,
+      "toplam": -6.3,
+      "kar_faktoru": 0.48,
+      "max_dusus": -6.3,
+      "gunluk_islem": 1.44,
+      "ort_bekleme": 9.9
      },
      "kontrol_gecti": false
     },
@@ -10738,14 +10738,14 @@
     "skor": 0.2892,
     "baslangic": "2026-07-30",
     "kontrol_bas": "2026-09-21",
-    "islem": 38,
-    "kazanma": 31.6,
-    "ortalama": 0.158,
-    "toplam": 5.3,
-    "kar_faktoru": 1.3,
-    "max_dusus": -8.2,
-    "gunluk_islem": 0.69,
-    "ort_bekleme": 8.2,
+    "islem": 39,
+    "kazanma": 30.8,
+    "ortalama": 0.147,
+    "toplam": 5.0,
+    "kar_faktoru": 1.28,
+    "max_dusus": -8.5,
+    "gunluk_islem": 0.71,
+    "ort_bekleme": 8.0,
     "egitim": {
      "islem": 24,
      "kazanma": 41.7,
@@ -10757,14 +10757,14 @@
      "ort_bekleme": 9.1
     },
     "kontrol": {
-     "islem": 14,
-     "kazanma": 14.3,
-     "ortalama": -0.41,
-     "toplam": -5.6,
-     "kar_faktoru": 0.28,
-     "max_dusus": -5.6,
-     "gunluk_islem": 0.82,
-     "ort_bekleme": 6.6
+     "islem": 15,
+     "kazanma": 13.3,
+     "ortalama": -0.401,
+     "toplam": -5.9,
+     "kar_faktoru": 0.27,
+     "max_dusus": -5.9,
+     "gunluk_islem": 0.88,
+     "ort_bekleme": 6.2
     },
     "kontrol_gecti": false
    },
@@ -10777,14 +10777,14 @@
      "skor": 0.2892,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 38,
-     "kazanma": 31.6,
-     "ortalama": 0.158,
-     "toplam": 5.3,
-     "kar_faktoru": 1.3,
-     "max_dusus": -8.2,
-     "gunluk_islem": 0.69,
-     "ort_bekleme": 8.2,
+     "islem": 39,
+     "kazanma": 30.8,
+     "ortalama": 0.147,
+     "toplam": 5.0,
+     "kar_faktoru": 1.28,
+     "max_dusus": -8.5,
+     "gunluk_islem": 0.71,
+     "ort_bekleme": 8.0,
      "egitim": {
       "islem": 24,
       "kazanma": 41.7,
@@ -10796,14 +10796,14 @@
       "ort_bekleme": 9.1
      },
      "kontrol": {
-      "islem": 14,
-      "kazanma": 14.3,
-      "ortalama": -0.41,
-      "toplam": -5.6,
-      "kar_faktoru": 0.28,
-      "max_dusus": -5.6,
-      "gunluk_islem": 0.82,
-      "ort_bekleme": 6.6
+      "islem": 15,
+      "kazanma": 13.3,
+      "ortalama": -0.401,
+      "toplam": -5.9,
+      "kar_faktoru": 0.27,
+      "max_dusus": -5.9,
+      "gunluk_islem": 0.88,
+      "ort_bekleme": 6.2
      },
      "kontrol_gecti": false
     },
@@ -10815,14 +10815,14 @@
      "skor": 0.275,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 38,
-     "kazanma": 26.3,
-     "ortalama": 0.134,
-     "toplam": 4.4,
-     "kar_faktoru": 1.24,
-     "max_dusus": -8.9,
-     "gunluk_islem": 0.69,
-     "ort_bekleme": 7.9,
+     "islem": 39,
+     "kazanma": 25.6,
+     "ortalama": 0.124,
+     "toplam": 4.1,
+     "kar_faktoru": 1.23,
+     "max_dusus": -9.2,
+     "gunluk_islem": 0.71,
+     "ort_bekleme": 7.7,
      "egitim": {
       "islem": 24,
       "kazanma": 37.5,
@@ -10834,14 +10834,14 @@
       "ort_bekleme": 8.8
      },
      "kontrol": {
-      "islem": 14,
-      "kazanma": 7.1,
-      "ortalama": -0.435,
-      "toplam": -6.0,
-      "kar_faktoru": 0.27,
-      "max_dusus": -6.0,
-      "gunluk_islem": 0.82,
-      "ort_bekleme": 6.4
+      "islem": 15,
+      "kazanma": 6.7,
+      "ortalama": -0.425,
+      "toplam": -6.2,
+      "kar_faktoru": 0.26,
+      "max_dusus": -6.2,
+      "gunluk_islem": 0.88,
+      "ort_bekleme": 6.1
      },
      "kontrol_gecti": false
     },
@@ -10853,14 +10853,14 @@
      "skor": 0.2583,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 43,
-     "kazanma": 25.6,
-     "ortalama": 0.042,
-     "toplam": 0.9,
-     "kar_faktoru": 1.07,
-     "max_dusus": -10.5,
-     "gunluk_islem": 0.78,
-     "ort_bekleme": 9.0,
+     "islem": 44,
+     "kazanma": 25.0,
+     "ortalama": 0.035,
+     "toplam": 0.6,
+     "kar_faktoru": 1.06,
+     "max_dusus": -10.8,
+     "gunluk_islem": 0.8,
+     "ort_bekleme": 8.8,
      "egitim": {
       "islem": 26,
       "kazanma": 38.5,
@@ -10872,14 +10872,14 @@
       "ort_bekleme": 9.8
      },
      "kontrol": {
-      "islem": 17,
-      "kazanma": 5.9,
-      "ortalama": -0.517,
-      "toplam": -8.5,
+      "islem": 18,
+      "kazanma": 5.6,
+      "ortalama": -0.504,
+      "toplam": -8.7,
       "kar_faktoru": 0.2,
-      "max_dusus": -8.5,
-      "gunluk_islem": 1.0,
-      "ort_bekleme": 7.7
+      "max_dusus": -8.7,
+      "gunluk_islem": 1.06,
+      "ort_bekleme": 7.3
      },
      "kontrol_gecti": false
     },
@@ -10893,10 +10893,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 51,
      "kazanma": 23.5,
-     "ortalama": 0.075,
-     "toplam": 3.1,
+     "ortalama": 0.074,
+     "toplam": 3.0,
      "kar_faktoru": 1.18,
-     "max_dusus": -7.9,
+     "max_dusus": -8.0,
      "gunluk_islem": 0.93,
      "ort_bekleme": 5.9,
      "egitim": {
@@ -10912,10 +10912,10 @@
      "kontrol": {
       "islem": 19,
       "kazanma": 5.3,
-      "ortalama": -0.294,
-      "toplam": -5.5,
+      "ortalama": -0.299,
+      "toplam": -5.6,
       "kar_faktoru": 0.35,
-      "max_dusus": -5.5,
+      "max_dusus": -5.6,
       "gunluk_islem": 1.12,
       "ort_bekleme": 4.5
      },
@@ -10929,14 +10929,14 @@
      "skor": 0.2246,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 46,
-     "kazanma": 21.7,
-     "ortalama": 0.006,
-     "toplam": -0.4,
-     "kar_faktoru": 1.01,
-     "max_dusus": -9.3,
-     "gunluk_islem": 0.84,
-     "ort_bekleme": 7.3,
+     "islem": 47,
+     "kazanma": 21.3,
+     "ortalama": -0.0,
+     "toplam": -0.7,
+     "kar_faktoru": 1.0,
+     "max_dusus": -9.5,
+     "gunluk_islem": 0.85,
+     "ort_bekleme": 7.2,
      "egitim": {
       "islem": 27,
       "kazanma": 33.3,
@@ -10948,19 +10948,19 @@
       "ort_bekleme": 8.1
      },
      "kontrol": {
-      "islem": 19,
-      "kazanma": 5.3,
-      "ortalama": -0.465,
-      "toplam": -8.5,
-      "kar_faktoru": 0.2,
-      "max_dusus": -8.5,
-      "gunluk_islem": 1.12,
-      "ort_bekleme": 6.2
+      "islem": 20,
+      "kazanma": 5.0,
+      "ortalama": -0.456,
+      "toplam": -8.8,
+      "kar_faktoru": 0.19,
+      "max_dusus": -8.8,
+      "gunluk_islem": 1.18,
+      "ort_bekleme": 6.0
      },
      "kontrol_gecti": false
     }
    ],
-   "aday_sayisi": 535
+   "aday_sayisi": 538
   },
   "HEKTS": {
    "en_iyi": {
@@ -11397,12 +11397,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 47,
      "kazanma": 27.7,
-     "ortalama": 0.076,
-     "toplam": 3.2,
+     "ortalama": 0.074,
+     "toplam": 3.1,
      "kar_faktoru": 1.21,
      "max_dusus": -7.0,
      "gunluk_islem": 0.85,
-     "ort_bekleme": 8.6,
+     "ort_bekleme": 8.7,
      "egitim": {
       "islem": 33,
       "kazanma": 24.2,
@@ -11416,9 +11416,9 @@
      "kontrol": {
       "islem": 14,
       "kazanma": 35.7,
-      "ortalama": -0.055,
-      "toplam": -0.8,
-      "kar_faktoru": 0.83,
+      "ortalama": -0.061,
+      "toplam": -0.9,
+      "kar_faktoru": 0.81,
       "max_dusus": -1.9,
       "gunluk_islem": 0.82,
       "ort_bekleme": 8.1
@@ -11747,14 +11747,14 @@
      "skor": 0.0863,
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
-     "islem": 42,
-     "kazanma": 26.2,
-     "ortalama": 0.033,
+     "islem": 43,
+     "kazanma": 25.6,
+     "ortalama": 0.031,
      "toplam": 1.0,
-     "kar_faktoru": 1.12,
+     "kar_faktoru": 1.11,
      "max_dusus": -7.1,
-     "gunluk_islem": 0.71,
-     "ort_bekleme": 6.3,
+     "gunluk_islem": 0.73,
+     "ort_bekleme": 6.2,
      "egitim": {
       "islem": 31,
       "kazanma": 29.0,
@@ -11766,14 +11766,14 @@
       "ort_bekleme": 6.5
      },
      "kontrol": {
-      "islem": 11,
-      "kazanma": 18.2,
-      "ortalama": -0.233,
-      "toplam": -2.5,
-      "kar_faktoru": 0.23,
+      "islem": 12,
+      "kazanma": 16.7,
+      "ortalama": -0.218,
+      "toplam": -2.6,
+      "kar_faktoru": 0.22,
       "max_dusus": -2.9,
-      "gunluk_islem": 0.61,
-      "ort_bekleme": 5.7
+      "gunluk_islem": 0.67,
+      "ort_bekleme": 5.4
      },
      "kontrol_gecti": false
     },
@@ -11786,13 +11786,13 @@
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
      "islem": 39,
-     "kazanma": 41.0,
-     "ortalama": -0.019,
-     "toplam": -0.9,
-     "kar_faktoru": 0.94,
-     "max_dusus": -5.8,
+     "kazanma": 43.6,
+     "ortalama": 0.002,
+     "toplam": -0.1,
+     "kar_faktoru": 1.01,
+     "max_dusus": -5.7,
      "gunluk_islem": 0.66,
-     "ort_bekleme": 13.9,
+     "ort_bekleme": 14.0,
      "egitim": {
       "islem": 29,
       "kazanma": 48.3,
@@ -11805,13 +11805,13 @@
      },
      "kontrol": {
       "islem": 10,
-      "kazanma": 20.0,
-      "ortalama": -0.355,
-      "toplam": -3.5,
-      "kar_faktoru": 0.22,
-      "max_dusus": -3.5,
+      "kazanma": 30.0,
+      "ortalama": -0.27,
+      "toplam": -2.7,
+      "kar_faktoru": 0.38,
+      "max_dusus": -3.4,
       "gunluk_islem": 0.56,
-      "ort_bekleme": 11.7
+      "ort_bekleme": 12.0
      },
      "kontrol_gecti": false
     },
@@ -11861,14 +11861,14 @@
      "skor": 0.0411,
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
-     "islem": 36,
-     "kazanma": 38.9,
+     "islem": 37,
+     "kazanma": 37.8,
      "ortalama": -0.048,
-     "toplam": -1.8,
-     "kar_faktoru": 0.84,
+     "toplam": -1.9,
+     "kar_faktoru": 0.83,
      "max_dusus": -6.6,
-     "gunluk_islem": 0.61,
-     "ort_bekleme": 8.1,
+     "gunluk_islem": 0.63,
+     "ort_bekleme": 7.9,
      "egitim": {
       "islem": 27,
       "kazanma": 44.4,
@@ -11880,19 +11880,19 @@
       "ort_bekleme": 8.7
      },
      "kontrol": {
-      "islem": 9,
-      "kazanma": 22.2,
-      "ortalama": -0.393,
+      "islem": 10,
+      "kazanma": 20.0,
+      "ortalama": -0.359,
       "toplam": -3.5,
-      "kar_faktoru": 0.18,
+      "kar_faktoru": 0.17,
       "max_dusus": -3.5,
-      "gunluk_islem": 0.5,
-      "ort_bekleme": 6.3
+      "gunluk_islem": 0.56,
+      "ort_bekleme": 5.9
      },
      "kontrol_gecti": false
     }
    ],
-   "aday_sayisi": 573
+   "aday_sayisi": 574
   },
   "KCHOL": {
    "en_iyi": {
@@ -12256,13 +12256,13 @@
     "baslangic": "2026-07-24",
     "kontrol_bas": "2026-09-18",
     "islem": 29,
-    "kazanma": 27.6,
-    "ortalama": 0.069,
-    "toplam": 1.9,
-    "kar_faktoru": 1.3,
+    "kazanma": 31.0,
+    "ortalama": 0.081,
+    "toplam": 2.3,
+    "kar_faktoru": 1.36,
     "max_dusus": -3.1,
     "gunluk_islem": 0.49,
-    "ort_bekleme": 9.0,
+    "ort_bekleme": 9.1,
     "egitim": {
      "islem": 23,
      "kazanma": 30.4,
@@ -12275,13 +12275,13 @@
     },
     "kontrol": {
      "islem": 6,
-     "kazanma": 16.7,
-     "ortalama": -0.08,
-     "toplam": -0.5,
-     "kar_faktoru": 0.6,
+     "kazanma": 33.3,
+     "ortalama": -0.021,
+     "toplam": -0.1,
+     "kar_faktoru": 0.89,
      "max_dusus": -0.7,
      "gunluk_islem": 0.33,
-     "ort_bekleme": 5.5
+     "ort_bekleme": 6.0
     },
     "kontrol_gecti": false
    },
@@ -12295,13 +12295,13 @@
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
      "islem": 29,
-     "kazanma": 27.6,
-     "ortalama": 0.069,
-     "toplam": 1.9,
-     "kar_faktoru": 1.3,
+     "kazanma": 31.0,
+     "ortalama": 0.081,
+     "toplam": 2.3,
+     "kar_faktoru": 1.36,
      "max_dusus": -3.1,
      "gunluk_islem": 0.49,
-     "ort_bekleme": 9.0,
+     "ort_bekleme": 9.1,
      "egitim": {
       "islem": 23,
       "kazanma": 30.4,
@@ -12314,13 +12314,13 @@
      },
      "kontrol": {
       "islem": 6,
-      "kazanma": 16.7,
-      "ortalama": -0.08,
-      "toplam": -0.5,
-      "kar_faktoru": 0.6,
+      "kazanma": 33.3,
+      "ortalama": -0.021,
+      "toplam": -0.1,
+      "kar_faktoru": 0.89,
       "max_dusus": -0.7,
       "gunluk_islem": 0.33,
-      "ort_bekleme": 5.5
+      "ort_bekleme": 6.0
      },
      "kontrol_gecti": false
     },
@@ -12332,14 +12332,14 @@
      "skor": 0.0184,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 44,
-     "kazanma": 18.2,
-     "ortalama": -0.112,
-     "toplam": -5.3,
+     "islem": 45,
+     "kazanma": 20.0,
+     "ortalama": -0.108,
+     "toplam": -5.2,
      "kar_faktoru": 0.77,
      "max_dusus": -11.3,
-     "gunluk_islem": 0.8,
-     "ort_bekleme": 5.8,
+     "gunluk_islem": 0.82,
+     "ort_bekleme": 5.7,
      "egitim": {
       "islem": 37,
       "kazanma": 21.6,
@@ -12351,14 +12351,14 @@
       "ort_bekleme": 6.0
      },
      "kontrol": {
-      "islem": 7,
-      "kazanma": 0.0,
-      "ortalama": -0.869,
+      "islem": 8,
+      "kazanma": 12.5,
+      "ortalama": -0.752,
       "toplam": -5.9,
-      "kar_faktoru": 0.0,
+      "kar_faktoru": 0.01,
       "max_dusus": -5.9,
-      "gunluk_islem": 0.41,
-      "ort_bekleme": 4.9
+      "gunluk_islem": 0.47,
+      "ort_bekleme": 4.4
      },
      "kontrol_gecti": false
     },
@@ -12447,13 +12447,13 @@
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
      "islem": 39,
-     "kazanma": 33.3,
-     "ortalama": -0.057,
-     "toplam": -2.3,
-     "kar_faktoru": 0.78,
+     "kazanma": 35.9,
+     "ortalama": -0.048,
+     "toplam": -1.9,
+     "kar_faktoru": 0.81,
      "max_dusus": -3.1,
      "gunluk_islem": 0.66,
-     "ort_bekleme": 8.2,
+     "ort_bekleme": 8.3,
      "egitim": {
       "islem": 33,
       "kazanma": 36.4,
@@ -12466,13 +12466,13 @@
      },
      "kontrol": {
       "islem": 6,
-      "kazanma": 16.7,
-      "ortalama": -0.21,
-      "toplam": -1.3,
-      "kar_faktoru": 0.36,
-      "max_dusus": -1.3,
+      "kazanma": 33.3,
+      "ortalama": -0.151,
+      "toplam": -0.9,
+      "kar_faktoru": 0.52,
+      "max_dusus": -1.2,
       "gunluk_islem": 0.33,
-      "ort_bekleme": 7.3
+      "ort_bekleme": 7.8
      },
      "kontrol_gecti": false
     }
@@ -12567,12 +12567,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 47,
      "kazanma": 42.6,
-     "ortalama": 0.166,
-     "toplam": 7.5,
-     "kar_faktoru": 1.35,
+     "ortalama": 0.161,
+     "toplam": 7.2,
+     "kar_faktoru": 1.33,
      "max_dusus": -6.7,
      "gunluk_islem": 0.85,
-     "ort_bekleme": 11.4,
+     "ort_bekleme": 11.5,
      "egitim": {
       "islem": 31,
       "kazanma": 45.2,
@@ -12586,12 +12586,12 @@
      "kontrol": {
       "islem": 16,
       "kazanma": 37.5,
-      "ortalama": -0.111,
-      "toplam": -1.9,
-      "kar_faktoru": 0.8,
+      "ortalama": -0.125,
+      "toplam": -2.1,
+      "kar_faktoru": 0.78,
       "max_dusus": -6.7,
       "gunluk_islem": 0.94,
-      "ort_bekleme": 10.6
+      "ort_bekleme": 10.7
      },
      "kontrol_gecti": false
     },
@@ -12603,14 +12603,14 @@
      "skor": 0.2246,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 39,
-     "kazanma": 41.0,
-     "ortalama": 0.136,
-     "toplam": 4.9,
-     "kar_faktoru": 1.27,
+     "islem": 40,
+     "kazanma": 40.0,
+     "ortalama": 0.124,
+     "toplam": 4.5,
+     "kar_faktoru": 1.25,
      "max_dusus": -7.8,
-     "gunluk_islem": 0.71,
-     "ort_bekleme": 10.9,
+     "gunluk_islem": 0.73,
+     "ort_bekleme": 10.7,
      "egitim": {
       "islem": 25,
       "kazanma": 44.0,
@@ -12622,14 +12622,14 @@
       "ort_bekleme": 11.4
      },
      "kontrol": {
-      "islem": 14,
-      "kazanma": 35.7,
-      "ortalama": -0.26,
-      "toplam": -3.7,
-      "kar_faktoru": 0.6,
+      "islem": 15,
+      "kazanma": 33.3,
+      "ortalama": -0.268,
+      "toplam": -4.0,
+      "kar_faktoru": 0.58,
       "max_dusus": -7.8,
-      "gunluk_islem": 0.82,
-      "ort_bekleme": 10.1
+      "gunluk_islem": 0.88,
+      "ort_bekleme": 9.5
      },
      "kontrol_gecti": false
     },
@@ -12641,14 +12641,14 @@
      "skor": 0.1856,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 35,
-     "kazanma": 45.7,
-     "ortalama": 0.181,
-     "toplam": 6.3,
-     "kar_faktoru": 1.49,
-     "max_dusus": -4.7,
-     "gunluk_islem": 0.64,
-     "ort_bekleme": 10.0,
+     "islem": 36,
+     "kazanma": 44.4,
+     "ortalama": 0.166,
+     "toplam": 5.9,
+     "kar_faktoru": 1.45,
+     "max_dusus": -5.0,
+     "gunluk_islem": 0.65,
+     "ort_bekleme": 9.8,
      "egitim": {
       "islem": 20,
       "kazanma": 55.0,
@@ -12660,14 +12660,14 @@
       "ort_bekleme": 11.9
      },
      "kontrol": {
-      "islem": 15,
-      "kazanma": 33.3,
-      "ortalama": -0.058,
-      "toplam": -0.9,
-      "kar_faktoru": 0.87,
-      "max_dusus": -4.7,
-      "gunluk_islem": 0.88,
-      "ort_bekleme": 7.5
+      "islem": 16,
+      "kazanma": 31.2,
+      "ortalama": -0.077,
+      "toplam": -1.3,
+      "kar_faktoru": 0.82,
+      "max_dusus": -5.0,
+      "gunluk_islem": 0.94,
+      "ort_bekleme": 7.1
      },
      "kontrol_gecti": false
     },
@@ -12681,9 +12681,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 42,
      "kazanma": 45.2,
-     "ortalama": 0.112,
-     "toplam": 4.5,
-     "kar_faktoru": 1.27,
+     "ortalama": 0.107,
+     "toplam": 4.3,
+     "kar_faktoru": 1.25,
      "max_dusus": -6.0,
      "gunluk_islem": 0.76,
      "ort_bekleme": 9.3,
@@ -12700,12 +12700,12 @@
      "kontrol": {
       "islem": 16,
       "kazanma": 37.5,
-      "ortalama": -0.153,
-      "toplam": -2.5,
-      "kar_faktoru": 0.71,
+      "ortalama": -0.168,
+      "toplam": -2.7,
+      "kar_faktoru": 0.69,
       "max_dusus": -6.0,
       "gunluk_islem": 0.94,
-      "ort_bekleme": 9.1
+      "ort_bekleme": 9.2
      },
      "kontrol_gecti": false
     }
@@ -13304,9 +13304,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 35,
      "kazanma": 31.4,
-     "ortalama": -0.117,
-     "toplam": -4.2,
-     "kar_faktoru": 0.69,
+     "ortalama": -0.12,
+     "toplam": -4.3,
+     "kar_faktoru": 0.68,
      "max_dusus": -6.1,
      "gunluk_islem": 0.64,
      "ort_bekleme": 8.9,
@@ -13323,12 +13323,12 @@
      "kontrol": {
       "islem": 14,
       "kazanma": 28.6,
-      "ortalama": -0.44,
-      "toplam": -6.0,
-      "kar_faktoru": 0.24,
+      "ortalama": -0.448,
+      "toplam": -6.1,
+      "kar_faktoru": 0.23,
       "max_dusus": -6.1,
       "gunluk_islem": 0.82,
-      "ort_bekleme": 6.9
+      "ort_bekleme": 7.0
      },
      "kontrol_gecti": false
     },
@@ -13380,12 +13380,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 33,
      "kazanma": 42.4,
-     "ortalama": -0.08,
-     "toplam": -2.8,
-     "kar_faktoru": 0.8,
+     "ortalama": -0.083,
+     "toplam": -2.9,
+     "kar_faktoru": 0.79,
      "max_dusus": -6.0,
      "gunluk_islem": 0.6,
-     "ort_bekleme": 9.8,
+     "ort_bekleme": 9.9,
      "egitim": {
       "islem": 19,
       "kazanma": 47.4,
@@ -13399,12 +13399,12 @@
      "kontrol": {
       "islem": 14,
       "kazanma": 35.7,
-      "ortalama": -0.299,
-      "toplam": -4.1,
-      "kar_faktoru": 0.36,
+      "ortalama": -0.307,
+      "toplam": -4.2,
+      "kar_faktoru": 0.34,
       "max_dusus": -6.0,
       "gunluk_islem": 0.82,
-      "ort_bekleme": 8.5
+      "ort_bekleme": 8.6
      },
      "kontrol_gecti": false
     }
@@ -13422,12 +13422,12 @@
     "kontrol_bas": "2026-09-21",
     "islem": 30,
     "kazanma": 43.3,
-    "ortalama": 0.18,
-    "toplam": 5.3,
-    "kar_faktoru": 1.59,
+    "ortalama": 0.176,
+    "toplam": 5.2,
+    "kar_faktoru": 1.57,
     "max_dusus": -3.0,
     "gunluk_islem": 0.55,
-    "ort_bekleme": 9.6,
+    "ort_bekleme": 9.7,
     "egitim": {
      "islem": 20,
      "kazanma": 55.0,
@@ -13441,12 +13441,12 @@
     "kontrol": {
      "islem": 10,
      "kazanma": 20.0,
-     "ortalama": -0.257,
-     "toplam": -2.6,
-     "kar_faktoru": 0.39,
+     "ortalama": -0.267,
+     "toplam": -2.7,
+     "kar_faktoru": 0.37,
      "max_dusus": -3.0,
      "gunluk_islem": 0.59,
-     "ort_bekleme": 5.7
+     "ort_bekleme": 5.9
     },
     "kontrol_gecti": false
    },
@@ -13461,12 +13461,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 30,
      "kazanma": 43.3,
-     "ortalama": 0.18,
-     "toplam": 5.3,
-     "kar_faktoru": 1.59,
+     "ortalama": 0.176,
+     "toplam": 5.2,
+     "kar_faktoru": 1.57,
      "max_dusus": -3.0,
      "gunluk_islem": 0.55,
-     "ort_bekleme": 9.6,
+     "ort_bekleme": 9.7,
      "egitim": {
       "islem": 20,
       "kazanma": 55.0,
@@ -13480,12 +13480,12 @@
      "kontrol": {
       "islem": 10,
       "kazanma": 20.0,
-      "ortalama": -0.257,
-      "toplam": -2.6,
-      "kar_faktoru": 0.39,
+      "ortalama": -0.267,
+      "toplam": -2.7,
+      "kar_faktoru": 0.37,
       "max_dusus": -3.0,
       "gunluk_islem": 0.59,
-      "ort_bekleme": 5.7
+      "ort_bekleme": 5.9
      },
      "kontrol_gecti": false
     },
@@ -13499,12 +13499,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 28,
      "kazanma": 46.4,
-     "ortalama": 0.137,
-     "toplam": 3.7,
-     "kar_faktoru": 1.36,
+     "ortalama": 0.133,
+     "toplam": 3.6,
+     "kar_faktoru": 1.35,
      "max_dusus": -4.2,
      "gunluk_islem": 0.51,
-     "ort_bekleme": 10.2,
+     "ort_bekleme": 10.3,
      "egitim": {
       "islem": 19,
       "kazanma": 57.9,
@@ -13518,12 +13518,12 @@
      "kontrol": {
       "islem": 9,
       "kazanma": 22.2,
-      "ortalama": -0.425,
-      "toplam": -3.8,
-      "kar_faktoru": 0.33,
+      "ortalama": -0.436,
+      "toplam": -3.9,
+      "kar_faktoru": 0.31,
       "max_dusus": -4.2,
       "gunluk_islem": 0.53,
-      "ort_bekleme": 7.9
+      "ort_bekleme": 8.1
      },
      "kontrol_gecti": false
     },
@@ -13537,12 +13537,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 28,
      "kazanma": 46.4,
-     "ortalama": 0.144,
-     "toplam": 3.9,
-     "kar_faktoru": 1.37,
+     "ortalama": 0.141,
+     "toplam": 3.8,
+     "kar_faktoru": 1.36,
      "max_dusus": -4.0,
      "gunluk_islem": 0.51,
-     "ort_bekleme": 10.1,
+     "ort_bekleme": 10.2,
      "egitim": {
       "islem": 19,
       "kazanma": 57.9,
@@ -13556,12 +13556,12 @@
      "kontrol": {
       "islem": 9,
       "kazanma": 22.2,
-      "ortalama": -0.392,
-      "toplam": -3.5,
-      "kar_faktoru": 0.38,
+      "ortalama": -0.403,
+      "toplam": -3.6,
+      "kar_faktoru": 0.36,
       "max_dusus": -4.0,
       "gunluk_islem": 0.53,
-      "ort_bekleme": 7.7
+      "ort_bekleme": 7.9
      },
      "kontrol_gecti": false
     },
@@ -13575,9 +13575,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 27,
      "kazanma": 40.7,
-     "ortalama": 0.154,
-     "toplam": 4.1,
-     "kar_faktoru": 1.47,
+     "ortalama": 0.15,
+     "toplam": 4.0,
+     "kar_faktoru": 1.46,
      "max_dusus": -2.3,
      "gunluk_islem": 0.49,
      "ort_bekleme": 10.7,
@@ -13594,12 +13594,12 @@
      "kontrol": {
       "islem": 8,
       "kazanma": 25.0,
-      "ortalama": -0.229,
-      "toplam": -1.8,
-      "kar_faktoru": 0.51,
+      "ortalama": -0.242,
+      "toplam": -1.9,
+      "kar_faktoru": 0.48,
       "max_dusus": -2.3,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 7.9
+      "ort_bekleme": 8.1
      },
      "kontrol_gecti": false
     },
@@ -13613,12 +13613,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 25,
      "kazanma": 48.0,
-     "ortalama": 0.237,
-     "toplam": 5.9,
-     "kar_faktoru": 1.79,
+     "ortalama": 0.233,
+     "toplam": 5.8,
+     "kar_faktoru": 1.77,
      "max_dusus": -2.3,
      "gunluk_islem": 0.45,
-     "ort_bekleme": 9.4,
+     "ort_bekleme": 9.5,
      "egitim": {
       "islem": 20,
       "kazanma": 50.0,
@@ -13632,12 +13632,12 @@
      "kontrol": {
       "islem": 5,
       "kazanma": 40.0,
-      "ortalama": 0.04,
-      "toplam": 0.2,
-      "kar_faktoru": 1.13,
+      "ortalama": 0.02,
+      "toplam": 0.1,
+      "kar_faktoru": 1.07,
       "max_dusus": -1.2,
       "gunluk_islem": 0.29,
-      "ort_bekleme": 9.6
+      "ort_bekleme": 10.0
      },
      "kontrol_gecti": true
     }
@@ -13888,9 +13888,9 @@
     "kontrol_bas": "2026-09-21",
     "islem": 36,
     "kazanma": 30.6,
-    "ortalama": 0.067,
-    "toplam": 2.3,
-    "kar_faktoru": 1.21,
+    "ortalama": 0.062,
+    "toplam": 2.1,
+    "kar_faktoru": 1.19,
     "max_dusus": -6.6,
     "gunluk_islem": 0.65,
     "ort_bekleme": 6.0,
@@ -13907,12 +13907,12 @@
     "kontrol": {
      "islem": 15,
      "kazanma": 13.3,
-     "ortalama": -0.354,
-     "toplam": -5.2,
-     "kar_faktoru": 0.24,
+     "ortalama": -0.366,
+     "toplam": -5.4,
+     "kar_faktoru": 0.23,
      "max_dusus": -6.6,
      "gunluk_islem": 0.88,
-     "ort_bekleme": 3.9
+     "ort_bekleme": 4.0
     },
     "kontrol_gecti": false
    },
@@ -13927,9 +13927,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 36,
      "kazanma": 30.6,
-     "ortalama": 0.067,
-     "toplam": 2.3,
-     "kar_faktoru": 1.21,
+     "ortalama": 0.062,
+     "toplam": 2.1,
+     "kar_faktoru": 1.19,
      "max_dusus": -6.6,
      "gunluk_islem": 0.65,
      "ort_bekleme": 6.0,
@@ -13946,12 +13946,12 @@
      "kontrol": {
       "islem": 15,
       "kazanma": 13.3,
-      "ortalama": -0.354,
-      "toplam": -5.2,
-      "kar_faktoru": 0.24,
+      "ortalama": -0.366,
+      "toplam": -5.4,
+      "kar_faktoru": 0.23,
       "max_dusus": -6.6,
       "gunluk_islem": 0.88,
-      "ort_bekleme": 3.9
+      "ort_bekleme": 4.0
      },
      "kontrol_gecti": false
     },
@@ -13965,9 +13965,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 38,
      "kazanma": 31.6,
-     "ortalama": 0.093,
-     "toplam": 3.4,
-     "kar_faktoru": 1.29,
+     "ortalama": 0.088,
+     "toplam": 3.2,
+     "kar_faktoru": 1.28,
      "max_dusus": -5.0,
      "gunluk_islem": 0.69,
      "ort_bekleme": 7.2,
@@ -13984,12 +13984,12 @@
      "kontrol": {
       "islem": 11,
       "kazanma": 18.2,
-      "ortalama": -0.314,
-      "toplam": -3.4,
-      "kar_faktoru": 0.32,
+      "ortalama": -0.33,
+      "toplam": -3.6,
+      "kar_faktoru": 0.31,
       "max_dusus": -4.9,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 6.3
+      "ort_bekleme": 6.4
      },
      "kontrol_gecti": false
     },
@@ -14003,9 +14003,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 38,
      "kazanma": 31.6,
-     "ortalama": 0.093,
-     "toplam": 3.4,
-     "kar_faktoru": 1.29,
+     "ortalama": 0.088,
+     "toplam": 3.2,
+     "kar_faktoru": 1.28,
      "max_dusus": -5.0,
      "gunluk_islem": 0.69,
      "ort_bekleme": 7.2,
@@ -14022,12 +14022,12 @@
      "kontrol": {
       "islem": 11,
       "kazanma": 18.2,
-      "ortalama": -0.314,
-      "toplam": -3.4,
-      "kar_faktoru": 0.32,
+      "ortalama": -0.33,
+      "toplam": -3.6,
+      "kar_faktoru": 0.31,
       "max_dusus": -4.9,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 6.3
+      "ort_bekleme": 6.4
      },
      "kontrol_gecti": false
     },
@@ -14041,10 +14041,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 33,
      "kazanma": 36.4,
-     "ortalama": 0.04,
-     "toplam": 1.2,
-     "kar_faktoru": 1.12,
-     "max_dusus": -6.6,
+     "ortalama": 0.035,
+     "toplam": 1.0,
+     "kar_faktoru": 1.1,
+     "max_dusus": -6.8,
      "gunluk_islem": 0.6,
      "ort_bekleme": 8.5,
      "egitim": {
@@ -14060,10 +14060,10 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 16.7,
-      "ortalama": -0.441,
-      "toplam": -5.2,
+      "ortalama": -0.456,
+      "toplam": -5.3,
       "kar_faktoru": 0.15,
-      "max_dusus": -5.2,
+      "max_dusus": -5.3,
       "gunluk_islem": 0.71,
       "ort_bekleme": 8.2
      },
@@ -14079,12 +14079,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 30,
      "kazanma": 36.7,
-     "ortalama": 0.106,
-     "toplam": 3.1,
-     "kar_faktoru": 1.36,
+     "ortalama": 0.101,
+     "toplam": 2.9,
+     "kar_faktoru": 1.33,
      "max_dusus": -3.9,
      "gunluk_islem": 0.55,
-     "ort_bekleme": 6.7,
+     "ort_bekleme": 6.8,
      "egitim": {
       "islem": 22,
       "kazanma": 40.9,
@@ -14098,12 +14098,12 @@
      "kontrol": {
       "islem": 8,
       "kazanma": 25.0,
-      "ortalama": -0.413,
-      "toplam": -3.3,
+      "ortalama": -0.434,
+      "toplam": -3.4,
       "kar_faktoru": 0.06,
       "max_dusus": -3.4,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 5.1
+      "ort_bekleme": 5.2
      },
      "kontrol_gecti": false
     }
@@ -14574,7 +14574,7 @@
      "kontrol_gecti": true
     }
    ],
-   "aday_sayisi": 571
+   "aday_sayisi": 572
   },
   "OTKAR": {
    "en_iyi": {
@@ -14973,12 +14973,12 @@
      "kontrol_bas": "2026-09-18",
      "islem": 75,
      "kazanma": 41.3,
-     "ortalama": 0.038,
-     "toplam": 2.6,
+     "ortalama": 0.036,
+     "toplam": 2.5,
      "kar_faktoru": 1.12,
      "max_dusus": -5.7,
      "gunluk_islem": 1.27,
-     "ort_bekleme": 13.4,
+     "ort_bekleme": 13.5,
      "egitim": {
       "islem": 50,
       "kazanma": 44.0,
@@ -14992,12 +14992,12 @@
      "kontrol": {
       "islem": 25,
       "kazanma": 36.0,
-      "ortalama": -0.101,
-      "toplam": -2.5,
-      "kar_faktoru": 0.7,
+      "ortalama": -0.105,
+      "toplam": -2.6,
+      "kar_faktoru": 0.69,
       "max_dusus": -5.1,
       "gunluk_islem": 1.39,
-      "ort_bekleme": 13.4
+      "ort_bekleme": 13.5
      },
      "kontrol_gecti": false
     },
@@ -15273,7 +15273,7 @@
      "kontrol_gecti": false
     }
    ],
-   "aday_sayisi": 309
+   "aday_sayisi": 311
   },
   "PETKM": {
    "en_iyi": {
@@ -15286,9 +15286,9 @@
     "kontrol_bas": "2026-09-21",
     "islem": 62,
     "kazanma": 30.6,
-    "ortalama": -0.002,
-    "toplam": -0.9,
-    "kar_faktoru": 1.0,
+    "ortalama": 0.004,
+    "toplam": -0.5,
+    "kar_faktoru": 1.01,
     "max_dusus": -11.6,
     "gunluk_islem": 1.13,
     "ort_bekleme": 12.4,
@@ -15305,12 +15305,12 @@
     "kontrol": {
      "islem": 22,
      "kazanma": 22.7,
-     "ortalama": -0.466,
-     "toplam": -9.8,
-     "kar_faktoru": 0.23,
+     "ortalama": -0.448,
+     "toplam": -9.5,
+     "kar_faktoru": 0.26,
      "max_dusus": -10.6,
      "gunluk_islem": 1.29,
-     "ort_bekleme": 8.0
+     "ort_bekleme": 8.1
     },
     "kontrol_gecti": false
    },
@@ -15325,9 +15325,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 62,
      "kazanma": 30.6,
-     "ortalama": -0.002,
-     "toplam": -0.9,
-     "kar_faktoru": 1.0,
+     "ortalama": 0.004,
+     "toplam": -0.5,
+     "kar_faktoru": 1.01,
      "max_dusus": -11.6,
      "gunluk_islem": 1.13,
      "ort_bekleme": 12.4,
@@ -15344,12 +15344,12 @@
      "kontrol": {
       "islem": 22,
       "kazanma": 22.7,
-      "ortalama": -0.466,
-      "toplam": -9.8,
-      "kar_faktoru": 0.23,
+      "ortalama": -0.448,
+      "toplam": -9.5,
+      "kar_faktoru": 0.26,
       "max_dusus": -10.6,
       "gunluk_islem": 1.29,
-      "ort_bekleme": 8.0
+      "ort_bekleme": 8.1
      },
      "kontrol_gecti": false
     },
@@ -15632,14 +15632,14 @@
      "skor": 0.0624,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 49,
-     "kazanma": 34.7,
-     "ortalama": -0.024,
-     "toplam": -1.4,
-     "kar_faktoru": 0.93,
+     "islem": 50,
+     "kazanma": 34.0,
+     "ortalama": -0.03,
+     "toplam": -1.7,
+     "kar_faktoru": 0.91,
      "max_dusus": -6.5,
-     "gunluk_islem": 0.89,
-     "ort_bekleme": 8.1,
+     "gunluk_islem": 0.91,
+     "ort_bekleme": 8.0,
      "egitim": {
       "islem": 36,
       "kazanma": 38.9,
@@ -15651,14 +15651,14 @@
       "ort_bekleme": 8.3
      },
      "kontrol": {
-      "islem": 13,
-      "kazanma": 23.1,
-      "ortalama": -0.29,
-      "toplam": -3.7,
-      "kar_faktoru": 0.38,
-      "max_dusus": -4.7,
-      "gunluk_islem": 0.76,
-      "ort_bekleme": 7.7
+      "islem": 14,
+      "kazanma": 21.4,
+      "ortalama": -0.291,
+      "toplam": -4.0,
+      "kar_faktoru": 0.36,
+      "max_dusus": -5.0,
+      "gunluk_islem": 0.82,
+      "ort_bekleme": 7.3
      },
      "kontrol_gecti": false
     },
@@ -15710,12 +15710,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 39,
      "kazanma": 33.3,
-     "ortalama": 0.014,
-     "toplam": 0.4,
-     "kar_faktoru": 1.04,
+     "ortalama": 0.011,
+     "toplam": 0.3,
+     "kar_faktoru": 1.03,
      "max_dusus": -6.1,
      "gunluk_islem": 0.71,
-     "ort_bekleme": 7.2,
+     "ort_bekleme": 7.3,
      "egitim": {
       "islem": 27,
       "kazanma": 37.0,
@@ -15729,12 +15729,12 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 25.0,
-      "ortalama": -0.142,
-      "toplam": -1.7,
-      "kar_faktoru": 0.56,
-      "max_dusus": -3.5,
+      "ortalama": -0.154,
+      "toplam": -1.9,
+      "kar_faktoru": 0.54,
+      "max_dusus": -3.6,
       "gunluk_islem": 0.71,
-      "ort_bekleme": 6.8
+      "ort_bekleme": 7.0
      },
      "kontrol_gecti": false
     }
@@ -15990,7 +15990,7 @@
     "kar_faktoru": 1.27,
     "max_dusus": -4.0,
     "gunluk_islem": 0.65,
-    "ort_bekleme": 10.4,
+    "ort_bekleme": 10.5,
     "egitim": {
      "islem": 23,
      "kazanma": 39.1,
@@ -16009,7 +16009,7 @@
      "kar_faktoru": 0.65,
      "max_dusus": -4.0,
      "gunluk_islem": 0.76,
-     "ort_bekleme": 9.0
+     "ort_bekleme": 9.2
     },
     "kontrol_gecti": false
    },
@@ -16029,7 +16029,7 @@
      "kar_faktoru": 1.27,
      "max_dusus": -4.0,
      "gunluk_islem": 0.65,
-     "ort_bekleme": 10.4,
+     "ort_bekleme": 10.5,
      "egitim": {
       "islem": 23,
       "kazanma": 39.1,
@@ -16048,7 +16048,45 @@
       "kar_faktoru": 0.65,
       "max_dusus": -4.0,
       "gunluk_islem": 0.76,
-      "ort_bekleme": 9.0
+      "ort_bekleme": 9.2
+     },
+     "kontrol_gecti": false
+    },
+    {
+     "aday": 448,
+     "ad": "21 MACD Kesişimi + 28 Stokastik RSI",
+     "tf": 1,
+     "tf_ad": "15 Dakika",
+     "skor": 0.0931,
+     "baslangic": "2026-07-30",
+     "kontrol_bas": "2026-09-21",
+     "islem": 36,
+     "kazanma": 47.2,
+     "ortalama": 0.011,
+     "toplam": 0.3,
+     "kar_faktoru": 1.04,
+     "max_dusus": -3.8,
+     "gunluk_islem": 0.65,
+     "ort_bekleme": 4.8,
+     "egitim": {
+      "islem": 24,
+      "kazanma": 50.0,
+      "ortalama": 0.152,
+      "toplam": 3.6,
+      "kar_faktoru": 1.61,
+      "max_dusus": -2.0,
+      "gunluk_islem": 0.63,
+      "ort_bekleme": 4.6
+     },
+     "kontrol": {
+      "islem": 12,
+      "kazanma": 41.7,
+      "ortalama": -0.271,
+      "toplam": -3.2,
+      "kar_faktoru": 0.22,
+      "max_dusus": -3.6,
+      "gunluk_islem": 0.71,
+      "ort_bekleme": 5.1
      },
      "kontrol_gecti": false
     },
@@ -16086,7 +16124,7 @@
       "kar_faktoru": 1.27,
       "max_dusus": -1.8,
       "gunluk_islem": 0.88,
-      "ort_bekleme": 10.1
+      "ort_bekleme": 10.2
      },
      "kontrol_gecti": true
     },
@@ -16105,7 +16143,7 @@
      "kar_faktoru": 0.98,
      "max_dusus": -6.2,
      "gunluk_islem": 0.75,
-     "ort_bekleme": 9.0,
+     "ort_bekleme": 9.1,
      "egitim": {
       "islem": 27,
       "kazanma": 40.7,
@@ -16124,7 +16162,7 @@
       "kar_faktoru": 0.46,
       "max_dusus": -6.2,
       "gunluk_islem": 0.82,
-      "ort_bekleme": 8.2
+      "ort_bekleme": 8.4
      },
      "kontrol_gecti": false
     },
@@ -16162,47 +16200,9 @@
       "kar_faktoru": 1.29,
       "max_dusus": -1.9,
       "gunluk_islem": 0.94,
-      "ort_bekleme": 10.1
+      "ort_bekleme": 10.2
      },
      "kontrol_gecti": true
-    },
-    {
-     "aday": 341,
-     "ad": "13 EMA 5x13 + 29 EMA 9x21 + VWAP",
-     "tf": 1,
-     "tf_ad": "15 Dakika",
-     "skor": 0.0676,
-     "baslangic": "2026-07-30",
-     "kontrol_bas": "2026-09-21",
-     "islem": 29,
-     "kazanma": 41.4,
-     "ortalama": 0.048,
-     "toplam": 1.3,
-     "kar_faktoru": 1.14,
-     "max_dusus": -4.5,
-     "gunluk_islem": 0.53,
-     "ort_bekleme": 11.3,
-     "egitim": {
-      "islem": 20,
-      "kazanma": 40.0,
-      "ortalama": 0.132,
-      "toplam": 2.6,
-      "kar_faktoru": 1.42,
-      "max_dusus": -4.5,
-      "gunluk_islem": 0.53,
-      "ort_bekleme": 12.4
-     },
-     "kontrol": {
-      "islem": 9,
-      "kazanma": 44.4,
-      "ortalama": -0.137,
-      "toplam": -1.3,
-      "kar_faktoru": 0.68,
-      "max_dusus": -3.6,
-      "gunluk_islem": 0.53,
-      "ort_bekleme": 8.7
-     },
-     "kontrol_gecti": false
     }
    ],
    "aday_sayisi": 655
@@ -16564,14 +16564,14 @@
      "skor": 0.4253,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 29,
-     "kazanma": 58.6,
-     "ortalama": -0.411,
-     "toplam": -12.6,
+     "islem": 30,
+     "kazanma": 56.7,
+     "ortalama": -0.402,
+     "toplam": -12.7,
      "kar_faktoru": 0.69,
-     "max_dusus": -25.6,
-     "gunluk_islem": 0.53,
-     "ort_bekleme": 13.4,
+     "max_dusus": -25.7,
+     "gunluk_islem": 0.55,
+     "ort_bekleme": 13.0,
      "egitim": {
       "islem": 22,
       "kazanma": 68.2,
@@ -16583,14 +16583,14 @@
       "ort_bekleme": 13.0
      },
      "kontrol": {
-      "islem": 7,
-      "kazanma": 28.6,
-      "ortalama": -4.05,
-      "toplam": -25.6,
+      "islem": 8,
+      "kazanma": 25.0,
+      "ortalama": -3.563,
+      "toplam": -25.7,
       "kar_faktoru": 0.1,
-      "max_dusus": -25.6,
-      "gunluk_islem": 0.41,
-      "ort_bekleme": 14.7
+      "max_dusus": -25.7,
+      "gunluk_islem": 0.47,
+      "ort_bekleme": 13.0
      },
      "kontrol_gecti": false
     },
@@ -16604,10 +16604,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 45,
      "kazanma": 33.3,
-     "ortalama": -0.032,
-     "toplam": -2.7,
-     "kar_faktoru": 0.95,
-     "max_dusus": -19.2,
+     "ortalama": -0.026,
+     "toplam": -2.4,
+     "kar_faktoru": 0.96,
+     "max_dusus": -19.0,
      "gunluk_islem": 0.82,
      "ort_bekleme": 17.6,
      "egitim": {
@@ -16623,12 +16623,12 @@
      "kontrol": {
       "islem": 15,
       "kazanma": 13.3,
-      "ortalama": -1.147,
-      "toplam": -16.5,
+      "ortalama": -1.13,
+      "toplam": -16.2,
       "kar_faktoru": 0.23,
-      "max_dusus": -19.2,
+      "max_dusus": -19.0,
       "gunluk_islem": 0.88,
-      "ort_bekleme": 20.4
+      "ort_bekleme": 20.5
      },
      "kontrol_gecti": false
     },
@@ -16683,11 +16683,11 @@
     "baslangic": "2026-07-30",
     "kontrol_bas": "2026-09-21",
     "islem": 49,
-    "kazanma": 40.8,
-    "ortalama": 0.049,
-    "toplam": 2.1,
-    "kar_faktoru": 1.16,
-    "max_dusus": -5.0,
+    "kazanma": 38.8,
+    "ortalama": 0.047,
+    "toplam": 2.0,
+    "kar_faktoru": 1.15,
+    "max_dusus": -5.1,
     "gunluk_islem": 0.89,
     "ort_bekleme": 8.6,
     "egitim": {
@@ -16702,13 +16702,13 @@
     },
     "kontrol": {
      "islem": 19,
-     "kazanma": 31.6,
-     "ortalama": -0.211,
-     "toplam": -4.0,
-     "kar_faktoru": 0.41,
-     "max_dusus": -5.0,
+     "kazanma": 26.3,
+     "ortalama": -0.217,
+     "toplam": -4.1,
+     "kar_faktoru": 0.4,
+     "max_dusus": -5.1,
      "gunluk_islem": 1.12,
-     "ort_bekleme": 8.4
+     "ort_bekleme": 8.5
     },
     "kontrol_gecti": false
    },
@@ -16722,11 +16722,11 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 49,
-     "kazanma": 40.8,
-     "ortalama": 0.049,
-     "toplam": 2.1,
-     "kar_faktoru": 1.16,
-     "max_dusus": -5.0,
+     "kazanma": 38.8,
+     "ortalama": 0.047,
+     "toplam": 2.0,
+     "kar_faktoru": 1.15,
+     "max_dusus": -5.1,
      "gunluk_islem": 0.89,
      "ort_bekleme": 8.6,
      "egitim": {
@@ -16741,13 +16741,13 @@
      },
      "kontrol": {
       "islem": 19,
-      "kazanma": 31.6,
-      "ortalama": -0.211,
-      "toplam": -4.0,
-      "kar_faktoru": 0.41,
-      "max_dusus": -5.0,
+      "kazanma": 26.3,
+      "ortalama": -0.217,
+      "toplam": -4.1,
+      "kar_faktoru": 0.4,
+      "max_dusus": -5.1,
       "gunluk_islem": 1.12,
-      "ort_bekleme": 8.4
+      "ort_bekleme": 8.5
      },
      "kontrol_gecti": false
     },
@@ -16798,10 +16798,10 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 45,
-     "kazanma": 40.0,
-     "ortalama": 0.062,
-     "toplam": 2.4,
-     "kar_faktoru": 1.21,
+     "kazanma": 37.8,
+     "ortalama": 0.06,
+     "toplam": 2.3,
+     "kar_faktoru": 1.2,
      "max_dusus": -5.5,
      "gunluk_islem": 0.82,
      "ort_bekleme": 8.7,
@@ -16817,13 +16817,13 @@
      },
      "kontrol": {
       "islem": 16,
-      "kazanma": 31.2,
-      "ortalama": -0.214,
-      "toplam": -3.4,
-      "kar_faktoru": 0.34,
-      "max_dusus": -4.4,
+      "kazanma": 25.0,
+      "ortalama": -0.221,
+      "toplam": -3.5,
+      "kar_faktoru": 0.33,
+      "max_dusus": -4.5,
       "gunluk_islem": 0.94,
-      "ort_bekleme": 8.3
+      "ort_bekleme": 8.4
      },
      "kontrol_gecti": false
     },
@@ -16874,13 +16874,13 @@
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
      "islem": 48,
-     "kazanma": 35.4,
-     "ortalama": 0.044,
-     "toplam": 1.6,
-     "kar_faktoru": 1.11,
+     "kazanma": 33.3,
+     "ortalama": 0.042,
+     "toplam": 1.5,
+     "kar_faktoru": 1.1,
      "max_dusus": -6.3,
      "gunluk_islem": 0.87,
-     "ort_bekleme": 9.6,
+     "ort_bekleme": 9.7,
      "egitim": {
       "islem": 28,
       "kazanma": 39.3,
@@ -16893,13 +16893,13 @@
      },
      "kontrol": {
       "islem": 20,
-      "kazanma": 30.0,
-      "ortalama": -0.168,
-      "toplam": -3.4,
+      "kazanma": 25.0,
+      "ortalama": -0.173,
+      "toplam": -3.5,
       "kar_faktoru": 0.6,
       "max_dusus": -6.3,
       "gunluk_islem": 1.18,
-      "ort_bekleme": 7.6
+      "ort_bekleme": 7.7
      },
      "kontrol_gecti": false
     }
@@ -17383,9 +17383,9 @@
     "kontrol_bas": "2026-09-21",
     "islem": 36,
     "kazanma": 52.8,
-    "ortalama": 0.067,
-    "toplam": 2.3,
-    "kar_faktoru": 1.22,
+    "ortalama": 0.063,
+    "toplam": 2.1,
+    "kar_faktoru": 1.2,
     "max_dusus": -6.2,
     "gunluk_islem": 0.65,
     "ort_bekleme": 5.8,
@@ -17402,9 +17402,9 @@
     "kontrol": {
      "islem": 12,
      "kazanma": 33.3,
-     "ortalama": -0.384,
-     "toplam": -4.5,
-     "kar_faktoru": 0.27,
+     "ortalama": -0.398,
+     "toplam": -4.7,
+     "kar_faktoru": 0.24,
      "max_dusus": -6.0,
      "gunluk_islem": 0.71,
      "ort_bekleme": 5.6
@@ -17422,9 +17422,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 36,
      "kazanma": 52.8,
-     "ortalama": 0.067,
-     "toplam": 2.3,
-     "kar_faktoru": 1.22,
+     "ortalama": 0.063,
+     "toplam": 2.1,
+     "kar_faktoru": 1.2,
      "max_dusus": -6.2,
      "gunluk_islem": 0.65,
      "ort_bekleme": 5.8,
@@ -17441,9 +17441,9 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 33.3,
-      "ortalama": -0.384,
-      "toplam": -4.5,
-      "kar_faktoru": 0.27,
+      "ortalama": -0.398,
+      "toplam": -4.7,
+      "kar_faktoru": 0.24,
       "max_dusus": -6.0,
       "gunluk_islem": 0.71,
       "ort_bekleme": 5.6
@@ -17460,8 +17460,8 @@
      "kontrol_bas": "2026-09-21",
      "islem": 45,
      "kazanma": 51.1,
-     "ortalama": 0.117,
-     "toplam": 4.5,
+     "ortalama": 0.111,
+     "toplam": 4.2,
      "kar_faktoru": 1.17,
      "max_dusus": -12.9,
      "gunluk_islem": 0.82,
@@ -17479,14 +17479,14 @@
      "kontrol": {
       "islem": 13,
       "kazanma": 53.8,
-      "ortalama": 0.03,
-      "toplam": 0.2,
-      "kar_faktoru": 1.04,
+      "ortalama": 0.009,
+      "toplam": -0.1,
+      "kar_faktoru": 1.01,
       "max_dusus": -6.5,
       "gunluk_islem": 0.76,
       "ort_bekleme": 24.8
      },
-     "kontrol_gecti": true
+     "kontrol_gecti": false
     },
     {
      "aday": 373,
@@ -17498,9 +17498,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 37,
      "kazanma": 43.2,
-     "ortalama": 0.044,
-     "toplam": 1.5,
-     "kar_faktoru": 1.15,
+     "ortalama": 0.039,
+     "toplam": 1.3,
+     "kar_faktoru": 1.13,
      "max_dusus": -4.5,
      "gunluk_islem": 0.67,
      "ort_bekleme": 4.4,
@@ -17517,9 +17517,9 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 41.7,
-      "ortalama": -0.126,
-      "toplam": -1.5,
-      "kar_faktoru": 0.67,
+      "ortalama": -0.141,
+      "toplam": -1.7,
+      "kar_faktoru": 0.63,
       "max_dusus": -4.5,
       "gunluk_islem": 0.71,
       "ort_bekleme": 5.1
@@ -17536,9 +17536,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 36,
      "kazanma": 44.4,
-     "ortalama": 0.004,
-     "toplam": 0.0,
-     "kar_faktoru": 1.01,
+     "ortalama": -0.001,
+     "toplam": -0.2,
+     "kar_faktoru": 1.0,
      "max_dusus": -5.3,
      "gunluk_islem": 0.65,
      "ort_bekleme": 4.4,
@@ -17555,9 +17555,9 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 41.7,
-      "ortalama": -0.194,
-      "toplam": -2.3,
-      "kar_faktoru": 0.51,
+      "ortalama": -0.209,
+      "toplam": -2.5,
+      "kar_faktoru": 0.47,
       "max_dusus": -4.6,
       "gunluk_islem": 0.71,
       "ort_bekleme": 5.0
@@ -17964,9 +17964,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 35,
      "kazanma": 34.3,
-     "ortalama": 0.062,
-     "toplam": 1.9,
-     "kar_faktoru": 1.17,
+     "ortalama": 0.059,
+     "toplam": 1.8,
+     "kar_faktoru": 1.16,
      "max_dusus": -3.8,
      "gunluk_islem": 0.64,
      "ort_bekleme": 11.3,
@@ -17983,12 +17983,12 @@
      "kontrol": {
       "islem": 11,
       "kazanma": 36.4,
-      "ortalama": -0.155,
-      "toplam": -1.7,
-      "kar_faktoru": 0.59,
-      "max_dusus": -3.4,
+      "ortalama": -0.163,
+      "toplam": -1.8,
+      "kar_faktoru": 0.57,
+      "max_dusus": -3.5,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 11.3
+      "ort_bekleme": 11.4
      },
      "kontrol_gecti": false
     },
@@ -18000,14 +18000,14 @@
      "skor": 0.0855,
      "baslangic": "2026-07-30",
      "kontrol_bas": "2026-09-21",
-     "islem": 29,
-     "kazanma": 51.7,
-     "ortalama": 0.098,
-     "toplam": 2.6,
-     "kar_faktoru": 1.25,
+     "islem": 30,
+     "kazanma": 50.0,
+     "ortalama": 0.086,
+     "toplam": 2.3,
+     "kar_faktoru": 1.23,
      "max_dusus": -4.7,
-     "gunluk_islem": 0.53,
-     "ort_bekleme": 11.9,
+     "gunluk_islem": 0.55,
+     "ort_bekleme": 11.6,
      "egitim": {
       "islem": 20,
       "kazanma": 50.0,
@@ -18019,14 +18019,14 @@
       "ort_bekleme": 12.1
      },
      "kontrol": {
-      "islem": 9,
-      "kazanma": 55.6,
-      "ortalama": -0.075,
-      "toplam": -0.7,
-      "kar_faktoru": 0.77,
+      "islem": 10,
+      "kazanma": 50.0,
+      "ortalama": -0.092,
+      "toplam": -0.9,
+      "kar_faktoru": 0.71,
       "max_dusus": -2.9,
-      "gunluk_islem": 0.53,
-      "ort_bekleme": 11.6
+      "gunluk_islem": 0.59,
+      "ort_bekleme": 10.5
      },
      "kontrol_gecti": false
     },
@@ -18087,7 +18087,7 @@
     "kar_faktoru": 1.43,
     "max_dusus": -4.4,
     "gunluk_islem": 0.55,
-    "ort_bekleme": 12.5,
+    "ort_bekleme": 12.6,
     "egitim": {
      "islem": 20,
      "kazanma": 50.0,
@@ -18106,7 +18106,7 @@
      "kar_faktoru": 0.68,
      "max_dusus": -4.4,
      "gunluk_islem": 0.59,
-     "ort_bekleme": 9.7
+     "ort_bekleme": 9.8
     },
     "kontrol_gecti": false
    },
@@ -18126,7 +18126,7 @@
      "kar_faktoru": 1.43,
      "max_dusus": -4.4,
      "gunluk_islem": 0.55,
-     "ort_bekleme": 12.5,
+     "ort_bekleme": 12.6,
      "egitim": {
       "islem": 20,
       "kazanma": 50.0,
@@ -18145,7 +18145,7 @@
       "kar_faktoru": 0.68,
       "max_dusus": -4.4,
       "gunluk_islem": 0.59,
-      "ort_bekleme": 9.7
+      "ort_bekleme": 9.8
      },
      "kontrol_gecti": false
     },
@@ -18164,7 +18164,7 @@
      "kar_faktoru": 1.99,
      "max_dusus": -2.5,
      "gunluk_islem": 0.51,
-     "ort_bekleme": 10.0,
+     "ort_bekleme": 10.1,
      "egitim": {
       "islem": 20,
       "kazanma": 60.0,
@@ -18183,7 +18183,7 @@
       "kar_faktoru": 1.73,
       "max_dusus": -1.1,
       "gunluk_islem": 0.47,
-      "ort_bekleme": 10.1
+      "ort_bekleme": 10.2
      },
      "kontrol_gecti": true
     },
@@ -18221,7 +18221,7 @@
       "kar_faktoru": 0.96,
       "max_dusus": -2.8,
       "gunluk_islem": 0.65,
-      "ort_bekleme": 7.9
+      "ort_bekleme": 8.0
      },
      "kontrol_gecti": false
     },
@@ -18259,7 +18259,7 @@
       "kar_faktoru": 2.26,
       "max_dusus": -0.6,
       "gunluk_islem": 0.41,
-      "ort_bekleme": 7.7
+      "ort_bekleme": 7.9
      },
      "kontrol_gecti": true
     },
@@ -18278,7 +18278,7 @@
      "kar_faktoru": 1.3,
      "max_dusus": -3.7,
      "gunluk_islem": 0.51,
-     "ort_bekleme": 12.8,
+     "ort_bekleme": 12.9,
      "egitim": {
       "islem": 19,
       "kazanma": 63.2,
@@ -18297,7 +18297,7 @@
       "kar_faktoru": 0.86,
       "max_dusus": -3.7,
       "gunluk_islem": 0.53,
-      "ort_bekleme": 10.2
+      "ort_bekleme": 10.3
      },
      "kontrol_gecti": false
     }
@@ -18306,79 +18306,155 @@
   },
   "THYAO": {
    "en_iyi": {
-    "aday": 16,
-    "ad": "17 Darvas Kutusu",
+    "aday": 402,
+    "ad": "17 Darvas Kutusu + 28 Stokastik RSI",
     "tf": 0,
     "tf_ad": "5 Dakika",
-    "skor": -0.0245,
+    "skor": 0.0049,
     "baslangic": "2026-07-24",
     "kontrol_bas": "2026-09-18",
-    "islem": 54,
-    "kazanma": 25.9,
-    "ortalama": -0.158,
-    "toplam": -8.4,
-    "kar_faktoru": 0.64,
-    "max_dusus": -10.3,
-    "gunluk_islem": 0.92,
-    "ort_bekleme": 20.5,
+    "islem": 38,
+    "kazanma": 42.1,
+    "ortalama": -0.01,
+    "toplam": -0.5,
+    "kar_faktoru": 0.95,
+    "max_dusus": -2.4,
+    "gunluk_islem": 0.64,
+    "ort_bekleme": 9.8,
     "egitim": {
-     "islem": 31,
-     "kazanma": 32.3,
-     "ortalama": -0.029,
-     "toplam": -1.0,
-     "kar_faktoru": 0.92,
-     "max_dusus": -5.2,
-     "gunluk_islem": 0.76,
-     "ort_bekleme": 20.6
+     "islem": 21,
+     "kazanma": 47.6,
+     "ortalama": 0.012,
+     "toplam": 0.2,
+     "kar_faktoru": 1.05,
+     "max_dusus": -2.1,
+     "gunluk_islem": 0.51,
+     "ort_bekleme": 11.8
     },
     "kontrol": {
-     "islem": 23,
-     "kazanma": 17.4,
-     "ortalama": -0.332,
-     "toplam": -7.4,
-     "kar_faktoru": 0.38,
-     "max_dusus": -7.4,
-     "gunluk_islem": 1.28,
-     "ort_bekleme": 20.4
+     "islem": 17,
+     "kazanma": 35.3,
+     "ortalama": -0.038,
+     "toplam": -0.7,
+     "kar_faktoru": 0.82,
+     "max_dusus": -2.4,
+     "gunluk_islem": 0.94,
+     "ort_bekleme": 7.4
     },
     "kontrol_gecti": false
    },
    "ilk5": [
     {
+     "aday": 402,
+     "ad": "17 Darvas Kutusu + 28 Stokastik RSI",
+     "tf": 0,
+     "tf_ad": "5 Dakika",
+     "skor": 0.0049,
+     "baslangic": "2026-07-24",
+     "kontrol_bas": "2026-09-18",
+     "islem": 38,
+     "kazanma": 42.1,
+     "ortalama": -0.01,
+     "toplam": -0.5,
+     "kar_faktoru": 0.95,
+     "max_dusus": -2.4,
+     "gunluk_islem": 0.64,
+     "ort_bekleme": 9.8,
+     "egitim": {
+      "islem": 21,
+      "kazanma": 47.6,
+      "ortalama": 0.012,
+      "toplam": 0.2,
+      "kar_faktoru": 1.05,
+      "max_dusus": -2.1,
+      "gunluk_islem": 0.51,
+      "ort_bekleme": 11.8
+     },
+     "kontrol": {
+      "islem": 17,
+      "kazanma": 35.3,
+      "ortalama": -0.038,
+      "toplam": -0.7,
+      "kar_faktoru": 0.82,
+      "max_dusus": -2.4,
+      "gunluk_islem": 0.94,
+      "ort_bekleme": 7.4
+     },
+     "kontrol_gecti": false
+    },
+    {
      "aday": 16,
      "ad": "17 Darvas Kutusu",
      "tf": 0,
      "tf_ad": "5 Dakika",
-     "skor": -0.0245,
+     "skor": -0.0294,
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
      "islem": 54,
      "kazanma": 25.9,
-     "ortalama": -0.158,
+     "ortalama": -0.16,
      "toplam": -8.4,
-     "kar_faktoru": 0.64,
+     "kar_faktoru": 0.63,
      "max_dusus": -10.3,
      "gunluk_islem": 0.92,
-     "ort_bekleme": 20.5,
+     "ort_bekleme": 20.6,
      "egitim": {
-      "islem": 31,
-      "kazanma": 32.3,
-      "ortalama": -0.029,
-      "toplam": -1.0,
-      "kar_faktoru": 0.92,
+      "islem": 32,
+      "kazanma": 31.2,
+      "ortalama": -0.033,
+      "toplam": -1.2,
+      "kar_faktoru": 0.91,
       "max_dusus": -5.2,
-      "gunluk_islem": 0.76,
-      "ort_bekleme": 20.6
+      "gunluk_islem": 0.78,
+      "ort_bekleme": 20.9
      },
      "kontrol": {
-      "islem": 23,
-      "kazanma": 17.4,
-      "ortalama": -0.332,
+      "islem": 22,
+      "kazanma": 18.2,
+      "ortalama": -0.344,
       "toplam": -7.4,
-      "kar_faktoru": 0.38,
+      "kar_faktoru": 0.39,
       "max_dusus": -7.4,
-      "gunluk_islem": 1.28,
-      "ort_bekleme": 20.4
+      "gunluk_islem": 1.22,
+      "ort_bekleme": 20.1
+     },
+     "kontrol_gecti": false
+    },
+    {
+     "aday": 401,
+     "ad": "17 Darvas Kutusu + 27 RSI(2) Dip",
+     "tf": 0,
+     "tf_ad": "5 Dakika",
+     "skor": -0.0344,
+     "baslangic": "2026-07-24",
+     "kontrol_bas": "2026-09-18",
+     "islem": 36,
+     "kazanma": 19.4,
+     "ortalama": -0.147,
+     "toplam": -5.2,
+     "kar_faktoru": 0.34,
+     "max_dusus": -5.4,
+     "gunluk_islem": 0.61,
+     "ort_bekleme": 4.5,
+     "egitim": {
+      "islem": 21,
+      "kazanma": 28.6,
+      "ortalama": -0.067,
+      "toplam": -1.4,
+      "kar_faktoru": 0.66,
+      "max_dusus": -2.2,
+      "gunluk_islem": 0.51,
+      "ort_bekleme": 5.0
+     },
+     "kontrol": {
+      "islem": 15,
+      "kazanma": 6.7,
+      "ortalama": -0.259,
+      "toplam": -3.8,
+      "kar_faktoru": 0.01,
+      "max_dusus": -3.8,
+      "gunluk_islem": 0.83,
+      "ort_bekleme": 3.9
      },
      "kontrol_gecti": false
     },
@@ -18457,85 +18533,9 @@
       "ort_bekleme": 6.7
      },
      "kontrol_gecti": false
-    },
-    {
-     "aday": 381,
-     "ad": "16 SMMA 21x55 + 21 MACD Kesişimi",
-     "tf": 0,
-     "tf_ad": "5 Dakika",
-     "skor": -0.0617,
-     "baslangic": "2026-07-24",
-     "kontrol_bas": "2026-09-18",
-     "islem": 37,
-     "kazanma": 16.2,
-     "ortalama": -0.129,
-     "toplam": -4.7,
-     "kar_faktoru": 0.42,
-     "max_dusus": -5.4,
-     "gunluk_islem": 0.63,
-     "ort_bekleme": 6.6,
-     "egitim": {
-      "islem": 24,
-      "kazanma": 16.7,
-      "ortalama": -0.104,
-      "toplam": -2.5,
-      "kar_faktoru": 0.53,
-      "max_dusus": -3.6,
-      "gunluk_islem": 0.59,
-      "ort_bekleme": 6.3
-     },
-     "kontrol": {
-      "islem": 13,
-      "kazanma": 15.4,
-      "ortalama": -0.177,
-      "toplam": -2.3,
-      "kar_faktoru": 0.24,
-      "max_dusus": -2.4,
-      "gunluk_islem": 0.72,
-      "ort_bekleme": 7.2
-     },
-     "kontrol_gecti": false
-    },
-    {
-     "aday": 271,
-     "ad": "10 T3 Tillson + 16 SMMA 21x55",
-     "tf": 0,
-     "tf_ad": "5 Dakika",
-     "skor": -0.0667,
-     "baslangic": "2026-07-24",
-     "kontrol_bas": "2026-09-18",
-     "islem": 35,
-     "kazanma": 25.7,
-     "ortalama": -0.102,
-     "toplam": -3.5,
-     "kar_faktoru": 0.53,
-     "max_dusus": -4.7,
-     "gunluk_islem": 0.59,
-     "ort_bekleme": 9.7,
-     "egitim": {
-      "islem": 26,
-      "kazanma": 26.9,
-      "ortalama": -0.105,
-      "toplam": -2.7,
-      "kar_faktoru": 0.52,
-      "max_dusus": -3.9,
-      "gunluk_islem": 0.63,
-      "ort_bekleme": 8.7
-     },
-     "kontrol": {
-      "islem": 9,
-      "kazanma": 22.2,
-      "ortalama": -0.093,
-      "toplam": -0.8,
-      "kar_faktoru": 0.54,
-      "max_dusus": -1.3,
-      "gunluk_islem": 0.5,
-      "ort_bekleme": 12.7
-     },
-     "kontrol_gecti": false
     }
    ],
-   "aday_sayisi": 577
+   "aday_sayisi": 579
   },
   "TKFEN": {
    "en_iyi": {
@@ -18548,10 +18548,10 @@
     "kontrol_bas": "2026-09-21",
     "islem": 74,
     "kazanma": 56.8,
-    "ortalama": 0.146,
-    "toplam": 10.8,
-    "kar_faktoru": 1.52,
-    "max_dusus": -5.8,
+    "ortalama": 0.144,
+    "toplam": 10.7,
+    "kar_faktoru": 1.51,
+    "max_dusus": -5.9,
     "gunluk_islem": 1.35,
     "ort_bekleme": 4.5,
     "egitim": {
@@ -18567,12 +18567,12 @@
     "kontrol": {
      "islem": 22,
      "kazanma": 40.9,
-     "ortalama": -0.169,
-     "toplam": -3.7,
-     "kar_faktoru": 0.57,
-     "max_dusus": -5.1,
+     "ortalama": -0.174,
+     "toplam": -3.9,
+     "kar_faktoru": 0.56,
+     "max_dusus": -5.2,
      "gunluk_islem": 1.29,
-     "ort_bekleme": 4.5
+     "ort_bekleme": 4.6
     },
     "kontrol_gecti": false
    },
@@ -18587,10 +18587,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 74,
      "kazanma": 56.8,
-     "ortalama": 0.146,
-     "toplam": 10.8,
-     "kar_faktoru": 1.52,
-     "max_dusus": -5.8,
+     "ortalama": 0.144,
+     "toplam": 10.7,
+     "kar_faktoru": 1.51,
+     "max_dusus": -5.9,
      "gunluk_islem": 1.35,
      "ort_bekleme": 4.5,
      "egitim": {
@@ -18606,12 +18606,12 @@
      "kontrol": {
       "islem": 22,
       "kazanma": 40.9,
-      "ortalama": -0.169,
-      "toplam": -3.7,
-      "kar_faktoru": 0.57,
-      "max_dusus": -5.1,
+      "ortalama": -0.174,
+      "toplam": -3.9,
+      "kar_faktoru": 0.56,
+      "max_dusus": -5.2,
       "gunluk_islem": 1.29,
-      "ort_bekleme": 4.5
+      "ort_bekleme": 4.6
      },
      "kontrol_gecti": false
     },
@@ -18699,14 +18699,14 @@
      "skor": 0.2615,
      "baslangic": "2026-07-24",
      "kontrol_bas": "2026-09-18",
-     "islem": 60,
-     "kazanma": 36.7,
-     "ortalama": 0.139,
-     "toplam": 8.0,
-     "kar_faktoru": 1.3,
-     "max_dusus": -8.7,
-     "gunluk_islem": 1.02,
-     "ort_bekleme": 13.4,
+     "islem": 61,
+     "kazanma": 36.1,
+     "ortalama": 0.129,
+     "toplam": 7.5,
+     "kar_faktoru": 1.28,
+     "max_dusus": -9.1,
+     "gunluk_islem": 1.03,
+     "ort_bekleme": 13.2,
      "egitim": {
       "islem": 44,
       "kazanma": 36.4,
@@ -18718,14 +18718,14 @@
       "ort_bekleme": 12.2
      },
      "kontrol": {
-      "islem": 16,
-      "kazanma": 37.5,
-      "ortalama": -0.173,
-      "toplam": -2.9,
-      "kar_faktoru": 0.73,
-      "max_dusus": -8.7,
-      "gunluk_islem": 0.89,
-      "ort_bekleme": 16.5
+      "islem": 17,
+      "kazanma": 35.3,
+      "ortalama": -0.188,
+      "toplam": -3.4,
+      "kar_faktoru": 0.7,
+      "max_dusus": -9.1,
+      "gunluk_islem": 0.94,
+      "ort_bekleme": 15.6
      },
      "kontrol_gecti": false
     },
@@ -18896,8 +18896,8 @@
      "kontrol_bas": "2026-09-21",
      "islem": 41,
      "kazanma": 39.0,
-     "ortalama": -0.117,
-     "toplam": -5.3,
+     "ortalama": -0.12,
+     "toplam": -5.4,
      "kar_faktoru": 0.84,
      "max_dusus": -15.0,
      "gunluk_islem": 0.75,
@@ -18915,12 +18915,12 @@
      "kontrol": {
       "islem": 13,
       "kazanma": 15.4,
-      "ortalama": -0.948,
-      "toplam": -11.7,
-      "kar_faktoru": 0.06,
+      "ortalama": -0.955,
+      "toplam": -11.8,
+      "kar_faktoru": 0.05,
       "max_dusus": -11.8,
       "gunluk_islem": 0.76,
-      "ort_bekleme": 16.4
+      "ort_bekleme": 16.5
      },
      "kontrol_gecti": false
     },
@@ -18972,10 +18972,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 32,
      "kazanma": 37.5,
-     "ortalama": 0.058,
-     "toplam": 1.7,
-     "kar_faktoru": 1.18,
-     "max_dusus": -3.6,
+     "ortalama": 0.055,
+     "toplam": 1.6,
+     "kar_faktoru": 1.17,
+     "max_dusus": -3.7,
      "gunluk_islem": 0.58,
      "ort_bekleme": 6.0,
      "egitim": {
@@ -18991,10 +18991,10 @@
      "kontrol": {
       "islem": 12,
       "kazanma": 16.7,
-      "ortalama": -0.226,
-      "toplam": -2.7,
-      "kar_faktoru": 0.17,
-      "max_dusus": -2.8,
+      "ortalama": -0.234,
+      "toplam": -2.8,
+      "kar_faktoru": 0.16,
+      "max_dusus": -2.9,
       "gunluk_islem": 0.71,
       "ort_bekleme": 5.2
      },
@@ -19014,12 +19014,12 @@
     "kontrol_bas": "2026-09-21",
     "islem": 24,
     "kazanma": 45.8,
-    "ortalama": 0.103,
-    "toplam": 2.4,
-    "kar_faktoru": 1.38,
+    "ortalama": 0.091,
+    "toplam": 2.1,
+    "kar_faktoru": 1.32,
     "max_dusus": -1.8,
     "gunluk_islem": 0.44,
-    "ort_bekleme": 14.6,
+    "ort_bekleme": 14.7,
     "egitim": {
      "islem": 20,
      "kazanma": 45.0,
@@ -19033,12 +19033,12 @@
     "kontrol": {
      "islem": 4,
      "kazanma": 50.0,
-     "ortalama": -0.175,
-     "toplam": -0.7,
-     "kar_faktoru": 0.29,
-     "max_dusus": -0.8,
+     "ortalama": -0.25,
+     "toplam": -1.0,
+     "kar_faktoru": 0.23,
+     "max_dusus": -1.0,
      "gunluk_islem": 0.24,
-     "ort_bekleme": 10.0
+     "ort_bekleme": 10.2
     },
     "kontrol_gecti": false
    },
@@ -19053,12 +19053,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 24,
      "kazanma": 45.8,
-     "ortalama": 0.103,
-     "toplam": 2.4,
-     "kar_faktoru": 1.38,
+     "ortalama": 0.091,
+     "toplam": 2.1,
+     "kar_faktoru": 1.32,
      "max_dusus": -1.8,
      "gunluk_islem": 0.44,
-     "ort_bekleme": 14.6,
+     "ort_bekleme": 14.7,
      "egitim": {
       "islem": 20,
       "kazanma": 45.0,
@@ -19072,12 +19072,12 @@
      "kontrol": {
       "islem": 4,
       "kazanma": 50.0,
-      "ortalama": -0.175,
-      "toplam": -0.7,
-      "kar_faktoru": 0.29,
-      "max_dusus": -0.8,
+      "ortalama": -0.25,
+      "toplam": -1.0,
+      "kar_faktoru": 0.23,
+      "max_dusus": -1.0,
       "gunluk_islem": 0.24,
-      "ort_bekleme": 10.0
+      "ort_bekleme": 10.2
      },
      "kontrol_gecti": false
     },
@@ -19167,9 +19167,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 35,
      "kazanma": 31.4,
-     "ortalama": -0.026,
-     "toplam": -1.0,
-     "kar_faktoru": 0.91,
+     "ortalama": -0.035,
+     "toplam": -1.3,
+     "kar_faktoru": 0.88,
      "max_dusus": -5.2,
      "gunluk_islem": 0.64,
      "ort_bekleme": 7.5,
@@ -19186,12 +19186,12 @@
      "kontrol": {
       "islem": 10,
       "kazanma": 20.0,
-      "ortalama": -0.191,
-      "toplam": -1.9,
-      "kar_faktoru": 0.24,
+      "ortalama": -0.221,
+      "toplam": -2.2,
+      "kar_faktoru": 0.12,
       "max_dusus": -2.4,
       "gunluk_islem": 0.59,
-      "ort_bekleme": 5.9
+      "ort_bekleme": 6.0
      },
      "kontrol_gecti": false
     },
@@ -19247,9 +19247,9 @@
     "kontrol_bas": "2026-09-18",
     "islem": 43,
     "kazanma": 39.5,
-    "ortalama": 0.119,
-    "toplam": 5.1,
-    "kar_faktoru": 1.58,
+    "ortalama": 0.117,
+    "toplam": 5.0,
+    "kar_faktoru": 1.56,
     "max_dusus": -2.9,
     "gunluk_islem": 0.73,
     "ort_bekleme": 10.1,
@@ -19266,12 +19266,12 @@
     "kontrol": {
      "islem": 13,
      "kazanma": 30.8,
-     "ortalama": -0.124,
-     "toplam": -1.6,
-     "kar_faktoru": 0.54,
-     "max_dusus": -1.6,
+     "ortalama": -0.131,
+     "toplam": -1.7,
+     "kar_faktoru": 0.52,
+     "max_dusus": -1.7,
      "gunluk_islem": 0.72,
-     "ort_bekleme": 7.5
+     "ort_bekleme": 7.6
     },
     "kontrol_gecti": false
    },
@@ -19286,9 +19286,9 @@
      "kontrol_bas": "2026-09-18",
      "islem": 43,
      "kazanma": 39.5,
-     "ortalama": 0.119,
-     "toplam": 5.1,
-     "kar_faktoru": 1.58,
+     "ortalama": 0.117,
+     "toplam": 5.0,
+     "kar_faktoru": 1.56,
      "max_dusus": -2.9,
      "gunluk_islem": 0.73,
      "ort_bekleme": 10.1,
@@ -19305,12 +19305,12 @@
      "kontrol": {
       "islem": 13,
       "kazanma": 30.8,
-      "ortalama": -0.124,
-      "toplam": -1.6,
-      "kar_faktoru": 0.54,
-      "max_dusus": -1.6,
+      "ortalama": -0.131,
+      "toplam": -1.7,
+      "kar_faktoru": 0.52,
+      "max_dusus": -1.7,
       "gunluk_islem": 0.72,
-      "ort_bekleme": 7.5
+      "ort_bekleme": 7.6
      },
      "kontrol_gecti": false
     },
@@ -19781,6 +19781,44 @@
      "kontrol_gecti": false
     },
     {
+     "aday": 197,
+     "ad": "07 Parabolic SAR + 08 MACD Dip",
+     "tf": 1,
+     "tf_ad": "15 Dakika",
+     "skor": 0.1335,
+     "baslangic": "2026-07-30",
+     "kontrol_bas": "2026-09-21",
+     "islem": 32,
+     "kazanma": 31.2,
+     "ortalama": 0.126,
+     "toplam": 3.4,
+     "kar_faktoru": 1.26,
+     "max_dusus": -5.9,
+     "gunluk_islem": 0.58,
+     "ort_bekleme": 10.0,
+     "egitim": {
+      "islem": 25,
+      "kazanma": 32.0,
+      "ortalama": 0.231,
+      "toplam": 5.2,
+      "kar_faktoru": 1.46,
+      "max_dusus": -5.9,
+      "gunluk_islem": 0.66,
+      "ort_bekleme": 9.1
+     },
+     "kontrol": {
+      "islem": 7,
+      "kazanma": 28.6,
+      "ortalama": -0.249,
+      "toplam": -1.7,
+      "kar_faktoru": 0.42,
+      "max_dusus": -2.0,
+      "gunluk_islem": 0.41,
+      "ort_bekleme": 13.3
+     },
+     "kontrol_gecti": false
+    },
+    {
      "aday": 94,
      "ad": "03 Dip Bulucu-2 (VixFix) + 07 Parabolic SAR",
      "tf": 1,
@@ -19795,7 +19833,7 @@
      "kar_faktoru": 0.78,
      "max_dusus": -9.5,
      "gunluk_islem": 0.51,
-     "ort_bekleme": 9.3,
+     "ort_bekleme": 9.4,
      "egitim": {
       "islem": 19,
       "kazanma": 21.1,
@@ -19814,7 +19852,7 @@
       "kar_faktoru": 0.03,
       "max_dusus": -9.5,
       "gunluk_islem": 0.53,
-      "ort_bekleme": 9.9
+      "ort_bekleme": 10.1
      },
      "kontrol_gecti": false
     },
@@ -19893,44 +19931,6 @@
       "ort_bekleme": 7.3
      },
      "kontrol_gecti": false
-    },
-    {
-     "aday": 84,
-     "ad": "02 Dip Bulucu (Banker) + 25 VWAP Kesişimi",
-     "tf": 1,
-     "tf_ad": "15 Dakika",
-     "skor": 0.0829,
-     "baslangic": "2026-07-30",
-     "kontrol_bas": "2026-09-21",
-     "islem": 27,
-     "kazanma": 25.9,
-     "ortalama": 0.159,
-     "toplam": 3.5,
-     "kar_faktoru": 1.26,
-     "max_dusus": -8.1,
-     "gunluk_islem": 0.49,
-     "ort_bekleme": 6.4,
-     "egitim": {
-      "islem": 24,
-      "kazanma": 25.0,
-      "ortalama": 0.165,
-      "toplam": 3.2,
-      "kar_faktoru": 1.27,
-      "max_dusus": -8.1,
-      "gunluk_islem": 0.63,
-      "ort_bekleme": 5.5
-     },
-     "kontrol": {
-      "islem": 3,
-      "kazanma": 33.3,
-      "ortalama": 0.113,
-      "toplam": 0.3,
-      "kar_faktoru": 1.16,
-      "max_dusus": -1.5,
-      "gunluk_islem": 0.18,
-      "ort_bekleme": 13.7
-     },
-     "kontrol_gecti": true
     }
    ],
    "aday_sayisi": 553
@@ -20061,8 +20061,8 @@
      "kontrol_bas": "2026-09-21",
      "islem": 60,
      "kazanma": 35.0,
-     "ortalama": 0.058,
-     "toplam": 2.8,
+     "ortalama": 0.057,
+     "toplam": 2.7,
      "kar_faktoru": 1.09,
      "max_dusus": -13.5,
      "gunluk_islem": 1.09,
@@ -20080,12 +20080,12 @@
      "kontrol": {
       "islem": 20,
       "kazanma": 30.0,
-      "ortalama": -0.265,
-      "toplam": -5.3,
+      "ortalama": -0.268,
+      "toplam": -5.4,
       "kar_faktoru": 0.6,
       "max_dusus": -8.1,
       "gunluk_islem": 1.18,
-      "ort_bekleme": 9.3
+      "ort_bekleme": 9.4
      },
      "kontrol_gecti": false
     },
@@ -20256,10 +20256,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 25,
      "kazanma": 36.0,
-     "ortalama": -0.225,
-     "toplam": -5.6,
-     "kar_faktoru": 0.53,
-     "max_dusus": -6.8,
+     "ortalama": -0.232,
+     "toplam": -5.8,
+     "kar_faktoru": 0.52,
+     "max_dusus": -7.0,
      "gunluk_islem": 0.45,
      "ort_bekleme": 8.9,
      "egitim": {
@@ -20275,10 +20275,10 @@
      "kontrol": {
       "islem": 6,
       "kazanma": 33.3,
-      "ortalama": -0.772,
-      "toplam": -4.6,
+      "ortalama": -0.802,
+      "toplam": -4.8,
       "kar_faktoru": 0.01,
-      "max_dusus": -4.6,
+      "max_dusus": -4.8,
       "gunluk_islem": 0.35,
       "ort_bekleme": 6.8
      },
@@ -20294,10 +20294,10 @@
      "kontrol_bas": "2026-09-21",
      "islem": 29,
      "kazanma": 34.5,
-     "ortalama": -0.227,
-     "toplam": -6.5,
+     "ortalama": -0.234,
+     "toplam": -6.7,
      "kar_faktoru": 0.48,
-     "max_dusus": -6.5,
+     "max_dusus": -6.7,
      "gunluk_islem": 0.53,
      "ort_bekleme": 8.9,
      "egitim": {
@@ -20313,10 +20313,10 @@
      "kontrol": {
       "islem": 8,
       "kazanma": 37.5,
-      "ortalama": -0.639,
-      "toplam": -5.0,
+      "ortalama": -0.662,
+      "toplam": -5.2,
       "kar_faktoru": 0.02,
-      "max_dusus": -5.0,
+      "max_dusus": -5.2,
       "gunluk_islem": 0.47,
       "ort_bekleme": 8.9
      },
@@ -20645,12 +20645,12 @@
     "kontrol_bas": "2026-09-21",
     "islem": 88,
     "kazanma": 22.7,
-    "ortalama": 0.209,
-    "toplam": 18.4,
+    "ortalama": 0.207,
+    "toplam": 18.2,
     "kar_faktoru": 1.54,
     "max_dusus": -8.4,
     "gunluk_islem": 1.6,
-    "ort_bekleme": 6.3,
+    "ort_bekleme": 6.4,
     "egitim": {
      "islem": 56,
      "kazanma": 25.0,
@@ -20664,9 +20664,9 @@
     "kontrol": {
      "islem": 32,
      "kazanma": 18.8,
-     "ortalama": -0.098,
-     "toplam": -3.2,
-     "kar_faktoru": 0.74,
+     "ortalama": -0.104,
+     "toplam": -3.4,
+     "kar_faktoru": 0.73,
      "max_dusus": -6.9,
      "gunluk_islem": 1.88,
      "ort_bekleme": 5.8
@@ -20684,12 +20684,12 @@
      "kontrol_bas": "2026-09-21",
      "islem": 88,
      "kazanma": 22.7,
-     "ortalama": 0.209,
-     "toplam": 18.4,
+     "ortalama": 0.207,
+     "toplam": 18.2,
      "kar_faktoru": 1.54,
      "max_dusus": -8.4,
      "gunluk_islem": 1.6,
-     "ort_bekleme": 6.3,
+     "ort_bekleme": 6.4,
      "egitim": {
       "islem": 56,
       "kazanma": 25.0,
@@ -20703,9 +20703,9 @@
      "kontrol": {
       "islem": 32,
       "kazanma": 18.8,
-      "ortalama": -0.098,
-      "toplam": -3.2,
-      "kar_faktoru": 0.74,
+      "ortalama": -0.104,
+      "toplam": -3.4,
+      "kar_faktoru": 0.73,
       "max_dusus": -6.9,
       "gunluk_islem": 1.88,
       "ort_bekleme": 5.8
@@ -20993,9 +20993,9 @@
      "kontrol_bas": "2026-09-21",
      "islem": 45,
      "kazanma": 33.3,
-     "ortalama": 0.114,
-     "toplam": 4.5,
-     "kar_faktoru": 1.21,
+     "ortalama": 0.109,
+     "toplam": 4.2,
+     "kar_faktoru": 1.2,
      "max_dusus": -9.3,
      "gunluk_islem": 0.82,
      "ort_bekleme": 7.4,
@@ -21012,9 +21012,9 @@
      "kontrol": {
       "islem": 19,
       "kazanma": 21.1,
-      "ortalama": -0.246,
-      "toplam": -4.8,
-      "kar_faktoru": 0.66,
+      "ortalama": -0.258,
+      "toplam": -5.0,
+      "kar_faktoru": 0.64,
       "max_dusus": -8.7,
       "gunluk_islem": 1.12,
       "ort_bekleme": 7.6
@@ -21535,7 +21535,7 @@
      "kontrol_bas": "2026-09-21",
      "islem": 72,
      "kazanma": 29.2,
-     "ortalama": 0.002,
+     "ortalama": 0.001,
      "toplam": -0.5,
      "kar_faktoru": 1.0,
      "max_dusus": -8.7,
@@ -21554,7 +21554,7 @@
      "kontrol": {
       "islem": 26,
       "kazanma": 23.1,
-      "ortalama": -0.214,
+      "ortalama": -0.216,
       "toplam": -5.5,
       "kar_faktoru": 0.46,
       "max_dusus": -7.3,
@@ -22182,7 +22182,7 @@
       "kar_faktoru": 1.4,
       "max_dusus": -3.0,
       "gunluk_islem": 1.0,
-      "ort_bekleme": 26.2
+      "ort_bekleme": 26.4
      },
      "kontrol_gecti": true
     },
@@ -22220,7 +22220,7 @@
       "kar_faktoru": 1.4,
       "max_dusus": -3.0,
       "gunluk_islem": 1.0,
-      "ort_bekleme": 26.2
+      "ort_bekleme": 26.4
      },
      "kontrol_gecti": true
     },
