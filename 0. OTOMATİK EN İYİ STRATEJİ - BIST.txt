@@ -596,10 +596,11 @@ var color[] renkler = array.from(color.new(#2962FF, 0), color.new(#FF9800, 0), c
 f_fiyat(float x) =>
     str.tostring(x, format.mintick)
 
-// Yatay seviye çizgisi + son mumun SAĞINDA okunaklı etiket (mumların üstüne binmez)
+// Yatay seviye çizgisi + son mumun SOLUNDA, çizginin üstünde okunaklı etiket.
+// (Sağa konunca telefonda fiyat ekseninin altında kalıp görünmüyordu.)
 f_seviye(line[] cizgiDizi, label[] etiketDizi, int x1, float y, string metin, color renk, string stil) =>
-    array.push(cizgiDizi, line.new(x1, y, bar_index + 2, y, color = renk, width = 2, style = stil))
-    array.push(etiketDizi, label.new(bar_index + 2, y, metin, style = label.style_label_left, color = color.new(renk, 0), textcolor = color.white, size = size.small))
+    array.push(cizgiDizi, line.new(x1, y, bar_index + 3, y, color = renk, width = 2, style = stil))
+    array.push(etiketDizi, label.new(bar_index, y, metin, style = label.style_label_lower_right, color = color.new(renk, 0), textcolor = color.white, size = size.small))
 
 // x, dizideki seviyelerden birine "yakın"dan daha yakın mı? (etiketler üst üste binmesin)
 f_yakinVar(float[] dizi, float x, float yakin) =>
@@ -720,7 +721,7 @@ if barstate.islast
         czDeger = array.from(cz1, cz2, cz3, cz4)
         for j = 0 to 3
             if not na(array.get(czDeger, j))
-                array.push(etiketler, label.new(bar_index + 1, array.get(czDeger, j), array.get(cizgiAd, array.get(czNolar, j) - 1), style = label.style_label_left, color = color.new(color.black, 100), textcolor = array.get(renkler, j), size = size.normal))
+                array.push(etiketler, label.new(bar_index, array.get(czDeger, j), array.get(cizgiAd, array.get(czNolar, j) - 1), style = label.style_label_lower_right, color = color.new(color.black, 100), textcolor = array.get(renkler, j), size = size.normal))
 
     // ── Risk yönetimi: açık işlem varsa onun, yoksa "şimdi AL gelirse" seviyeleri
     while array.size(seviyeCizgi) > 0
