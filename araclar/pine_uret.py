@@ -660,7 +660,8 @@ etPrev = etOnce
 etGiris = tfUygun and etPoz and not etPrev
 etCikis = tfUygun and not etPoz and etPrev
 gSt = mIzs > 0 ? math.max(gStop0, gTepe - mIzs * atrG[1]) : gStop0
-gAcikDevam = etPoz and not etGiris and not na(gF)
+// Sinyalle çıkış mumunda da önce stop / hedef kontrol edilir (backtest ile aynı kural)
+gAcikDevam = (etPoz or etCikis) and not etGiris and not na(gF)
 gStopVurdu = riskAktif and gAcikDevam and low <= gSt
 gHedefVurdu = riskAktif and gAcikDevam and not gStopVurdu and not na(gHedef) and high >= gHedef
 if etGiris

@@ -75,6 +75,9 @@ Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 Borsa açıkken saatte bir GitHub'da tarama yapılır (`araclar/al_tarama.py`, `.github/workflows/al-tarama.yml`). Her hissede OTO-BIST'in seçtiği en iyi strateji, zaman dilimi ve stop/hedef ayarı kullanılır. Son mumda açık işlemi olan hisseler, karar puanına göre sıralanarak listelenir: giriş fiyatı, son fiyat, getiri, stop ve hedef. Normal mod ve gün içi mod ayrı tablodadır.
 Sonuç `tarama` dalındaki `veri/AL_VERENLER.md` dosyasına yazılır.
 
+### Testler
+`python araclar/testler.py` internetsiz çalışır ve şunları denetler: Python dosyalarının derlenmesi, iş akışı dosyaları, Pine metninde çift tanım / tırnak / eksik isim, gömülü BIST 100 sonuçlarının strateji adlarıyla eşleşmesi, Pine'daki mum mum işlem takibinin (giriş, stop, hedef, çıkış) `risk.py` referans simülasyonuyla ve AL taramasıyla birebir aynı sonucu vermesi. TradingView'de derleme ve görünüm bu testlerin dışındadır, onu ancak grafikte görebilirsin.
+
 ### Alarm
 **Alarm oluştur** ekranında koşul olarak bu indikatörü seç ve **"Herhangi bir alert() fonksiyon çağrısı"**nı seç. Otomatik seçilen strateji AL/SAT verdiğinde, stratejinin adı ve zaman dilimiyle birlikte bildirim gelir.
 
@@ -103,8 +106,10 @@ Her iki modun GitHub'daki testleri şu şekilde çalışır:
 TradingView kodu kendisi güncelleyemez. Yeni sürümü sen yapıştırırsın, 1 dakikalık iş:
 1. Kopyalama sayfasını aç ve **Kodu kopyala**'ya bas.
 2. TradingView'i bilgisayarda (ya da telefonda masaüstü görünümünde) aç, **Pine Editor**'de OTO-BIST indikatörünü aç.
-3. İçindekileri tamamen sil, yapıştır ve **Save**'e bas. **Add to chart**'a basma; grafikteki indikatör kendiliğinden güncellenir.
-4. Telefon uygulaması güncel sürümü kendisi alır. Almazsa grafiği kapatıp yeniden aç.
+3. İçindekileri tamamen sil, yapıştır ve **Save**'e bas.
+4. Editörün üstünde **Grafikte güncelle** (Update on chart) düğmesi çıkarsa ona bas. İndikatör grafikte eski sürümle kalabilir. Güncelleme olmazsa OTO-BIST'i grafikten kaldırıp **Göstergeler → Benim komut dosyalarım** altından yeniden ekle.
+5. Telefon uygulamasında grafiği kapatıp aç.
+6. Kontrol: Açık işlemi olan bir hissede kutunun "Şu an" satırında **giriş tarihi** yazar (ör. "AÇIK İŞLEM VAR • giriş 13.10 (2 mum önce)"). Bu yazıyı görmüyorsan yeni sürüm grafikte değildir.
 
 Ne zaman yapıştırmalı: sonuçlar her ayın 1'inde (normal mod) ve her cumartesi (gün içi mod) yenilenir. Yapıştırmazsan indikatör eski sonuçlarla çalışmaya devam eder, bozulmaz.
 
