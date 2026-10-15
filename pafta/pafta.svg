@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 1200 1697" width="1200" height="1697" font-family="Liberation Sans, Helvetica, Arial, sans-serif">
+<title>Kentsel Bağlantılar Paftası</title>
+<defs><clipPath id="harita-kes"><polygon points="350,0 1374,0 1374,2610 750,2610 750,1190 0,1190 0,270 350,270"/></clipPath></defs>
+<g id="zemin" inkscape:groupmode="layer" inkscape:label="zemin">
+<rect width="1200" height="1697" fill="#fff"/>
+</g>
+<g id="baslik" inkscape:groupmode="layer" inkscape:label="baslik">
+<rect x="0" y="34" width="22" height="76" fill="#7a0c1c"/>
+<text id="baslik-metni" x="40" y="92" font-size="44" fill="#1d1d1d" text-anchor="start" font-weight="700" letter-spacing="0.5"><tspan x="40" dy="0">KENTSEL BAĞLANTILAR PAFTASI</tspan></text>
+<text x="40" y="128" font-size="21" fill="#7a0c1c" text-anchor="start" font-weight="400" ><tspan x="40" dy="0">Konyaaltı / Gürsu Mahallesi – Antalya</tspan></text>
+<text x="1160" y="66" font-size="13" fill="#555555" text-anchor="end" font-weight="700" ><tspan x="1160" dy="0">AKDENİZ ÜNİVERSİTESİ · MİMARLIK FAKÜLTESİ</tspan></text>
+<text x="1160" y="85" font-size="13" fill="#555555" text-anchor="end" font-weight="400" ><tspan x="1160" dy="0">Peyzaj Mimarlığı Bölümü – Proje V Dersi</tspan></text>
+<line x1="40" y1="150" x2="1160" y2="150" stroke="#7a0c1c" stroke-width="2"/>
+</g>
+<g id="sol-bilgi" inkscape:groupmode="layer" inkscape:label="sol-bilgi">
+<rect x="40" y="172" width="86" height="26" rx="13" fill="#7a0c1c"/>
+<text x="57" y="190" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">KONUM</text>
+<text x="40" y="224" font-size="13.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="40" dy="0">Proje alanı Antalya ili Konyaaltı ilçesi Gürsu Mahallesi'nde yer almaktadır. Alan,</tspan><tspan x="40" dy="19">Konyaaltı sahil bandına ve kent merkezine yakın konumuyla önemli rekreasyon, turizm</tspan><tspan x="40" dy="19">ve konut alanlarıyla ilişkili bir bölgede bulunmaktadır. Ana ulaşım akslarına ve toplu</tspan><tspan x="40" dy="19">taşıma güzergâhlarına yakınlığı sayesinde kentsel erişilebilirliği yüksek bir konumdadır.</tspan></text>
+<rect x="40" y="352" width="82" height="26" rx="13" fill="#7a0c1c"/>
+<text x="57" y="370" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">NÜFUS</text>
+<image href="assets/nufus.png" x="40" y="390" width="420" height="140" preserveAspectRatio="xMidYMid meet" />
+<rect x="40" y="552" width="221" height="26" rx="13" fill="#7a0c1c"/>
+<text x="57" y="570" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">SOSYO-EKONOMİK DURUM</text>
+<image href="assets/sosyo.png" x="40" y="592" width="200" height="148" preserveAspectRatio="xMidYMid meet" />
+<text x="265" y="614" font-size="13.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="265" dy="0">Gürsu Mahallesi, turizm ve hizmet sektörüne</tspan><tspan x="265" dy="19">yakınlığı sayesinde orta ve üst gelir grubunun</tspan><tspan x="265" dy="19">yoğun olduğu, yaşam kalitesi yüksek bir yerleşim</tspan><tspan x="265" dy="19">alanıdır.</tspan></text>
+</g>
+<g id="analiz-diskleri" inkscape:groupmode="layer" inkscape:label="analiz-diskleri">
+<rect x="40" y="762" width="204" height="26" rx="13" fill="#7a0c1c"/>
+<text x="57" y="780" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">ALAN ANALİZ ŞEMALARI</text>
+<text x="40" y="812" font-size="15" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="40" dy="0">Ulaşım Analizi</tspan></text>
+<image href="assets/disk-ulasim.png" x="40" y="820" width="250" height="150" preserveAspectRatio="xMidYMid meet" />
+<text x="40" y="988" font-size="12" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="40" dy="0">Alan, çevresindeki ana ve tali ulaşım akslarıyla</tspan><tspan x="40" dy="16">yaya bağlantıları açısından değerlendirilmiş,</tspan><tspan x="40" dy="16">erişilebilirlik düzeyi incelenmiştir. Mevcut</tspan><tspan x="40" dy="16">ulaşım ağının alan kullanımına etkisi ve</tspan><tspan x="40" dy="16">bağlantı sürekliliği analiz edilmiştir.</tspan></text>
+<text x="310" y="812" font-size="15" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="310" dy="0">Yeşil Alan Analizi</tspan></text>
+<image href="assets/disk-yesil.png" x="310" y="820" width="250" height="150" preserveAspectRatio="xMidYMid meet" />
+<text x="310" y="988" font-size="12" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="310" dy="0">Alan ve yakın çevresindeki aktif ve pasif yeşil</tspan><tspan x="310" dy="16">alanların dağılımı değerlendirilmiştir. Yeşil alan</tspan><tspan x="310" dy="16">sürekliliği ve kullanıcı erişimi incelenerek</tspan><tspan x="310" dy="16">ekolojik ve rekreatif potansiyel belirlenmiştir.</tspan></text>
+<text x="40" y="1075" font-size="15" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="40" dy="0">Dolu-Boş Analizi</tspan></text>
+<image href="assets/disk-dolubos.png" x="40" y="1083" width="250" height="150" preserveAspectRatio="xMidYMid meet" />
+<text x="40" y="1251" font-size="12" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="40" dy="0">Yapılaşmış alanlar ile açık ve boş alanların</tspan><tspan x="40" dy="16">mekânsal dağılımı incelenmiştir. Alanın</tspan><tspan x="40" dy="16">yoğunluk dengesi ve açık alan kullanım</tspan><tspan x="40" dy="16">potansiyeli değerlendirilmiştir.</tspan></text>
+<text x="310" y="1075" font-size="15" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="310" dy="0">Gürültü Analizi</tspan></text>
+<image href="assets/disk-gurultu.png" x="310" y="1083" width="250" height="150" preserveAspectRatio="xMidYMid meet" />
+<text x="310" y="1251" font-size="12" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="310" dy="0">Alan çevresindeki ulaşım akslarından ve</tspan><tspan x="310" dy="16">yoğun alanlardan kaynaklanan gürültü etkileri</tspan><tspan x="310" dy="16">analiz edilmiştir. Gürültü seviyesinin kullanıcı</tspan><tspan x="310" dy="16">konforu ve mekânsal kullanım üzerindeki</tspan><tspan x="310" dy="16">etkileri değerlendirilmiştir.</tspan></text>
+</g>
+<g id="pozitif-negatif" inkscape:groupmode="layer" inkscape:label="pozitif-negatif">
+<rect x="40" y="1352" width="190" height="26" rx="13" fill="#7a0c1c"/>
+<text x="57" y="1370" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">POZİTİF YÖNLER</text>
+<rect x="310" y="1352" width="190" height="26" rx="13" fill="#7a0c1c"/>
+<text x="327" y="1370" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">NEGATİF YÖNLER</text>
+<text x="40" y="1404" font-size="14" font-weight="700" fill="#2f6b3a">+</text>
+<text x="56" y="1404" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="56" dy="0">Konyaaltı sahiline ve kıyı rekreasyon</tspan><tspan x="56" dy="14.5">alanlarına yakın konumu sayesinde yüksek</tspan><tspan x="56" dy="14.5">yaşam kalitesi ve sosyal kullanım potansiyeli</tspan><tspan x="56" dy="14.5">sunması</tspan></text>
+<text x="40" y="1468.5" font-size="14" font-weight="700" fill="#2f6b3a">+</text>
+<text x="56" y="1468.5" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="56" dy="0">Turizm, konut ve ticaret fonksiyonlarının bir</tspan><tspan x="56" dy="14.5">arada bulunmasıyla canlı ve çok işlevli bir</tspan><tspan x="56" dy="14.5">kentsel yapı oluşturması</tspan></text>
+<text x="40" y="1518.5" font-size="14" font-weight="700" fill="#2f6b3a">+</text>
+<text x="56" y="1518.5" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="56" dy="0">Ana ulaşım akslarına ve toplu taşıma</tspan><tspan x="56" dy="14.5">olanaklarına yakınlığı sayesinde</tspan><tspan x="56" dy="14.5">erişilebilirliğinin güçlü olması</tspan></text>
+<text x="40" y="1568.5" font-size="14" font-weight="700" fill="#2f6b3a">+</text>
+<text x="56" y="1568.5" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="56" dy="0">Gelişmekte olan konut alanları ve sosyal</tspan><tspan x="56" dy="14.5">donatıların artışıyla yaşam standartlarının</tspan><tspan x="56" dy="14.5">yükselmesi</tspan></text>
+<text x="40" y="1618.5" font-size="14" font-weight="700" fill="#2f6b3a">+</text>
+<text x="56" y="1618.5" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="56" dy="0">İklim, doğal çevre ve peyzaj potansiyeli</tspan><tspan x="56" dy="14.5">açısından açık alan ve rekreasyon</tspan><tspan x="56" dy="14.5">kullanımlarına elverişli olması</tspan></text>
+<text x="310" y="1404" font-size="14" font-weight="700" fill="#7a0c1c">–</text>
+<text x="326" y="1404" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="326" dy="0">Turizm ve ikinci konut kullanımı nedeniyle yaz</tspan><tspan x="326" dy="14.5">aylarında nüfus yoğunluğunun artması ve</tspan><tspan x="326" dy="14.5">kullanım baskısı oluşması</tspan></text>
+<text x="310" y="1454.0" font-size="14" font-weight="700" fill="#7a0c1c">–</text>
+<text x="326" y="1454.0" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="326" dy="0">Artan yapılaşma ve nüfus yoğunluğu</tspan><tspan x="326" dy="14.5">nedeniyle mevcut açık ve yeşil alanlar</tspan><tspan x="326" dy="14.5">üzerinde baskı oluşması</tspan></text>
+<text x="310" y="1504.0" font-size="14" font-weight="700" fill="#7a0c1c">–</text>
+<text x="326" y="1504.0" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="326" dy="0">Mevsimsel nüfus artışına bağlı olarak trafik</tspan><tspan x="326" dy="14.5">yoğunluğunun ve otopark sorunlarının</tspan><tspan x="326" dy="14.5">yaşanması</tspan></text>
+<text x="310" y="1554.0" font-size="14" font-weight="700" fill="#7a0c1c">–</text>
+<text x="326" y="1554.0" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="326" dy="0">Hızlı kentleşme sürecinin bazı bölgelerde</tspan><tspan x="326" dy="14.5">mekânsal gelişimde düzensizliğe yol</tspan><tspan x="326" dy="14.5">açabilmesi</tspan></text>
+<text x="310" y="1604.0" font-size="14" font-weight="700" fill="#7a0c1c">–</text>
+<text x="326" y="1604.0" font-size="11.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="326" dy="0">Kıyı kullanımının yoğunluğu nedeniyle</tspan><tspan x="326" dy="14.5">çevresel sürdürülebilirlik ve kıyı ekosistemi</tspan><tspan x="326" dy="14.5">üzerinde baskı oluşma riski</tspan></text>
+</g>
+<g id="arka-plan-cad" inkscape:groupmode="layer" inkscape:label="arka-plan-cad">
+<g transform="translate(600,172) scale(0.40757)"><image href="assets/harita-cad.png" x="0" y="0" width="1374" height="2610" clip-path="url(#harita-kes)"/></g>
+<rect x="1097.2" y="172" width="62.8" height="18.7" fill="#fff"/>
+</g>
+<g id="harita-oklar-yazilar" inkscape:groupmode="layer" inkscape:label="harita-oklar-yazilar">
+<g transform="translate(600,172) scale(0.40757)" font-weight="700">
+<line x1="930" y1="1325" x2="1214.0" y2="1092.2" stroke="#b8892a" stroke-width="7"/>
+<polygon points="1235,1075 1224.7,1105.4 1203.2,1079.1" fill="#b8892a"/>
+<text x="1355" y="1030" font-size="36" fill="#b8892a" text-anchor="end" stroke="#fff" stroke-width="9" paint-order="stroke">KAZANCI BEDİH</text>
+<text x="1355" y="1074" font-size="36" fill="#b8892a" text-anchor="end" stroke="#fff" stroke-width="9" paint-order="stroke">GÜZEL SANATLAR L.</text>
+<line x1="1085" y1="1470" x2="1242.0" y2="1470.0" stroke="#5b7fa6" stroke-width="22"/>
+<polygon points="1290,1470 1242.0,1500.0 1242.0,1440.0" fill="#5b7fa6"/>
+<text x="1355" y="1545" text-anchor="end" font-size="36" fill="#b8892a" stroke="#fff" stroke-width="9" paint-order="stroke">MİMAR SİNAN BULVARI</text>
+<line x1="850" y1="2020" x2="1223.1" y2="1865.3" stroke="#5b7fa6" stroke-width="16"/>
+<polygon points="1260,1850 1232.6,1888.4 1213.5,1842.2" fill="#5b7fa6"/>
+<text x="880" y="2085" font-size="36" fill="#b8892a" stroke="#fff" stroke-width="9" paint-order="stroke">MEVLANA BULVARI</text>
+<text x="930" y="1245" font-size="34" fill="#7a0c1c" text-anchor="middle" stroke="#fff" stroke-width="9" paint-order="stroke">PROJE ALANI</text>
+</g>
+<g id="kuzey-oku" transform="translate(1128,215)"><circle r="22" fill="#fff" stroke="#1d1d1d" stroke-width="1.2"/><polygon points="0,-17 7,10 0,5 -7,10" fill="#1d1d1d"/><text y="-27" font-size="13" font-weight="700" text-anchor="middle">K</text></g>
+</g>
+<g id="gunes-ve-rota" inkscape:groupmode="layer" inkscape:label="gunes-ve-rota">
+<image href="assets/gunes.png" x="610" y="664" width="285" height="215" preserveAspectRatio="xMidYMid meet" />
+<rect x="610" y="905" width="122" height="26" rx="13" fill="#7a0c1c"/>
+<text x="627" y="923" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">GEZİ ROTASI</text>
+<image href="assets/foto.png" x="610" y="945" width="285" height="180" preserveAspectRatio="xMidYMid meet" />
+</g>
+<g id="lejant-uzaklik" inkscape:groupmode="layer" inkscape:label="lejant-uzaklik">
+<image href="assets/lejant.png" x="600" y="1280" width="270" height="233" preserveAspectRatio="xMidYMid meet" />
+<rect x="880" y="1272" width="185" height="26" rx="13" fill="#7a0c1c"/>
+<text x="897" y="1290" font-size="14" font-weight="700" fill="#fff" letter-spacing="0.6">ULAŞIM UZAKLIKLARI</text>
+<text x="880" y="1330" font-size="12.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="880" dy="0">Şehirlerarası Otobüs Terminali</tspan></text>
+<text x="880" y="1354" font-size="22" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="880" dy="0">11,7 km</tspan></text>
+<line x1="880" y1="1363" x2="1160" y2="1363" stroke="#ddd"/>
+<text x="880" y="1376" font-size="12.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="880" dy="0">Havalimanı</tspan></text>
+<text x="880" y="1400" font-size="22" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="880" dy="0">29,3 km</tspan></text>
+<line x1="880" y1="1409" x2="1160" y2="1409" stroke="#ddd"/>
+<text x="880" y="1422" font-size="12.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="880" dy="0">Alışveriş Merkezi</tspan></text>
+<text x="880" y="1446" font-size="22" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="880" dy="0">4,8 km</tspan></text>
+<line x1="880" y1="1455" x2="1160" y2="1455" stroke="#ddd"/>
+<text x="880" y="1468" font-size="12.5" fill="#1d1d1d" text-anchor="start" font-weight="400" ><tspan x="880" dy="0">Hastane</tspan></text>
+<text x="880" y="1492" font-size="22" fill="#7a0c1c" text-anchor="start" font-weight="700" ><tspan x="880" dy="0">1,6 km</tspan></text>
+<line x1="880" y1="1501" x2="1160" y2="1501" stroke="#ddd"/>
+</g>
+<text x="40" y="1665" font-size="11" fill="#555555" text-anchor="start" font-weight="400" ><tspan x="40" dy="0">Prof. Dr. Tahsin YILMAZ</tspan></text>
+<text x="1160" y="1665" font-size="11" fill="#555555" text-anchor="end" font-weight="400" ><tspan x="1160" dy="0">Konyaaltı / Gürsu · Antalya</tspan></text>
+</svg>
