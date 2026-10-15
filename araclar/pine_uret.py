@@ -655,6 +655,7 @@ var float gStop0 = na
 var float gHedef = na
 var float gTepe = na
 var int gX = na
+var int gT = na
 etPrev = etOnce
 etGiris = tfUygun and etPoz and not etPrev
 etCikis = tfUygun and not etPoz and etPrev
@@ -668,6 +669,7 @@ if etGiris
     gStop0 := close - mSl * atrG
     gHedef := mTp > 0 ? close + mTp * mSl * atrG : na
     gX := bar_index
+    gT := time
     label.new(bar_index, low, "AL", yloc = yloc.belowbar, style = label.style_label_up, color = color.new(#089981, 0), textcolor = color.white, size = size.small)
 else if gStopVurdu or gHedefVurdu
     cikF = gStopVurdu ? math.min(open, gSt) : math.max(open, gHedef)
@@ -704,6 +706,7 @@ if barstate.islast
     float girisAtr = gAtr
     float tepeH = gTepe
     int girisX = gX
+    int girisT = gT
     if tfUygun
         // Çizgilerin adları (çizginin sağ ucunda)
         czNolar = array.from(czNo1, czNo2, czNo3, czNo4)
@@ -826,7 +829,7 @@ if barstate.islast
             table.cell(notTablo, 0, 3, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazandı\\nToplam " + f_yuzde(topG) + (not gunIci ? " • Al-Tut " + f_yuzde(alTut) : hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, 4, "Karar: " + karar + " (" + str.tostring(puan) + "/3)" + (hazir ? " • Kontrol " : gunIci ? " • 30 gün " : " • 1 yıl ") + f_yuzde(yil), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
             rejim = adxG >= 25 ? (close > ema200G ? "TREND YUKARI" : "TREND AŞAĞI") : "YATAY"
-            table.cell(notTablo, 0, 5, (acik ? "Şu an: AÇIK İŞLEM VAR\\nstop " : (simdiPoz ? "Şu an: " + enIyiTf + " grafikte AL'da" : "Şu an: AL bekleniyor") + "\\nAL gelirse stop ") + f_fiyat(acik and not na(rIzs) ? rIzs : rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + "\\n" + str.tostring(rLot, "#") + " lot" + (hazirMod ? " • " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.white, text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 5, (acik ? "Şu an: AÇIK İŞLEM VAR • giriş " + str.format_time(girisT, gunIci ? "dd.MM HH:mm" : "dd.MM", syminfo.timezone) + (bar_index == girisX ? " (son mumda)" : " (" + str.tostring(bar_index - girisX) + " mum önce)") + "\\nstop " : (simdiPoz ? "Şu an: " + enIyiTf + " grafikte AL'da" : "Şu an: AL bekleniyor") + "\\nAL gelirse stop ") + f_fiyat(acik and not na(rIzs) ? rIzs : rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + "\\n" + str.tostring(rLot, "#") + " lot" + (hazirMod ? " • " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.white, text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, 6, "Piyasa: " + rejim + " • ADX " + str.tostring(adxG, "0") + " • oynak %" + str.tostring(atrG / close * 100, "0.0"), text_color = rejim == "YATAY" ? soluk : rejim == "TREND YUKARI" ? color.new(#22AB94, 0) : color.new(#F23645, 0), text_size = notBoyK, text_halign = text.align_left)
             r = 7
             if notMod == "Detaylı"
