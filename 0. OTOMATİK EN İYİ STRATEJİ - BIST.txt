@@ -46,7 +46,6 @@ cizgiGoster = input.bool(true, "Seçilen stratejinin çizgilerini çiz", group =
 baslikYer = input.string("Gizle", "Ayrı başlık (indikatör adı)", options = ["Gizle", "Üst orta", "Alt orta", "Sol alt"], group = G3, tooltip = "İndikatörün adı zaten not kutusunun ilk satırında. Telefonda üst başlık hisse adının üstüne binebilir; bilgisayarda 'Üst orta' rahat okunur.", display = display.none)
 notYazi = input.string("Orta", "Not kutusu yazı boyutu", options = ["Küçük", "Orta", "Büyük"], group = G3, display = display.none)
 yaziSagda = input.string("Sağda", "Seviye yazıları", options = ["Sağda", "Solda"], group = G3, tooltip = "Sağda: son mumun yanında, mumların altında kalmaz. Görünmezse grafiği parmakla biraz sola kaydır.", display = display.none) == "Sağda"
-etiketBar = input.int(300, "Etiketler son kaç barda gösterilsin", minval = 50, maxval = 900, group = G3, display = display.none)
 
 G4 = "4) ORTAK KARAR"
 ortakBar = input.int(3, "Son kaç bardaki sinyaller sayılsın", minval = 1, maxval = 20, group = G4, display = display.none)
@@ -665,6 +664,44 @@ hazirMod = mSl > 0
 // stop/hedef çıkışları grafikte ancak grafik, seçilen zaman diliminde açıksa birebir çizilebilir
 riskAktif = hazirMod and array.get(tfSaniye, secTf) == timeframe.in_seconds()
 
+// ── AL / SAT / STOP / HEDEF etiketleri: her mumda adım adım çizilir ──
+// (Son mumda geriye dönük döngüyle çizmek, request.security sonuçlarının geçmişini okuyamadığı için
+//  eski işlemleri göstermiyor ve girişi son mum sanıyordu.)
+mAktif = secTf == 0 ? m0 : secTf == 1 ? m1 : m2
+etA = array.get(cA, secAday)
+etB = array.get(cB, secAday)
+etPoz = f_bit(mAktif, etA) ? (etB < 0 ? true : f_bit(mAktif, math.max(etB, 0))) : false
+var bool etOnce = false
+var float gF = na
+var float gAtr = na
+var float gStop0 = na
+var float gHedef = na
+var float gTepe = na
+var int gX = na
+etPrev = etOnce
+etGiris = tfUygun and etPoz and not etPrev
+etCikis = tfUygun and not etPoz and etPrev
+gSt = mIzs > 0 ? math.max(gStop0, gTepe - mIzs * atrG[1]) : gStop0
+gAcikDevam = etPoz and not etGiris and not na(gF)
+gStopVurdu = riskAktif and gAcikDevam and low <= gSt
+gHedefVurdu = riskAktif and gAcikDevam and not gStopVurdu and not na(gHedef) and high >= gHedef
+if etGiris
+    gF := close
+    gAtr := atrG
+    gStop0 := close - mSl * atrG
+    gHedef := mTp > 0 ? close + mTp * mSl * atrG : na
+    gX := bar_index
+    label.new(bar_index, low, "AL", yloc = yloc.belowbar, style = label.style_label_up, color = color.new(#089981, 0), textcolor = color.white, size = size.small)
+else if gStopVurdu or gHedefVurdu
+    cikF = gStopVurdu ? math.min(open, gSt) : math.max(open, gHedef)
+    label.new(bar_index, gStopVurdu ? low : high, (gStopVurdu ? "STOP" : "HEDEF") + "\n" + f_yuzde((cikF / gF - 1) * 100 - komisyon), yloc = gStopVurdu ? yloc.belowbar : yloc.abovebar, style = gStopVurdu ? label.style_label_up : label.style_label_down, color = gStopVurdu ? color.new(#F23645, 0) : color.new(#2962FF, 0), textcolor = color.white, size = size.small)
+    gF := na
+else if etCikis and not na(gF)
+    label.new(bar_index, high, "SAT\n" + f_yuzde((close / gF - 1) * 100 - komisyon), yloc = yloc.abovebar, style = label.style_label_down, color = color.new(#F23645, 0), textcolor = color.white, size = size.small)
+    gF := na
+gTepe := na(gF) ? na : math.max(nz(gTepe, high), high)
+etOnce := etPoz
+
 var label[] etiketler = array.new<label>()
 // Tablolar bir kez oluşturulur, her güncellemede sadece içleri yazılır
 nYer = switch notYer
@@ -686,37 +723,11 @@ notBoyB = notYazi == "Küçük" ? size.small : notYazi == "Büyük" ? size.large
 if barstate.islast
     while array.size(etiketler) > 0
         label.delete(array.pop(etiketler))
-    lim = math.min(etiketBar, bar_index - 1)
-    float girisFiyat = na
-    float girisAtr = na
-    float tepeH = na
-    int girisX = na
-    float stop0 = na
-    float hedefF = na
+    float girisFiyat = gF
+    float girisAtr = gAtr
+    float tepeH = gTepe
+    int girisX = gX
     if tfUygun
-        // AL / SAT etiketleri
-        for i = lim to 0
-            simdi = f_poz(secTf, secAday, i)
-            once = f_poz(secTf, secAday, i + 1)
-            if simdi and not once
-                girisFiyat := close[i]
-                girisAtr := atrG[i]
-                girisX := bar_index - i
-                stop0 := close[i] - mSl * atrG[i]
-                hedefF := mTp > 0 ? close[i] + mTp * mSl * atrG[i] : na
-                array.push(etiketler, label.new(bar_index - i, low[i], "AL", yloc = yloc.belowbar, style = label.style_label_up, color = color.new(#089981, 0), textcolor = color.white, size = size.small))
-            // optimize stop / hedef (hazır sonuçtaki ayar): girişten sonraki mumlarda kontrol edilir
-            if riskAktif and simdi and once and not na(girisFiyat)
-                st = mIzs > 0 ? math.max(stop0, tepeH - mIzs * atrG[i + 1]) : stop0
-                cikisF = low[i] <= st ? math.min(open[i], st) : not na(hedefF) and high[i] >= hedefF ? math.max(open[i], hedefF) : na
-                if not na(cikisF)
-                    array.push(etiketler, label.new(bar_index - i, low[i] <= st ? low[i] : high[i], (low[i] <= st ? "STOP" : "HEDEF") + "\n" + f_yuzde((cikisF / girisFiyat - 1) * 100 - komisyon), yloc = low[i] <= st ? yloc.belowbar : yloc.abovebar, style = low[i] <= st ? label.style_label_up : label.style_label_down, color = low[i] <= st ? color.new(#F23645, 0) : color.new(#2962FF, 0), textcolor = color.white, size = size.small))
-                    girisFiyat := na
-            if not simdi and once and not na(girisFiyat)
-                sonuc = "\n" + f_yuzde((close[i] / girisFiyat - 1) * 100 - komisyon)
-                array.push(etiketler, label.new(bar_index - i, high[i], "SAT" + sonuc, yloc = yloc.abovebar, style = label.style_label_down, color = color.new(#F23645, 0), textcolor = color.white, size = size.small))
-                girisFiyat := na
-            tepeH := na(girisFiyat) ? na : math.max(nz(tepeH, high[i]), high[i])
         // Çizgilerin adları (çizginin sağ ucunda)
         czNolar = array.from(czNo1, czNo2, czNo3, czNo4)
         czDeger = array.from(cz1, cz2, cz3, cz4)
@@ -825,7 +836,7 @@ if barstate.islast
             puan = (k1 ? 1 : 0) + (k2 ? 1 : 0) + (k3 ? 1 : 0)
             karar = puan == 3 ? "GÜÇLÜ" : puan == 2 ? "ORTA" : "ZAYIF"
             kararRenk = puan == 3 ? color.new(#22AB94, 0) : puan == 2 ? color.new(#FF9800, 0) : color.new(#F23645, 0)
-            simdiPoz = f_poz(secTf, secAday, 0)
+            simdiPoz = etPoz
             // Telefonda okunsun diye satırlar kısa tutulur (uzun satır kutuyu ekranın dışına taşır)
             nA = array.get(cA, secAday)
             nB2 = array.get(cB, secAday)
@@ -838,7 +849,7 @@ if barstate.islast
             table.cell(notTablo, 0, 3, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazandı\nToplam " + f_yuzde(topG) + (not gunIci ? " • Al-Tut " + f_yuzde(alTut) : hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, 4, "Karar: " + karar + " (" + str.tostring(puan) + "/3)" + (hazir ? " • Kontrol " : gunIci ? " • 30 gün " : " • 1 yıl ") + f_yuzde(yil), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
             rejim = adxG >= 25 ? (close > ema200G ? "TREND YUKARI" : "TREND AŞAĞI") : "YATAY"
-            table.cell(notTablo, 0, 5, (acik ? "Şu an: AÇIK İŞLEM VAR\nstop " : (simdiPoz ? "Şu an: " + enIyiTf + " grafikte AL'da" : "Şu an: AL bekleniyor") + "\nAL gelirse stop ") + f_fiyat(rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + "\n" + str.tostring(rLot, "#") + " lot" + (hazirMod ? " • " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.white, text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 5, (acik ? "Şu an: AÇIK İŞLEM VAR\nstop " : (simdiPoz ? "Şu an: " + enIyiTf + " grafikte AL'da" : "Şu an: AL bekleniyor") + "\nAL gelirse stop ") + f_fiyat(acik and not na(rIzs) ? rIzs : rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + "\n" + str.tostring(rLot, "#") + " lot" + (hazirMod ? " • " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.white, text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, 6, "Piyasa: " + rejim + " • ADX " + str.tostring(adxG, "0") + " • oynak %" + str.tostring(atrG / close * 100, "0.0"), text_color = rejim == "YATAY" ? soluk : rejim == "TREND YUKARI" ? color.new(#22AB94, 0) : color.new(#F23645, 0), text_size = notBoyK, text_halign = text.align_left)
             r = 7
             if notMod == "Detaylı"
@@ -852,8 +863,8 @@ if barstate.islast
 
 // ════════════════════════════ ALARMLAR ════════════════════════════
 plot(na, "OTO-BIST", display = display.none)
-pozSimdi = gecerli ? f_poz(secTf, secAday, 0) : false
-pozOnce = gecerli ? f_poz(secTf, secAday, 1) : false
+pozSimdi = gecerli ? etPoz : false
+pozOnce = gecerli ? etPrev : false
 alertcondition(pozSimdi and not pozOnce, "Otomatik seçim - AL", "{{ticker}}: Otomatik seçilen strateji AL verdi")
 alertcondition(not pozSimdi and pozOnce, "Otomatik seçim - SAT", "{{ticker}}: Otomatik seçilen strateji SAT verdi")
 if barstate.isconfirmed and gecerli and pozSimdi != pozOnce
