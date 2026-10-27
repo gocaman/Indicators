@@ -18,6 +18,7 @@ import pandas as pd
 
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
 import backtest as bt  # noqa: E402
+import risk  # noqa: E402
 import scalper as sc  # noqa: E402
 
 VERI = bt.KOK / "veri"
@@ -78,6 +79,32 @@ def acik_islem(d, df, mod):
     return g, stop, hedef
 
 
+def istatistik(d, df, e, komisyon, gun_ici):
+    """Seçilen stratejinin geçmiş işlemlerinden: yükseliş ne kadar sürede, ne kadar geldi? (tarihsel ortalama, tahmin değildir)
+
+    Süreler takvim saatidir (gece/hafta sonu dahil); gün içi modda pozisyon gün sonunda kapandığı için kısadır.
+    """
+    isinma = sc.ISINMA if gun_ici else bt.ISINMA
+    bas_i = max(int(np.searchsorted(df.index.values, np.datetime64(e["baslangic"]))), isinma)
+    o, h, l, c = (df[x].to_numpy(float) for x in ("Open", "High", "Low", "Close"))
+    g, k, f, _ = risk.risk_islemler(d, o, h, l, c, bt.atr14(df), bas_i, tuple(e.get("mod", (0, 0, 0))))
+    if len(g) < 3:
+        return None
+    r = (f / c[g] - 1) * 100 - komisyon
+    saat = (df.index[k] - df.index[g]).total_seconds().to_numpy() / 3600.0
+    kaz = r > 0
+    return {
+        "islem": int(len(r)), "kazanma": round(float(kaz.mean() * 100), 1),
+        "ort_kazanc": round(float(r[kaz].mean()), 2) if kaz.any() else 0.0,
+        "ort_kayip": round(float(r[~kaz].mean()), 2) if (~kaz).any() else 0.0,
+        "ort_getiri": round(float(r.mean()), 2),
+        "tipik_saat": round(float(np.median(saat[kaz] if kaz.any() else saat)), 1),
+        "ort_saat": round(float(saat.mean()), 1),
+        "test_gun": int(max((df.index[-1] - df.index[bas_i]).days, 1)),
+        "test_bas": df.index[bas_i].strftime("%Y-%m-%d"),
+    }
+
+
 def karar(e, gun_ici):
     if gun_ici:
         k = [e["kontrol"]["toplam"] > 0, e["kazanma"] >= 50, e.get("kar_faktoru", 0) >= 1.3]
@@ -115,13 +142,16 @@ def tara(sonuclar, gun_ici):
         g, stop, hedef = sonuc
         c = df["Close"].to_numpy(float)
         kr, puan = karar(e, gun_ici)
+        ist = istatistik(d, df, e, sonuclar["ayarlar"]["komisyon"], gun_ici)
+        if ist is not None:
+            ist["gecen_saat"] = round(float((df.index[-1] - df.index[g]).total_seconds() / 3600.0), 1)
         satirlar.append({
             "hisse": kod, "strateji": e["ad"], "tf": e["tf_ad"],
             "giris_zaman": df.index[g].strftime("%Y-%m-%d %H:%M"), "giris": round(float(c[g]), 2),
             "son": round(float(c[-1]), 2), "getiri": round(float((c[-1] / c[g] - 1) * 100), 2),
             "stop": None if stop is None else round(float(stop), 2),
             "hedef": None if hedef is None else round(float(hedef), 2),
-            "bar_once": int(len(c) - 1 - g), "karar": kr, "puan": puan,
+            "bar_once": int(len(c) - 1 - g), "karar": kr, "puan": puan, "ist": ist,
         })
         print(f"{kod}: AL'da ({e['ad']} • {e['tf_ad']})", flush=True)
     satirlar.sort(key=lambda s: (-s["puan"], s["bar_once"]))
@@ -140,6 +170,42 @@ def md_tablo(baslik, satirlar):
     return sat + [""]
 
 
+def sure_yazi(saat, gun_ici):
+    if saat < 1.5:
+        return f"{saat * 60:.0f} dk"
+    if saat < 36:
+        return f"{saat:.0f} saat"
+    return f"{saat / 24:.0f} gün"
+
+
+def beklenti_listesi(sonuc):
+    """AL'da olan ve geçmişte ortalama işlemi kârlı olan hisseler, en kısa tipik yükseliş süresi başta."""
+    liste = []
+    for mod, anahtar in (("Normal", "normal"), ("Gün içi", "gun_ici")):
+        for s in sonuc[anahtar]:
+            i = s.get("ist")
+            if i and i["ort_getiri"] > 0 and s["karar"] != "ZAYIF":
+                liste.append({**s, "mod": mod})
+    liste.sort(key=lambda s: (s["ist"]["tipik_saat"], -s["ist"]["ort_kazanc"]))
+    return liste
+
+
+def md_beklenti(sonuc):
+    liste = beklenti_listesi(sonuc)
+    sat = [f"## Beklenen yükselişler ({len(liste)} hisse)", "",
+           "_AL'da olan, geçmişte ortalama işlemi kârlı ve kararı ZAYIF olmayan hisseler; en kısa sürede beklenen yükseliş başta. "
+           "Süre ve oran, aynı stratejinin geçmiş KAZANAN işlemlerinin ortalamasıdır; garanti ya da tahmin değildir._", ""]
+    if not liste:
+        return sat + ["Şu an listelenecek hisse yok.", ""]
+    sat += ["| Hisse | Mod | Tipik süre | Beklenen yükseliş | Kazanma | Kaybederse | AL'dan beri |", "|---|---|---|---|---|---|---|"]
+    for s in liste:
+        i = s["ist"]
+        sat.append(f"| {s['hisse']} | {s['mod']} | {sure_yazi(i['tipik_saat'], s['mod'] == 'Gün içi')} | +{i['ort_kazanc']:.1f}% | "
+                   f"%{i['kazanma']:.0f} ({i['islem']} işlem / {i['test_gun']} gün) | {i['ort_kayip']:.1f}% | "
+                   f"{sure_yazi(i['gecen_saat'], s['mod'] == 'Gün içi')} |")
+    return sat + [""]
+
+
 def main():
     oku = lambda ad: json.loads((VERI / ad).read_text(encoding="utf-8")) if (VERI / ad).exists() else None
     simdi = datetime.now(timezone.utc)
@@ -154,6 +220,7 @@ def main():
           "Karar: GÜÇLÜ 3/3, ORTA 2/3, ZAYIF 0-1/3. Yatırım tavsiyesi değildir._", ""]
     md += md_tablo("Normal mod (4 saat / günlük / haftalık)", sonuc["normal"])
     md += md_tablo("Gün içi mod (5 dk / 15 dk / 1 saat)", sonuc["gun_ici"])
+    md += md_beklenti(sonuc)
     (VERI / "AL_VERENLER.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     print(f"Normal: {len(sonuc['normal'])}, gün içi: {len(sonuc['gun_ici'])} hisse AL'da")
 

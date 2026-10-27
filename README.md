@@ -73,6 +73,10 @@ Not kutusundaki **Karar** satırı 3 şartı kontrol eder:
 
 ### Şu an AL veren BIST 100 hisseleri (tek tek aramadan)
 Borsa açıkken saatte bir GitHub'da tarama yapılır (`araclar/al_tarama.py`, `.github/workflows/al-tarama.yml`). Her hissede OTO-BIST'in seçtiği en iyi strateji, zaman dilimi ve stop/hedef ayarı kullanılır. Son mumda açık işlemi olan hisseler, karar puanına göre sıralanarak listelenir: giriş fiyatı, son fiyat, getiri, stop ve hedef. Normal mod ve gün içi mod ayrı tablodadır.
+
+**Beklenen yükseliş sekmesi:** AL'da olan, geçmişte ortalama işlemi kâr bırakmış ve kararı ZAYIF olmayan hisseler; en kısa sürede beklenen yükseliş başta. Her hisse için aynı stratejinin geçmiş *kazanan* işlemlerinden **tipik süre** (medyan), **beklenen yükseliş %** ve yanında **kazanma oranı** ile **kaybeden işlemlerin ortalaması** gösterilir (`istatistik()` fonksiyonu). Bunlar geçmiş ortalamadır; garanti ya da tahmin değildir.
+
+**Not kutusu:** "45 işlem / 5,8 yıl" gibi, işlem sayısının hangi sürede yapıldığı da yazılır.
 Sonuç `tarama` dalındaki `veri/AL_VERENLER.md` dosyasına yazılır.
 
 ### Testler

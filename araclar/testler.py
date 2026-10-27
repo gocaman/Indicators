@@ -5,6 +5,7 @@
    aday numaralarının strateji adlarıyla eşleşmesi (hem normal hem gün içi sonuçlar).
 3) Pine'daki "mum mum işlem takibi" ile risk.py'deki referans simülasyon, sentetik veride aynı işlemleri bulur.
 4) AL taramasının "açık işlem" bulucusu, mum mum takiple aynı girişi ve stopu verir.
+5) "Beklenen yükseliş" istatistiği (kazanma, ortalama kazanç/kayıp, tipik süre) işlem listesinden elle hesaplananla aynı.
 """
 import json
 import py_compile
@@ -245,9 +246,48 @@ def test_tarama():
     print(f"  tarama: {sinanan} durum, {acik_sayisi} tanesinde açık işlem; giriş ve stop mum mum takiple aynı")
 
 
+# ───────────────────── 5) "beklenen yükseliş" istatistiği (süre / oran): işlem listesinden elle yeniden hesaplanır ─────────────────────
+def test_istatistik():
+    sinanan = 0
+    for kod in ("AAA", "BBB", "CCC", "DDD"):
+        for tf, df in bt.sentetik_veri(kod).items():
+            poz = bt.stratejiler(df)
+            o, h, l, c = (df[x].to_numpy(float) for x in ("Open", "High", "Low", "Close"))
+            atr = bt.atr14(df)
+            for a in range(0, 24, 3):
+                d = poz[a]
+                for mod in risk.MODLAR[::3]:
+                    e = {"baslangic": str(df.index[0].date()), "mod": list(mod)}
+                    ist = at.istatistik(d, df, e, bt.KOMISYON, False)
+                    ref = risk.risk_islemler(d, o, h, l, c, atr, bt.ISINMA, mod)[0]
+                    if len(ref) < 3:
+                        kontrol(ist is None, f"işlem azken istatistik üretildi: {kod} tf{tf} a{a} {mod}")
+                        continue
+                    sinanan += 1
+                    kontrol(ist is not None and ist["islem"] == len(ref), f"istatistik işlem sayısı farklı: {kod} tf{tf} a{a} {mod}")
+                    if ist is None:
+                        continue
+                    g, k, f, _ = risk.risk_islemler(d, o, h, l, c, atr, bt.ISINMA, mod)
+                    r = (f / c[g] - 1) * 100 - bt.KOMISYON
+                    saat = np.array([(df.index[kk] - df.index[gg]).total_seconds() / 3600 for gg, kk in zip(g, k)])
+                    kaz = r > 0
+                    kontrol(abs(ist["kazanma"] - round(kaz.mean() * 100, 1)) < 1e-9, f"kazanma farklı: {kod} tf{tf} a{a} {mod}")
+                    kontrol(abs(ist["ort_getiri"] - round(r.mean(), 2)) < 1e-9, f"ortalama farklı: {kod} tf{tf} a{a} {mod}")
+                    if kaz.any():
+                        kontrol(ist["ort_kazanc"] > 0 and abs(ist["tipik_saat"] - round(float(np.median(saat[kaz])), 1)) < 1e-9,
+                                f"kazanan süre/oran farklı: {kod} tf{tf} a{a} {mod}")
+                    if (~kaz).any():
+                        kontrol(ist["ort_kayip"] <= 0, f"kayıp ortalaması pozitif: {kod} tf{tf} a{a} {mod}")
+                    kontrol(0 <= ist["kazanma"] <= 100 and ist["tipik_saat"] >= 0 and ist["test_gun"] >= 1, f"aralık dışı: {kod} tf{tf} a{a} {mod}")
+    kontrol(sinanan > 40, f"istatistik denenen durum az: {sinanan}")
+    # biçim: JSON'a yazılabilir olmalı
+    json.dumps(ist)
+    print(f"  istatistik: {sinanan} durumda işlem sayısı, kazanma, ortalama ve süre elle hesaplananla aynı")
+
+
 def main():
     for ad, f in (("dosyalar", test_dosyalar), ("pine metni", test_pine_metni),
-                  ("gömülü sonuçlar", test_gomulu_sonuclar), ("mum mum takip", test_mum_mum), ("AL taraması", test_tarama)):
+                  ("gömülü sonuçlar", test_gomulu_sonuclar), ("mum mum takip", test_mum_mum), ("AL taraması", test_tarama), ("beklenen yükseliş istatistiği", test_istatistik)):
         once = len(hatalar)
         f()
         print(f"{'OK ' if len(hatalar) == once else 'HATA'} {ad}")

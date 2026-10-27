@@ -610,6 +610,17 @@ f_modAd(float sl, float tp, float izs) =>
 f_yuzde(float x) =>
     na(x) ? "-" : (x >= 0 ? "+" : "") + str.tostring(x, "0.0") + "%"
 
+// Testin kaç günlük/aylık/yıllık veriyle yapıldığı: "45 işlem" tek başına anlamsız, süreyle birlikte okunur
+var int ilkT = time
+f_tarihMs(string s) =>
+    timestamp(int(str.tonumber(str.substring(s, 0, 4))), int(str.tonumber(str.substring(s, 5, 7))), int(str.tonumber(str.substring(s, 8, 10))), 0, 0)
+
+f_sure(float gun) =>
+    gun >= 540 ? str.tostring(gun / 365.25, "0.0") + " yıl" : gun >= 60 ? str.tostring(gun / 30.4, "0") + " ay" : str.tostring(math.max(gun, 1), "0") + " gün"
+
+f_testSuresi() =>
+    f_sure(hazir ? (f_tarihMs(HAZIR_TARIH) - f_tarihMs(array.get(hBas, hI))) / 86400000.0 : (time - (gunIci ? ilkT : math.max(testBas, ilkT))) / 86400000.0)
+
 // ════════════════════════════ GRAFİĞE OTOMATİK YERLEŞTİRME ════════════════════════════
 secAday = hazir ? array.get(hAday, hI) : gecerli ? int(f_aday(secTf)) : 0
 tfUygun = gecerli and array.get(tfSaniye, secTf) >= timeframe.in_seconds()
@@ -796,7 +807,7 @@ if barstate.islast
         enIyiTf = array.get(tfAd, secTf)
         dogruTf = array.get(tfSaniye, secTf) == timeframe.in_seconds()
         modSatir = (gunIci ? "GÜN İÇİ MOD (5dk/15dk/1S)" : "NORMAL MOD (4S/Günlük/Haftalık)") + " • " + (dogruTf ? "✓ Grafik doğru: " + enIyiTf : "👉 Grafiği " + enIyiTf + " yap")
-        table.cell(baslikTablo, 0, 0, "★ " + f_adayAd(secAday) + "  •  " + array.get(tfAd, secTf) + "\\nGeçmiş: " + str.tostring(bN, "#") + " işlem • kazanma %" + str.tostring(bKaz, "0") + " • toplam " + f_yuzde(bTop) + (cizgiVar ? "" : "\\n(osilatör: çizgisi yok, AL/SAT etiketlerine bak)") + "\\n" + modSatir, text_color = color.white, bgcolor = color.new(#2962FF, 25), text_size = size.normal)
+        table.cell(baslikTablo, 0, 0, "★ " + f_adayAd(secAday) + "  •  " + array.get(tfAd, secTf) + "\\nGeçmiş: " + str.tostring(bN, "#") + " işlem / " + f_testSuresi() + " • kazanma %" + str.tostring(bKaz, "0") + " • toplam " + f_yuzde(bTop) + (cizgiVar ? "" : "\\n(osilatör: çizgisi yok, AL/SAT etiketlerine bak)") + "\\n" + modSatir, text_color = color.white, bgcolor = color.new(#2962FF, 25), text_size = size.normal)
 
     // ── Not kutusu (küçük, köşede)
     table.clear(notTablo, 0, 0, 0, 13)
@@ -827,7 +838,7 @@ if barstate.islast
             table.cell(notTablo, 0, 0, "★ " + array.get(adlar, nA) + (nB2 < 0 ? "" : "\\n   + " + array.get(adlar, math.max(nB2, 0))), text_color = color.white, bgcolor = mavi, text_size = notBoyB, text_halign = text.align_left)
             table.cell(notTablo, 0, 1, (gunIci ? "GÜN İÇİ MOD" : "NORMAL MOD") + " • en iyi: " + enIyiTf + (hazir ? "\\nhazır test " + HAZIR_TARIH : "\\ncanlı test" + (hazirKullan ? "" : " (hazır kapalı)")), text_color = color.white, bgcolor = mavi, text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, 2, dogruTf ? "✓ Grafik doğru zaman diliminde" : "👉 Grafiği " + enIyiTf + " yap", text_color = color.white, bgcolor = dogruTf ? color.new(#089981, 0) : color.new(#E65100, 0), text_size = notBoyK, text_halign = text.align_left)
-            table.cell(notTablo, 0, 3, str.tostring(n) + " işlem • %" + str.tostring(kazOran, "0") + " kazandı\\nToplam " + f_yuzde(topG) + (not gunIci ? " • Al-Tut " + f_yuzde(alTut) : hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
+            table.cell(notTablo, 0, 3, str.tostring(n) + " işlem / " + f_testSuresi() + " • %" + str.tostring(kazOran, "0") + " kazandı\\nToplam " + f_yuzde(topG) + (not gunIci ? " • Al-Tut " + f_yuzde(alTut) : hazir ? " • KF " + str.tostring(alTut, "0.00") + " • günde " + str.tostring(array.get(hYillik, hI), "0.0") : ""), text_color = color.new(#D1D4DC, 0), text_size = notBoyK, text_halign = text.align_left)
             table.cell(notTablo, 0, 4, "Karar: " + karar + " (" + str.tostring(puan) + "/3)" + (hazir ? " • Kontrol " : gunIci ? " • 30 gün " : " • 1 yıl ") + f_yuzde(yil), text_color = kararRenk, text_size = notBoyK, text_halign = text.align_left)
             rejim = adxG >= 25 ? (close > ema200G ? "TREND YUKARI" : "TREND AŞAĞI") : "YATAY"
             table.cell(notTablo, 0, 5, (acik ? "Şu an: AÇIK İŞLEM VAR • giriş " + str.format_time(girisT, gunIci ? "dd.MM HH:mm" : "dd.MM", syminfo.timezone) + (bar_index == girisX ? " (son mumda)" : " (" + str.tostring(bar_index - girisX) + " mum önce)") + "\\nstop " : (simdiPoz ? "Şu an: " + enIyiTf + " grafikte AL'da" : "Şu an: AL bekleniyor") + "\\nAL gelirse stop ") + f_fiyat(acik and not na(rIzs) ? rIzs : rStop) + (na(rTp1) ? "" : " • hedef " + f_fiyat(rTp1)) + (na(rTp2) ? "" : " / " + f_fiyat(rTp2)) + "\\n" + str.tostring(rLot, "#") + " lot" + (hazirMod ? " • " + f_modAd(mSl, mTp, mIzs) : ""), text_color = color.white, text_size = notBoyK, text_halign = text.align_left)
