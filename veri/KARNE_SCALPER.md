@@ -5,6 +5,7 @@ Geçmiş testin aksine bu tablo şans eseri iyi görünemez; indikatörün gerç
 
 | Seçim tarihi | Ölçüm tarihi | Hisse | İşlem yapılan | İşlem | Kazanma | Ort. strateji getirisi | Ort. Al-Tut | Stratejinin önde olduğu hisse |
 |---|---|---|---|---|---|---|---|---|
+| 2026-11-21 | 2026-11-27 | 97 | 96 | 430 | 31% | -1.45% | -2.39% | 62/97 |
 | 2026-11-14 | 2026-11-20 | 97 | 94 | 415 | 16% | -2.01% | -5.22% | 80/97 |
 | 2026-11-07 | 2026-11-13 | 97 | 93 | 391 | 23% | -0.58% | +2.62% | 27/97 |
 | 2026-10-31 | 2026-11-06 | 97 | 96 | 468 | 43% | +1.14% | +10.05% | 13/97 |
@@ -12,6 +13,6 @@ Geçmiş testin aksine bu tablo şans eseri iyi görünemez; indikatörün gerç
 | 2026-10-17 | 2026-10-23 | 97 | 94 | 372 | 35% | -0.65% | -9.24% | 89/97 |
 | 2026-10-13 | 2026-10-16 | 97 | 90 | 368 | 17% | -3.04% | -6.37% | 70/97 |
 
-**Toplam:** 2239 gerçek işlem, kazanma oranı 27%.
+**Toplam:** 2669 gerçek işlem, kazanma oranı 28%.
 
-_Son güncelleme: 2026-11-21 13:04 UTC_
+_Son güncelleme: 2026-11-28 13:39 UTC_
